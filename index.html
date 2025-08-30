@@ -69,8 +69,7 @@
     .ad-wrap{
       display:flex; justify-content:center;
       padding:6px 0 2px;
-      /* evita que rompa el layout en móviles */
-      overflow-x:auto;
+      overflow-x:auto; /* evita que rompa el layout en móviles */
     }
     .ad-inner{min-width:728px} /* tamaño real del banner; con overflow-x el usuario puede desplazarlo en pantallas pequeñas */
 
@@ -103,6 +102,22 @@
     a{color:var(--accent); text-decoration:none}
     a:hover{filter:brightness(1.1); text-decoration:underline}
 
+    /* Botones de llamada a la acción */
+    .cta-group{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 16px; border-radius:12px; font-weight:700;
+      text-decoration:none; color:#fff;
+      background:linear-gradient(180deg,#1f9be6,#0ea5e9);
+      box-shadow:0 8px 20px rgba(14,165,233,.35);
+      transition:transform .06s ease, box-shadow .2s ease;
+    }
+    .cta:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
+    .cta.secondary{
+      background:linear-gradient(180deg,#34d399,#10b981);
+      box-shadow:0 8px 20px rgba(16,185,129,.35);
+    }
+
     footer{
       margin-top:auto;            /* empuja al final si hay poco contenido */
       text-align:center; color:var(--muted); font-size:.88rem;
@@ -129,6 +144,21 @@
           </div>
         </div>
       </header>
+
+      <!-- Descripción + CTA -->
+      <section class="panel" aria-labelledby="about-title">
+        <h2 id="about-title" style="margin:0 0 6px">Trading algorítmico con validación cuantitativa</h2>
+        <p style="margin:0">
+          <strong>DGO Trading</strong> desarrolla trading algorítmico bajo un marco de validación cuantitativa.
+          Sus estrategias integran modelos estadísticos y criterio discrecional codificado, contrastados con evidencia histórica,
+          calibrados paramétricamente y verificados de forma progresiva en ventanas temporales sucesivas, con foco en la consistencia y la robustez.
+        </p>
+        <p class="muted" style="margin:10px 0 0">Contenido y actualizaciones periódicas en redes sociales.</p>
+        <div class="cta-group">
+          <a class="cta" href="https://www.instagram.com/dgotrader_6?igsh=Z2JkcHhsODlweGht&utm_source=qr" target="_blank" rel="noopener">Seguir en Instagram</a>
+          <a class="cta secondary" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">Unirse a Telegram</a>
+        </div>
+      </section>
 
       <!-- Anuncio (tal cual nos diste) -->
       <div class="ad-wrap">
@@ -157,7 +187,7 @@
           <div style="width:100%;text-align:center;line-height:26px;">
             <iframe frameborder="0" width="100%" height="140" loading="lazy"
               src="https://www.mql5.com/es/signals/widget/signal/76y7?t=dark?fw=html"></iframe>
-            <div class="sw-copyright">
+            <div class="swopyright">
               <a href="https://www.mql5.com/?utm_source=signals.widget&utm_medium=link&utm_term=signals&utm_content=visit.mql5.signals&utm_campaign=202.signals.widget"
                  rel="noopener nofollow" target="_blank">MQL5 Algo Trading Community</a>
             </div>
