@@ -8,90 +8,173 @@
   <meta property="og:title" content="DGO Trading — Señal en vivo">
   <meta property="og:description" content="Sigue la señal DGO Trading en tiempo real.">
   <meta property="og:type" content="website">
+  <meta name="theme-color" content="#121828">
+
+  <!-- Tipografía profesional -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#40E0D0; /* Azul turquesa */
-      --card:#121828;
+      --bg:#40E0D0;       /* Turquesa de fondo */
+      --card:#0d1426;     /* Azul oscuro base del panel */
+      --card2:#0a101f;    /* Azul más profundo (degradado) */
+      --stroke:#1e2a49;   /* Borde sutil */
       --text:#e8eefc;
       --muted:#9fb0d9;
       --accent:#38bdf8;
+      --glow: rgba(56,189,248,.25);
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background: var(--bg); /* Fondo turquesa plano */
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:var(--bg);
       color:var(--text);
-      line-height:1.55;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:28px;
+      line-height:1.6;
     }
-    .wrap{width:100%; max-width:760px}
+
+    /* Contenedor de página a pantalla completa */
+    .wrap{width:100%}
     .card{
-      background:linear-gradient(180deg, #0e1424, #0a0f1d);
-      border:1px solid #1f2a44;
-      border-radius:22px;
-      box-shadow:0 10px 30px #00000060, inset 0 0 0 1px #ffffff05;
-      padding:22px;
+      min-height:100vh;           /* ocupa alto completo */
+      width:100%;
+      margin:0;
+      padding:28px clamp(16px, 4vw, 40px);
+      background:
+        radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
+        linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
+      border:1px solid var(--stroke);
+      border-radius:0;            /* sin esquinas para cubrir todo */
+      box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
+      display:flex;
+      flex-direction:column;
+      gap:18px;
     }
-    header{display:flex; gap:16px; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap}
-    h1{font-size:clamp(1.35rem, 1rem + 2vw, 2rem); margin:0; letter-spacing:.2px}
+
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; flex-wrap:wrap;
+      padding-bottom:8px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand img{height:56px; width:auto; border-radius:12px; box-shadow:0 4px 18px rgba(0,0,0,.35)}
+    h1{margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem); letter-spacing:.2px}
     .muted{color:var(--muted); font-size:.95rem}
-    .cta{display:inline-flex; align-items:center; gap:8px; background:linear-gradient(180deg, #1f9be6, #0ea5e9); color:white; padding:10px 16px; border-radius:14px; border:0; cursor:pointer; font-weight:700; text-decoration:none; box-shadow:0 6px 20px #0ea5e977}
-    .panel{background:var(--card); border:1px solid #212e4b; border-radius:18px; padding:14px; margin-top:14px}
-    .widget{width:100%; min-height:170px; display:grid; place-items:center; background:repeating-linear-gradient(45deg, #0e1527, #0e1527 12px, #0f1730 12px, #0f1730 24px); border-radius:14px; border:1px dashed #2a3a62; position:relative; overflow:hidden}
-    .badge{position:absolute; top:10px; right:10px; font-size:.75rem; color:#8fb3ff; background:#0b1326; border:1px solid #22407a; border-radius:999px; padding:4px 10px}
+
+    .ad-wrap{
+      display:flex; justify-content:center;
+      padding:6px 0 2px;
+      /* evita que rompa el layout en móviles */
+      overflow-x:auto;
+    }
+    .ad-inner{min-width:728px} /* tamaño real del banner; con overflow-x el usuario puede desplazarlo en pantallas pequeñas */
+
+    .panel{
+      background:linear-gradient(180deg, #111a31, #0c1427);
+      border:1px solid var(--stroke);
+      border-radius:16px;
+      padding:16px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
+    }
+
+    .widget{
+      width:100%;
+      min-height:170px;
+      display:grid;
+      place-items:center;
+      background:repeating-linear-gradient(45deg,#0e152b,#0e152b 12px,#0f1733 12px,#0f1733 24px);
+      border-radius:14px;
+      border:1px dashed #2a3a62;
+      position:relative;
+      overflow:hidden;
+      padding:16px;
+    }
+    .badge{
+      position:absolute; top:10px; right:10px;
+      font-size:.75rem; color:#8fb3ff; background:#0b1326;
+      border:1px solid #22407a; border-radius:999px; padding:4px 10px
+    }
     iframe{width:100%; border:0}
-    footer{margin-top:16px; text-align:center; color:var(--muted); font-size:.85rem}
+    a{color:var(--accent); text-decoration:none}
+    a:hover{filter:brightness(1.1); text-decoration:underline}
+
+    footer{
+      margin-top:auto;            /* empuja al final si hay poco contenido */
+      text-align:center; color:var(--muted); font-size:.88rem;
+      padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
+    }
+
+    /* Pequeños refinamientos responsivos */
+    @media (max-width: 820px){
+      .brand img{height:48px}
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
+
+      <!-- Header -->
       <header>
-        <img src="logo.png" alt="Logo DGO Trading" style="height:56px; border-radius:12px">
-        <div>
-          <h1>DGO Trading</h1>
-          <div class="muted">Señal en vivo y enlaces útiles</div>
+        <div class="brand">
+          <img src="logo.png" alt="Logo DGO Trading">
+          <div>
+            <h1>DGO Trading</h1>
+            <div class="muted">Señal en vivo y enlaces útiles</div>
+          </div>
         </div>
       </header>
 
-      <ins class='dcmads' style='display:inline-block;width:728px;height:90px'
-        data-dcm-placement='N800570.2009906CELLXPERT/B24282330.340389488'
-        data-dcm-rendering-mode='iframe'
-        data-dcm-https-only
-        data-dcm-click-tracker="https://trk.pepperstonepartners.com/aff_c?offer_id=382&aff_id=40752&file_id=5423"
-        data-dcm-gdpr-applies='gdpr=${GDPR}'
-        data-dcm-gdpr-consent='gdpr_consent=${GDPR_CONSENT_755}'
-        data-dcm-addtl-consent='addtl_consent=${ADDTL_CONSENT}'
-        data-dcm-ltd='false'
-        data-dcm-resettable-device-id=''
-        data-dcm-app-id=''>
-        <script src='https://www.googletagservices.com/dcm/dcmads.js'></script>
-      </ins><img src="https://trk.pepperstonepartners.com/aff_i?offer_id=382&aff_id=40752&file_id=5423" width="0" height="0" style="position:absolute;visibility:hidden;" border="0" />
+      <!-- Anuncio (tal cual nos diste) -->
+      <div class="ad-wrap">
+        <div class="ad-inner">
+          <ins class="dcmads" style="display:inline-block;width:728px;height:90px"
+            data-dcm-placement="N800570.2009906CELLXPERT/B24282330.340389488"
+            data-dcm-rendering-mode="iframe"
+            data-dcm-https-only
+            data-dcm-click-tracker="https://trk.pepperstonepartners.com/aff_c?offer_id=382&aff_id=40752&file_id=5423"
+            data-dcm-gdpr-applies="gdpr=${GDPR}"
+            data-dcm-gdpr-consent="gdpr_consent=${GDPR_CONSENT_755}"
+            data-dcm-addtl-consent="addtl_consent=${ADDTL_CONSENT}"
+            data-dcm-ltd="false"
+            data-dcm-resettable-device-id=""
+            data-dcm-app-id="">
+            <script src="https://www.googletagservices.com/dcm/dcmads.js"></script>
+          </ins>
+          <img src="https://trk.pepperstonepartners.com/aff_i?offer_id=382&aff_id=40752&file_id=5423" width="0" height="0" style="position:absolute;visibility:hidden;" border="0" alt="">
+        </div>
+      </div>
 
+      <!-- Widget -->
       <div class="panel">
         <div class="widget" id="widget">
           <span class="badge">MQL5 Widget</span>
           <div style="width:100%;text-align:center;line-height:26px;">
-            <iframe frameborder="0" width="100%" height="140" src="https://www.mql5.com/es/signals/widget/signal/76y7?t=dark?fw=html"></iframe>
+            <iframe frameborder="0" width="100%" height="140" loading="lazy"
+              src="https://www.mql5.com/es/signals/widget/signal/76y7?t=dark?fw=html"></iframe>
             <div class="sw-copyright">
-              <a href="https://www.mql5.com/?utm_source=signals.widget&utm_medium=link&utm_term=signals&utm_content=visit.mql5.signals&utm_campaign=202.signals.widget" rel="noopener nofollow" target="_blank">
-                MQL5 Algo Trading Community
-              </a>
+              <a href="https://www.mql5.com/?utm_source=signals.widget&utm_medium=link&utm_term=signals&utm_content=visit.mql5.signals&utm_campaign=202.signals.widget"
+                 rel="noopener nofollow" target="_blank">MQL5 Algo Trading Community</a>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- Footer -->
       <footer>
         © <span id="yr"></span> DGO Trading. Todos los derechos reservados.
       </footer>
+
     </div>
   </div>
-  <script>document.getElementById('yr').textContent = new Date().getFullYear()</script>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
