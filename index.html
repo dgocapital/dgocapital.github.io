@@ -25,6 +25,9 @@
       --muted:#9fb0d9;
       --accent:#38bdf8;
       --glow: rgba(56,189,248,.25);
+
+      /* Ancho del sidebar (right) */
+      --menuW: clamp(280px, 24vw, 360px);
     }
 
     *{box-sizing:border-box}
@@ -133,29 +136,39 @@
     /* ====== MENÚ LATERAL DERECHA (Servicios) ====== */
     .side-menu{
       position:fixed;
-      right:18px; top:28px;
-      width:240px;
+      right:18px; 
+      top:16px; 
+      bottom:16px;                 /* ocupa todo el alto disponible */
+      width:var(--menuW);          /* más ancho y adaptable */
       background:linear-gradient(180deg, #111a31, #0c1427);
       border:1px solid var(--stroke);
       border-radius:14px;
-      padding:14px;
+      padding:16px;
       box-shadow: 0 12px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.03) inset;
       z-index:40;
+      display:flex; flex-direction:column; overflow:auto; gap:10px;
     }
     .side-menu h3{
-      margin:0 0 8px; font-size:1rem; letter-spacing:.2px; color:#cfe0ff;
+      margin:0; 
+      text-align:center; 
+      font-size:clamp(1.2rem, 0.9rem + 1vw, 1.6rem); 
+      letter-spacing:.3px; 
+      color:#d9e6ff;
     }
-    .svc-list{list-style:none; margin:0; padding:0; display:grid; gap:8px}
+    .svc-list{list-style:none; margin:0; padding:4px 0; display:grid; gap:10px}
     .svc-list a{
       display:flex; align-items:center; justify-content:space-between;
-      padding:10px 12px; border-radius:10px;
+      padding:12px 14px; border-radius:12px;
       background:#0e162c; border:1px solid #1d2947;
-      color:var(--text); text-decoration:none; font-weight:600;
+      color:var(--text); text-decoration:none; font-weight:700;
       transition: transform .06s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
     }
-    .svc-list a span{opacity:.8; font-weight:500; font-size:.9rem}
+    /* Eliminamos por completo los subtítulos (span) */
+    .svc-list a span{ display:none; }
+
     .svc-list a::after{
-      content:"›"; opacity:.8; transform: translateX(0); transition: transform .15s ease, opacity .2s ease;
+      content:"›"; opacity:.85; transform: translateX(0); transition: transform .15s ease, opacity .2s ease;
+      font-weight:700;
     }
     .svc-list a:hover{
       background:#0f1b36; border-color:#28406e; box-shadow:0 6px 20px rgba(56,189,248,.18);
@@ -164,13 +177,14 @@
 
     /* Reservar espacio a la derecha en desktop para que no tape el contenido */
     @media (min-width:1024px){
-      .card{ padding-right: calc(clamp(16px, 4vw, 40px) + 260px); }
+      .card{ padding-right: calc(clamp(16px, 4vw, 40px) + var(--menuW) + 22px); }
     }
 
     /* En pantallas pequeñas, el menú se integra al flujo (debajo del header) */
     @media (max-width:1023px){
       .side-menu{
-        position:static; width:100%; margin:0 0 10px 0;
+        position:static; width:100%; height:auto; bottom:auto; right:auto; 
+        margin:0 0 10px 0;
       }
     }
 
@@ -199,10 +213,10 @@
       <nav class="side-menu" aria-labelledby="svc-title">
         <h3 id="svc-title">Servicios</h3>
         <ul class="svc-list">
-          <li><a href="servicios/copiador-de-senales.html" title="Copiador de Señales">Copiador de Señales <span>setup & soporte</span></a></li>
-          <li><a href="servicios/codifica-tu-estrategia.html" title="Codifica tu estrategia">Codifica tu estrategia <span>de idea a código</span></a></li>
-          <li><a href="servicios/academia.html" title="Academia">Academia <span>formación aplicada</span></a></li>
-          <li><a href="servicios/fondo-de-inversion.html" title="Fondo de Inversión">Fondo de Inversión <span>información</span></a></li>
+          <li><a href="servicios/copiador-de-senales.html" title="Copiador de Señales">Copiador de Señales</a></li>
+          <li><a href="servicios/codifica-tu-estrategia.html" title="Codifica tu estrategia">Codifica tu estrategia</a></li>
+          <li><a href="servicios/academia.html" title="Academia">Academia</a></li>
+          <li><a href="servicios/fondo-de-inversion.html" title="Fondo de Inversión">Fondo de Inversión</a></li>
         </ul>
       </nav>
 
