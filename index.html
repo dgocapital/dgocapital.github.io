@@ -10,10 +10,10 @@
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#121828">
 
-  <!-- Tipografía monoespaciada (look de máquina) -->
+  <!-- Fuentes: Inter (sans), Space Grotesk (grotesk), JetBrains Mono (mono) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -25,20 +25,27 @@
       --muted:#9fb0d9;
       --accent:#38bdf8;
       --glow: rgba(56,189,248,.25);
+
+      /* Stacks disponibles */
+      --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-grotesk: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+      /* Selección actual (puedes cambiarla por defecto a var(--font-mono) o var(--font-grotesk)) */
+      --font-current: var(--font-sans);
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-family: var(--font-current);
       letter-spacing:.1px;
       background:var(--bg);
       color:var(--text);
       line-height:1.6;
     }
 
-    /* Contenedor de página a pantalla completa */
     .wrap{width:100%}
     .card{
       min-height:100vh;
@@ -111,7 +118,6 @@
       background:linear-gradient(180deg,#34d399,#10b981);
       box-shadow:0 8px 20px rgba(16,185,129,.35);
     }
-    /* Full width en móvil */
     @media (max-width:640px){
       .cta{flex:1 0 100%}
       .cta-group{gap:10px}
@@ -121,7 +127,7 @@
     .ad-wrap{
       display:flex; justify-content:center;
       padding:10px 0 2px;
-      overflow-x:auto; /* evita que rompa el layout en móviles */
+      overflow-x:auto;
     }
     .ad-inner{min-width:728px}
 
@@ -129,6 +135,24 @@
       margin-top:auto;
       text-align:center; color:var(--muted); font-size:.88rem;
       padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
+    }
+
+    /* Conmutador de tipografía (flotante, discreto) */
+    .font-switcher{
+      position:fixed; right:14px; bottom:14px;
+      display:flex; align-items:center; gap:8px;
+      background:rgba(13,20,38,.85);
+      border:1px solid var(--stroke);
+      color:var(--muted);
+      padding:8px 10px; border-radius:10px;
+      backdrop-filter: blur(6px);
+      font-size:.9rem;
+      z-index:50;
+    }
+    .font-switcher select{
+      background:#0b1326; color:var(--text);
+      border:1px solid #1e2a49; border-radius:8px;
+      padding:6px 8px; font:inherit; outline:none;
     }
 
     /* Pequeños refinamientos responsivos */
@@ -210,8 +234,38 @@
     </div>
   </div>
 
+  <!-- Conmutador de tipografía -->
+  <div class="font-switcher" title="Cambiar tipografía">
+    <span style="font-size:.85rem">Tipografía:</span>
+    <select id="fontSelect" aria-label="Seleccionar tipografía">
+      <option value="sans">Inter</option>
+      <option value="grotesk">Space Grotesk</option>
+      <option value="mono">JetBrains Mono</option>
+    </select>
+  </div>
+
   <script>
+    // Año en footer
     document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Conmutador de tipografía con persistencia
+    (function(){
+      const stacks = {
+        sans: getComputedStyle(document.documentElement).getPropertyValue('--font-sans').trim(),
+        grotesk: getComputedStyle(document.documentElement).getPropertyValue('--font-grotesk').trim(),
+        mono: getComputedStyle(document.documentElement).getPropertyValue('--font-mono').trim(),
+      };
+      const select = document.getElementById('fontSelect');
+      const saved = localStorage.getItem('fontStack') || 'sans';
+      select.value = saved;
+      document.documentElement.style.setProperty('--font-current', stacks[saved]);
+
+      select.addEventListener('change', function(){
+        const key = this.value;
+        document.documentElement.style.setProperty('--font-current', stacks[key]);
+        localStorage.setItem('fontStack', key);
+      });
+    })();
   </script>
 </body>
 </html>
