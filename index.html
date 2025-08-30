@@ -98,7 +98,7 @@
     a{color:var(--accent); text-decoration:none}
     a:hover{filter:brightness(1.1); text-decoration:underline}
 
-    /* CTA */
+    /* CTA (estilos existentes) */
     .cta-group{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
     .cta{
       display:inline-flex; align-items:center; justify-content:center;
@@ -113,7 +113,6 @@
       background:linear-gradient(180deg,#34d399,#10b981);
       box-shadow:0 8px 20px rgba(16,185,129,.35);
     }
-    /* Full width en móvil */
     @media (max-width:640px){
       .cta{flex:1 0 100%}
       .cta-group{gap:10px}
@@ -163,9 +162,7 @@
       color:var(--text); text-decoration:none; font-weight:700;
       transition: transform .06s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
     }
-    /* Eliminamos por completo los subtítulos (span) */
     .svc-list a span{ display:none; }
-
     .svc-list a::after{
       content:"›"; opacity:.85; transform: translateX(0); transition: transform .15s ease, opacity .2s ease;
       font-weight:700;
@@ -174,6 +171,13 @@
       background:#0f1b36; border-color:#28406e; box-shadow:0 6px 20px rgba(56,189,248,.18);
     }
     .svc-list a:hover::after{ transform: translateX(2px); opacity:1 }
+
+    /* Botones sociales al fondo del menú */
+    .side-cta{
+      margin-top:auto;               /* empuja el bloque al fondo del sidebar */
+      display:grid; gap:10px;
+    }
+    .side-cta .cta{ width:100%; justify-content:center }
 
     /* Reservar espacio a la derecha en desktop para que no tape el contenido */
     @media (min-width:1024px){
@@ -218,9 +222,15 @@
           <li><a href="servicios/academia.html" title="Academia">Academia</a></li>
           <li><a href="servicios/fondo-de-inversion.html" title="Fondo de Inversión">Fondo de Inversión</a></li>
         </ul>
+
+        <!-- Botones sociales movidos aquí -->
+        <div class="side-cta">
+          <a class="cta" href="https://www.instagram.com/dgotrader_6?igsh=Z2JkcHhsODlweGht&utm_source=qr" target="_blank" rel="noopener">Seguir en Instagram</a>
+          <a class="cta secondary" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">Unirse a Telegram</a>
+        </div>
       </nav>
 
-      <!-- Descripción + CTA -->
+      <!-- Descripción (sin los botones) -->
       <section class="panel" aria-labelledby="about-title">
         <h2 id="about-title" style="margin:0 0 6px">Trading algorítmico con validación cuantitativa</h2>
         <p style="margin:0">
@@ -229,10 +239,6 @@
           calibrados paramétricamente y verificados de forma progresiva en ventanas temporales sucesivas, con foco en la consistencia y la robustez.
         </p>
         <p class="muted" style="margin:10px 0 0">Contenido y actualizaciones periódicas en redes sociales.</p>
-        <div class="cta-group">
-          <a class="cta" href="https://www.instagram.com/dgotrader_6?igsh=Z2JkcHhsODlweGht&utm_source=qr" target="_blank" rel="noopener">Seguir en Instagram</a>
-          <a class="cta secondary" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">Unirse a Telegram</a>
-        </div>
       </section>
 
       <!-- 1) WIDGET (primero) -->
