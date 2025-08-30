@@ -178,6 +178,9 @@
       display:grid; gap:10px;
     }
     .side-cta .cta{ width:100%; justify-content:center }
+    .side-cta .side-note{
+      text-align:center; margin:0 0 6px; color:var(--muted); font-size:.92rem;
+    }
 
     /* Reservar espacio a la derecha en desktop para que no tape el contenido */
     @media (min-width:1024px){
@@ -223,14 +226,15 @@
           <li><a href="servicios/fondo-de-inversion.html" title="Fondo de Inversión">Fondo de Inversión</a></li>
         </ul>
 
-        <!-- Botones sociales movidos aquí -->
+        <!-- Nota + Botones sociales movidos aquí -->
         <div class="side-cta">
+          <p class="side-note">Contenido y actualizaciones periódicas en redes sociales.</p>
           <a class="cta" href="https://www.instagram.com/dgotrader_6?igsh=Z2JkcHhsODlweGht&utm_source=qr" target="_blank" rel="noopener">Seguir en Instagram</a>
           <a class="cta secondary" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">Unirse a Telegram</a>
         </div>
       </nav>
 
-      <!-- Descripción (sin los botones) -->
+      <!-- Descripción (sin los botones ni la nota) -->
       <section class="panel" aria-labelledby="about-title">
         <h2 id="about-title" style="margin:0 0 6px">Trading algorítmico con validación cuantitativa</h2>
         <p style="margin:0">
@@ -238,7 +242,6 @@
           Sus estrategias integran modelos estadísticos y criterio discrecional codificado, contrastados con evidencia histórica,
           calibrados paramétricamente y verificados de forma progresiva en ventanas temporales sucesivas, con foco en la consistencia y la robustez.
         </p>
-        <p class="muted" style="margin:10px 0 0">Contenido y actualizaciones periódicas en redes sociales.</p>
       </section>
 
       <!-- 1) WIDGET (primero) -->
