@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DGO Trading — Copiador de Señales</title>
+  <meta name="description" content="Copiador de señales de DGO Trading. Replica operaciones con control y consistencia.">
+  <meta property="og:title" content="DGO Trading — Copiador de Señales">
+  <meta property="og:description" content="Replica nuestras operaciones con un copiador de señales robusto y sencillo de usar.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#121828">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Colores y estilo iguales a la página principal */
+      --card:#0d1426;
+      --card2:#0a101f;
+      --stroke:#1e2a49;
+      --text:#e8eefc;
+      --muted:#9fb0d9;
+      --accent:#38bdf8;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      line-height:1.6;
+      background:
+        radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
+        linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
+    }
+    .wrap{width:100%}
+    .card{
+      min-height:100vh;
+      width:100%;
+      margin:0;
+      padding:28px clamp(16px, 4vw, 40px);
+      border:1px solid var(--stroke);
+      border-radius:0;
+      box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; flex-wrap:wrap;
+      padding-bottom:8px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand img{height:64px; width:auto; border-radius:12px; box-shadow:0 4px 18px rgba(0,0,0,.35)}
+    h1{margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)}
+    .muted{color:var(--muted); font-size:.95rem}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 16px; border-radius:12px; font-weight:700;
+      text-decoration:none; color:#fff;
+      background:linear-gradient(180deg,#1f9be6,#0ea5e9);
+      box-shadow:0 8px 20px rgba(14,165,233,.35);
+      transition:transform .06s ease, box-shadow .2s ease;
+      border:0; cursor:pointer;
+    }
+    .btn:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
+    .btn.ghost{
+      background:transparent; border:1px solid #28406e; color:var(--text);
+    }
+
+    .panel{
+      background:linear-gradient(180deg, #111a31, #0c1427);
+      border:1px solid var(--stroke);
+      border-radius:16px;
+      padding:16px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
+    }
+
+    .grid{
+      display:grid; gap:16px;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns: 1fr}
+    }
+
+    .hero img{
+      width:100%; height:auto; border-radius:14px;
+      border:1px solid #1d2947; background:#0e162c; object-fit:cover;
+    }
+
+    .list{margin:0; padding-left:18px}
+    .list li{margin:.25rem 0}
+
+    .wallet{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      background:#0e162c; border:1px solid #1d2947; border-radius:12px; padding:10px 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      word-break: break-all;
+    }
+    .wallet code{opacity:.95}
+    .footer{
+      margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
+      padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+
+      <header>
+        <div class="brand">
+          <a href="../index.html" class="btn ghost" aria-label="Volver al inicio">← Volver</a>
+          <img src="../logo.png" alt="Logo DGO Trading">
+          <div>
+            <h1>Copiador de Señales</h1>
+            <div class="muted">Replica operaciones de forma consistente y controlada</div>
+          </div>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="grid">
+          <div class="hero">
+            <!-- Sube tu imagen como servicios/copiador.jpg o cambia el nombre aquí -->
+            <img src="./copiador.jpg" alt="Vista del Copiador de Señales">
+          </div>
+          <div>
+            <h2 style="margin-top:0">Descripción</h2>
+            <p>
+              Nuestro copiador permite seguir estrategias seleccionadas y replicar operaciones con reglas de gestión claras.
+              Está pensado para minimizar fricciones operativas y mantener la trazabilidad del proceso.
+            </p>
+
+            <h3>Características clave</h3>
+            <ul class="list">
+              <li>Configuración guiada y uso simple.</li>
+              <li>Parámetros de riesgo ajustables por cuenta.</li>
+              <li>Registros y métricas para seguimiento.</li>
+              <li>Soporte y acompañamiento durante la puesta en marcha.</li>
+            </ul>
+
+            <div style="display:flex; gap:12px; margin-top:12px; flex-wrap:wrap">
+              <a class="btn" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">Soporte por Telegram</a>
+              <a class="btn ghost" href="mailto:contacto@tudominio.com?subject=Copiador%20de%20Se%C3%B1ales">Escribir por correo</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 style="margin-top:0">Pago</h2>
+        <p class="muted" style="margin-top:-4px">Aceptamos USDT. Indica tu hash de pago para validar más rápido.</p>
+
+        <h3 style="margin:12px 0 6px">USDT (TRC20)</h3>
+        <div class="wallet">
+          <code id="wallet">TU_WALLET_AQUI</code>
+          <button class="btn" onclick="copyWallet()">Copiar</button>
+        </div>
+      </section>
+
+      <div class="footer">
+        © <span id="yr"></span> DGO Trading. Todos los derechos reservados.
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    function copyWallet(){
+      const t = document.getElementById('wallet').innerText.trim();
+      navigator.clipboard.writeText(t).then(()=>alert('Wallet copiada')).catch(()=>alert('No se pudo copiar'));
+    }
+  </script>
+</body>
+</html>
