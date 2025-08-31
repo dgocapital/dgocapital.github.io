@@ -73,6 +73,11 @@
     .btn.ghost{
       background:transparent; border:1px solid #28406e; color:var(--text);
     }
+    /* Icono dentro del botón */
+    .btn svg{
+      width:18px; height:18px; margin-right:8px; display:inline-block;
+      fill:currentColor;
+    }
 
     .panel{
       background:linear-gradient(180deg, #111a31, #0c1427);
@@ -91,8 +96,12 @@
     }
 
     .hero img{
-      width:100%; height:auto; border-radius:14px;
+      width:100%;
+      max-width:460px;      /* ↓↓↓ AJUSTA ESTE VALOR PARA CAMBIAR EL TAMAÑO */
+      height:auto;
+      border-radius:14px;
       border:1px solid #1d2947; background:#0e162c; object-fit:cover;
+      margin-inline:auto;   /* centra en su columna */
     }
 
     .list{margin:0; padding-left:18px}
@@ -146,9 +155,14 @@
               <li>Garantía de funcionamiento.</li>
             </ul>
 
-
             <div style="display:flex; gap:12px; margin-top:12px; flex-wrap:wrap">
-              <a class="btn" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">Soporte por Telegram</a>
+              <a class="btn" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">
+                <!-- Icono Telegram (SVG inline) -->
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
+                </svg>
+                Soporte por Telegram
+              </a>
             </div>
           </div>
         </div>
