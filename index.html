@@ -236,10 +236,20 @@
 
     /* En pantallas pequeñas, ambos menús se integran al flujo */
     @media (max-width:1023px){
-      .side-menu,
-      .left-menu{
+
+      .side-menu, .left-menu{
         position:static; width:100%; height:auto; bottom:auto; right:auto; left:auto; margin:0 0 10px 0;
       }
+    
+      /* === Reordenar en móvil: primero el contenido central === */
+      .card > header{ order:0; }  /* Header siempre arriba */
+      #logros{ order:1; }          /* Descripción */
+      #sistemas{ order:2; }        /* Widget MQL5 */
+      #desarrollos{ order:3; }     /* Anuncio u otros bloques centrales */
+      .left-menu{ order:10; }      /* Menú izquierdo después */
+      .side-menu{ order:11; }      /* Menú derecho al final */
+    }
+
     }
 
     /* Pequeños refinamientos responsivos */
