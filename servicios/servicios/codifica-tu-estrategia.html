@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DGO Trading — Codifica tu estrategia</title>
+  <meta name="description" content="Convierte tu idea de trading en un algoritmo fiable (MQL5 / MT5). Desarrollo de EAs e indicadores a medida, con backtests y soporte.">
+  <meta property="og:title" content="DGO Trading — Codifica tu estrategia">
+  <meta property="og:description" content="Desarrollo profesional en MQL5: de la idea al algoritmo, con pruebas y soporte.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#121828">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --card:#0d1426; --card2:#0a101f; --stroke:#1e2a49;
+      --text:#e8eefc; --muted:#9fb0d9; --accent:#38bdf8;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text); line-height:1.6;
+      background:
+        radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
+        linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
+    }
+    .wrap{width:100%}
+    .card{
+      min-height:100vh; width:100%; margin:0;
+      padding:28px clamp(16px, 4vw, 40px);
+      border:1px solid var(--stroke);
+      border-radius:0;
+      box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
+      display:flex; flex-direction:column; gap:18px;
+    }
+    header{
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+      padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .brand img{height:64px; width:auto; border-radius:12px; box-shadow:0 4px 18px rgba(0,0,0,.35)}
+    h1{margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)}
+    .muted{color:var(--muted); font-size:.95rem}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 16px; border-radius:12px; font-weight:700;
+      text-decoration:none; color:#fff; background:linear-gradient(180deg,#1f9be6,#0ea5e9);
+      box-shadow:0 8px 20px rgba(14,165,233,.35); transition:transform .06s ease, box-shadow .2s ease;
+      border:0; cursor:pointer;
+    }
+    .btn:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
+    .btn.ghost{background:transparent; border:1px solid #28406e; color:var(--text)}
+    .btn svg{width:18px; height:18px; margin-right:8px; fill:currentColor}
+
+    .panel{
+      background:linear-gradient(180deg, #111a31, #0c1427);
+      border:1px solid var(--stroke);
+      border-radius:16px;
+      padding:16px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
+    }
+    .footer{
+      margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
+      padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+
+      <header>
+        <a href="../index.html" class="btn ghost" aria-label="Volver al inicio">← Volver</a>
+        <img src="../logo.png" alt="Logo DGO Trading">
+        <div>
+          <h1>Codifica tu estrategia</h1>
+          <div class="muted">De la idea al algoritmo (MQL5 / MT5)</div>
+        </div>
+      </header>
+
+      <section class="panel">
+        <h2 style="margin-top:0">Descripción</h2>
+        <p>
+          Desarrollo <strong>Asesores Expertos</strong> e <strong>Indicadores</strong> a medida en MQL5 para MetaTrader 5.
+          Partimos de tus reglas de trading y las llevamos a código con una lógica clara, gestión de riesgo y pruebas
+          históricas para validar el comportamiento antes de operar en vivo.
+        </p>
+        <p class="muted" style="margin-top:-6px">
+          Entregables habituales: ejecutable (.ex5), parámetros configurables, backtest de referencia y breve manual de uso.
+        </p>
+
+        <div style="display:flex; gap:12px; margin-top:12px; flex-wrap:wrap">
+          <a class="btn" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
+            </svg>
+            Hablar por Telegram
+          </a>
+        </div>
+      </section>
+
+      <div class="footer">
+        © <span id="yr"></span> DGO Trading. Todos los derechos reservados.
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
