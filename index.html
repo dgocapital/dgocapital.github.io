@@ -17,15 +17,16 @@
 
   <style>
     :root{
-      --card:#0d1426;
-      --card2:#0a101f;
-      --stroke:#1e2a49;
+      --card:#0d1426;      
+      --card:#0d1426;     /* Azul oscuro base del panel */
+      --card2:#0a101f;    /* Azul más profundo (degradado) */
+      --stroke:#1e2a49;   /* Borde sutil */
       --text:#e8eefc;
       --muted:#9fb0d9;
       --accent:#38bdf8;
       --glow: rgba(56,189,248,.25);
 
-      /* Ancho de ambos sidebars */
+      /* Anchos de sidebars */
       --menuW: clamp(280px, 24vw, 360px);
     }
 
@@ -34,17 +35,21 @@
     body{
       margin:0;
       font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background: radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%), linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
+      background:var(--bg);
       color:var(--text);
       line-height:1.6;
     }
 
+    /* Contenedor de página a pantalla completa */
     .wrap{width:100%}
     .card{
       min-height:100vh;
       width:100%;
       margin:0;
       padding:28px clamp(16px, 4vw, 40px);
+      background:
+        radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
+        linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
       border:1px solid var(--stroke);
       border-radius:0;
       box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
@@ -93,13 +98,58 @@
     a{color:var(--accent); text-decoration:none}
     a:hover{filter:brightness(1.1); text-decoration:underline}
 
+    /* CTA (estilos existentes + iconos) */
+    .cta-group{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:8px; /* espacio para el icono */
+      padding:10px 16px; border-radius:12px; font-weight:700;
+      text-decoration:none; color:#fff;
+      background:linear-gradient(180deg,#1f9be6,#0ea5e9);
+      box-shadow:0 8px 20px rgba(14,165,233,.35);
+      transition:transform .06s ease, box-shadow .2s ease;
+    }
+    .cta:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
+    .cta svg{width:18px; height:18px; flex:0 0 18px; color:#fff}
+    .cta.secondary{
+      background:linear-gradient(180deg,#34d399,#10b981);
+      box-shadow:0 8px 20px rgba(16,185,129,.35);
+    }
+    .cta.tele{
+      background:linear-gradient(180deg,#34d399,#10b981);
+      box-shadow:0 8px 20px rgba(16,185,129,.35);
+    }
+    .cta.insta{
+      background:linear-gradient(180deg,#ef4444,#dc2626);
+      box-shadow:0 8px 20px rgba(239,68,68,.35);
+    }
+
+    @media (max-width:640px){
+      .cta{flex:1 0 100%}
+      .cta-group{gap:10px}
+    }
+
+    /* Anuncio */
+    .ad-wrap{
+      display:flex; justify-content:center;
+      padding:10px 0 2px;
+      overflow-x:auto; /* evita que rompa el layout en móviles */
+    }
+    .ad-inner{min-width:728px}
+
+    footer{
+      margin-top:auto;
+      text-align:center; color:var(--muted); font-size:.88rem;
+      padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
+    }
+
     /* ====== MENÚ LATERAL DERECHA (Servicios) ====== */
     .side-menu{
       position:fixed;
-      right:18px;
-      top:16px;
-      bottom:16px;
-      width:var(--menuW);
+      right:18px; 
+      top:16px; 
+      bottom:16px;                 /* ocupa todo el alto disponible */
+      width:var(--menuW);          /* más ancho y adaptable */
       background:linear-gradient(180deg, #111a31, #0c1427);
       border:1px solid var(--stroke);
       border-radius:14px;
@@ -109,32 +159,12 @@
       display:flex; flex-direction:column; overflow:auto; gap:10px;
     }
     .side-menu h3{
-      margin:0; text-align:center;
-      font-size:clamp(1.2rem, 0.9rem + 1vw, 1.6rem);
-      letter-spacing:.3px; color:#d9e6ff;
+      margin:0; 
+      text-align:center; 
+      font-size:clamp(1.2rem, 0.9rem + 1vw, 1.6rem); 
+      letter-spacing:.3px; 
+      color:#d9e6ff;
     }
-
-    /* ====== MENÚ LATERAL IZQUIERDA (nuevo) ====== */
-    .left-menu{
-      position:fixed;
-      left:18px;
-      top:16px;
-      bottom:16px;
-      width:var(--menuW);
-      background:linear-gradient(180deg, #111a31, #0c1427);
-      border:1px solid var(--stroke);
-      border-radius:14px;
-      padding:16px;
-      box-shadow: 0 12px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.03) inset;
-      z-index:40;
-      display:flex; flex-direction:column; overflow:auto; gap:10px;
-    }
-    .left-menu h3{
-      margin:0; text-align:center;
-      font-size:clamp(1.2rem, 0.9rem + 1vw, 1.6rem);
-      letter-spacing:.3px; color:#d9e6ff;
-    }
-
     .svc-list{list-style:none; margin:0; padding:4px 0; display:grid; gap:10px}
     .svc-list a{
       display:flex; align-items:center; justify-content:space-between;
@@ -153,41 +183,43 @@
     }
     .svc-list a:hover::after{ transform: translateX(2px); opacity:1 }
 
-    /* Botones sociales al fondo del menú derecho */
-    .side-cta{ margin-top:auto; display:grid; gap:10px; }
-    .side-cta .cta{ width:100%; justify-content:center }
-    .side-cta .side-note{
-      text-align:left; margin:0 0 6px; color:var(--muted); font-size:.92rem;
+    /* ====== MENÚ LATERAL IZQUIERDA (Secciones) ====== */
+    .side-menu-left{
+      position:fixed;
+      left:18px;
+      top:16px;
+      bottom:16px;
+      width:var(--menuW);
+      background:linear-gradient(180deg, #111a31, #0c1427);
+      border:1px solid var(--stroke);
+      border-radius:14px;
+      padding:16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.03) inset;
+      z-index:40;
+      display:flex; flex-direction:column; overflow:auto; gap:10px;
+    }
+    .side-menu-left h3{
+      margin:0; 
+      text-align:center; 
+      font-size:clamp(1.2rem, 0.9rem + 1vw, 1.6rem); 
+      letter-spacing:.3px; 
+      color:#d9e6ff;
     }
 
-    /* CTA con iconos y colores */
-    .cta-group{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
-    .cta{
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      padding:10px 16px; border-radius:12px; font-weight:700;
-      text-decoration:none; color:#fff;
-      background:linear-gradient(180deg,#1f9be6,#0ea5e9);
-      box-shadow:0 8px 20px rgba(14,165,233,.35);
-      transition:transform .06s ease, box-shadow .2s ease;
-    }
-    .cta:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
-    .cta svg{width:18px; height:18px; flex:0 0 18px; color:#fff}
-    .cta.tele{background:linear-gradient(180deg,#34d399,#10b981); box-shadow:0 8px 20px rgba(16,185,129,.35)}
-    .cta.insta{background:linear-gradient(180deg,#ef4444,#dc2626); box-shadow:0 8px 20px rgba(239,68,68,.35)}
-
-    /* Reservar espacio a ambos lados en desktop */
+    /* Reservar espacio a ambos lados en desktop para que no tapen el contenido */
     @media (min-width:1024px){
       .card{
-        padding-left:  calc(clamp(16px, 4vw, 40px) + var(--menuW) + 22px);
         padding-right: calc(clamp(16px, 4vw, 40px) + var(--menuW) + 22px);
+        padding-left:  calc(clamp(16px, 4vw, 40px) + var(--menuW) + 22px);
       }
     }
 
-    /* En pantallas pequeñas, ambos menús se integran al flujo */
+    /* En pantallas pequeñas, ambos menús se integran al flujo (debajo del header) */
     @media (max-width:1023px){
       .side-menu,
-      .left-menu{
-        position:static; width:100%; height:auto; bottom:auto; right:auto; left:auto; margin:0 0 10px 0;
+      .side-menu-left{
+        position:static; width:100%; height:auto; bottom:auto; right:auto; left:auto;
+        margin:0 0 10px 0;
       }
     }
 
@@ -212,13 +244,13 @@
         </div>
       </header>
 
-      <!-- ====== MENÚ LATERAL IZQUIERDA (nuevo) ====== -->
-      <nav class="left-menu" aria-labelledby="left-title">
-        <h3 id="left-title">RECURSOS</h3>
+      <!-- ====== MENÚ LATERAL IZQUIERDA (Secciones) ====== -->
+      <nav class="side-menu-left" aria-labelledby="left-title">
+        <h3 id="left-title">SECCIONES</h3>
         <ul class="svc-list">
-          <li><a href="#" title="Logros">Logros</a></li>
-          <li><a href="#" title="Sistemas de Apoyo">Sistemas de Apoyo</a></li>
-          <li><a href="#" title="Desarrollos">Desarrollos</a></li>
+          <li><a href="secciones/logros.html" title="Logros">Logros</a></li>
+          <li><a href="secciones/sistemas-de-apoyo.html" title="Sistemas de Apoyo">Sistemas de Apoyo</a></li>
+          <li><a href="secciones/desarrollos.html" title="Desarrollos">Desarrollos</a></li>
         </ul>
       </nav>
 
@@ -254,7 +286,7 @@
         </div>
       </nav>
 
-      <!-- Descripción -->
+      <!-- Descripción (sin los botones ni la nota) -->
       <section class="panel" aria-labelledby="about-title">
         <h2 id="about-title" style="margin:0 0 6px">Trading algorítmico con validación cuantitativa</h2>
         <p style="margin:0">
@@ -264,7 +296,7 @@
         </p>
       </section>
 
-      <!-- Widget -->
+      <!-- 1) WIDGET (primero) -->
       <div class="panel">
         <div class="widget" id="widget">
           <span class="badge">MQL5 Widget</span>
@@ -279,7 +311,7 @@
         </div>
       </div>
 
-      <!-- Anuncio -->
+      <!-- 2) ANUNCIO (después del widget) -->
       <div class="ad-wrap">
         <div class="ad-inner">
           <ins class="dcmads" style="display:inline-block;width:728px;height:90px"
