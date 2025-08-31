@@ -47,7 +47,17 @@
     }
     .btn.ghost{background:transparent; border:1px solid #28406e; color:var(--text)}
     .btn:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
-    .brand img{height:59px; width:auto; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)}
+
+    /* Logo del header a 59px */
+    .brand img,
+    img.brand{
+      height:59px;
+      width:auto;
+      border-radius:12px;
+      border:1px solid #1d2947;
+      box-shadow:0 4px 18px rgba(0,0,0,.35);
+    }
+
     h1{margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)}
     .muted{color:var(--muted); font-size:.95rem}
 
@@ -127,7 +137,6 @@
       <header>
         <a href="../index.html" class="btn ghost" aria-label="Volver al inicio">← Volver</a>
         <img src="../logo.png" alt="Logo DGO Trading" class="brand">
-          style="height:59px; width:auto; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)">
         <div>
           <h1>Sistemas de Apoyo</h1>
           <div class="muted">Accesos directos y recursos para ejecutar con claridad</div>
