@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DGO Trading — Desarrollos</title>
+  <meta name="description" content="Portafolio de robots/algoritmos desarrollados por DGO Trading.">
+  <meta property="og:title" content="DGO Trading — Desarrollos">
+  <meta property="og:description" content="Galería de EAs e indicadores desarrollados.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#121828">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --card:#0d1426; --card2:#0a101f; --stroke:#1e2a49;
+      --text:#e8eefc; --muted:#9fb0d9; --accent:#38bdf8;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text); line-height:1.6;
+      background:
+        radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
+        linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
+    }
+    .wrap{width:100%}
+    .card{
+      min-height:100vh; width:100%; margin:0;
+      padding:28px clamp(16px, 4vw, 40px);
+      border:1px solid var(--stroke); border-radius:0;
+      box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
+      display:flex; flex-direction:column; gap:18px;
+    }
+
+    /* Header */
+    header{display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.06)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 16px; border-radius:12px; font-weight:700; text-decoration:none;
+      color:#fff; background:linear-gradient(180deg,#1f9be6,#0ea5e9);
+      box-shadow:0 8px 20px rgba(14,165,233,.35); border:0; cursor:pointer; transition:transform .06s ease, box-shadow .2s ease;
+    }
+    .btn.ghost{background:transparent; border:1px solid #28406e; color:var(--text)}
+    .btn:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
+    .brand img, img.brand{
+      height:59px; width:auto; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)
+    }
+    h1{margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)}
+    .muted{color:var(--muted); font-size:.95rem}
+
+    /* Panel contenedor */
+    .panel{
+      background:linear-gradient(180deg, #111a31, #0c1427);
+      border:1px solid var(--stroke);
+      border-radius:16px;
+      padding:16px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
+    }
+
+    /* Grid de desarrollos */
+    .grid{
+      display:grid; gap:14px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .dev-card{
+      grid-column: span 3;           /* 4 por fila en pantallas grandes */
+      background:linear-gradient(180deg,#0f1933,#0a1329);
+      border:1px solid #22407a;
+      border-radius:14px;
+      box-shadow:0 6px 18px rgba(0,0,0,.28);
+      overflow:hidden;
+      display:flex; flex-direction:column;
+    }
+    .thumb{
+      width:100%; height:180px;
+      background:#0e162c;
+      border-bottom:1px solid #1d2947;
+      display:grid; place-items:center;
+    }
+    .thumb img{
+      width:100%; height:100%; object-fit:cover; display:block;
+    }
+    .dev-body{
+      padding:12px; display:flex; flex-direction:column; gap:6px;
+    }
+    .dev-title{margin:0; font-size:1.05rem; letter-spacing:.2px}
+    .dev-by{margin:0; color:var(--muted); font-size:.9rem}
+    .dev-notes{margin:4px 0 0; color:#cfe3ff; font-size:.9rem; opacity:.9}
+
+    /* Responsive */
+    @media (max-width: 1200px){ .dev-card{grid-column: span 4} } /* 3 por fila */
+    @media (max-width: 900px){ .dev-card{grid-column: span 6} }  /* 2 por fila */
+    @media (max-width: 600px){ .dev-card{grid-column: span 12} } /* 1 por fila */
+
+    .footer{
+      margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
+      padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+
+      <!-- Header -->
+      <header>
+        <a href="../index.html" class="btn ghost" aria-label="Volver al inicio">← Volver</a>
+        <img src="../logo.png" alt="Logo DGO Trading" class="brand">
+        <div>
+          <h1>Desarrollos</h1>
+          <div class="muted">Galería de EAs e indicadores</div>
+        </div>
+      </header>
+
+      <!-- Grid de proyectos -->
+      <section class="panel" aria-labelledby="devs-title">
+        <h2 id="devs-title" style="margin:0 0 10px">Portafolio</h2>
+
+        <div class="grid">
+          <!-- dgotrader_6 -->
+          <article class="dev-card">
+            <div class="thumb"><img src="./megavol.png" alt="Megavol — robot"></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Megavol</h3>
+              <p class="dev-by"><strong>Developed by:</strong> dgotrader_6</p>
+              <p class="dev-notes">Notas/descripcion breve…</p>
+            </div>
+          </article>
+
+          <article class="dev-card">
+            <div class="thumb"><img src="./taquion.png" alt="Taquion — robot"></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Taquion</h3>
+              <p class="dev-by"><strong>Developed by:</strong> dgotrader_6</p>
+              <p class="dev-notes">Notas/descripcion breve…</p>
+            </div>
+          </article>
+
+          <article class="dev-card">
+            <div class="thumb"><img src="./orion.png" alt="Orion — robot"></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Orion</h3>
+              <p class="dev-by"><strong>Developed by:</strong> dgotrader_6</p>
+              <p class="dev-notes">Notas/descripcion breve…</p>
+            </div>
+          </article>
+
+          <article class="dev-card">
+            <div class="thumb"><img src="./abyss.png" alt="Abyss — robot"></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Abyss</h3>
+              <p class="dev-by"><strong>Developed by:</strong> dgotrader_6</p>
+              <p class="dev-notes">Notas/descripcion breve…</p>
+            </div>
+          </article>
+
+          <!-- be_profitable.fx -->
+          <article class="dev-card">
+            <div class="thumb"><img src="./boson-nocturno.png" alt="Bosón Nocturno — robot"></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Bosón Nocturno</h3>
+              <p class="dev-by"><strong>Developed by:</strong> be_profitable.fx</p>
+              <p class="dev-notes">Notas/descripcion breve…</p>
+            </div>
+          </article>
+
+          <article class="dev-card">
+            <div class="thumb"><img src="./boson-diurno.png" alt="Bosón Diurno — robot"></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Bosón Diurno</h3>
+              <p class="dev-by"><strong>Developed by:</strong> be_profitable.fx</p>
+              <p class="dev-notes">Notas/descripcion breve…</p>
+            </div>
+          </article>
+
+          <article class="dev-card">
+            <div class="thumb"><img src="./quantum-reversal.png" alt="Quantum Reversal — robot"></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Quantum Reversal</h3>
+              <p class="dev-by"><strong>Developed by:</strong> be_profitable.fx</p>
+              <p class="dev-notes">Notas/descripcion breve…</p>
+            </div>
+          </article>
+
+          <article class="dev-card">
+            <div class="thumb"><img src="./nexus.png" alt="Nexus — robot"></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Nexus</h3>
+              <p class="dev-by"><strong>Developed by:</strong> be_profitable.fx</p>
+              <p class="dev-notes">Notas/descripcion breve…</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <div class="footer">
+        © <span id="yr"></span> DGO Trading. Todos los derechos reservados.
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
