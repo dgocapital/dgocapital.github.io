@@ -256,6 +256,10 @@
     @media (max-width: 820px){
       .brand img{height:86px}
     }
+
+    /* === Ajuste responsive del banner 728x90 === */
+    .ad-sizer{ width:100%; max-width:728px; margin:0 auto; overflow:hidden; }
+    .ad-fixed{ width:728px; height:90px; transform-origin: top left; }
   </style>
 </head>
 <body>
@@ -345,23 +349,25 @@
         </div>
       </div>
 
-      <!-- Anuncio -->
+      <!-- Anuncio (ajustado) -->
       <div class="ad-wrap" id="desarrollos">
-        <div class="ad-inner">
-          <ins class="dcmads" style="display:inline-block;width:728px;height:90px"
-            data-dcm-placement="N800570.2009906CELLXPERT/B24282330.340389488"
-            data-dcm-rendering-mode="iframe"
-            data-dcm-https-only
-            data-dcm-click-tracker="https://trk.pepperstonepartners.com/aff_c?offer_id=382&aff_id=40752&file_id=5423"
-            data-dcm-gdpr-applies="gdpr=${GDPR}"
-            data-dcm-gdpr-consent="gdpr_consent=${GDPR_CONSENT_755}"
-            data-dcm-addtl-consent="addtl_consent=${ADDTL_CONSENT}"
-            data-dcm-ltd="false"
-            data-dcm-resettable-device-id=""
-            data-dcm-app-id="">
-            <script src="https://www.googletagservices.com/dcm/dcmads.js"></script>
-          </ins>
-          <img src="https://trk.pepperstonepartners.com/aff_i?offer_id=382&aff_id=40752&file_id=5423" width="0" height="0" style="position:absolute;visibility:hidden;" border="0" alt="">
+        <div class="ad-sizer">
+          <div class="ad-fixed">
+            <ins class="dcmads" style="display:inline-block;width:728px;height:90px"
+              data-dcm-placement="N800570.2009906CELLXPERT/B24282330.340389488"
+              data-dcm-rendering-mode="iframe"
+              data-dcm-https-only
+              data-dcm-click-tracker="https://trk.pepperstonepartners.com/aff_c?offer_id=382&aff_id=40752&file_id=5423"
+              data-dcm-gdpr-applies="gdpr=${GDPR}"
+              data-dcm-gdpr-consent="gdpr_consent=${GDPR_CONSENT_755}"
+              data-dcm-addtl-consent="addtl_consent=${ADDTL_CONSENT}"
+              data-dcm-ltd="false"
+              data-dcm-resettable-device-id=""
+              data-dcm-app-id="">
+              <script src="https://www.googletagservices.com/dcm/dcmads.js"></script>
+            </ins>
+            <img src="https://trk.pepperstonepartners.com/aff_i?offer_id=382&aff_id=40752&file_id=5423" width="0" height="0" style="position:absolute;visibility:hidden;" border="0" alt="">
+          </div>
         </div>
       </div>
 
@@ -375,6 +381,21 @@
 
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
+
+    /* Escala el banner 728x90 para que se adapte al ancho disponible */
+    (function(){
+      function scaleAd(){
+        var s = document.querySelector('#desarrollos .ad-sizer');
+        var f = document.querySelector('#desarrollos .ad-fixed');
+        if(!s || !f) return;
+        var w = s.clientWidth;
+        var scale = Math.min(1, w / 728);
+        f.style.transform = 'scale(' + scale + ')';
+        s.style.height = (90 * scale) + 'px';
+      }
+      window.addEventListener('load', scaleAd);
+      window.addEventListener('resize', scaleAd);
+    })();
   </script>
 </body>
 </html>
