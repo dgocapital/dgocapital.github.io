@@ -98,10 +98,11 @@
     a{color:var(--accent); text-decoration:none}
     a:hover{filter:brightness(1.1); text-decoration:underline}
 
-    /* CTA (estilos existentes) */
+    /* CTA (estilos existentes + iconos) */
     .cta-group{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
     .cta{
       display:inline-flex; align-items:center; justify-content:center;
+      gap:8px; /* espacio para el icono */
       padding:10px 16px; border-radius:12px; font-weight:700;
       text-decoration:none; color:#fff;
       background:linear-gradient(180deg,#1f9be6,#0ea5e9);
@@ -109,10 +110,21 @@
       transition:transform .06s ease, box-shadow .2s ease;
     }
     .cta:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
+    .cta svg{width:18px; height:18px; flex:0 0 18px; color:#fff}
     .cta.secondary{
       background:linear-gradient(180deg,#34d399,#10b981);
       box-shadow:0 8px 20px rgba(16,185,129,.35);
     }
+    /* NUEVOS estilos de color específicos */
+    .cta.tele{
+      background:linear-gradient(180deg,#34d399,#10b981);
+      box-shadow:0 8px 20px rgba(16,185,129,.35);
+    }
+    .cta.insta{
+      background:linear-gradient(180deg,#ef4444,#dc2626);
+      box-shadow:0 8px 20px rgba(239,68,68,.35);
+    }
+
     @media (max-width:640px){
       .cta{flex:1 0 100%}
       .cta-group{gap:10px}
@@ -179,7 +191,7 @@
     }
     .side-cta .cta{ width:100%; justify-content:center }
     .side-cta .side-note{
-      text-align:left;           /* antes: center */
+      text-align:left;
       margin:0 0 6px;
       color:var(--muted);
       font-size:.92rem;
@@ -229,11 +241,25 @@
           <li><a href="servicios/fondo-de-inversion.html" title="Fondo de Inversión">Fondo de Inversión</a></li>
         </ul>
 
-        <!-- Nota + Botones sociales movidos aquí -->
+        <!-- Nota + Botones sociales con iconos -->
         <div class="side-cta">
           <p class="side-note">Contenido y actualizaciones periódicas en redes sociales.</p>
-          <a class="cta" href="https://www.instagram.com/dgotrader_6?igsh=Z2JkcHhsODlweGht&utm_source=qr" target="_blank" rel="noopener">Seguir en Instagram</a>
-          <a class="cta secondary" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">Unirse a Telegram</a>
+
+          <!-- Instagram rojo con icono -->
+          <a class="cta insta" href="https://www.instagram.com/dgotrader_6?igsh=Z2JkcHhsODlweGht&utm_source=qr" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 4.5A4.5 4.5 0 1 1 7.5 13 4.51 4.51 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zM17.75 7a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.75 7z"/>
+            </svg>
+            Seguir en Instagram
+          </a>
+
+          <!-- Telegram verde con icono -->
+          <a class="cta tele" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M9.03 15.39 8.9 18.7a1 1 0 0 0 1.58.84l2.36-1.69 3.84 2.82c.72.53 1.75.13 1.94-.76l3.08-14.4c.2-.95-.72-1.74-1.62-1.37L2.7 9.38c-.99.4-.95 1.83.06 2.17l4.78 1.64 10.98-6.77-9.49 8.97z"/>
+            </svg>
+            Unirse a Telegram
+          </a>
         </div>
       </nav>
 
