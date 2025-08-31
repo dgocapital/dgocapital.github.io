@@ -184,7 +184,24 @@
     .tile--white{
       background:linear-gradient(180deg, var(--white-1), var(--white-2));
       border-color:#e5e7eb;
-      color:var(--white-txt); /* texto y chevron oscuros para contraste */
+      color:var(--white-txt);
+    }
+
+    /* Bloque legal al fondo del menú izquierdo */
+    .left-legal{
+      margin-top:auto;
+      padding-top:12px;
+      border-top:1px solid rgba(255,255,255,.06);
+      font-size:.78rem;
+      line-height:1.45;
+      color:var(--muted);
+    }
+    .left-legal strong{
+      display:block;
+      font-size:.8rem;
+      color:#d9e6ff;
+      margin-bottom:6px;
+      letter-spacing:.2px;
     }
 
     /* Botones sociales al fondo del menú derecho */
@@ -253,8 +270,15 @@
           <a class="tile tile--blue" href="sistemas-de-apoyo/index.html" title="Sistemas de Apoyo"><strong>Sistemas de Apoyo</strong></a>
           <a class="tile tile--white" href="desarrollos/index.html" title="Desarrollos"><strong>Desarrollos</strong></a>
         </div>
-      </nav>
 
+        <!-- Descargo de responsabilidad -->
+        <div class="left-legal" aria-label="Descargo de responsabilidad">
+          <strong>Descargo de responsabilidad</strong>
+          El rendimiento pasado no garantiza resultados futuros. Operar con instrumentos financieros
+          implica riesgos y puede ocasionar pérdidas del capital invertido. La información aquí compartida
+          tiene fines educativos y no constituye asesoría financiera.
+        </div>
+      </nav>
 
       <!-- ====== MENÚ LATERAL DERECHA (Servicios) ====== -->
       <nav class="side-menu" aria-labelledby="svc-title">
