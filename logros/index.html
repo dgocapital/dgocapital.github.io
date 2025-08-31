@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DGO Trading — Logros</title>
+  <meta name="description" content="Payouts y certificados de fondeos aprobados.">
+  <meta property="og:title" content="DGO Trading — Logros">
+  <meta property="og:description" content="Capturas de resultados y certificaciones de fondeos.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#121828">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --card:#0d1426; --card2:#0a101f; --stroke:#1e2a49;
+      --text:#e8eefc; --muted:#9fb0d9; --accent:#38bdf8;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text); line-height:1.6;
+      background:
+        radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
+        linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
+    }
+    .wrap{width:100%}
+    .card{
+      min-height:100vh; width:100%; margin:0;
+      padding:28px clamp(16px, 4vw, 40px);
+      border:1px solid var(--stroke); border-radius:0;
+      box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
+      display:flex; flex-direction:column; gap:18px;
+    }
+
+    /* Header */
+    header{display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.06)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 16px; border-radius:12px; font-weight:700; text-decoration:none;
+      color:#fff; background:linear-gradient(180deg,#1f9be6,#0ea5e9);
+      box-shadow:0 8px 20px rgba(14,165,233,.35); border:0; cursor:pointer; transition:transform .06s ease, box-shadow .2s ease;
+    }
+    .btn.ghost{background:transparent; border:1px solid #28406e; color:var(--text)}
+    .btn:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
+    .brand img, img.brand{
+      height:59px; width:auto; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)
+    }
+    h1{margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)}
+    .muted{color:var(--muted); font-size:.95rem}
+
+    /* Panel */
+    .panel{
+      background:linear-gradient(180deg, #111a31, #0c1427);
+      border:1px solid var(--stroke);
+      border-radius:16px;
+      padding:16px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
+    }
+
+    /* Grid */
+    .grid{
+      display:grid; gap:14px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .cap-card{
+      grid-column: span 3;                                 /* 4 por fila en desktop */
+      background:linear-gradient(180deg,#0f1933,#0a1329);
+      border:1px solid #22407a;
+      border-radius:14px;
+      box-shadow:0 6px 18px rgba(0,0,0,.28);
+      overflow:hidden;
+      position:relative;
+      display:flex; flex-direction:column;
+    }
+    /* Contenedor de imagen con relación vertical (típica captura móvil) */
+    .thumb{
+      width:100%;
+      aspect-ratio: 3 / 4;                                 /* puedes cambiarlo a 9/16 o 4/5 si te conviene */
+      background:#0e162c;
+      border-bottom:1px solid #1d2947;
+      display:grid; place-items:center;
+      padding:10px;
+    }
+    .thumb img{
+      width:100%; height:100%;
+      object-fit:contain;                                   /* que la imagen se vea completa */
+      display:block;
+    }
+    .cap-footer{
+      padding:10px 12px;
+      color:var(--muted);
+      font-size:.9rem;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .tag{
+      font-weight:700; color:#d9e6ff; letter-spacing:.2px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px){ .cap-card{grid-column: span 4} } /* 3 por fila */
+    @media (max-width: 900px){ .cap-card{grid-column: span 6} }  /* 2 por fila */
+    @media (max-width: 600px){ .cap-card{grid-column: span 12} } /* 1 por fila */
+
+    .footer{
+      margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
+      padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+
+      <!-- Header -->
+      <header>
+        <a href="../index.html" class="btn ghost" aria-label="Volver al inicio">← Volver</a>
+        <img src="../logo.png" alt="Logo DGO Trading" class="brand">
+        <div>
+          <h1>Logros</h1>
+          <div class="muted">Payouts y certificados de fondeos aprobados</div>
+        </div>
+      </header>
+
+      <!-- Payouts -->
+      <section class="panel" aria-labelledby="payouts-title">
+        <h2 id="payouts-title" style="margin:0 0 10px">Payouts de fondeos</h2>
+        <div class="grid">
+
+          <!-- Crea tantas tarjetas como quieras. 
+               Si el archivo .png no existe, la tarjeta se elimina sola (no se muestra nada). -->
+          <article class="cap-card">
+            <div class="thumb"><img src="./payout-1.png" alt="Payout 1" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Payout #1</span></div>
+          </article>
+
+          <article class="cap-card">
+            <div class="thumb"><img src="./payout-2.png" alt="Payout 2" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Payout #2</span></div>
+          </article>
+
+          <article class="cap-card">
+            <div class="thumb"><img src="./payout-3.png" alt="Payout 3" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Payout #3</span></div>
+          </article>
+
+          <article class="cap-card">
+            <div class="thumb"><img src="./payout-4.png" alt="Payout 4" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Payout #4</span></div>
+          </article>
+
+          <article class="cap-card">
+            <div class="thumb"><img src="./payout-5.png" alt="Payout 5" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Payout #5</span></div>
+          </article>
+
+          <article class="cap-card">
+            <div class="thumb"><img src="./payout-6.png" alt="Payout 6" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Payout #6</span></div>
+          </article>
+
+          <article class="cap-card">
+            <div class="thumb"><img src="./payout-7.png" alt="Payout 7" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Payout #7</span></div>
+          </article>
+
+          <article class="cap-card">
+            <div class="thumb"><img src="./payout-8.png" alt="Payout 8" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Payout #8</span></div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Certificados -->
+      <section class="panel" aria-labelledby="certs-title">
+        <h2 id="certs-title" style="margin:0 0 10px">Certificados aprobados</h2>
+        <div class="grid">
+
+          <article class="cap-card">
+            <div class="thumb"><img src="./certificado-1.png" alt="Certificado 1" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Certificado #1</span></div>
+          </article>
+
+          <article class="cap-card">
+            <div class="thumb"><img src="./certificado-2.png" alt="Certificado 2" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Certificado #2</span></div>
+          </article>
+
+          <article class="cap-card">
+            <div class="thumb"><img src="./certificado-3.png" alt="Certificado 3" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Certificado #3</span></div>
+          </article>
+
+          <article class="cap-card">
+            <div class="thumb"><img src="./certificado-4.png" alt="Certificado 4" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Certificado #4</span></div>
+          </article>
+
+          <article class="cap-card">
+            <div class="thumb"><img src="./certificado-5.png" alt="Certificado 5" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Certificado #5</span></div>
+          </article>
+
+          <article class="cap-card">
+            <div class="thumb"><img src="./certificado-6.png" alt="Certificado 6" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Certificado #6</span></div>
+          </article>
+
+          <article class="cap-card">
+            <div class="thumb"><img src="./certificado-7.png" alt="Certificado 7" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Certificado #7</span></div>
+          </article>
+
+          <article class="cap-card">
+            <div class="thumb"><img src="./certificado-8.png" alt="Certificado 8" loading="lazy" onerror="this.closest('.cap-card').remove()"></div>
+            <div class="cap-footer"><span class="tag">Certificado #8</span></div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <div class="footer">
+        © <span id="yr"></span> DGO Trading. Todos los derechos reservados.
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
