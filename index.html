@@ -261,22 +261,24 @@
     .ad-sizer{ width:100%; max-width:728px; margin:0 auto; overflow:hidden; }
     .ad-fixed{ width:728px; height:90px; transform-origin: top left; }
 
-    /* ===== Reloj UTC ===== */
+    /* ===== Reloj (fijo en parte superior) ===== */
     .utc-clock{
-      margin-left:auto;
-      align-self:flex-start;            /* sube el reloj dentro del header */
-      transform: translateY(-6px);      /* un poquito más arriba */
+      position:fixed;
+      top:8px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:1000;
       display:inline-flex; align-items:center; gap:6px;
       padding:6px 10px; border-radius:999px; font-weight:700;
       font-size:.85rem; letter-spacing:.2px;
       background:#0b1326; color:#8fb3ff;
       border:1px solid #22407a;
-      box-shadow:0 4px 16px rgba(0,0,0,.25), 0 0 0 1px rgba(255,255,255,.03) inset;
+      box-shadow:0 6px 18px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.03) inset;
       user-select:none;
     }
     .utc-clock .dot{ opacity:.6; margin:0 6px; }
     @media (max-width:600px){
-      .utc-clock{ font-size:.8rem; padding:5px 9px; transform: translateY(-4px); }
+      .utc-clock{ font-size:.8rem; padding:5px 9px; top:6px; }
     }
   </style>
 </head>
@@ -294,7 +296,7 @@
           </div>
         </div>
 
-        <!-- Reloj UTC + Local -->
+        <!-- Reloj UTC + Local (fijo arriba) -->
         <div class="utc-clock" aria-label="Hora en UTC y local">
           <span id="utc-time">--:--:--</span> UTC
           <span class="dot">•</span>
