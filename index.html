@@ -260,6 +260,21 @@
     /* === Ajuste responsive del banner 728x90 === */
     .ad-sizer{ width:100%; max-width:728px; margin:0 auto; overflow:hidden; }
     .ad-fixed{ width:728px; height:90px; transform-origin: top left; }
+
+    /* ===== Reloj UTC ===== */
+    .utc-clock{
+      margin-left:auto;
+      display:inline-flex; align-items:center; gap:6px;
+      padding:6px 10px; border-radius:999px; font-weight:700;
+      font-size:.85rem; letter-spacing:.2px;
+      background:#0b1326; color:#8fb3ff;
+      border:1px solid #22407a;
+      box-shadow:0 4px 16px rgba(0,0,0,.25), 0 0 0 1px rgba(255,255,255,.03) inset;
+      user-select:none;
+    }
+    @media (max-width:600px){
+      .utc-clock{ font-size:.8rem; padding:5px 9px; }
+    }
   </style>
 </head>
 <body>
@@ -274,6 +289,11 @@
             <h1>DGO Trading</h1>
             <div class="muted">Certeza en el proceso</div>
           </div>
+        </div>
+
+        <!-- Reloj UTC -->
+        <div class="utc-clock" aria-label="Hora en UTC">
+          <span id="utc-time">--:--:--</span> UTC
         </div>
       </header>
 
@@ -395,6 +415,22 @@
       }
       window.addEventListener('load', scaleAd);
       window.addEventListener('resize', scaleAd);
+    })();
+
+    /* Reloj UTC */
+    (function(){
+      var el = document.getElementById('utc-time');
+      function updateUTC(){
+        var d = new Date();
+        var hh = String(d.getUTCHours()).padStart(2,'0');
+        var mm = String(d.getUTCMinutes()).padStart(2,'0');
+        var ss = String(d.getUTCSeconds()).padStart(2,'0');
+        if (el) el.textContent = hh + ':' + mm + ':' + ss;
+        var pill = document.querySelector('.utc-clock');
+        if (pill) pill.title = d.toUTCString();
+      }
+      updateUTC();
+      setInterval(updateUTC, 1000);
     })();
   </script>
 </body>
