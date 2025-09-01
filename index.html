@@ -261,12 +261,11 @@
     .ad-sizer{ width:100%; max-width:728px; margin:0 auto; overflow:hidden; }
     .ad-fixed{ width:728px; height:90px; transform-origin: top left; }
 
-    /* ===== Reloj (fijo en parte superior) ===== */
+    /* ===== Reloj (alineado arriba a la derecha, antes del sidebar) ===== */
     .utc-clock{
       position:fixed;
       top:8px;
-      left:50%;
-      transform:translateX(-50%);
+      right: calc(var(--menuW) + 36px); /* deja espacio para el sidebar derecho */
       z-index:1000;
       display:inline-flex; align-items:center; gap:6px;
       padding:6px 10px; border-radius:999px; font-weight:700;
@@ -277,8 +276,8 @@
       user-select:none;
     }
     .utc-clock .dot{ opacity:.6; margin:0 6px; }
-    @media (max-width:600px){
-      .utc-clock{ font-size:.8rem; padding:5px 9px; top:6px; }
+    @media (max-width:1023px){
+      .utc-clock{ right:18px; top:8px; } /* en móvil, pegado al borde derecho */
     }
   </style>
 </head>
@@ -296,7 +295,7 @@
           </div>
         </div>
 
-        <!-- Reloj UTC + Local (fijo arriba) -->
+        <!-- Reloj UTC + Local (fijo arriba, alineado a la derecha) -->
         <div class="utc-clock" aria-label="Hora en UTC y local">
           <span id="utc-time">--:--:--</span> UTC
           <span class="dot">•</span>
@@ -449,7 +448,7 @@
         var absM = Math.abs(offMin);
         var offH = Math.floor(absM / 60);
         var offR = absM % 60;
-        var tzStr = `UTC${sign}${fmt(offH)}${offR ? ':'+fmt(offR) : ''}`;
+        var tzStr = `UTC${sign}${String(offH).padStart(2,'0')}${offR ? ':'+String(offR).padStart(2,'0') : ''}`;
         if (elTz) elTz.textContent = tzStr;
       }
 
