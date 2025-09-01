@@ -274,6 +274,7 @@
       box-shadow:0 4px 16px rgba(0,0,0,.25), 0 0 0 1px rgba(255,255,255,.03) inset;
       user-select:none;
     }
+    .utc-clock .dot{ opacity:.6; margin:0 6px; }
     @media (max-width:600px){
       .utc-clock{ font-size:.8rem; padding:5px 9px; transform: translateY(-4px); }
     }
@@ -293,9 +294,11 @@
           </div>
         </div>
 
-        <!-- Reloj UTC -->
-        <div class="utc-clock" aria-label="Hora en UTC">
+        <!-- Reloj UTC + Local -->
+        <div class="utc-clock" aria-label="Hora en UTC y local">
           <span id="utc-time">--:--:--</span> UTC
+          <span class="dot">•</span>
+          <span id="loc-time">--:--:--</span> <span id="loc-tz">UTC±0</span>
         </div>
       </header>
 
@@ -341,7 +344,7 @@
           <!-- Telegram verde con icono -->
           <a class="cta tele" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M9.03 15.39 8.9 18.7a1 1 0 0 0 1.58.84l2.36-1.69 3.84 2.82c.72.53 1.75.13 1.94-.76l3.08-14.4c.2-.95-.72-1.74-1.62-1.37L2.7 9.38c-.99.4-.95 1.83.06 2.17l4.78 1.64 10.98-6.77-9.49 8.97z"/>
+              <path fill="currentColor" d="M9.03 15.39 8.9 18.7a1 1 0 0 0 1.58.84l2.36-1.69 3.84 2.82c.72.53 1.75.13 1.94-.76l3.08-14.4c.2-.95-.72-1.74-1.62-1.37L2.7 9.38c-.99 .4-.95 1.83.06 2.17l4.78 1.64 10.98-6.77-9.49 8.97z"/>
             </svg>
             Unirse a Telegram
           </a>
@@ -419,40 +422,51 @@
       window.addEventListener('resize', scaleAd);
     })();
 
-    /* Reloj UTC basado en hora del servidor */
+    /* Reloj UTC (servidor) + hora local del visitante */
     (function(){
-      var el = document.getElementById('utc-time');
-      var offset = 0; // desfase ms: serverNow - clientNow
+      var elUTC = document.getElementById('utc-time');
+      var elLoc = document.getElementById('loc-time');
+      var elTz  = document.getElementById('loc-tz');
+      var offset = 0; // ms: serverNow - clientNow
+
+      function fmt(n){ return String(n).padStart(2,'0'); }
 
       function tick(){
-        var now = new Date(Date.now() + offset);
-        var hh = String(now.getUTCHours()).padStart(2,'0');
-        var mm = String(now.getUTCMinutes()).padStart(2,'0');
-        var ss = String(now.getUTCSeconds()).padStart(2,'0');
-        if (el) el.textContent = hh + ':' + mm + ':' + ss;
+        var nowSrv = new Date(Date.now() + offset); // referencia servidor (UTC)
+        // UTC (sincronizada)
+        var u = nowSrv;
+        if (elUTC) elUTC.textContent = `${fmt(u.getUTCHours())}:${fmt(u.getUTCMinutes())}:${fmt(u.getUTCSeconds())}`;
         var pill = document.querySelector('.utc-clock');
-        if (pill) pill.title = now.toUTCString() + ' • fuente: servidor';
+        if (pill) pill.title = nowSrv.toUTCString() + ' • fuente: servidor';
+
+        // Local (visitante)
+        var loc = new Date();
+        if (elLoc) elLoc.textContent = `${fmt(loc.getHours())}:${fmt(loc.getMinutes())}:${fmt(loc.getSeconds())}`;
+        var offMin = -loc.getTimezoneOffset(); // minutos respecto a UTC
+        var sign = offMin >= 0 ? '+' : '−';
+        var absM = Math.abs(offMin);
+        var offH = Math.floor(absM / 60);
+        var offR = absM % 60;
+        var tzStr = `UTC${sign}${fmt(offH)}${offR ? ':'+fmt(offR) : ''}`;
+        if (elTz) elTz.textContent = tzStr;
       }
 
       async function syncServer(){
         try{
-          // Intento HEAD a la misma URL para leer header Date del servidor
+          // Intento HEAD a la misma URL para leer header Date (UTC) del servidor
           var res = await fetch(window.location.href, { method:'HEAD', cache:'no-cache' });
           var dh = res.headers.get('Date');
+          if (!dh){
+            // Fallback si HEAD no está permitido
+            var res2 = await fetch('.', { cache:'no-cache' });
+            dh = res2.headers.get('Date');
+          }
           if (dh){
             var serverDate = new Date(dh);
             offset = serverDate.getTime() - Date.now();
-          } else {
-            // Fallback: GET muy liviano a la raíz (algunos hosts no permiten HEAD)
-            var res2 = await fetch('.', { cache:'no-cache' });
-            var dh2 = res2.headers.get('Date');
-            if (dh2){
-              var serverDate2 = new Date(dh2);
-              offset = serverDate2.getTime() - Date.now();
-            }
           }
         }catch(e){
-          // Si falla, se queda con el reloj local (offset 0)
+          // Si falla, usamos el reloj local como referencia (offset=0)
         }finally{
           tick();
         }
@@ -460,8 +474,7 @@
 
       syncServer();                 // sincroniza al cargar
       setInterval(tick, 1000);      // avanza cada segundo
-      // Re-sincroniza ocasionalmente para evitar deriva (cada 5 minutos)
-      setInterval(syncServer, 5 * 60 * 1000);
+      setInterval(syncServer, 5 * 60 * 1000); // re-sincroniza cada 5 min
     })();
   </script>
 </body>
