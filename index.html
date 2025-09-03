@@ -60,7 +60,7 @@
     }
 
     header{
-      position:relative; /* para posicionar el reloj dentro del header */
+      position:relative; /* NUEVO: para posicionar el reloj dentro del header */
       display:flex; align-items:center; justify-content:space-between;
       gap:16px; flex-wrap:wrap;
       padding-bottom:8px;
@@ -227,13 +227,6 @@
     .cta.tele{background:linear-gradient(180deg,#34d399,#10b981); box-shadow:0 8px 20px rgba(16,185,129,.35)}
     .cta.insta{background:linear-gradient(180deg,#ef4444,#dc2626); box-shadow:0 8px 20px rgba(239,68,68,.35)}
 
-    /* Botón compacto SOLO para el módulo Pepperstone (NUEVO) */
-    .cta--sm{
-      padding:6px 12px;
-      font-size:.9rem;
-      border-radius:10px;
-    }
-
     /* Reservar espacio a ambos lados en desktop */
     @media (min-width:1024px){
       .card{
@@ -253,12 +246,13 @@
       .card > header{ order:0; }  /* Header siempre arriba */
       #logros{ order:1; }          /* Descripción */
       #sistemas{ order:2; }        /* Widget MQL5 */
-      #pepper-copy{ order:3; }     /* NUEVO: módulo Pepperstone debajo del widget */
-      #desarrollos{ order:4; }     /* Anuncio u otros bloques centrales */
+      #desarrollos{ order:3; }     /* Anuncio u otros bloques centrales */
       .left-menu{ order:10; }      /* Menú izquierdo después */
       .side-menu{ order:11; }      /* Menú derecho al final */
       .card > footer{ order: 99; margin-top: 12px; }
 
+      /* NUEVO: coloca el módulo Pepperstone después del widget */
+      #pepper-copy{ order:3; }
     }
 
     /* Pequeños refinamientos responsivos */
@@ -272,8 +266,8 @@
 
     /* ===== Reloj (arriba derecha, dentro del header) ===== */
     .utc-clock{
-      position:absolute;
-      right:0; top:-12px;
+      position:absolute;           /* ahora absoluto dentro del header */
+      right:0; top:-12px;          /* lo sube visualmente y lo pega a la derecha */
       z-index:1000;
       display:inline-flex; align-items:center; gap:6px;
       padding:4px 8px;
@@ -286,32 +280,26 @@
       user-select:none;
     }
     @media (max-width:1023px){
-      .utc-clock{ right:0; top:-12px; }
+      .utc-clock{ right:0; top:-16px; } /* misma posición en móvil */
     }
 
-    /* ===== Módulo Pepperstone ===== */
-    .promo{
-      display:flex; align-items:center; gap:16px;
-    }
-    .promo-wrap{
-      display:flex; align-items:center; gap:16px; width:100%;
-    }
+    /* ======== ESTILOS DEL MÓDULO PEPPERSTONE (NUEVO) ======== */
+    .promo{ display:flex; align-items:center; gap:16px; }
+    .promo-wrap{ display:flex; align-items:center; gap:16px; width:100%; }
     .promo-media{
-      flex:0 0 110px;            /* antes 140px -> más pequeño */
+      flex:0 0 110px;               /* más pequeño */
       display:flex; align-items:center; justify-content:center;
       background:#0e162c; border:1px solid #1d2947; border-radius:12px;
-      padding:8px;               /* un poco menos padding */
+      padding:8px;
     }
-    .promo-media img{max-width:80%; height:auto; display:block; border-radius:8px} /* antes 100% */
-    .promo-content{flex:1; display:grid; gap:10px}
-    .promo-title{margin:0; font-size:1.1rem; letter-spacing:.2px}
-    .promo-text{margin:0; color:var(--muted)}
-    .promo .cta{width:auto; align-self:start}
+    .promo-media img{ max-width:80%; height:auto; display:block; border-radius:8px; }
+    .promo-content{ flex:1; display:grid; gap:10px; }
+    .promo-title{ margin:0; font-size:1.1rem; letter-spacing:.2px; }
+    .promo-text{ margin:0; color:var(--muted); }
+    .promo .cta{ width:auto; align-self:start; }
 
-    @media (max-width:720px){
-      .promo-wrap{flex-direction:column; align-items:stretch}
-      .promo-media{flex:unset}
-    }
+    /* Botón compacto SOLO para este módulo */
+    .cta--sm{ padding:6px 12px; font-size:.9rem; border-radius:10px; }
   </style>
 </head>
 <body>
@@ -351,6 +339,38 @@
         </div>
       </nav>
 
+      <!-- ====== MENÚ LATERAL DERECHA (Servicios) ====== -->
+      <nav class="side-menu" aria-labelledby="svc-title">
+        <h3 id="svc-title">SERVICIOS</h3>
+        <ul class="svc-list">
+          <li><a href="servicios/copiador-de-senales.html" title="Software de Copiado">Software de Copiado</a></li>
+          <li><a href="servicios/codifica-tu-estrategia.html" title="Codifica tu estrategia">Codifica tu estrategia</a></li>
+          <li><a href="servicios/academia.html" title="Academia">Academia</a></li>
+          <li><a href="servicios/fondo-de-inversion.html" title="Fondo de Inversión">Fondo de Inversión</a></li>
+        </ul>
+
+        <!-- Nota + Botones sociales con iconos -->
+        <div class="side-cta">
+          <p class="side-note">Contenido y actualizaciones periódicas en redes sociales.</p>
+
+          <!-- Instagram rojo con icono -->
+          <a class="cta insta" href="https://www.instagram.com/dgotrader_6?igsh=Z2JkcHhsODlweGht&utm_source=qr" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 4.5A4.5 4.5 0 1 1 7.5 13 4.51 4.51 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zM17.75 7a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.75 7z"/>
+            </svg>
+            Seguir en Instagram
+          </a>
+
+          <!-- Telegram verde con icono -->
+          <a class="cta tele" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M9.03 15.39 8.9 18.7a1 1 0 0 0 1.58.84l2.36-1.69 3.84 2.82c.72.53 1.75.13 1.94-.76l3.08-14.4c.2-.95-.72-1.74-1.62-1.37L2.7 9.38c-.99 .4-.95 1.83.06 2.17l4.78 1.64 10.98-6.77-9.49 8.97z"/>
+            </svg>
+            Unirse a Telegram
+          </a>
+        </div>
+      </nav>
+
       <!-- Descripción -->
       <section class="panel" aria-labelledby="about-title" id="logros">
         <p style="margin:0 0 6px; font-size:1.1rem; line-height:1.8; font-weight:500; text-align:justify;">
@@ -374,7 +394,7 @@
         </div>
       </div>
 
-      <!-- ===== Módulo Pepperstone (debajo del widget) ===== -->
+      <!-- ===== Módulo Pepperstone (NUEVO, debajo del widget) ===== -->
       <section class="panel promo" id="pepper-copy" aria-labelledby="pepper-title">
         <div class="promo-wrap">
           <div class="promo-media">
