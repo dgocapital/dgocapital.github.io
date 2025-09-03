@@ -263,9 +263,8 @@
 
     /* ===== Reloj (arriba a la derecha, solo hora local, más pequeño) ===== */
     .utc-clock{
-      position:fixed;
-      top:8px;
-      right: calc(var(--menuW) + 36px);
+      position:static;              /* antes: fixed */
+      inset:auto;                   /* limpia top/right/bottom/left */
       z-index:1000;
       display:inline-flex; align-items:center; gap:6px;
       padding:4px 8px;                 /* más pequeño */
