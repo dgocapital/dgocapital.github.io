@@ -227,6 +227,13 @@
     .cta.tele{background:linear-gradient(180deg,#34d399,#10b981); box-shadow:0 8px 20px rgba(16,185,129,.35)}
     .cta.insta{background:linear-gradient(180deg,#ef4444,#dc2626); box-shadow:0 8px 20px rgba(239,68,68,.35)}
 
+    /* Botón compacto SOLO para el módulo Pepperstone (NUEVO) */
+    .cta--sm{
+      padding:6px 12px;
+      font-size:.9rem;
+      border-radius:10px;
+    }
+
     /* Reservar espacio a ambos lados en desktop */
     @media (min-width:1024px){
       .card{
@@ -282,7 +289,7 @@
       .utc-clock{ right:0; top:-12px; }
     }
 
-    /* ===== Módulo Pepperstone (NUEVO) ===== */
+    /* ===== Módulo Pepperstone ===== */
     .promo{
       display:flex; align-items:center; gap:16px;
     }
@@ -290,12 +297,12 @@
       display:flex; align-items:center; gap:16px; width:100%;
     }
     .promo-media{
-      flex:0 0 140px;
+      flex:0 0 110px;            /* antes 140px -> más pequeño */
       display:flex; align-items:center; justify-content:center;
       background:#0e162c; border:1px solid #1d2947; border-radius:12px;
-      padding:10px;
+      padding:8px;               /* un poco menos padding */
     }
-    .promo-media img{max-width:100%; height:auto; display:block; border-radius:8px}
+    .promo-media img{max-width:80%; height:auto; display:block; border-radius:8px} /* antes 100% */
     .promo-content{flex:1; display:grid; gap:10px}
     .promo-title{margin:0; font-size:1.1rem; letter-spacing:.2px}
     .promo-text{margin:0; color:var(--muted)}
@@ -367,7 +374,7 @@
         </div>
       </div>
 
-      <!-- ===== Módulo Pepperstone (NUEVO, debajo del widget) ===== -->
+      <!-- ===== Módulo Pepperstone (debajo del widget) ===== -->
       <section class="panel promo" id="pepper-copy" aria-labelledby="pepper-title">
         <div class="promo-wrap">
           <div class="promo-media">
@@ -377,7 +384,7 @@
           <div class="promo-content">
             <h3 class="promo-title" id="pepper-title">Copia nuestras operaciones en el broker Pepperstone</h3>
             <p class="promo-text">Conecta tu cuenta y replica nuestras señales de forma sencilla y segura.</p>
-            <a class="cta" href="https://pepperstone.com/es-la/go/copytrading-by-pepperstone/" target="_blank" rel="noopener">
+            <a class="cta cta--sm" href="https://pepperstone.com/es-la/go/copytrading-by-pepperstone/" target="_blank" rel="noopener">
               Ir a CopyTrading en Pepperstone
             </a>
           </div>
