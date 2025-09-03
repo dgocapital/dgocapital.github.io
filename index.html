@@ -261,23 +261,26 @@
     .ad-sizer{ width:100%; max-width:728px; margin:0 auto; overflow:hidden; }
     .ad-fixed{ width:728px; height:90px; transform-origin: top left; }
 
-    /* ===== Reloj (arriba a la derecha, solo hora local, más pequeño) ===== */
-    .utc-clock{
-      position:static;              /* antes: fixed */
-      inset:auto;                   /* limpia top/right/bottom/left */
-      z-index:1000;
-      display:inline-flex; align-items:center; gap:6px;
-      padding:4px 8px;                 /* más pequeño */
-      border-radius:999px; font-weight:700;
-      font-size:.76rem;                 /* más pequeño */
-      letter-spacing:.2px;
-      background:#0b1326; color:#8fb3ff;
-      border:1px solid #22407a;
-      box-shadow:0 6px 18px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.03) inset;
-      user-select:none;
-    }
+  /* ===== Reloj (arriba a la derecha, solo hora local, más pequeño) ===== */
+  .utc-clock{
+    position: static;              /* sigue sin ser fixed */
+    inset: auto;                   /* limpia top/right/bottom/left */
+    transform: translateY(-12px);  /* lo sube visualmente */
+    z-index:1000;
+    display:inline-flex; align-items:center; gap:6px;
+    padding:4px 8px;                 /* más pequeño */
+    border-radius:999px; font-weight:700;
+    font-size:.76rem;                 /* más pequeño */
+    letter-spacing:.2px;
+    background:#0b1326; color:#8fb3ff;
+    border:1px solid #22407a;
+    box-shadow:0 6px 18px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.03) inset;
+    user-select:none;
+  }
     @media (max-width:1023px){
-      .utc-clock{ right:18px; top:8px; }
+      .utc-clock{
+        transform: translateY(-12px); /* misma altura que en desktop */
+      }
     }
   </style>
 </head>
