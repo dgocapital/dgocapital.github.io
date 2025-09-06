@@ -304,6 +304,40 @@
 
     /* Botón compacto SOLO para este módulo */
     .cta--sm{ padding:6px 12px; font-size:.9rem; border-radius:10px; }
+
+    /* --- Marquee del slogan (NUEVO) --- */
+    .hero-marquee{
+      --marquee-duration: 18s;      /* ajusta la velocidad (menor = más rápido) */
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+              mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+      margin: 0 0 10px;
+    }
+    .marquee-track{
+      display: inline-flex;
+      gap: 4rem;
+      will-change: transform;
+      animation: marquee var(--marquee-duration) linear infinite;
+    }
+    @keyframes marquee{
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .hero-title{
+      font-weight: 800;
+      font-size: clamp(1.6rem, 1.1rem + 1.8vw, 2.2rem);
+      letter-spacing: .2px;
+      line-height: 1.25;
+      background: linear-gradient(90deg, #69c2ff, #38bdf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    @media (prefers-reduced-motion: reduce){
+      .marquee-track{ animation: none; transform: translateX(0); }
+    }
   </style>
 </head>
 <body>
@@ -377,6 +411,14 @@
 
       <!-- Descripción -->
       <section class="panel" aria-labelledby="about-title" id="logros">
+        <!-- SLOGAN CON MARQUEE (NUEVO) -->
+        <div class="hero-marquee" aria-label="De la idea al algoritmo para un trading real y consistente.">
+          <div class="marquee-track">
+            <span class="hero-title">De la idea al algoritmo para un trading real y consistente.</span>
+            <span class="hero-title" aria-hidden="true">De la idea al algoritmo para un trading real y consistente.</span>
+          </div>
+        </div>
+
         <p style="margin:0 0 6px; font-size:1.1rem; line-height:1.8; font-weight:500; text-align:justify;">
           DGO transforma conocimiento de mercado en algoritmos. Bajo un marco cuantitativo, 
           cada idea se contrasta con datos, se ajusta con precisión y se valida para sostener la consistencia en el tiempo.
