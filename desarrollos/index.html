@@ -66,7 +66,7 @@
 
     /* Grid de desarrollos */
     .grid{
-      display:grid; gap:12px;
+      display:grid; gap:14px;
       grid-template-columns: repeat(12, 1fr);
     }
     .dev-card{
@@ -82,48 +82,48 @@
     .dev-card:hover{ transform: translateY(-2px); box-shadow:0 14px 34px rgba(0,0,0,.34); border-color:#2c58a6; }
     .dev-card:focus-within{ outline:2px solid var(--accent); outline-offset:-2px; }
 
-    /* Miniatura (ícono) — marco uniforme y centrado */
+    /* Miniatura — centrada y uniforme, sin “quedar fija” */
     .thumb{
       width:100%;
-      height: clamp(90px, 12vw, 130px);    /* marco compacto y responsivo */
+      aspect-ratio: 16 / 9;                 /* todas iguales de alto */
       background:#0e162c;
       border-bottom:1px solid #1d2947;
       display:flex; align-items:center; justify-content:center;
       padding:10px;
     }
+    .thumb a{ display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
     .thumb img{
-      max-width: 60%;
-      max-height: 60%;
+      max-width: 58%;
+      max-height: 58%;
       width:auto; height:auto;
-      object-fit:contain;
+      object-fit:contain;                  /* nunca recorta */
       display:block;
+      transition: transform .25s ease;     /* sutil hover */
       filter: drop-shadow(0 4px 10px rgba(0,0,0,.35));
     }
+    .dev-card:hover .thumb img{ transform: scale(1.03); }
 
     /* Cuerpo de la tarjeta */
     .dev-body{
       padding:12px;
       display:flex; flex-direction:column; gap:6px;
     }
-    .dev-title{
-      margin:0;
-      font-size:1rem;                 /* título moderado y consistente */
-      letter-spacing:.2px;
-      font-weight:700;
-    }
-    .dev-by{
-      margin:0;
-      color:var(--muted);
-      font-size:.9rem;
-    }
+    .dev-title{ margin:0; font-size:1rem; letter-spacing:.2px; font-weight:700 }
+    .dev-by{ margin:0; color:var(--muted); font-size:.9rem }
 
     /* Responsive: 4/3/2/1 por fila */
     @media (max-width: 1200px){ .dev-card{grid-column: span 4} } /* 3 por fila */
     @media (max-width: 900px){ .dev-card{grid-column: span 6} }  /* 2 por fila */
     @media (max-width: 600px){
       .dev-card{grid-column: span 12}                              /* 1 por fila */
-      .thumb{ height: clamp(80px, 24vw, 110px) }
-      .thumb img{ max-width: 58%; max-height: 58%; }
+      .thumb{ aspect-ratio: 16 / 10; }                             /* un pelín más alta en móvil */
+      .thumb img{ max-width: 56%; max-height: 56%; }
+    }
+
+    /* Footer */
+    .footer{
+      margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
+      padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
     }
 
     /* Accesibilidad */
@@ -148,7 +148,6 @@
       <section class="panel" aria-labelledby="devs-title">
         <h2 id="devs-title" style="margin:0 0 10px">Algoritmos</h2>
 
-        <!-- Orden alfabético; cada ícono abre su PDF -->
         <div class="grid">
           <!-- Abyss -->
           <article class="dev-card" tabindex="0">
@@ -270,7 +269,7 @@
       </section>
 
       <!-- Footer -->
-      <div class="footer" style="margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem; padding-top:8px; border-top:1px solid rgba(255,255,255,.06);">
+      <div class="footer">
         © <span id="yr"></span> DGO Trading. Todos los derechos reservados.
       </div>
 
