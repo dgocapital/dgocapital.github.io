@@ -18,6 +18,7 @@
     :root{
       --card:#0d1426; --card2:#0a101f; --stroke:#1e2a49;
       --text:#e8eefc; --muted:#9fb0d9; --accent:#38bdf8;
+      --shadow:0 12px 30px rgba(0,0,0,.28);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -27,6 +28,7 @@
       background:
         radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
         linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
     .wrap{width:100%}
     .card{
@@ -47,8 +49,8 @@
     }
     .btn.ghost{background:transparent; border:1px solid #28406e; color:var(--text)}
     .btn:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
-    .brand img, img.brand{
-      height:59px; width:auto; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)
+    .brand{
+      height:52px; width:auto; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)
     }
     h1{margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)}
     .muted{color:var(--muted); font-size:.95rem}
@@ -64,7 +66,7 @@
 
     /* Grid de desarrollos */
     .grid{
-      display:grid; gap:14px;
+      display:grid; gap:12px;
       grid-template-columns: repeat(12, 1fr);
     }
     .dev-card{
@@ -72,46 +74,54 @@
       background:linear-gradient(180deg,#0f1933,#0a1329);
       border:1px solid #22407a;
       border-radius:14px;
-      box-shadow:0 6px 18px rgba(0,0,0,.28);
+      box-shadow:var(--shadow);
       overflow:hidden;
       display:flex; flex-direction:column;
+      transition:transform .12s ease, box-shadow .2s ease, border-color .2s ease;
     }
+    .dev-card:hover{ transform: translateY(-2px); box-shadow:0 14px 34px rgba(0,0,0,.34); border-color:#2c58a6; }
+    .dev-card:focus-within{ outline:2px solid var(--accent); outline-offset:-2px; }
 
-    /* >>> Imágenes completas (sin recortes) y más pequeñas dentro del marco <<< */
+    /* Miniatura (ícono) más pequeño y limpio */
     .thumb{
       width:100%;
-      aspect-ratio: 16 / 9;          /* tarjetas uniformes */
+      height: clamp(90px, 12vw, 130px);   /* altura compacta y responsiva */
       background:#0e162c;
       border-bottom:1px solid #1d2947;
-      display:flex;                   /* centra el contenido */
-      align-items:center;
-      justify-content:center;
-      padding:10px;                   /* aire alrededor */
+      display:flex; align-items:center; justify-content:center;
+      padding:10px;
     }
     .thumb img{
-      max-width: 85%;                 /* reducir tamaño visible */
-      max-height: 85%;                /* siempre cabe completa */
-      width: auto;
-      height: auto;
-      object-fit: contain;            /* sin recortes */
+      max-width: 60%;   /* << ÍCONOS MÁS PEQUEÑOS */
+      max-height: 60%;  /* << ÍCONOS MÁS PEQUEÑOS */
+      width: auto; height: auto;
+      object-fit: contain;
       display:block;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,.35));
     }
 
     .dev-body{
-      padding:12px; display:flex; flex-direction:column; gap:6px;
+      padding:12px; display:flex; flex-direction:column; gap:4px;
     }
-    .dev-title{margin:0; font-size:1.05rem; letter-spacing:.2px}
+    .dev-title{margin:0; font-size:1rem; letter-spacing:.2px; font-weight:700}
     .dev-by{margin:0; color:var(--muted); font-size:.9rem}
 
-    /* Responsive */
+    /* Responsive: 4/3/2/1 por fila */
     @media (max-width: 1200px){ .dev-card{grid-column: span 4} } /* 3 por fila */
     @media (max-width: 900px){ .dev-card{grid-column: span 6} }  /* 2 por fila */
-    @media (max-width: 600px){ .dev-card{grid-column: span 12} } /* 1 por fila */
+    @media (max-width: 600px){
+      .dev-card{grid-column: span 12}                              /* 1 por fila */
+      .thumb{ height: clamp(80px, 24vw, 110px) }                   /* un pelín más pequeño en móvil */
+      .thumb img{ max-width: 58%; max-height: 58%; }
+    }
 
     .footer{
       margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
       padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
     }
+
+    /* Accesibilidad */
+    a:focus-visible, button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:10px; }
   </style>
 </head>
 <body>
@@ -132,52 +142,90 @@
       <section class="panel" aria-labelledby="devs-title">
         <h2 id="devs-title" style="margin:0 0 10px">Algoritmos</h2>
 
+        <!--
+          ORDEN PROFESIONAL: alfabético por nombre del bot.
+          Añadí títulos visibles (.dev-title) y mantuve el autor debajo.
+        -->
         <div class="grid">
-          <!-- dgotrader_6 -->
-          <article class="dev-card">
-            <div class="thumb"><img src="./megavol.png" alt="Megavol — robot" loading="lazy" decoding="async"></div>
-            <div class="dev-body"><p class="dev-by"><strong>Developed by:</strong> dgotrader_6</p></div>
-          </article>
-
-          <article class="dev-card">
-            <div class="thumb"><img src="./taquion.png" alt="Taquion — robot" loading="lazy" decoding="async"></div>
-            <div class="dev-body"><p class="dev-by"><strong>Developed by:</strong> dgotrader_6</p></div>
-          </article>
-
-          <article class="dev-card">
-            <div class="thumb"><img src="./orion.png" alt="Orion — robot" loading="lazy" decoding="async"></div>
-            <div class="dev-body"><p class="dev-by"><strong>Developed by:</strong> dgotrader_6</p></div>
-          </article>
-
-          <article class="dev-card">
+          <!-- Abyss -->
+          <article class="dev-card" tabindex="0">
             <div class="thumb"><img src="./abyss.png" alt="Abyss — robot" loading="lazy" decoding="async"></div>
-            <div class="dev-body"><p class="dev-by"><strong>Developed by:</strong> dgotrader_6</p></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Abyss</h3>
+              <p class="dev-by"><strong>Developed by:</strong> dgotrader_6</p>
+            </div>
           </article>
 
-          <!-- be_profitable.fx -->
-          <article class="dev-card">
-            <div class="thumb"><img src="./boson-nocturno.png" alt="Bosón Nocturno — robot" loading="lazy" decoding="async"></div>
-            <div class="dev-body"><p class="dev-by"><strong>Developed by:</strong> be_profitable.fx</p></div>
-          </article>
-
-          <article class="dev-card">
+          <!-- Bosón Diurno -->
+          <article class="dev-card" tabindex="0">
             <div class="thumb"><img src="./boson-diurno.png" alt="Bosón Diurno — robot" loading="lazy" decoding="async"></div>
-            <div class="dev-body"><p class="dev-by"><strong>Developed by:</strong> be_profitable.fx</p></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Bosón Diurno</h3>
+              <p class="dev-by"><strong>Developed by:</strong> be_profitable.fx</p>
+            </div>
           </article>
 
-          <article class="dev-card">
-            <div class="thumb"><img src="./pluton.png" alt="Pluton — robot" loading="lazy" decoding="async"></div>
-            <div class="dev-body"><p class="dev-by"><strong>Developed by:</strong> be_profitable.fx</p></div>
+          <!-- Bosón Nocturno -->
+          <article class="dev-card" tabindex="0">
+            <div class="thumb"><img src="./boson-nocturno.png" alt="Bosón Nocturno — robot" loading="lazy" decoding="async"></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Bosón Nocturno</h3>
+              <p class="dev-by"><strong>Developed by:</strong> be_profitable.fx</p>
+            </div>
           </article>
 
-          <article class="dev-card">
-            <div class="thumb"><img src="./quantum-reversal.png" alt="Quantum Reversal — robot" loading="lazy" decoding="async"></div>
-            <div class="dev-body"><p class="dev-by"><strong>Developed by:</strong> be_profitable.fx</p></div>
+          <!-- Megavol -->
+          <article class="dev-card" tabindex="0">
+            <div class="thumb"><img src="./megavol.png" alt="Megavol — robot" loading="lazy" decoding="async"></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Megavol</h3>
+              <p class="dev-by"><strong>Developed by:</strong> dgotrader_6</p>
+            </div>
           </article>
 
-          <article class="dev-card">
+          <!-- Nexus -->
+          <article class="dev-card" tabindex="0">
             <div class="thumb"><img src="./nexus.png" alt="Nexus — robot" loading="lazy" decoding="async"></div>
-            <div class="dev-body"><p class="dev-by"><strong>Developed by:</strong> be_profitable.fx</p></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Nexus</h3>
+              <p class="dev-by"><strong>Developed by:</strong> be_profitable.fx</p>
+            </div>
+          </article>
+
+          <!-- Orion -->
+          <article class="dev-card" tabindex="0">
+            <div class="thumb"><img src="./orion.png" alt="Orion — robot" loading="lazy" decoding="async"></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Orion</h3>
+              <p class="dev-by"><strong>Developed by:</strong> dgotrader_6</p>
+            </div>
+          </article>
+
+          <!-- Plutón -->
+          <article class="dev-card" tabindex="0">
+            <div class="thumb"><img src="./pluton.png" alt="Plutón — robot" loading="lazy" decoding="async"></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Plutón</h3>
+              <p class="dev-by"><strong>Developed by:</strong> be_profitable.fx</p>
+            </div>
+          </article>
+
+          <!-- Quantum Reversal -->
+          <article class="dev-card" tabindex="0">
+            <div class="thumb"><img src="./quantum-reversal.png" alt="Quantum Reversal — robot" loading="lazy" decoding="async"></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Quantum Reversal</h3>
+              <p class="dev-by"><strong>Developed by:</strong> be_profitable.fx</p>
+            </div>
+          </article>
+
+          <!-- Taquion -->
+          <article class="dev-card" tabindex="0">
+            <div class="thumb"><img src="./taquion.png" alt="Taquion — robot" loading="lazy" decoding="async"></div>
+            <div class="dev-body">
+              <h3 class="dev-title">Taquion</h3>
+              <p class="dev-by"><strong>Developed by:</strong> dgotrader_6</p>
+            </div>
           </article>
         </div>
       </section>
