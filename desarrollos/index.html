@@ -66,11 +66,14 @@
 
     /* Grid de desarrollos */
     .grid{
-      display:grid; gap:14px;
-      grid-template-columns: repeat(12, 1fr);
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
     .dev-card{
-      grid-column: span 3;           /* 4 por fila en pantallas grandes */
+      grid-column: auto;
+    }
+
       background:linear-gradient(180deg,#0f1933,#0a1329);
       border:1px solid #22407a;
       border-radius:14px;
