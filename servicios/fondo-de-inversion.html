@@ -16,10 +16,8 @@
 
   <style>
     :root{
-      /* Base */
       --bg:#0b1c2d;
 
-      /* Panels */
       --panel-blue:#102a44;
       --panel-blue-soft:#143a5f;
 
@@ -31,12 +29,10 @@
 
       --panel-white:#f5f8fc;
 
-      /* Text */
       --text:#eaf2ff;
       --text-dark:#0b1c2d;
       --muted:#b6c8e6;
 
-      /* Accents */
       --blue:#4da3ff;
       --green:#3ddc97;
       --gold:#f0c766;
@@ -94,14 +90,12 @@
       color:var(--text);
     }
 
-    /* HERO */
     .hero{
       max-width:920px;
       font-size:1.05rem;
       line-height:1.7;
     }
 
-    /* GRID */
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -163,7 +157,6 @@
       color:var(--gold);
     }
 
-    /* STEPS */
     .steps{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -181,9 +174,9 @@
       border-top:4px solid var(--blue);
     }
 
-    /* EXTRA SPACING */
-    .section-gap{
-      margin-top:40px;
+    /* ESPACIO ENTRE SECCIONES */
+    .section-spacing{
+      margin-top:56px;
     }
 
     .footer{
@@ -216,69 +209,41 @@
     <div class="panel blue">
       <div class="icon blue">1</div>
       <h2>Control del capital</h2>
-      <p class="muted">
-        El capital permanece siempre en la cuenta del cliente.
-        No existe custodia ni transferencia de fondos.
-      </p>
+      <p class="muted">El capital permanece siempre en la cuenta del cliente.</p>
     </div>
 
     <div class="panel gold">
       <div class="icon gold">2</div>
       <h2>Ejecución algorítmica</h2>
-      <p class="muted">
-        Estrategias automatizadas basadas en reglas objetivas,
-        diseñadas para operar de forma sistemática.
-      </p>
+      <p class="muted">Estrategias automatizadas basadas en reglas objetivas.</p>
     </div>
 
     <div class="panel green">
       <div class="icon green">3</div>
       <h2>Replicación transparente</h2>
-      <p class="muted">
-        Todas las operaciones se replican automáticamente
-        y son visibles en tiempo real.
-      </p>
+      <p class="muted">Operaciones visibles y replicadas automáticamente.</p>
     </div>
   </section>
 
   <section>
     <h2>Cómo funciona</h2>
     <div class="steps">
-      <div class="step">
-        <strong>Cuenta individual</strong>
-        <span>El cliente opera desde una cuenta propia en un broker compatible.</span>
-      </div>
-      <div class="step">
-        <strong>Activación del servicio</strong>
-        <span>Se autoriza la conexión a una estrategia específica.</span>
-      </div>
-      <div class="step">
-        <strong>Replicación automática</strong>
-        <span>Las operaciones se ejecutan bajo parámetros definidos.</span>
-      </div>
-      <div class="step">
-        <strong>Control permanente</strong>
-        <span>El servicio puede cancelarse en cualquier momento.</span>
-      </div>
+      <div class="step"><strong>Cuenta individual</strong><span>Cuenta propia del cliente.</span></div>
+      <div class="step"><strong>Activación</strong><span>Conexión autorizada.</span></div>
+      <div class="step"><strong>Replicación</strong><span>Ejecución automática.</span></div>
+      <div class="step"><strong>Control</strong><span>Cancelación en cualquier momento.</span></div>
     </div>
   </section>
 
-  <section class="panel white section-gap">
+  <!-- ESPACIO VISUAL CLARO -->
+  <section class="panel white section-spacing">
     <h2>Estrategias algorítmicas</h2>
-    <p>
-      Sistemas automáticos diseñados para ejecutar de forma consistente,
-      eliminando decisiones emocionales e incorporando gestión del riesgo
-      dentro de la lógica del modelo.
-    </p>
+    <p>Sistemas automáticos diseñados para operar con disciplina y consistencia.</p>
   </section>
 
   <section class="panel blue">
     <h2>Modelo de servicio</h2>
-    <p class="muted">
-      El acceso se ofrece bajo un esquema de cobro por servicio,
-      que incluye el uso de la estrategia, la infraestructura tecnológica
-      y el soporte operativo asociado.
-    </p>
+    <p class="muted">Cobro por acceso a la estrategia y su infraestructura tecnológica.</p>
   </section>
 
   <div class="footer">
