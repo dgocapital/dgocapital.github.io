@@ -4,11 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DGO Capital — Modelo de Inversión por Replicación</title>
-  <meta name="description" content="Modelo de inversión por replicación algorítmica. Estrategias automatizadas, sin custodia del capital y con control total del cliente.">
-  <meta property="og:title" content="DGO Capital — Modelo de Inversión por Replicación">
-  <meta property="og:description" content="Inversión algorítmica estructurada y transparente.">
-  <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0b1c2d">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,17 +12,12 @@
   <style>
     :root{
       --bg:#0b1c2d;
-
       --panel-blue:#102a44;
       --panel-blue-soft:#143a5f;
-
       --panel-green:#0f3d2e;
       --panel-green-soft:#145a43;
-
-      --panel-gold:#3a3218;
-      --panel-gold-soft:#4b4120;
-
-      --panel-white:#f5f8fc;
+      --panel-yellow:#3d3312;
+      --panel-yellow-soft:#5a4b1a;
 
       --text:#eaf2ff;
       --text-dark:#0b1c2d;
@@ -35,42 +25,42 @@
 
       --blue:#4da3ff;
       --green:#3ddc97;
-      --gold:#f0c766;
+      --yellow:#d8b45a;
     }
 
     *{box-sizing:border-box}
 
     body{
       margin:0;
-      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-family:Inter, system-ui, sans-serif;
       background:linear-gradient(180deg,#0b1c2d,#071524);
       color:var(--text);
     }
 
     .card{
       min-height:100vh;
-      padding:28px clamp(16px, 4vw, 40px);
+      padding:28px clamp(16px,4vw,40px);
       display:flex;
       flex-direction:column;
-      gap:32px;
+      gap:40px;
     }
 
     header{
       display:flex;
       align-items:center;
-      gap:14px;
+      gap:16px;
       border-bottom:1px solid rgba(255,255,255,.08);
-      padding-bottom:14px;
+      padding-bottom:16px;
     }
 
     h1{
       margin:0;
-      font-size:clamp(2rem,1.4rem+2vw,2.6rem);
+      font-size:clamp(2rem,1.5rem+2vw,2.6rem);
     }
 
     h2{
       margin:0;
-      font-size:1.2rem;
+      font-size:1.35rem;
     }
 
     .muted{color:var(--muted)}
@@ -80,11 +70,6 @@
       border-radius:12px;
       text-decoration:none;
       font-weight:700;
-      background:linear-gradient(180deg,#4da3ff,#2f7de1);
-      color:#fff;
-    }
-
-    .btn.ghost{
       background:transparent;
       border:1px solid #2a4f7a;
       color:var(--text);
@@ -96,6 +81,7 @@
       line-height:1.7;
     }
 
+    /* PANELS SUPERIORES */
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -120,41 +106,18 @@
       border:1px solid #2e7d5c;
     }
 
-    .panel.gold{
-      background:linear-gradient(180deg,var(--panel-gold-soft),var(--panel-gold));
-      border:1px solid #8f7a3a;
+    .panel.yellow{
+      background:linear-gradient(180deg,var(--panel-yellow-soft),var(--panel-yellow));
+      border:1px solid #9c8442;
     }
 
-    .panel.white{
-      background:var(--panel-white);
-      color:var(--text-dark);
-      border:1px solid #d6e2f1;
+    /* COMO FUNCIONA */
+    .section-how{
+      margin-top:72px; /* 👈 AJUSTE CLAVE */
     }
 
-    .icon{
-      width:42px;
-      height:42px;
-      border-radius:12px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:800;
-      font-size:1.1rem;
-    }
-
-    .icon.blue{
-      background:rgba(77,163,255,.15);
-      color:var(--blue);
-    }
-
-    .icon.green{
-      background:rgba(61,220,151,.18);
-      color:var(--green);
-    }
-
-    .icon.gold{
-      background:rgba(240,199,102,.2);
-      color:var(--gold);
+    .section-how h2{
+      margin-bottom:24px;
     }
 
     .steps{
@@ -174,9 +137,12 @@
       border-top:4px solid var(--blue);
     }
 
-    /* ESPACIO ENTRE SECCIONES */
-    .section-spacing{
-      margin-top:56px;
+    .panel.white{
+      background:#f5f8fc;
+      color:var(--text-dark);
+      border-radius:18px;
+      padding:28px;
+      box-shadow:0 12px 32px rgba(0,0,0,.25);
     }
 
     .footer{
@@ -185,7 +151,7 @@
       font-size:.85rem;
       color:var(--muted);
       border-top:1px solid rgba(255,255,255,.08);
-      padding-top:12px;
+      padding-top:14px;
     }
   </style>
 </head>
@@ -194,8 +160,8 @@
 <div class="card">
 
   <header>
-    <a href="../index.html" class="btn ghost">← Volver</a>
-    <img src="../logo.png" alt="DGO Capital" style="height:58px;border-radius:12px">
+    <a href="../index.html" class="btn">← Volver</a>
+    <img src="../logo.png" alt="DGO Capital" style="height:56px;border-radius:12px">
     <h1>Modelo de Inversión por Replicación</h1>
   </header>
 
@@ -207,43 +173,71 @@
 
   <section class="grid">
     <div class="panel blue">
-      <div class="icon blue">1</div>
       <h2>Control del capital</h2>
-      <p class="muted">El capital permanece siempre en la cuenta del cliente.</p>
+      <p class="muted">
+        El capital permanece siempre en la cuenta del cliente,
+        sin transferencias ni custodia externa.
+      </p>
     </div>
 
-    <div class="panel gold">
-      <div class="icon gold">2</div>
+    <div class="panel yellow">
       <h2>Ejecución algorítmica</h2>
-      <p class="muted">Estrategias automatizadas basadas en reglas objetivas.</p>
+      <p class="muted">
+        Estrategias automatizadas basadas en reglas objetivas
+        y ejecución sistemática.
+      </p>
     </div>
 
     <div class="panel green">
-      <div class="icon green">3</div>
       <h2>Replicación transparente</h2>
-      <p class="muted">Operaciones visibles y replicadas automáticamente.</p>
+      <p class="muted">
+        Operaciones replicadas automáticamente
+        y visibles en tiempo real.
+      </p>
     </div>
   </section>
 
-  <section>
+  <section class="section-how">
     <h2>Cómo funciona</h2>
+
     <div class="steps">
-      <div class="step"><strong>Cuenta individual</strong><span>Cuenta propia del cliente.</span></div>
-      <div class="step"><strong>Activación</strong><span>Conexión autorizada.</span></div>
-      <div class="step"><strong>Replicación</strong><span>Ejecución automática.</span></div>
-      <div class="step"><strong>Control</strong><span>Cancelación en cualquier momento.</span></div>
+      <div class="step">
+        <strong>Cuenta individual</strong>
+        <span>Cuenta propia del cliente en broker compatible.</span>
+      </div>
+
+      <div class="step">
+        <strong>Activación</strong>
+        <span>Conexión autorizada a la estrategia seleccionada.</span>
+      </div>
+
+      <div class="step">
+        <strong>Replicación</strong>
+        <span>Ejecución automática bajo parámetros definidos.</span>
+      </div>
+
+      <div class="step">
+        <strong>Control</strong>
+        <span>El servicio puede cancelarse en cualquier momento.</span>
+      </div>
     </div>
   </section>
 
-  <!-- ESPACIO VISUAL CLARO -->
-  <section class="panel white section-spacing">
+  <section class="panel white">
     <h2>Estrategias algorítmicas</h2>
-    <p>Sistemas automáticos diseñados para operar con disciplina y consistencia.</p>
+    <p>
+      Sistemas automáticos diseñados para operar con disciplina,
+      consistencia y gestión del riesgo integrada en la lógica del modelo.
+    </p>
   </section>
 
   <section class="panel blue">
     <h2>Modelo de servicio</h2>
-    <p class="muted">Cobro por acceso a la estrategia y su infraestructura tecnológica.</p>
+    <p class="muted">
+      El acceso se ofrece bajo un esquema de cobro por servicio,
+      que incluye el uso de la estrategia, infraestructura tecnológica
+      y soporte operativo.
+    </p>
   </section>
 
   <div class="footer">
@@ -257,7 +251,3 @@
 </script>
 </body>
 </html>
-
-
-
-
