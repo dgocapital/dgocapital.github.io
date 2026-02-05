@@ -6,9 +6,9 @@
   <title>DGO Capital — Modelo de Inversión por Replicación</title>
   <meta name="description" content="Modelo de inversión por replicación algorítmica. Estrategias automatizadas, sin custodia del capital y con control total del cliente.">
   <meta property="og:title" content="DGO Capital — Modelo de Inversión por Replicación">
-  <meta property="og:description" content="Inversión algorítmica replicada, estructurada y transparente.">
+  <meta property="og:description" content="Inversión algorítmica estructurada y transparente.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0b1224">
+  <meta name="theme-color" content="#0b1c2d">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,20 +16,27 @@
 
   <style>
     :root{
-      --bg1:#0b1224;
-      --bg2:#070d1d;
+      /* Base */
+      --bg:#0b1c2d;
+      --bg-soft:#0f2740;
 
-      --panel-base:#0f1733;
-      --panel-alt:#0c142b;
-      --panel-soft:#101b3d;
+      /* Panels */
+      --panel-blue:#102a44;
+      --panel-blue-soft:#143a5f;
+      --panel-green:#0f3d2e;
+      --panel-green-soft:#145a43;
+      --panel-white:#f5f8fc;
 
-      --stroke:#1e2a49;
+      --stroke:#1e3a5f;
 
-      --text:#e8eefc;
-      --muted:#9fb0d9;
+      /* Text */
+      --text:#eaf2ff;
+      --text-dark:#0b1c2d;
+      --muted:#b6c8e6;
 
-      --accent:#4cc9f0;
-      --accent-soft:#1f9be6;
+      /* Accents */
+      --blue:#4da3ff;
+      --green:#3ddc97;
     }
 
     *{box-sizing:border-box}
@@ -37,10 +44,8 @@
     body{
       margin:0;
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:linear-gradient(180deg,#0b1c2d,#071524);
       color:var(--text);
-      background:
-        radial-gradient(900px 500px at 10% -10%, #162347 0%, transparent 60%),
-        linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
     }
 
     .card{
@@ -48,20 +53,20 @@
       padding:28px clamp(16px, 4vw, 40px);
       display:flex;
       flex-direction:column;
-      gap:30px;
+      gap:32px;
     }
 
     header{
       display:flex;
       align-items:center;
       gap:14px;
-      border-bottom:1px solid rgba(255,255,255,.06);
-      padding-bottom:12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      padding-bottom:14px;
     }
 
     h1{
       margin:0;
-      font-size:clamp(1.9rem,1.3rem+2vw,2.5rem);
+      font-size:clamp(2rem,1.4rem+2vw,2.6rem);
     }
 
     h2{
@@ -72,91 +77,104 @@
     .muted{color:var(--muted)}
 
     .btn{
-      display:inline-flex;
       padding:10px 16px;
       border-radius:12px;
       text-decoration:none;
       font-weight:700;
-      background:linear-gradient(180deg,var(--accent-soft),#0ea5e9);
+      background:linear-gradient(180deg,#4da3ff,#2f7de1);
       color:#fff;
     }
 
     .btn.ghost{
       background:transparent;
-      border:1px solid #28406e;
+      border:1px solid #2a4f7a;
       color:var(--text);
     }
 
     /* HERO */
     .hero{
-      max-width:900px;
+      max-width:920px;
       font-size:1.05rem;
+      line-height:1.7;
     }
 
-    /* GRID DE PILARES */
+    /* GRID */
     .grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:20px;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:22px;
     }
 
     .panel{
       border-radius:18px;
-      padding:22px;
-      border:1px solid var(--stroke);
-      box-shadow:0 12px 30px rgba(0,0,0,.25);
+      padding:24px;
+      box-shadow:0 14px 40px rgba(0,0,0,.35);
       display:grid;
-      gap:10px;
+      gap:12px;
     }
 
-    .panel.primary{
-      background:linear-gradient(180deg,#111c3f,#0c1531);
+    .panel.blue{
+      background:linear-gradient(180deg,var(--panel-blue-soft),var(--panel-blue));
+      border:1px solid #295b8f;
     }
 
-    .panel.secondary{
-      background:linear-gradient(180deg,#0f1a3a,#0a132c);
+    .panel.green{
+      background:linear-gradient(180deg,var(--panel-green-soft),var(--panel-green));
+      border:1px solid #2e7d5c;
     }
 
-    .panel.tertiary{
-      background:linear-gradient(180deg,#101f46,#0c1736);
+    .panel.white{
+      background:var(--panel-white);
+      color:var(--text-dark);
+      border:1px solid #d6e2f1;
     }
 
     .icon{
-      width:38px;
-      height:38px;
+      width:42px;
+      height:42px;
       border-radius:12px;
-      background:rgba(76,201,240,.15);
       display:flex;
       align-items:center;
       justify-content:center;
-      color:var(--accent);
       font-weight:800;
+      font-size:1.1rem;
+    }
+
+    .icon.blue{
+      background:rgba(77,163,255,.15);
+      color:var(--blue);
+    }
+
+    .icon.green{
+      background:rgba(61,220,151,.18);
+      color:var(--green);
     }
 
     /* STEPS */
     .steps{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-      gap:18px;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
     }
 
     .step{
-      background:linear-gradient(180deg,var(--panel-soft),var(--panel-alt));
-      border:1px dashed rgba(255,255,255,.12);
+      background:linear-gradient(180deg,#ffffff,#eef4fb);
+      color:var(--text-dark);
       border-radius:16px;
-      padding:18px;
+      padding:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,.18);
       display:grid;
-      gap:6px;
+      gap:8px;
+      border-top:4px solid var(--blue);
     }
 
-    /* HIGHLIGHT */
     .highlight{
-      background:linear-gradient(180deg,#0f2347,#0b1935);
-      border-left:4px solid var(--accent);
-      padding:16px;
-      border-radius:16px;
-      max-width:900px;
-      box-shadow:0 10px 26px rgba(0,0,0,.25);
+      background:linear-gradient(180deg,#0f3d2e,#0b2f23);
+      border-left:5px solid var(--green);
+      border-radius:18px;
+      padding:20px;
+      max-width:920px;
+      box-shadow:0 14px 36px rgba(0,0,0,.35);
     }
 
     .footer{
@@ -164,8 +182,8 @@
       text-align:center;
       font-size:.85rem;
       color:var(--muted);
-      border-top:1px solid rgba(255,255,255,.06);
-      padding-top:10px;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:12px;
     }
   </style>
 </head>
@@ -175,8 +193,7 @@
 
   <header>
     <a href="../index.html" class="btn ghost">← Volver</a>
-    <img src="../logo.png" alt="DGO Capital"
-         style="height:58px;border-radius:12px;border:1px solid #1d2947">
+    <img src="../logo.png" alt="DGO Capital" style="height:58px;border-radius:12px">
     <h1>Modelo de Inversión por Replicación</h1>
   </header>
 
@@ -187,30 +204,30 @@
   </section>
 
   <section class="grid">
-    <div class="panel primary">
-      <div class="icon">1</div>
-      <h2>Capital bajo control</h2>
+    <div class="panel blue">
+      <div class="icon blue">1</div>
+      <h2>Control del capital</h2>
       <p class="muted">
         El capital permanece siempre en la cuenta del cliente.
         No existe custodia ni transferencia de fondos.
       </p>
     </div>
 
-    <div class="panel secondary">
-      <div class="icon">2</div>
-      <h2>Ejecución sistemática</h2>
+    <div class="panel blue">
+      <div class="icon blue">2</div>
+      <h2>Ejecución algorítmica</h2>
       <p class="muted">
-        Las operaciones se ejecutan mediante estrategias algorítmicas
-        basadas en reglas objetivas y repetibles.
+        Estrategias automatizadas basadas en reglas objetivas,
+        diseñadas para operar de forma sistemática.
       </p>
     </div>
 
-    <div class="panel tertiary">
-      <div class="icon">3</div>
+    <div class="panel green">
+      <div class="icon green">3</div>
       <h2>Replicación transparente</h2>
       <p class="muted">
-        Cada operación se replica automáticamente
-        y es visible en tiempo real en la cuenta del cliente.
+        Todas las operaciones se replican automáticamente
+        y son visibles en tiempo real.
       </p>
     </div>
   </section>
@@ -220,43 +237,43 @@
     <div class="steps">
       <div class="step">
         <strong>Cuenta individual</strong>
-        <span class="muted">El cliente opera desde una cuenta propia en un broker compatible.</span>
+        <span>El cliente opera desde una cuenta propia en un broker compatible.</span>
       </div>
       <div class="step">
-        <strong>Conexión autorizada</strong>
-        <span class="muted">Se habilita la conexión a una estrategia algorítmica específica.</span>
+        <strong>Activación del servicio</strong>
+        <span>Se autoriza la conexión a una estrategia específica.</span>
       </div>
       <div class="step">
         <strong>Replicación automática</strong>
-        <span class="muted">Las operaciones se copian bajo parámetros técnicos definidos.</span>
+        <span>Las operaciones se ejecutan bajo parámetros definidos.</span>
       </div>
       <div class="step">
-        <strong>Control total</strong>
-        <span class="muted">El servicio puede pausarse o cancelarse en cualquier momento.</span>
+        <strong>Control permanente</strong>
+        <span>El servicio puede cancelarse en cualquier momento.</span>
       </div>
     </div>
   </section>
 
-  <section class="panel primary">
+  <section class="panel white">
     <h2>Estrategias algorítmicas</h2>
-    <p class="muted">
+    <p>
       Sistemas automáticos diseñados para ejecutar de forma consistente,
       eliminando decisiones emocionales e incorporando gestión del riesgo
       dentro de la lógica del modelo.
     </p>
   </section>
 
-  <section class="panel secondary">
+  <section class="panel blue">
     <h2>Modelo de servicio</h2>
     <p class="muted">
       El acceso se ofrece bajo un esquema de cobro por servicio,
       que incluye el uso de la estrategia, la infraestructura tecnológica
-      de replicación y el soporte operativo asociado.
+      y el soporte operativo asociado.
     </p>
   </section>
 
   <section class="highlight">
-    <strong>Consideraciones de riesgo</strong><br>
+    <strong>Advertencia de riesgo</strong><br>
     El trading algorítmico implica riesgo de mercado.
     No se garantiza rentabilidad y los resultados pasados
     no aseguran resultados futuros.
