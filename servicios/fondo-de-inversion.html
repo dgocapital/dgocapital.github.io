@@ -8,7 +8,7 @@
   <meta property="og:title" content="DGO Capital — Modelo de Inversión por Replicación">
   <meta property="og:description" content="Inversión algorítmica replicada, estructurada y transparente.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#121828">
+  <meta name="theme-color" content="#0b1224">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,25 +16,41 @@
 
   <style>
     :root{
-      --card:#0d1426; --card2:#0a101f; --stroke:#1e2a49;
-      --text:#e8eefc; --muted:#9fb0d9; --accent:#38bdf8;
+      --bg1:#0b1224;
+      --bg2:#070d1d;
+
+      --panel-base:#0f1733;
+      --panel-alt:#0c142b;
+      --panel-soft:#101b3d;
+
+      --stroke:#1e2a49;
+
+      --text:#e8eefc;
+      --muted:#9fb0d9;
+
+      --accent:#4cc9f0;
+      --accent-soft:#1f9be6;
     }
+
     *{box-sizing:border-box}
+
     body{
       margin:0;
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--text);
       background:
-        radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
-        linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
+        radial-gradient(900px 500px at 10% -10%, #162347 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
     }
+
     .card{
       min-height:100vh;
       padding:28px clamp(16px, 4vw, 40px);
       display:flex;
       flex-direction:column;
-      gap:28px;
+      gap:30px;
     }
+
     header{
       display:flex;
       align-items:center;
@@ -42,37 +58,74 @@
       border-bottom:1px solid rgba(255,255,255,.06);
       padding-bottom:12px;
     }
-    h1{margin:0;font-size:clamp(1.8rem,1.2rem+2vw,2.4rem)}
-    h2{margin:0;font-size:1.2rem}
-    .muted{color:var(--muted)}
 
-    .hero{
-      display:grid;
-      gap:12px;
-      max-width:900px;
+    h1{
+      margin:0;
+      font-size:clamp(1.9rem,1.3rem+2vw,2.5rem);
     }
 
+    h2{
+      margin:0;
+      font-size:1.2rem;
+    }
+
+    .muted{color:var(--muted)}
+
+    .btn{
+      display:inline-flex;
+      padding:10px 16px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:700;
+      background:linear-gradient(180deg,var(--accent-soft),#0ea5e9);
+      color:#fff;
+    }
+
+    .btn.ghost{
+      background:transparent;
+      border:1px solid #28406e;
+      color:var(--text);
+    }
+
+    /* HERO */
+    .hero{
+      max-width:900px;
+      font-size:1.05rem;
+    }
+
+    /* GRID DE PILARES */
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:18px;
+      gap:20px;
     }
 
     .panel{
-      background:linear-gradient(180deg,#111a31,#0c1427);
-      border:1px solid var(--stroke);
       border-radius:18px;
       padding:22px;
-      box-shadow:0 10px 30px rgba(0,0,0,.25);
+      border:1px solid var(--stroke);
+      box-shadow:0 12px 30px rgba(0,0,0,.25);
       display:grid;
       gap:10px;
     }
 
+    .panel.primary{
+      background:linear-gradient(180deg,#111c3f,#0c1531);
+    }
+
+    .panel.secondary{
+      background:linear-gradient(180deg,#0f1a3a,#0a132c);
+    }
+
+    .panel.tertiary{
+      background:linear-gradient(180deg,#101f46,#0c1736);
+    }
+
     .icon{
-      width:36px;
-      height:36px;
-      border-radius:10px;
-      background:rgba(56,189,248,.12);
+      width:38px;
+      height:38px;
+      border-radius:12px;
+      background:rgba(76,201,240,.15);
       display:flex;
       align-items:center;
       justify-content:center;
@@ -80,13 +133,15 @@
       font-weight:800;
     }
 
+    /* STEPS */
     .steps{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-      gap:16px;
+      gap:18px;
     }
 
     .step{
+      background:linear-gradient(180deg,var(--panel-soft),var(--panel-alt));
       border:1px dashed rgba(255,255,255,.12);
       border-radius:16px;
       padding:18px;
@@ -94,12 +149,14 @@
       gap:6px;
     }
 
+    /* HIGHLIGHT */
     .highlight{
-      background:rgba(56,189,248,.08);
+      background:linear-gradient(180deg,#0f2347,#0b1935);
       border-left:4px solid var(--accent);
       padding:16px;
-      border-radius:14px;
+      border-radius:16px;
       max-width:900px;
+      box-shadow:0 10px 26px rgba(0,0,0,.25);
     }
 
     .footer{
@@ -110,17 +167,6 @@
       border-top:1px solid rgba(255,255,255,.06);
       padding-top:10px;
     }
-
-    .btn{
-      display:inline-flex;
-      padding:10px 16px;
-      border-radius:12px;
-      text-decoration:none;
-      font-weight:700;
-      background:linear-gradient(180deg,#1f9be6,#0ea5e9);
-      color:#fff;
-    }
-    .btn.ghost{background:transparent;border:1px solid #28406e}
   </style>
 </head>
 
@@ -129,39 +175,46 @@
 
   <header>
     <a href="../index.html" class="btn ghost">← Volver</a>
-    <img src="../logo.png" alt="DGO Capital" style="height:58px;border-radius:12px;border:1px solid #1d2947">
+    <img src="../logo.png" alt="DGO Capital"
+         style="height:58px;border-radius:12px;border:1px solid #1d2947">
     <h1>Modelo de Inversión por Replicación</h1>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <p class="muted">
-      Acceso estructurado a estrategias algorítmicas automatizadas,
-      replicadas directamente en cuentas individuales,
-      sin custodia del capital.
-    </p>
+  <section class="hero muted">
+    Acceso estructurado a estrategias algorítmicas automatizadas,
+    replicadas directamente en cuentas individuales,
+    sin custodia del capital y con control total del inversor.
   </section>
 
-  <!-- PILARES -->
   <section class="grid">
-    <div class="panel">
+    <div class="panel primary">
       <div class="icon">1</div>
       <h2>Capital bajo control</h2>
-      <p class="muted">El dinero permanece siempre en la cuenta del cliente. No se realizan transferencias ni custodia de fondos.</p>
+      <p class="muted">
+        El capital permanece siempre en la cuenta del cliente.
+        No existe custodia ni transferencia de fondos.
+      </p>
     </div>
-    <div class="panel">
+
+    <div class="panel secondary">
       <div class="icon">2</div>
-      <h2>Ejecución automatizada</h2>
-      <p class="muted">Las operaciones se ejecutan mediante estrategias algorítmicas basadas en reglas objetivas.</p>
+      <h2>Ejecución sistemática</h2>
+      <p class="muted">
+        Las operaciones se ejecutan mediante estrategias algorítmicas
+        basadas en reglas objetivas y repetibles.
+      </p>
     </div>
-    <div class="panel">
+
+    <div class="panel tertiary">
       <div class="icon">3</div>
       <h2>Replicación transparente</h2>
-      <p class="muted">Cada operación se replica automáticamente en la cuenta del cliente, visible en tiempo real.</p>
+      <p class="muted">
+        Cada operación se replica automáticamente
+        y es visible en tiempo real en la cuenta del cliente.
+      </p>
     </div>
   </section>
 
-  <!-- COMO FUNCIONA -->
   <section>
     <h2>Cómo funciona</h2>
     <div class="steps">
@@ -175,7 +228,7 @@
       </div>
       <div class="step">
         <strong>Replicación automática</strong>
-        <span class="muted">Las operaciones se copian siguiendo parámetros técnicos definidos.</span>
+        <span class="muted">Las operaciones se copian bajo parámetros técnicos definidos.</span>
       </div>
       <div class="step">
         <strong>Control total</strong>
@@ -184,31 +237,29 @@
     </div>
   </section>
 
-  <!-- ESTRATEGIAS -->
-  <section class="panel">
+  <section class="panel primary">
     <h2>Estrategias algorítmicas</h2>
     <p class="muted">
-      Las estrategias operan bajo sistemas automáticos diseñados para ejecutar
-      de forma consistente, eliminando decisiones emocionales
-      y aplicando criterios internos de gestión del riesgo.
+      Sistemas automáticos diseñados para ejecutar de forma consistente,
+      eliminando decisiones emocionales e incorporando gestión del riesgo
+      dentro de la lógica del modelo.
     </p>
   </section>
 
-  <!-- SERVICIO -->
-  <section class="panel">
+  <section class="panel secondary">
     <h2>Modelo de servicio</h2>
     <p class="muted">
-      El acceso a las estrategias se ofrece bajo un esquema de cobro por servicio.
-      El cliente paga una tarifa previamente informada por el uso de la estrategia,
-      la infraestructura tecnológica y el soporte operativo asociado.
+      El acceso se ofrece bajo un esquema de cobro por servicio,
+      que incluye el uso de la estrategia, la infraestructura tecnológica
+      de replicación y el soporte operativo asociado.
     </p>
   </section>
 
-  <!-- DISCLAIMER -->
   <section class="highlight">
     <strong>Consideraciones de riesgo</strong><br>
-    El trading algorítmico implica riesgo de mercado. No se garantiza rentabilidad
-    y los resultados pasados no aseguran resultados futuros.
+    El trading algorítmico implica riesgo de mercado.
+    No se garantiza rentabilidad y los resultados pasados
+    no aseguran resultados futuros.
     Este servicio no constituye asesoría financiera personalizada.
   </section>
 
@@ -223,5 +274,6 @@
 </script>
 </body>
 </html>
+
 
 
