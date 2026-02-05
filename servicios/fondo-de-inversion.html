@@ -24,7 +24,7 @@
     body{
       margin:0;
       font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--text); line-height:1.6;
+      color:var(--text); line-height:1.65;
       background:
         radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
         linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
@@ -34,7 +34,6 @@
       min-height:100vh; width:100%; margin:0;
       padding:28px clamp(16px, 4vw, 40px);
       border:1px solid var(--stroke);
-      border-radius:0;
       box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
       display:flex; flex-direction:column; gap:18px;
     }
@@ -43,34 +42,42 @@
       padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.06);
     }
     h1{margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)}
-    h2{margin:0 0 8px 0; font-size:1.15rem}
+    h2{margin:18px 0 6px; font-size:1.15rem}
     .muted{color:var(--muted); font-size:.95rem}
 
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
       padding:10px 16px; border-radius:12px; font-weight:700;
-      text-decoration:none; color:#fff; background:linear-gradient(180deg,#1f9be6,#0ea5e9);
-      box-shadow:0 8px 20px rgba(14,165,233,.35); transition:transform .06s ease, box-shadow .2s ease;
-      border:0; cursor:pointer;
+      text-decoration:none; color:#fff;
+      background:linear-gradient(180deg,#1f9be6,#0ea5e9);
+      box-shadow:0 8px 20px rgba(14,165,233,.35);
+      border:0;
     }
     .btn.ghost{background:transparent; border:1px solid #28406e; color:var(--text)}
-    .btn:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
 
     .panel{
       background:linear-gradient(180deg, #111a31, #0c1427);
       border:1px solid var(--stroke);
       border-radius:16px;
-      padding:24px;
+      padding:26px;
       box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
       display:grid;
-      gap:18px;
+      gap:14px;
     }
 
     .list{
       padding-left:18px;
-      margin:8px 0;
+      margin:6px 0;
     }
     .list li{margin-bottom:6px}
+
+    .highlight{
+      background:rgba(56,189,248,.08);
+      border-left:3px solid var(--accent);
+      padding:12px 14px;
+      border-radius:10px;
+      font-size:.95rem;
+    }
 
     .footer{
       margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
@@ -79,79 +86,89 @@
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
+<div class="wrap">
+  <div class="card">
 
-      <header>
-        <a href="../index.html" class="btn ghost" aria-label="Volver al inicio">← Volver</a>
-        <img src="../logo.png" alt="Logo DGO Capital"
-             style="height:59px; width:auto; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)">
-        <div>
-          <h1>Modelo de Inversión por Replicación</h1>
-          <div class="muted">Estrategias algorítmicas automatizadas, sin custodia del capital</div>
-        </div>
-      </header>
+    <header>
+      <a href="../index.html" class="btn ghost">← Volver</a>
+      <img src="../logo.png" alt="Logo DGO Capital"
+           style="height:59px; border-radius:12px; border:1px solid #1d2947;">
+      <div>
+        <h1>Modelo de Inversión por Replicación</h1>
+        <div class="muted">Inversión algorítmica automatizada, sin custodia del capital</div>
+      </div>
+    </header>
 
-      <section class="panel">
-        <p>
-          DGO Capital ofrece un <strong>modelo de inversión por replicación algorítmica</strong> que permite a los clientes
-          acceder a estrategias de trading automatizado mediante la replicación de operaciones en cuentas individuales,
-          manteniendo en todo momento el control total de su capital.
-        </p>
+    <section class="panel">
 
-        <h2>Naturaleza del servicio</h2>
-        <p>
-          El servicio consiste en el acceso a estrategias algorítmicas predefinidas cuyas operaciones se ejecutan en una
-          cuenta principal y se replican automáticamente en las cuentas de los clientes conectados.
-        </p>
-        <ul class="list">
-          <li>No existe custodia de fondos</li>
-          <li>No se administra capital de terceros</li>
-          <li>No existe acceso directo a las cuentas de los clientes</li>
-          <li>La conexión al sistema es voluntaria y reversible</li>
-        </ul>
+      <p>
+        En DGO Capital ofrecemos un <strong>modelo de inversión por replicación algorítmica</strong>
+        diseñado para inversores que buscan acceder a estrategias automatizadas de forma
+        estructurada, transparente y con control total sobre su capital.
+      </p>
 
-        <h2>Funcionamiento operativo</h2>
-        <ul class="list">
-          <li>El cliente opera a través de una cuenta propia en un broker compatible</li>
-          <li>La cuenta se conecta a una estrategia algorítmica mediante consentimiento expreso</li>
-          <li>Las operaciones se replican automáticamente bajo parámetros técnicos definidos</li>
-          <li>El cliente puede monitorear y desconectarse del servicio en cualquier momento</li>
-        </ul>
+      <p>
+        A través de este modelo, las operaciones ejecutadas por una estrategia algorítmica
+        se <strong>replican automáticamente</strong> en cuentas individuales,
+        sin transferencias de fondos ni administración directa del dinero del cliente.
+      </p>
 
-        <h2>Estrategias algorítmicas</h2>
-        <p>
-          Las estrategias operan bajo reglas objetivas y sistemáticas, eliminando decisiones discrecionales y aplicando
-          criterios de gestión del riesgo integrados en la lógica del sistema. La ejecución es uniforme para todos los
-          clientes conectados.
-        </p>
-
-        <h2>Esquema de cobro</h2>
-        <p>
-          El acceso a las estrategias se ofrece bajo un <strong>modelo de cobro por servicio</strong>, que puede incluir
-          cuotas periódicas de suscripción por el uso de la estrategia, el acceso a la infraestructura tecnológica y el
-          soporte operativo relacionado.
-        </p>
-        <p class="muted">
-          Las condiciones económicas son informadas previamente y aceptadas de forma expresa por el cliente.
-        </p>
-
-        <h2>Riesgos y consideraciones</h2>
-        <p class="muted">
-          El trading algorítmico implica riesgo de mercado. No se garantiza rentabilidad y los resultados pasados no
-          aseguran resultados futuros. Este servicio no constituye asesoría financiera personalizada.
-        </p>
-      </section>
-
-      <div class="footer">
-        © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
+      <div class="highlight">
+        El capital permanece siempre en la cuenta del cliente.
+        DGO Capital no custodia fondos ni tiene acceso operativo a las cuentas.
       </div>
 
-    </div>
-  </div>
+      <h2>¿Cómo funciona?</h2>
+      <p>
+        El proceso ha sido diseñado para ser simple, claro y completamente reversible:
+      </p>
+      <ul class="list">
+        <li>El cliente opera desde una cuenta propia en un broker compatible</li>
+        <li>Autoriza la conexión a una estrategia algorítmica específica</li>
+        <li>Las operaciones se replican automáticamente bajo reglas predefinidas</li>
+        <li>El servicio puede pausarse o cancelarse en cualquier momento</li>
+      </ul>
 
-  <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-  </script>
+      <h2>Las estrategias</h2>
+      <p>
+        Las estrategias algorítmicas se basan en sistemas automáticos que operan
+        siguiendo reglas objetivas, eliminando la toma de decisiones emocionales
+        y manteniendo una ejecución consistente en el tiempo.
+      </p>
+      <p>
+        Todas las estrategias incorporan criterios internos de gestión del riesgo
+        y se ejecutan de forma uniforme para todos los clientes conectados.
+      </p>
+
+      <h2>Modelo de servicio y cobro</h2>
+      <p>
+        El acceso a las estrategias se ofrece bajo un <strong>modelo de cobro por servicio</strong>.
+        El cliente paga una tarifa previamente informada por el uso de la estrategia,
+        la infraestructura tecnológica de replicación y el soporte operativo asociado.
+      </p>
+      <p class="muted">
+        No existen comisiones ocultas ni compromisos de permanencia.
+      </p>
+
+      <h2>Riesgo y consideraciones</h2>
+      <p class="muted">
+        El trading algorítmico implica riesgo de mercado y puede generar pérdidas.
+        No se garantiza rentabilidad y los resultados pasados no constituyen garantía
+        de resultados futuros. Este servicio no representa asesoría financiera personalizada.
+      </p>
+
+    </section>
+
+    <div class="footer">
+      © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
+
