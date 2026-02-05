@@ -6,7 +6,7 @@
   <title>DGO Capital — Modelo de Inversión por Replicación</title>
   <meta name="description" content="Modelo de inversión por replicación algorítmica. Estrategias automatizadas, sin custodia del capital y con control total del cliente.">
   <meta property="og:title" content="DGO Capital — Modelo de Inversión por Replicación">
-  <meta property="og:description" content="Acceso estructurado a estrategias algorítmicas replicadas automáticamente, sin custodia de fondos.">
+  <meta property="og:description" content="Inversión algorítmica replicada, estructurada y transparente.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#121828">
 
@@ -20,150 +20,202 @@
       --text:#e8eefc; --muted:#9fb0d9; --accent:#38bdf8;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--text); line-height:1.65;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
       background:
         radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
         linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
     }
-    .wrap{width:100%}
     .card{
-      min-height:100vh; width:100%; margin:0;
+      min-height:100vh;
       padding:28px clamp(16px, 4vw, 40px);
-      border:1px solid var(--stroke);
-      box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
-      display:flex; flex-direction:column; gap:18px;
+      display:flex;
+      flex-direction:column;
+      gap:28px;
     }
     header{
-      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
-      padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.06);
+      display:flex;
+      align-items:center;
+      gap:14px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      padding-bottom:12px;
     }
-    h1{margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)}
-    h2{margin:18px 0 6px; font-size:1.15rem}
-    .muted{color:var(--muted); font-size:.95rem}
+    h1{margin:0;font-size:clamp(1.8rem,1.2rem+2vw,2.4rem)}
+    h2{margin:0;font-size:1.2rem}
+    .muted{color:var(--muted)}
 
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 16px; border-radius:12px; font-weight:700;
-      text-decoration:none; color:#fff;
-      background:linear-gradient(180deg,#1f9be6,#0ea5e9);
-      box-shadow:0 8px 20px rgba(14,165,233,.35);
-      border:0;
+    .hero{
+      display:grid;
+      gap:12px;
+      max-width:900px;
     }
-    .btn.ghost{background:transparent; border:1px solid #28406e; color:var(--text)}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:18px;
+    }
 
     .panel{
-      background:linear-gradient(180deg, #111a31, #0c1427);
+      background:linear-gradient(180deg,#111a31,#0c1427);
       border:1px solid var(--stroke);
-      border-radius:16px;
-      padding:26px;
-      box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
+      border-radius:18px;
+      padding:22px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
       display:grid;
-      gap:14px;
+      gap:10px;
     }
 
-    .list{
-      padding-left:18px;
-      margin:6px 0;
+    .icon{
+      width:36px;
+      height:36px;
+      border-radius:10px;
+      background:rgba(56,189,248,.12);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--accent);
+      font-weight:800;
     }
-    .list li{margin-bottom:6px}
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:16px;
+    }
+
+    .step{
+      border:1px dashed rgba(255,255,255,.12);
+      border-radius:16px;
+      padding:18px;
+      display:grid;
+      gap:6px;
+    }
 
     .highlight{
       background:rgba(56,189,248,.08);
-      border-left:3px solid var(--accent);
-      padding:12px 14px;
-      border-radius:10px;
-      font-size:.95rem;
+      border-left:4px solid var(--accent);
+      padding:16px;
+      border-radius:14px;
+      max-width:900px;
     }
 
     .footer{
-      margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
-      padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
+      margin-top:auto;
+      text-align:center;
+      font-size:.85rem;
+      color:var(--muted);
+      border-top:1px solid rgba(255,255,255,.06);
+      padding-top:10px;
     }
+
+    .btn{
+      display:inline-flex;
+      padding:10px 16px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:700;
+      background:linear-gradient(180deg,#1f9be6,#0ea5e9);
+      color:#fff;
+    }
+    .btn.ghost{background:transparent;border:1px solid #28406e}
   </style>
 </head>
+
 <body>
-<div class="wrap">
-  <div class="card">
+<div class="card">
 
-    <header>
-      <a href="../index.html" class="btn ghost">← Volver</a>
-      <img src="../logo.png" alt="Logo DGO Capital"
-           style="height:59px; border-radius:12px; border:1px solid #1d2947;">
-      <div>
-        <h1>Modelo de Inversión por Replicación</h1>
-        <div class="muted">Inversión algorítmica automatizada, sin custodia del capital</div>
-      </div>
-    </header>
+  <header>
+    <a href="../index.html" class="btn ghost">← Volver</a>
+    <img src="../logo.png" alt="DGO Capital" style="height:58px;border-radius:12px;border:1px solid #1d2947">
+    <h1>Modelo de Inversión por Replicación</h1>
+  </header>
 
-    <section class="panel">
+  <!-- HERO -->
+  <section class="hero">
+    <p class="muted">
+      Acceso estructurado a estrategias algorítmicas automatizadas,
+      replicadas directamente en cuentas individuales,
+      sin custodia del capital.
+    </p>
+  </section>
 
-      <p>
-        En DGO Capital ofrecemos un <strong>modelo de inversión por replicación algorítmica</strong>
-        diseñado para inversores que buscan acceder a estrategias automatizadas de forma
-        estructurada, transparente y con control total sobre su capital.
-      </p>
-
-      <p>
-        A través de este modelo, las operaciones ejecutadas por una estrategia algorítmica
-        se <strong>replican automáticamente</strong> en cuentas individuales,
-        sin transferencias de fondos ni administración directa del dinero del cliente.
-      </p>
-
-      <div class="highlight">
-        El capital permanece siempre en la cuenta del cliente.
-        DGO Capital no custodia fondos ni tiene acceso operativo a las cuentas.
-      </div>
-
-      <h2>¿Cómo funciona?</h2>
-      <p>
-        El proceso ha sido diseñado para ser simple, claro y completamente reversible:
-      </p>
-      <ul class="list">
-        <li>El cliente opera desde una cuenta propia en un broker compatible</li>
-        <li>Autoriza la conexión a una estrategia algorítmica específica</li>
-        <li>Las operaciones se replican automáticamente bajo reglas predefinidas</li>
-        <li>El servicio puede pausarse o cancelarse en cualquier momento</li>
-      </ul>
-
-      <h2>Las estrategias</h2>
-      <p>
-        Las estrategias algorítmicas se basan en sistemas automáticos que operan
-        siguiendo reglas objetivas, eliminando la toma de decisiones emocionales
-        y manteniendo una ejecución consistente en el tiempo.
-      </p>
-      <p>
-        Todas las estrategias incorporan criterios internos de gestión del riesgo
-        y se ejecutan de forma uniforme para todos los clientes conectados.
-      </p>
-
-      <h2>Modelo de servicio y cobro</h2>
-      <p>
-        El acceso a las estrategias se ofrece bajo un <strong>modelo de cobro por servicio</strong>.
-        El cliente paga una tarifa previamente informada por el uso de la estrategia,
-        la infraestructura tecnológica de replicación y el soporte operativo asociado.
-      </p>
-      <p class="muted">
-        No existen comisiones ocultas ni compromisos de permanencia.
-      </p>
-
-      <h2>Riesgo y consideraciones</h2>
-      <p class="muted">
-        El trading algorítmico implica riesgo de mercado y puede generar pérdidas.
-        No se garantiza rentabilidad y los resultados pasados no constituyen garantía
-        de resultados futuros. Este servicio no representa asesoría financiera personalizada.
-      </p>
-
-    </section>
-
-    <div class="footer">
-      © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
+  <!-- PILARES -->
+  <section class="grid">
+    <div class="panel">
+      <div class="icon">1</div>
+      <h2>Capital bajo control</h2>
+      <p class="muted">El dinero permanece siempre en la cuenta del cliente. No se realizan transferencias ni custodia de fondos.</p>
     </div>
+    <div class="panel">
+      <div class="icon">2</div>
+      <h2>Ejecución automatizada</h2>
+      <p class="muted">Las operaciones se ejecutan mediante estrategias algorítmicas basadas en reglas objetivas.</p>
+    </div>
+    <div class="panel">
+      <div class="icon">3</div>
+      <h2>Replicación transparente</h2>
+      <p class="muted">Cada operación se replica automáticamente en la cuenta del cliente, visible en tiempo real.</p>
+    </div>
+  </section>
 
+  <!-- COMO FUNCIONA -->
+  <section>
+    <h2>Cómo funciona</h2>
+    <div class="steps">
+      <div class="step">
+        <strong>Cuenta individual</strong>
+        <span class="muted">El cliente opera desde una cuenta propia en un broker compatible.</span>
+      </div>
+      <div class="step">
+        <strong>Conexión autorizada</strong>
+        <span class="muted">Se habilita la conexión a una estrategia algorítmica específica.</span>
+      </div>
+      <div class="step">
+        <strong>Replicación automática</strong>
+        <span class="muted">Las operaciones se copian siguiendo parámetros técnicos definidos.</span>
+      </div>
+      <div class="step">
+        <strong>Control total</strong>
+        <span class="muted">El servicio puede pausarse o cancelarse en cualquier momento.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTRATEGIAS -->
+  <section class="panel">
+    <h2>Estrategias algorítmicas</h2>
+    <p class="muted">
+      Las estrategias operan bajo sistemas automáticos diseñados para ejecutar
+      de forma consistente, eliminando decisiones emocionales
+      y aplicando criterios internos de gestión del riesgo.
+    </p>
+  </section>
+
+  <!-- SERVICIO -->
+  <section class="panel">
+    <h2>Modelo de servicio</h2>
+    <p class="muted">
+      El acceso a las estrategias se ofrece bajo un esquema de cobro por servicio.
+      El cliente paga una tarifa previamente informada por el uso de la estrategia,
+      la infraestructura tecnológica y el soporte operativo asociado.
+    </p>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <section class="highlight">
+    <strong>Consideraciones de riesgo</strong><br>
+    El trading algorítmico implica riesgo de mercado. No se garantiza rentabilidad
+    y los resultados pasados no aseguran resultados futuros.
+    Este servicio no constituye asesoría financiera personalizada.
+  </section>
+
+  <div class="footer">
+    © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
   </div>
+
 </div>
 
 <script>
@@ -171,4 +223,5 @@
 </script>
 </body>
 </html>
+
 
