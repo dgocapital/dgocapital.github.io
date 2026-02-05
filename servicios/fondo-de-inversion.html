@@ -18,16 +18,18 @@
     :root{
       /* Base */
       --bg:#0b1c2d;
-      --bg-soft:#0f2740;
 
       /* Panels */
       --panel-blue:#102a44;
       --panel-blue-soft:#143a5f;
+
       --panel-green:#0f3d2e;
       --panel-green-soft:#145a43;
-      --panel-white:#f5f8fc;
 
-      --stroke:#1e3a5f;
+      --panel-gold:#3a3218;
+      --panel-gold-soft:#4b4120;
+
+      --panel-white:#f5f8fc;
 
       /* Text */
       --text:#eaf2ff;
@@ -37,6 +39,7 @@
       /* Accents */
       --blue:#4da3ff;
       --green:#3ddc97;
+      --gold:#f0c766;
     }
 
     *{box-sizing:border-box}
@@ -123,6 +126,11 @@
       border:1px solid #2e7d5c;
     }
 
+    .panel.gold{
+      background:linear-gradient(180deg,var(--panel-gold-soft),var(--panel-gold));
+      border:1px solid #8f7a3a;
+    }
+
     .panel.white{
       background:var(--panel-white);
       color:var(--text-dark);
@@ -150,6 +158,11 @@
       color:var(--green);
     }
 
+    .icon.gold{
+      background:rgba(240,199,102,.2);
+      color:var(--gold);
+    }
+
     /* STEPS */
     .steps{
       display:grid;
@@ -168,13 +181,9 @@
       border-top:4px solid var(--blue);
     }
 
-    .highlight{
-      background:linear-gradient(180deg,#0f3d2e,#0b2f23);
-      border-left:5px solid var(--green);
-      border-radius:18px;
-      padding:20px;
-      max-width:920px;
-      box-shadow:0 14px 36px rgba(0,0,0,.35);
+    /* EXTRA SPACING */
+    .section-gap{
+      margin-top:40px;
     }
 
     .footer{
@@ -213,8 +222,8 @@
       </p>
     </div>
 
-    <div class="panel blue">
-      <div class="icon blue">2</div>
+    <div class="panel gold">
+      <div class="icon gold">2</div>
       <h2>Ejecución algorítmica</h2>
       <p class="muted">
         Estrategias automatizadas basadas en reglas objetivas,
@@ -254,7 +263,7 @@
     </div>
   </section>
 
-  <section class="panel white">
+  <section class="panel white section-gap">
     <h2>Estrategias algorítmicas</h2>
     <p>
       Sistemas automáticos diseñados para ejecutar de forma consistente,
@@ -283,6 +292,7 @@
 </script>
 </body>
 </html>
+
 
 
 
