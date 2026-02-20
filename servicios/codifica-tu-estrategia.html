@@ -30,7 +30,7 @@
     body{
       margin:0;
       font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--text); 
+      color:var(--text);
       line-height:1.6;
       background:
         radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
@@ -98,37 +98,59 @@
       fill:currentColor
     }
 
-    /* SECCIÓN HERO VERDE PREMIUM */
+    /* BLOQUE VERDE PROFESIONAL CON TEXTURA */
     .hero-section{
       position:relative;
-      margin:40px clamp(16px, 4vw, 40px);
-      border-radius:24px;
+      margin:60px clamp(16px, 4vw, 40px);
+      border-radius:28px;
       overflow:hidden;
-      background:linear-gradient(135deg,#0f3d2e,#0a2f23);
+
+      background:
+        linear-gradient(180deg,#0e3a2c,#0a2f23),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,0.02) 0px,
+          rgba(255,255,255,0.02) 1px,
+          transparent 1px,
+          transparent 60px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,0.015) 0px,
+          rgba(255,255,255,0.015) 1px,
+          transparent 1px,
+          transparent 60px
+        );
+
       box-shadow:
-        0 40px 80px rgba(0,0,0,.45),
-        inset 0 0 0 1px rgba(255,255,255,.05);
+        0 60px 120px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.05),
+        inset 0 -1px 0 rgba(0,0,0,.4);
     }
 
+    /* Iluminación superior */
     .hero-section::before{
       content:"";
       position:absolute;
-      inset:0;
-      background:radial-gradient(circle at 80% 20%, rgba(0,255,170,.15), transparent 60%);
+      top:0;
+      left:0;
+      right:0;
+      height:120px;
+      background:linear-gradient(to bottom, rgba(255,255,255,.06), transparent);
       pointer-events:none;
     }
 
     .hero-content{
       position:relative;
-      max-width:1000px;
-      margin:0 auto;
-      padding:70px clamp(24px, 5vw, 60px);
+      max-width:900px;
+      padding:80px 70px;
+      text-align:left;
     }
 
     .hero-content p{
-      font-size:1.1rem;
+      font-size:1.08rem;
       margin:0 0 22px 0;
-      max-width:800px;
+      line-height:1.75;
     }
 
     .hero-content .muted{
@@ -143,6 +165,12 @@
       padding:40px 20px;
       border-top:1px solid rgba(255,255,255,.06);
       margin-top:auto;
+    }
+
+    @media(max-width:768px){
+      .hero-content{
+        padding:60px 30px;
+      }
     }
 
   </style>
@@ -172,7 +200,7 @@
           Entregables habituales: ejecutable (.ex5), parámetros configurables, backtest de referencia y breve manual de uso.
         </p>
 
-        <div style="display:flex; gap:12px; margin-top:26px; flex-wrap:wrap">
+        <div style="display:flex; gap:12px; margin-top:28px; flex-wrap:wrap">
           <a class="btn" href="https://t.me/diegotrader6" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
