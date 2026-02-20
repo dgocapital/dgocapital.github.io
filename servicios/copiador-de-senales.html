@@ -37,7 +37,6 @@
       display:flex; flex-direction:column; gap:20px;
     }
 
-    /* Header */
     header{
       display:flex; align-items:center; gap:14px; flex-wrap:wrap;
       padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,.06)
@@ -53,11 +52,10 @@
     .btn:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
     .btn.ghost{background:transparent; border:1px solid #28406e; color:var(--text)}
     .brand{display:flex; align-items:center; gap:12px}
-    .brand img{height:60px; width:auto; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)}
+    .brand img{height:60px; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)}
     h1{margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)}
     .muted{color:var(--muted); font-size:.95rem}
 
-    /* Panel genérico */
     .panel{
       background:linear-gradient(180deg, #111a31, #0c1427);
       border:1px solid var(--stroke);
@@ -65,10 +63,26 @@
       padding:18px;
       box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
     }
+
+    /* PANEL PAGO PREMIUM */
+    .pay-panel{
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      border: 1px solid rgba(59,130,246,.5);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.04) inset,
+        0 20px 40px rgba(59,130,246,.25);
+    }
+    .pay-panel .subtle{
+      color: rgba(255,255,255,.85);
+    }
+    .pay-panel .wallet{
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.15);
+    }
+
     .panel h2{margin:0 0 8px}
     .panel .subtle{margin:0; color:var(--muted)}
 
-    /* Hero layout */
     .hero{
       display:grid; gap:18px;
       grid-template-columns: minmax(260px, 460px) 1fr;
@@ -81,36 +95,30 @@
       padding:14px; display:flex; align-items:center; justify-content:center;
     }
     .media img{
-      width:100%; height:auto; max-width:360px; aspect-ratio: 1 / 1; object-fit:contain;
-      border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,.32);
+      width:100%; max-width:360px; border-radius:10px;
+      box-shadow:0 8px 24px rgba(0,0,0,.32);
     }
 
     .eyebrow{color:var(--muted); font-weight:600; letter-spacing:.4px; text-transform:uppercase; font-size:.8rem}
     .headline{font-size:clamp(1.2rem, .9rem + 1.2vw, 1.6rem); margin:6px 0 10px; line-height:1.35}
 
-    /* Checklist */
     .checklist{margin:10px 0 0; padding:0; list-style:none; display:grid; gap:8px}
     .checklist li{
-      display:flex; gap:10px; align-items:flex-start; padding:8px 10px;
-      background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06); border-radius:10px;
+      display:flex; gap:10px; padding:8px 10px;
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:10px;
     }
-    .checklist svg{flex:0 0 18px; width:18px; height:18px; opacity:.9}
     .cta-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:12px}
 
-    /* Pago (bloque derecho removido) */
-    .pay-grid{
-      display:grid; gap:14px; grid-template-columns: 1fr;  /* ← una sola columna */
-    }
+    .pay-grid{display:grid; gap:14px; grid-template-columns:1fr;}
     .wallet{
       display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      background:#0e162c; border:1px solid #1d2947; border-radius:12px; padding:10px 12px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      border-radius:12px; padding:10px 12px;
+      font-family: ui-monospace, monospace;
       word-break: break-all;
     }
-    .wallet code{opacity:.95}
-    .note{color:var(--muted); font-size:.92rem}
 
-    /* Footer */
     .footer{
       margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
       padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
@@ -121,9 +129,8 @@
   <div class="wrap">
     <div class="card">
 
-      <!-- Header -->
       <header>
-        <a href="../index.html" class="btn ghost" aria-label="Volver al inicio">← Volver</a>
+        <a href="../index.html" class="btn ghost">← Volver</a>
         <div class="brand">
           <img src="../logo.png" alt="Logo DGO Capital">
           <div>
@@ -133,58 +140,26 @@
         </div>
       </header>
 
-      <!-- HERO -->
-      <section class="panel" aria-labelledby="hero-title">
+      <section class="panel">
         <div class="hero">
           <div class="media">
-            <img src="./copiador.jpg" alt="Vista del Copiador de Señales">
+            <img src="./copiador.jpg" alt="Vista del Copiador">
           </div>
-
           <div>
-            <div class="eyebrow" id="hero-title">DGO Capital — Software de Copiado</div>
+            <div class="eyebrow">DGO CAPITAL — SOFTWARE DE COPIADO</div>
             <p class="headline">
-              Opera todo tu portafolio desde un solo origen, con consistencia y control, para escalar resultados sin multiplicar trabajo.
+              Opera todo tu portafolio desde un solo origen, con consistencia y control.
             </p>
-
-            <h3 style="margin:10px 0 8px">Características</h3>
-            <ul class="checklist">
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1010 10A10.011 10.011 0 0012 2Zm4.3 7.3-5.01 5.01a1 1 0 01-1.42 0l-2.17-2.17a1 1 0 011.42-1.42l1.46 1.46 4.3-4.3A1 1 0 1116.3 9.3Z"/></svg>
-                <span>Stop Loss y Take Profit configurables, trailing stop y cierres parciales disponibles.</span>
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1010 10A10.011 10.011 0 0012 2Zm4.3 7.3-5.01 5.01a1 1 0 01-1.42 0l-2.17-2.17a1 1 0 011.42-1.42l1.46 1.46 4.3-4.3A1 1 0 1116.3 9.3Z"/></svg>
-                <span>Riesgo ajustable por cuenta.</span>
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1010 10A10.011 10.011 0 0012 2Zm4.3 7.3-5.01 5.01a1 1 0 01-1.42 0l-2.17-2.17a1 1 0 011.42-1.42l1.46 1.46 4.3-4.3A1 1 0 1116.3 9.3Z"/></svg>
-                <span>Soporte y acompañamiento en la puesta en marcha.</span>
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1010 10A10.011 10.011 0 0012 2Zm4.3 7.3-5.01 5.01a1 1 0 01-1.42 0l-2.17-2.17a1 1 0 011.42-1.42l1.46 1.46 4.3-4.3A1 1 0 1116.3 9.3Z"/></svg>
-                <span>Garantía de funcionamiento.</span>
-              </li>
-            </ul>
-
-            <div class="cta-row">
-              <a class="btn" href="https://t.me/diegotrader6" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px;margin-right:8px;">
-                  <path fill="currentColor" d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
-                </svg>
-                Soporte por Telegram
-              </a>
-            </div>
           </div>
         </div>
       </section>
 
-      <!-- Pago -->
-      <section class="panel" aria-labelledby="pay-title" style="background:#3b82f6;">
+      <!-- PAGO MEJORADO -->
+      <section class="panel pay-panel">
         <div class="pay-grid">
           <div>
-            <h2 id="pay-title" style="margin:0 0 4px">Pago</h2>
+            <h2>Pago</h2>
             <p class="subtle">Aceptamos USDT.</p>
-      
             <h3 style="margin:14px 0 6px">USDT (TRC20)</h3>
             <div class="wallet">
               <code id="wallet">TSMsg3noEr7uVbSX18vihq37Brc2jPLE1z</code>
@@ -194,7 +169,6 @@
         </div>
       </section>
 
-      <!-- Footer -->
       <div class="footer">
         © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
       </div>
