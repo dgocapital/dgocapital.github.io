@@ -91,6 +91,66 @@ h1{
     0 60px 140px rgba(0,0,0,.45);
 }
 
+.hero-wrapper{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+  padding:80px 70px;
+}
+
+.hero-content{
+  max-width:600px;
+  color:#ffffff;
+}
+
+.hero-content p{
+  font-size:1.08rem;
+  font-weight:500;
+  line-height:1.8;
+  margin-bottom:22px;
+  text-align:justify;
+  text-shadow:0 2px 8px rgba(0,0,0,.3);
+}
+
+.hero-content .muted{
+  color:rgba(0,0,0,.65);
+  text-shadow:none;
+}
+
+/* AREA VISUAL */
+.hero-visual{
+  flex:1;
+  height:260px;
+  position:relative;
+  opacity:.95;
+  overflow:hidden;
+}
+
+/* CUADRÍCULA (FONDO MÁS PROFUNDO) */
+.hero-visual::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.05) 0px,
+      rgba(255,255,255,0.05) 1px,
+      transparent 1px,
+      transparent 50px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.04) 0px,
+      rgba(255,255,255,0.04) 1px,
+      transparent 1px,
+      transparent 50px
+    );
+}
+
+/* LLUVIA DE CÓDIGO */
 .hero-visual::after{
   content:
 "// EA MQL5  // Strategy  // RiskControl  // Backtest\n"
@@ -134,69 +194,13 @@ h1{
   line-height:1.4;
   color:rgba(255,255,255,.07);
   pointer-events:none;
-  z-index:0;
-}
-
-.hero-visual svg{
-  position:relative;
   z-index:1;
 }
 
-.hero-wrapper{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:40px;
-  padding:80px 70px;
-}
-
-.hero-content{
-  max-width:600px;
-  color:#ffffff;
-}
-
-.hero-content p{
-  font-size:1.08rem;
-  font-weight:500;
-  line-height:1.8;
-  margin-bottom:22px;
-  text-align:justify;
-  text-shadow:0 2px 8px rgba(0,0,0,.3);
-}
-
-/* Texto entregables más oscuro */
-.hero-content .muted{
-  color:rgba(0,0,0,.65);
-  text-shadow:none;
-}
-
-/* AREA VISUAL */
-.hero-visual{
-  flex:1;
-  height:260px;
+/* VELAS ENCIMA DE TODO */
+.hero-visual svg{
   position:relative;
-  opacity:.95;
-}
-
-.hero-visual::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.05) 0px,
-      rgba(255,255,255,0.05) 1px,
-      transparent 1px,
-      transparent 50px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,0.04) 0px,
-      rgba(255,255,255,0.04) 1px,
-      transparent 1px,
-      transparent 50px
-    );
+  z-index:2;
 }
 
 .candle rect{ rx:2; }
