@@ -16,12 +16,8 @@
 
   <style>
     :root{
-      --card:#0d1426; 
-      --card2:#0a101f; 
-      --stroke:#1e2a49;
-      --text:#e8eefc; 
-      --muted:#9fb0d9; 
-      --accent:#38bdf8;
+      --card:#0d1426; --card2:#0a101f; --stroke:#1e2a49;
+      --text:#e8eefc; --muted:#9fb0d9; --accent:#38bdf8;
     }
 
     *{box-sizing:border-box}
@@ -30,8 +26,7 @@
     body{
       margin:0;
       font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--text); 
-      line-height:1.6;
+      color:var(--text); line-height:1.6;
       background:
         radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
         linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
@@ -40,51 +35,31 @@
     .wrap{width:100%}
 
     .card{
-      min-height:100vh; 
-      width:100%; 
-      margin:0;
+      min-height:100vh; width:100%; margin:0;
       padding:28px clamp(16px, 4vw, 40px);
       border:1px solid var(--stroke);
       border-radius:0;
       box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
-      display:flex; 
-      flex-direction:column; 
-      gap:18px;
+      display:flex; flex-direction:column; gap:18px;
     }
 
     header{
-      display:flex; 
-      align-items:center; 
-      gap:12px; 
-      flex-wrap:wrap;
-      padding-bottom:8px; 
-      border-bottom:1px solid rgba(255,255,255,.06);
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+      padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.06);
     }
 
-    h1{
-      margin:0; 
-      font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)
-    }
+    h1{margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)}
 
-    .muted{
-      color:var(--muted); 
-      font-size:.95rem
-    }
+    .muted{color:var(--muted); font-size:.95rem}
 
     .btn{
-      display:inline-flex; 
-      align-items:center; 
-      justify-content:center;
-      padding:10px 16px; 
-      border-radius:12px; 
-      font-weight:700;
-      text-decoration:none; 
-      color:#fff; 
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 16px; border-radius:12px; font-weight:700;
+      text-decoration:none; color:#fff;
       background:linear-gradient(180deg,#1f9be6,#0ea5e9);
-      box-shadow:0 8px 20px rgba(14,165,233,.35); 
-      transition:all .2s ease;
-      border:0; 
-      cursor:pointer;
+      box-shadow:0 8px 20px rgba(14,165,233,.35);
+      transition:.2s ease;
+      border:0; cursor:pointer;
     }
 
     .btn:hover{
@@ -93,76 +68,46 @@
     }
 
     .btn.ghost{
-      background:transparent; 
-      border:1px solid #28406e; 
-      color:var(--text)
+      background:transparent; border:1px solid #28406e; color:var(--text)
     }
 
-    .btn svg{
-      width:18px; 
-      height:18px; 
-      margin-right:8px; 
-      fill:currentColor
-    }
+    .btn svg{width:18px; height:18px; margin-right:8px; fill:currentColor}
 
     .panel{
       background:linear-gradient(180deg, #111a31, #0c1427);
       border:1px solid var(--stroke);
       border-radius:16px;
-      padding:18px;
-      box-shadow: 
-        0 0 0 1px rgba(255,255,255,.02) inset, 
-        0 10px 30px rgba(0,0,0,.25);
+      padding:20px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
     }
 
-    .badge{
-      display:inline-block;
-      font-size:.75rem;
-      padding:4px 10px;
-      border-radius:20px;
-      background:rgba(56,189,248,.15);
-      color:var(--accent);
-      margin-bottom:10px;
-      letter-spacing:.5px;
+    /* Mejor organización visual */
+
+    .panel p:first-of-type{
+      font-size:1.02rem;
+      line-height:1.75;
+      border-left:4px solid var(--accent);
+      padding-left:14px;
+      margin-bottom:18px;
     }
 
-    .highlight{
+    .deliverables{
       background:rgba(56,189,248,.06);
       border:1px solid rgba(56,189,248,.25);
-      padding:12px;
+      padding:14px;
       border-radius:12px;
-      margin:14px 0;
     }
 
-    .feature-list{
-      display:grid;
-      gap:10px;
-      margin-top:14px;
-    }
-
-    .feature-item{
-      background:#0f1a33;
-      border:1px solid #1e2a49;
-      padding:10px 12px;
-      border-radius:10px;
-      font-size:.95rem;
-      transition:.2s ease;
-    }
-
-    .feature-item:hover{
-      border-color:var(--accent);
-      transform:translateX(4px);
+    .deliverables strong{
+      color:var(--accent);
+      display:block;
+      margin-bottom:6px;
     }
 
     .footer{
-      margin-top:auto; 
-      text-align:center; 
-      color:var(--muted); 
-      font-size:.88rem;
-      padding-top:8px; 
-      border-top:1px solid rgba(255,255,255,.06);
+      margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
+      padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
     }
-
   </style>
 </head>
 
@@ -172,7 +117,6 @@
 
       <header>
         <a href="../index.html" class="btn ghost" aria-label="Volver al inicio">← Volver</a>
-
         <img src="../logo.png" alt="Logo DGO Capital"
           width="59" height="59"
           style="height:auto; border-radius:12px; border:1px solid #1d2947;">
@@ -185,58 +129,24 @@
 
       <section class="panel">
 
-        <span class="badge">Desarrollo Algorítmico Profesional</span>
-
         <p>
-          Desarrollo de <strong>Asesores Expertos</strong> e <strong>Indicadores personalizados</strong> 
-          en MQL5 y Python para MetaTrader 5, estructurando reglas de trading en 
-          sistemas automatizados claros, eficientes y escalables.
+          Se desarrollan Asesores Expertos e Indicadores a medida en MQL5 y Python para MetaTrader 5, 
+          partiendo de las reglas de trading del cliente y llevándolas a código con lógica clara, gestión de riesgo y pruebas históricas antes de la operativa en vivo.
         </p>
 
-        <p class="muted" style="margin-top:-6px">
-          Cada proyecto integra lógica optimizada, gestión de riesgo y validación histórica 
-          antes de su implementación en entorno real.
-        </p>
-
-        <div class="highlight">
-          <strong>Objetivo:</strong> transformar estrategias discrecionales en sistemas 
-          medibles, replicables y técnicamente robustos.
+        <div class="deliverables">
+          <strong>Entregables habituales</strong>
+          <div class="muted">
+            ejecutable (.ex5), parámetros configurables, backtest de referencia y breve manual de uso.
+          </div>
         </div>
 
-        <div class="feature-list">
-
-          <div class="feature-item">
-            ✔ Programación estructurada y optimizada
-          </div>
-
-          <div class="feature-item">
-            ✔ Parámetros configurables y preparados para optimización
-          </div>
-
-          <div class="feature-item">
-            ✔ Gestión de riesgo integrada
-          </div>
-
-          <div class="feature-item">
-            ✔ Backtest documentado de referencia
-          </div>
-
-          <div class="feature-item">
-            ✔ Entrega de archivo ejecutable (.ex5)
-          </div>
-
-          <div class="feature-item">
-            ✔ Manual básico de configuración
-          </div>
-
-        </div>
-
-        <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap">
+        <div style="display:flex; gap:12px; margin-top:20px; flex-wrap:wrap">
           <a class="btn" href="https://t.me/diegotrader6" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
             </svg>
-            Solicitar Información
+            Soporte por Telegram
           </a>
         </div>
 
