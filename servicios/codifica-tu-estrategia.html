@@ -59,23 +59,42 @@ h1{
   font-size:.95rem
 }
 
+/* BOTÓN TELEGRAM RESTAURADO */
 .btn{
   display:inline-flex; 
   align-items:center; 
   justify-content:center;
-  padding:10px 16px; 
-  border-radius:12px; 
+  padding:12px 22px; 
+  border-radius:14px; 
   font-weight:700;
   text-decoration:none; 
   color:#fff; 
-  background:linear-gradient(180deg,#1f9be6,#0ea5e9);
-  box-shadow:0 8px 20px rgba(14,165,233,.35);
-  transition:.2s;
+  background:linear-gradient(135deg,#0ea5e9,#38bdf8);
+  box-shadow:0 10px 25px rgba(14,165,233,.35);
+  transition:all .25s ease;
+  position:relative;
+  overflow:hidden;
 }
 
 .btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 14px 28px rgba(14,165,233,.45);
+  transform:translateY(-3px);
+  box-shadow:0 18px 35px rgba(14,165,233,.5);
+}
+
+.btn::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-75%;
+  width:50%;
+  height:100%;
+  background:linear-gradient(120deg, transparent, rgba(255,255,255,.4), transparent);
+  transform:skewX(-25deg);
+  transition:all .75s ease;
+}
+
+.btn:hover::after{
+  left:125%;
 }
 
 .btn.ghost{
@@ -132,8 +151,10 @@ h1{
   text-shadow:0 2px 8px rgba(0,0,0,.3);
 }
 
+/* COLOR RESTAURADO TEXTO ENTREGABLES */
 .hero-content .muted{
-  color:rgba(255,255,255,.9);
+  color:#ecfdf5;
+  font-weight:500;
 }
 
 /* AREA VISUAL */
@@ -243,27 +264,21 @@ Entregables habituales: ejecutable (.ex5), parámetros configurables, backtest d
 <div class="hero-visual">
 <svg viewBox="0 0 500 260" preserveAspectRatio="none">
 
-<!-- Candle 1 -->
 <line x1="60" y1="20" x2="60" y2="120" class="candle-line"/>
 <rect x="45" y="50" width="30" height="50" class="candle bull"/>
 
-<!-- Candle 2 -->
 <line x1="130" y1="0" x2="130" y2="110" class="candle-line"/>
 <rect x="115" y="30" width="30" height="60" class="candle bull"/>
 
-<!-- Candle 3 -->
 <line x1="200" y1="10" x2="200" y2="140" class="candle-line"/>
 <rect x="185" y="60" width="30" height="70" class="candle bear"/>
 
-<!-- Candle 4 -->
 <line x1="270" y1="-20" x2="270" y2="90" class="candle-line"/>
 <rect x="255" y="10" width="30" height="60" class="candle bull"/>
 
-<!-- Candle 5 -->
 <line x1="340" y1="-30" x2="340" y2="80" class="candle-line"/>
 <rect x="325" y="0" width="30" height="50" class="candle bull"/>
 
-<!-- Candle 6 -->
 <line x1="410" y1="-10" x2="410" y2="100" class="candle-line"/>
 <rect x="395" y="20" width="30" height="60" class="candle bull"/>
 
