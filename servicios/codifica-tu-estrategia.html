@@ -1,232 +1,257 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DGO Capital — Codifica tu estrategia</title>
-  <meta name="description" content="Convierte tu idea de trading en un algoritmo fiable (Python / MQL5 ). Desarrollo de EAs e indicadores a medida, con backtests y soporte.">
-  <meta property="og:title" content="DGO Capital — Codifica tu estrategia">
-  <meta property="og:description" content="Desarrollo profesional en MQL5: de la idea al algoritmo.">
-  <meta property="og:type" content="website">
-  <meta name="theme-color" content="#121828">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DGO Capital — Codifica tu estrategia</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --card:#0d1426; 
-      --card2:#0a101f; 
-      --stroke:#1e2a49;
-      --text:#e8eefc; 
-      --muted:#9fb0d9; 
-      --accent:#38bdf8;
-    }
+<style>
+:root{
+  --card:#0d1426; 
+  --card2:#0a101f; 
+  --stroke:#1e2a49;
+  --text:#e8eefc; 
+  --muted:#9fb0d9; 
+  --accent:#38bdf8;
+}
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
+*{box-sizing:border-box}
+html,body{height:100%}
 
-    body{
-      margin:0;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--text);
-      line-height:1.6;
-      background:
-        radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
-        linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
-    }
+body{
+  margin:0;
+  font-family:Inter, sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
+    linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
+}
 
-    .wrap{
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-    }
+.wrap{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
 
-    .card{
-      padding:28px clamp(16px, 4vw, 40px);
-      display:flex; 
-      flex-direction:column; 
-      gap:40px;
-    }
+.card{
+  padding:28px clamp(16px, 4vw, 40px);
+}
 
-    header{
-      display:flex; 
-      align-items:center; 
-      gap:12px; 
-      flex-wrap:wrap;
-      padding-bottom:8px; 
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
+header{
+  display:flex; 
+  align-items:center; 
+  gap:12px; 
+  flex-wrap:wrap;
+  padding-bottom:8px; 
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
 
-    h1{
-      margin:0; 
-      font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)
-    }
+h1{
+  margin:0; 
+  font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)
+}
 
-    .muted{
-      color:var(--muted); 
-      font-size:.95rem
-    }
+.muted{
+  color:var(--muted); 
+  font-size:.95rem
+}
 
-    .btn{
-      display:inline-flex; 
-      align-items:center; 
-      justify-content:center;
-      padding:10px 16px; 
-      border-radius:12px; 
-      font-weight:700;
-      text-decoration:none; 
-      color:#fff; 
-      background:linear-gradient(180deg,#1f9be6,#0ea5e9);
-      box-shadow:0 8px 20px rgba(14,165,233,.35);
-      transition:all .2s ease;
-      border:0; 
-      cursor:pointer;
-    }
+.btn{
+  display:inline-flex; 
+  align-items:center; 
+  justify-content:center;
+  padding:10px 16px; 
+  border-radius:12px; 
+  font-weight:700;
+  text-decoration:none; 
+  color:#fff; 
+  background:linear-gradient(180deg,#1f9be6,#0ea5e9);
+  box-shadow:0 8px 20px rgba(14,165,233,.35);
+  transition:.2s;
+}
 
-    .btn:hover{
-      transform:translateY(-2px);
-      box-shadow:0 14px 28px rgba(14,165,233,.45);
-    }
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 28px rgba(14,165,233,.45);
+}
 
-    .btn.ghost{
-      background:transparent; 
-      border:1px solid #28406e; 
-      color:var(--text)
-    }
+.btn.ghost{
+  background:transparent; 
+  border:1px solid #28406e; 
+  color:var(--text)
+}
 
-    .btn svg{
-      width:18px; 
-      height:18px; 
-      margin-right:8px; 
-      fill:currentColor
-    }
-    
-    /* HERO VERDE MEJORADO */
-    .hero-section{
-      position:relative;
-      margin:60px clamp(16px, 4vw, 40px);
-      border-radius:28px;
-      overflow:hidden;
-      color:#ffffff;
+/* HERO */
+.hero-section{
+  margin:60px clamp(16px, 4vw, 40px);
+  border-radius:28px;
+  overflow:hidden;
+  position:relative;
 
-      background:
-        linear-gradient(180deg, #34d399 0%, #1f9e74 100%),
-        repeating-linear-gradient(
-          90deg,
-          rgba(255,255,255,0.04) 0px,
-          rgba(255,255,255,0.04) 1px,
-          transparent 1px,
-          transparent 60px
-        ),
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,0.03) 0px,
-          rgba(255,255,255,0.03) 1px,
-          transparent 1px,
-          transparent 60px
-        );
+  background:
+    linear-gradient(180deg, #34d399 0%, #1f9e74 100%);
+  
+  box-shadow:
+    0 40px 100px rgba(52,211,153,.35),
+    0 60px 140px rgba(0,0,0,.45);
+}
 
-      box-shadow:
-        0 40px 100px rgba(52,211,153,.35),
-        0 60px 140px rgba(0,0,0,.45),
-        inset 0 1px 0 rgba(255,255,255,.25),
-        inset 0 -2px 8px rgba(0,0,0,.25);
-    }
+.hero-wrapper{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+  padding:80px 70px;
+}
 
-    /* Iluminación superior elegante */
-    .hero-section::before{
-      content:"";
-      position:absolute;
-      top:0;
-      left:0;
-      right:0;
-      height:140px;
-      background:linear-gradient(to bottom, rgba(255,255,255,.25), transparent);
-      pointer-events:none;
-    }
+.hero-content{
+  max-width:600px;
+  color:#fff;
+}
 
-    .hero-content{
-      position:relative;
-      max-width:900px;
-      padding:80px 70px;
-      text-align:left;
-    }
+.hero-content p{
+  font-size:1.08rem;
+  font-weight:500;
+  line-height:1.75;
+  margin-bottom:22px;
+  text-shadow:0 2px 6px rgba(0,0,0,.25);
+}
 
-    .hero-content p{
-      font-size:1.08rem;
-      font-weight:500;
-      margin:0 0 22px 0;
-      line-height:1.75;
-      text-shadow:0 2px 6px rgba(0,0,0,.25);
-    }
+.hero-content .muted{
+  color:rgba(255,255,255,.9);
+}
 
-    .hero-content .muted{
-      font-size:1rem;
-      color:rgba(255,255,255,.88);
-      text-shadow:0 2px 6px rgba(0,0,0,.25);
-    }
+/* AREA GRÁFICA DERECHA */
+.hero-visual{
+  flex:1;
+  position:relative;
+  height:260px;
+  opacity:.85;
+}
 
-    .footer{
-      text-align:center; 
-      color:var(--muted); 
-      font-size:.88rem;
-      padding:40px 20px;
-      border-top:1px solid rgba(255,255,255,.06);
-      margin-top:auto;
-    }
+/* Grid sutil */
+.hero-visual::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.05) 0px,
+      rgba(255,255,255,0.05) 1px,
+      transparent 1px,
+      transparent 40px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.04) 0px,
+      rgba(255,255,255,0.04) 1px,
+      transparent 1px,
+      transparent 40px
+    );
+}
 
-    @media(max-width:768px){
-      .hero-content{
-        padding:60px 30px;
-      }
-    }
+/* Línea tipo gráfico */
+.chart-line{
+  position:absolute;
+  width:100%;
+  height:100%;
+}
 
-  </style>
+.chart-line svg{
+  width:100%;
+  height:100%;
+}
+
+.chart-line path{
+  stroke:#ffffff;
+  stroke-width:3;
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  filter:drop-shadow(0 4px 6px rgba(0,0,0,.3));
+}
+
+/* Footer */
+.footer{
+  text-align:center; 
+  color:var(--muted); 
+  font-size:.88rem;
+  padding:40px 20px;
+  border-top:1px solid rgba(255,255,255,.06);
+  margin-top:auto;
+}
+
+@media(max-width:900px){
+  .hero-wrapper{
+    flex-direction:column;
+    padding:60px 30px;
+  }
+  .hero-visual{
+    width:100%;
+    height:200px;
+  }
+}
+</style>
 </head>
+
 <body>
-  <div class="wrap">
+<div class="wrap">
 
-    <div class="card">
-      <header>
-        <a href="../index.html" class="btn ghost">← Volver</a>
-        <img src="../logo.png" alt="Logo DGO Capital"
-          width="59" height="59" style="height:auto; border-radius:12px; border:1px solid #1d2947;">
-        <div>
-          <h1>Codifica tu estrategia</h1>
-          <div class="muted">De la idea al algoritmo (MQL5 / MT5)</div>
-        </div>
-      </header>
-    </div>
+<div class="card">
+<header>
+<a href="../index.html" class="btn ghost">← Volver</a>
+<img src="../logo.png" width="59" height="59" style="border-radius:12px;border:1px solid #1d2947;">
+<div>
+<h1>Codifica tu estrategia</h1>
+<div class="muted">De la idea al algoritmo (MQL5 / MT5)</div>
+</div>
+</header>
+</div>
 
-    <section class="hero-section">
-      <div class="hero-content">
-        <p>
-          Se desarrollan Asesores Expertos e Indicadores a medida en MQL5 y Python para MetaTrader 5, 
-          partiendo de las reglas de trading del cliente y llevándolas a código con lógica clara, gestión de riesgo y pruebas históricas antes de la operativa en vivo.
-        </p>
+<section class="hero-section">
+<div class="hero-wrapper">
 
-        <p class="muted">
-          Entregables habituales: ejecutable (.ex5), parámetros configurables, backtest de referencia y breve manual de uso.
-        </p>
+<div class="hero-content">
+<p>
+Se desarrollan Asesores Expertos e Indicadores a medida en MQL5 y Python para MetaTrader 5, 
+partiendo de las reglas de trading del cliente y llevándolas a código con lógica clara, gestión de riesgo y pruebas históricas antes de la operativa en vivo.
+</p>
 
-        <div style="display:flex; gap:12px; margin-top:28px; flex-wrap:wrap">
-          <a class="btn" href="https://t.me/diegotrader6" target="_blank" rel="noopener">
-            Soporte por Telegram
-          </a>
-        </div>
-      </div>
-    </section>
+<p class="muted">
+Entregables habituales: ejecutable (.ex5), parámetros configurables, backtest de referencia y breve manual de uso.
+</p>
 
-    <div class="footer">
-      © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
-    </div>
+<div style="margin-top:28px;">
+<a class="btn" href="https://t.me/diegotrader6" target="_blank">Soporte por Telegram</a>
+</div>
+</div>
 
-  </div>
+<!-- Visual derecho -->
+<div class="hero-visual">
+<div class="chart-line">
+<svg viewBox="0 0 500 260" preserveAspectRatio="none">
+<path d="M0 180 L60 160 L120 170 L180 120 L240 140 L300 90 L360 110 L420 70 L480 100 L500 60" />
+</svg>
+</div>
+</div>
 
-  <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-  </script>
+</div>
+</section>
+
+<div class="footer">
+© <span id="yr"></span> DGO Capital. Todos los derechos reservados.
+</div>
+
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
