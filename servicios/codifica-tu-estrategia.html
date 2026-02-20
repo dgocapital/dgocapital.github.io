@@ -1,71 +1,257 @@
-<section class="panel">
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DGO Capital — Codifica tu estrategia</title>
+  <meta name="description" content="Convierte tu idea de trading en un algoritmo fiable (Python / MQL5 ). Desarrollo de EAs e indicadores a medida, con backtests y soporte.">
+  <meta property="og:title" content="DGO Capital — Codifica tu estrategia">
+  <meta property="og:description" content="Desarrollo profesional en MQL5: de la idea al algoritmo.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#121828">
 
-  <div style="display:flex; flex-direction:column; gap:18px">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Introducción -->
-    <div>
-      <h2 style="margin:0 0 8px 0; font-size:1.25rem; color:var(--accent)">
-        Desarrollo Profesional de Algoritmos
-      </h2>
-      <p style="margin:0">
-        Transformo tu estrategia de trading en un sistema automatizado sólido y estructurado,
-        programado en <strong>MQL5</strong> y <strong>Python</strong> para MetaTrader 5.
-        Cada desarrollo se basa en reglas claras, lógica optimizada y gestión de riesgo integrada.
-      </p>
-    </div>
+  <style>
+    :root{
+      --card:#0d1426; 
+      --card2:#0a101f; 
+      --stroke:#1e2a49;
+      --text:#e8eefc; 
+      --muted:#9fb0d9; 
+      --accent:#38bdf8;
+    }
 
-    <!-- Qué incluye -->
-    <div style="background:rgba(56,189,248,0.06); border:1px solid rgba(56,189,248,0.25); padding:14px; border-radius:12px">
-      <h3 style="margin:0 0 10px 0; font-size:1.05rem">¿Qué incluye el desarrollo?</h3>
-      <ul style="margin:0; padding-left:18px; line-height:1.7">
-        <li>✔ Asesores Expertos (EAs) e Indicadores personalizados</li>
-        <li>✔ Parámetros configurables y optimizables</li>
-        <li>✔ Gestión de riesgo integrada</li>
-        <li>✔ Backtest estructurado con resultados de referencia</li>
-        <li>✔ Archivo ejecutable (.ex5)</li>
-        <li>✔ Manual básico de configuración</li>
-      </ul>
-    </div>
+    *{box-sizing:border-box}
+    html,body{height:100%}
 
-    <!-- Metodología -->
-    <div>
-      <h3 style="margin:0 0 8px 0; font-size:1.05rem; color:var(--accent)">Metodología de Trabajo</h3>
-      <div style="display:grid; gap:10px">
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text); 
+      line-height:1.6;
+      background:
+        radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
+        linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
+    }
 
-        <div style="background:#0f1a33; padding:10px 12px; border-radius:10px; border:1px solid #1e2a49">
-          <strong>1. Análisis Estratégico</strong><br>
-          Definición precisa de reglas de entrada, salida y gestión monetaria.
+    .wrap{width:100%}
+
+    .card{
+      min-height:100vh; 
+      width:100%; 
+      margin:0;
+      padding:28px clamp(16px, 4vw, 40px);
+      border:1px solid var(--stroke);
+      border-radius:0;
+      box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
+      display:flex; 
+      flex-direction:column; 
+      gap:18px;
+    }
+
+    header{
+      display:flex; 
+      align-items:center; 
+      gap:12px; 
+      flex-wrap:wrap;
+      padding-bottom:8px; 
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    h1{
+      margin:0; 
+      font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)
+    }
+
+    .muted{
+      color:var(--muted); 
+      font-size:.95rem
+    }
+
+    .btn{
+      display:inline-flex; 
+      align-items:center; 
+      justify-content:center;
+      padding:10px 16px; 
+      border-radius:12px; 
+      font-weight:700;
+      text-decoration:none; 
+      color:#fff; 
+      background:linear-gradient(180deg,#1f9be6,#0ea5e9);
+      box-shadow:0 8px 20px rgba(14,165,233,.35); 
+      transition:all .2s ease;
+      border:0; 
+      cursor:pointer;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 28px rgba(14,165,233,.45);
+    }
+
+    .btn.ghost{
+      background:transparent; 
+      border:1px solid #28406e; 
+      color:var(--text)
+    }
+
+    .btn svg{
+      width:18px; 
+      height:18px; 
+      margin-right:8px; 
+      fill:currentColor
+    }
+
+    .panel{
+      background:linear-gradient(180deg, #111a31, #0c1427);
+      border:1px solid var(--stroke);
+      border-radius:16px;
+      padding:18px;
+      box-shadow: 
+        0 0 0 1px rgba(255,255,255,.02) inset, 
+        0 10px 30px rgba(0,0,0,.25);
+    }
+
+    .badge{
+      display:inline-block;
+      font-size:.75rem;
+      padding:4px 10px;
+      border-radius:20px;
+      background:rgba(56,189,248,.15);
+      color:var(--accent);
+      margin-bottom:10px;
+      letter-spacing:.5px;
+    }
+
+    .highlight{
+      background:rgba(56,189,248,.06);
+      border:1px solid rgba(56,189,248,.25);
+      padding:12px;
+      border-radius:12px;
+      margin:14px 0;
+    }
+
+    .feature-list{
+      display:grid;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .feature-item{
+      background:#0f1a33;
+      border:1px solid #1e2a49;
+      padding:10px 12px;
+      border-radius:10px;
+      font-size:.95rem;
+      transition:.2s ease;
+    }
+
+    .feature-item:hover{
+      border-color:var(--accent);
+      transform:translateX(4px);
+    }
+
+    .footer{
+      margin-top:auto; 
+      text-align:center; 
+      color:var(--muted); 
+      font-size:.88rem;
+      padding-top:8px; 
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="card">
+
+      <header>
+        <a href="../index.html" class="btn ghost" aria-label="Volver al inicio">← Volver</a>
+
+        <img src="../logo.png" alt="Logo DGO Capital"
+          width="59" height="59"
+          style="height:auto; border-radius:12px; border:1px solid #1d2947;">
+
+        <div>
+          <h1>Codifica tu estrategia</h1>
+          <div class="muted">De la idea al algoritmo (MQL5 / MT5)</div>
+        </div>
+      </header>
+
+      <section class="panel">
+
+        <span class="badge">Desarrollo Algorítmico Profesional</span>
+
+        <p>
+          Desarrollo de <strong>Asesores Expertos</strong> e <strong>Indicadores personalizados</strong> 
+          en MQL5 y Python para MetaTrader 5, estructurando reglas de trading en 
+          sistemas automatizados claros, eficientes y escalables.
+        </p>
+
+        <p class="muted" style="margin-top:-6px">
+          Cada proyecto integra lógica optimizada, gestión de riesgo y validación histórica 
+          antes de su implementación en entorno real.
+        </p>
+
+        <div class="highlight">
+          <strong>Objetivo:</strong> transformar estrategias discrecionales en sistemas 
+          medibles, replicables y técnicamente robustos.
         </div>
 
-        <div style="background:#0f1a33; padding:10px 12px; border-radius:10px; border:1px solid #1e2a49">
-          <strong>2. Desarrollo y Optimización</strong><br>
-          Programación estructurada con código limpio y eficiente.
+        <div class="feature-list">
+
+          <div class="feature-item">
+            ✔ Programación estructurada y optimizada
+          </div>
+
+          <div class="feature-item">
+            ✔ Parámetros configurables y preparados para optimización
+          </div>
+
+          <div class="feature-item">
+            ✔ Gestión de riesgo integrada
+          </div>
+
+          <div class="feature-item">
+            ✔ Backtest documentado de referencia
+          </div>
+
+          <div class="feature-item">
+            ✔ Entrega de archivo ejecutable (.ex5)
+          </div>
+
+          <div class="feature-item">
+            ✔ Manual básico de configuración
+          </div>
+
         </div>
 
-        <div style="background:#0f1a33; padding:10px 12px; border-radius:10px; border:1px solid #1e2a49">
-          <strong>3. Pruebas y Validación</strong><br>
-          Backtesting previo antes de cualquier implementación en entorno real.
+        <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap">
+          <a class="btn" href="https://t.me/diegotrader6" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
+            </svg>
+            Solicitar Información
+          </a>
         </div>
 
+      </section>
+
+      <div class="footer">
+        © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
       </div>
-    </div>
 
-    <!-- Mensaje de valor -->
-    <div style="padding:12px; border-left:4px solid var(--accent); background:rgba(255,255,255,0.02); border-radius:8px">
-      <strong>Objetivo:</strong> convertir ideas discrecionales en sistemas medibles,
-      replicables y técnicamente robustos.
     </div>
-
-    <!-- Botón -->
-    <div style="display:flex; gap:12px; margin-top:4px; flex-wrap:wrap">
-      <a class="btn" href="https://t.me/diegotrader6" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
-        </svg>
-        Solicitar Información
-      </a>
-    </div>
-
   </div>
 
-</section>
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
