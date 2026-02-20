@@ -97,46 +97,46 @@
       margin-right:8px; 
       fill:currentColor
     }
-
-    /* BLOQUE VERDE PROFESIONAL CON TEXTURA */
+    
     .hero-section{
       position:relative;
       margin:60px clamp(16px, 4vw, 40px);
       border-radius:28px;
       overflow:hidden;
-
+    
       background:
-        linear-gradient(180deg,#0e3a2c,#0a2f23),
+        linear-gradient(180deg, #34d399 0%, #1f9e74 100%),
         repeating-linear-gradient(
           90deg,
-          rgba(255,255,255,0.02) 0px,
-          rgba(255,255,255,0.02) 1px,
+          rgba(255,255,255,0.04) 0px,
+          rgba(255,255,255,0.04) 1px,
           transparent 1px,
           transparent 60px
         ),
         repeating-linear-gradient(
           0deg,
-          rgba(255,255,255,0.015) 0px,
-          rgba(255,255,255,0.015) 1px,
+          rgba(255,255,255,0.03) 0px,
+          rgba(255,255,255,0.03) 1px,
           transparent 1px,
           transparent 60px
         );
-
+    
       box-shadow:
-        0 60px 120px rgba(0,0,0,.55),
-        inset 0 1px 0 rgba(255,255,255,.05),
-        inset 0 -1px 0 rgba(0,0,0,.4);
+        0 40px 100px rgba(52,211,153,.35),
+        0 60px 140px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.25),
+        inset 0 -2px 8px rgba(0,0,0,.25);
     }
-
-    /* Iluminación superior */
+    
+    /* iluminación elegante superior */
     .hero-section::before{
       content:"";
       position:absolute;
       top:0;
       left:0;
       right:0;
-      height:120px;
-      background:linear-gradient(to bottom, rgba(255,255,255,.06), transparent);
+      height:140px;
+      background:linear-gradient(to bottom, rgba(255,255,255,.25), transparent);
       pointer-events:none;
     }
 
