@@ -16,7 +16,6 @@
   --stroke:#1e2a49;
   --text:#e8eefc; 
   --muted:#9fb0d9; 
-  --accent:#38bdf8;
 }
 
 *{box-sizing:border-box}
@@ -91,13 +90,24 @@ h1{
   border-radius:28px;
   overflow:hidden;
   position:relative;
-
-  background:
-    linear-gradient(180deg, #34d399 0%, #1f9e74 100%);
-  
+  background:linear-gradient(180deg, #34d399 0%, #1f9e74 100%);
   box-shadow:
     0 40px 100px rgba(52,211,153,.35),
     0 60px 140px rgba(0,0,0,.45);
+}
+
+/* Watermark código */
+.hero-section::before{
+  content:
+"// Expert Advisor MQL5\ninput double Risk = 1.0;\nif(PositionSelect(_Symbol)){\n  trade.Buy(lot);\n}";
+  position:absolute;
+  right:40px;
+  bottom:30px;
+  white-space:pre;
+  font-family:monospace;
+  font-size:14px;
+  color:rgba(255,255,255,.08);
+  pointer-events:none;
 }
 
 .hero-wrapper{
@@ -110,30 +120,31 @@ h1{
 
 .hero-content{
   max-width:600px;
-  color:#fff;
+  color:#ffffff;
 }
 
 .hero-content p{
   font-size:1.08rem;
   font-weight:500;
-  line-height:1.75;
+  line-height:1.8;
   margin-bottom:22px;
-  text-shadow:0 2px 6px rgba(0,0,0,.25);
+  text-align:justify;
+  text-shadow:0 2px 8px rgba(0,0,0,.3);
 }
 
 .hero-content .muted{
   color:rgba(255,255,255,.9);
 }
 
-/* AREA GRÁFICA DERECHA */
+/* AREA VISUAL */
 .hero-visual{
   flex:1;
-  position:relative;
   height:260px;
-  opacity:.85;
+  position:relative;
+  opacity:.95;
 }
 
-/* Grid sutil */
+/* Grid técnico */
 .hero-visual::before{
   content:"";
   position:absolute;
@@ -144,36 +155,33 @@ h1{
       rgba(255,255,255,0.05) 0px,
       rgba(255,255,255,0.05) 1px,
       transparent 1px,
-      transparent 40px
+      transparent 50px
     ),
     repeating-linear-gradient(
       0deg,
       rgba(255,255,255,0.04) 0px,
       rgba(255,255,255,0.04) 1px,
       transparent 1px,
-      transparent 40px
+      transparent 50px
     );
 }
 
-/* Línea tipo gráfico */
-.chart-line{
-  position:absolute;
-  width:100%;
-  height:100%;
+/* Velas */
+.candle rect{
+  rx:2;
 }
 
-.chart-line svg{
-  width:100%;
-  height:100%;
+.candle-line{
+  stroke:#fff;
+  stroke-width:2;
 }
 
-.chart-line path{
-  stroke:#ffffff;
-  stroke-width:3;
-  fill:none;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  filter:drop-shadow(0 4px 6px rgba(0,0,0,.3));
+.bull{
+  fill:#22c55e;
+}
+
+.bear{
+  fill:#ef4444;
 }
 
 /* Footer */
@@ -231,13 +239,35 @@ Entregables habituales: ejecutable (.ex5), parámetros configurables, backtest d
 </div>
 </div>
 
-<!-- Visual derecho -->
+<!-- Velas japonesas -->
 <div class="hero-visual">
-<div class="chart-line">
 <svg viewBox="0 0 500 260" preserveAspectRatio="none">
-<path d="M0 180 L60 160 L120 170 L180 120 L240 140 L300 90 L360 110 L420 70 L480 100 L500 60" />
+
+<!-- Candle 1 -->
+<line x1="60" y1="80" x2="60" y2="180" class="candle-line"/>
+<rect x="45" y="110" width="30" height="50" class="candle bull"/>
+
+<!-- Candle 2 -->
+<line x1="130" y1="60" x2="130" y2="170" class="candle-line"/>
+<rect x="115" y="90" width="30" height="60" class="candle bull"/>
+
+<!-- Candle 3 -->
+<line x1="200" y1="70" x2="200" y2="200" class="candle-line"/>
+<rect x="185" y="120" width="30" height="70" class="candle bear"/>
+
+<!-- Candle 4 -->
+<line x1="270" y1="40" x2="270" y2="150" class="candle-line"/>
+<rect x="255" y="70" width="30" height="60" class="candle bull"/>
+
+<!-- Candle 5 -->
+<line x1="340" y1="30" x2="340" y2="140" class="candle-line"/>
+<rect x="325" y="60" width="30" height="50" class="candle bull"/>
+
+<!-- Candle 6 -->
+<line x1="410" y1="50" x2="410" y2="160" class="candle-line"/>
+<rect x="395" y="80" width="30" height="60" class="candle bull"/>
+
 </svg>
-</div>
 </div>
 
 </div>
