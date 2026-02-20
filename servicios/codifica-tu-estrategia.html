@@ -1,287 +1,114 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DGO Capital — Codifica tu estrategia</title>
+/* ===== HERO SECTION ===== */
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --card:#0d1426; 
-  --card2:#0a101f; 
-  --stroke:#1e2a49;
-  --text:#e8eefc; 
-  --muted:#9fb0d9; 
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, #1dbf8b, #179b76);
+  border-radius: 20px;
+  padding: 80px 60px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-
-body{
-  margin:0;
-  font-family:Inter, sans-serif;
-  color:var(--text);
-  background:
-    radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
-    linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
+.hero-content {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
-.wrap{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
+/* ===== TEXT ===== */
+
+.hero-text h1 {
+  font-size: 42px;
+  color: #ffffff;
+  margin-bottom: 10px;
 }
 
-.card{
-  padding:28px clamp(16px, 4vw, 40px);
+.subtitle {
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 30px;
 }
 
-header{
-  display:flex; 
-  align-items:center; 
-  gap:12px; 
-  flex-wrap:wrap;
-  padding-bottom:8px; 
-  border-bottom:1px solid rgba(255,255,255,.06);
+.description {
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 20px;
+  line-height: 1.6;
+  text-align: left; /* ← NO justificado */
+  max-width: 520px;
 }
 
-h1{
-  margin:0; 
-  font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)
+.btn-primary {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 24px;
+  background: #0b3d91;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s ease;
 }
 
-.muted{
-  color:var(--muted); 
-  font-size:.95rem
+.btn-primary:hover {
+  background: #092f6f;
 }
 
-.btn{
-  display:inline-flex; 
-  align-items:center; 
-  justify-content:center;
-  padding:10px 16px; 
-  border-radius:12px; 
-  font-weight:700;
-  text-decoration:none; 
-  color:#fff; 
-  background:linear-gradient(180deg,#1f9be6,#0ea5e9);
-  box-shadow:0 8px 20px rgba(14,165,233,.35);
-  transition:.2s;
+/* ===== CANDLES ===== */
+
+.hero-visual {
+  position: relative;
+  height: 300px;
 }
 
-.btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 14px 28px rgba(14,165,233,.45);
+.candles {
+  position: absolute;
+  bottom: 40px; /* 🔥 Subidas para que se vean completas */
+  right: 40px;
+  display: flex;
+  align-items: flex-end;
+  gap: 30px;
 }
 
-.btn.ghost{
-  background:transparent; 
-  border:1px solid #28406e; 
-  color:var(--text)
+.candle {
+  width: 40px;
+  position: relative;
+  border-radius: 4px;
 }
 
-/* HERO */
-.hero-section{
-  margin:60px clamp(16px, 4vw, 40px);
-  border-radius:28px;
-  overflow:hidden;
-  position:relative;
-  background:linear-gradient(180deg, #34d399 0%, #1f9e74 100%);
-  box-shadow:
-    0 40px 100px rgba(52,211,153,.35),
-    0 60px 140px rgba(0,0,0,.45);
+.candle::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 40px;
+  top: -40px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 2px;
 }
 
-/* Watermark código */
-.hero-section::before{
-  content:
-"// Expert Advisor MQL5\ninput double Risk = 1.0;\nif(PositionSelect(_Symbol)){\n  trade.Buy(lot);\n}";
-  position:absolute;
-  right:40px;
-  bottom:30px;
-  white-space:pre;
-  font-family:monospace;
-  font-size:14px;
-  color:rgba(255,255,255,.08);
-  pointer-events:none;
+.green {
+  background: #28c76f;
+  box-shadow: 0 0 18px rgba(40,199,111,0.35);
 }
 
-.hero-wrapper{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:40px;
-  padding:80px 70px;
+.red {
+  background: #ea5455;
+  box-shadow: 0 0 18px rgba(234,84,85,0.35);
 }
 
-.hero-content{
-  max-width:600px;
-  color:#ffffff;
+/* ===== WATERMARK CODE ===== */
+
+.code-watermark {
+  position: absolute;
+  bottom: 10px;
+  right: 40px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.06);
+  font-family: monospace;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  white-space: pre;
 }
-
-.hero-content p{
-  font-size:1.08rem;
-  font-weight:500;
-  line-height:1.8;
-  margin-bottom:22px;
-  text-align:justify;
-  text-shadow:0 2px 8px rgba(0,0,0,.3);
-}
-
-.hero-content .muted{
-  color:rgba(255,255,255,.9);
-}
-
-/* AREA VISUAL */
-.hero-visual{
-  flex:1;
-  height:260px;
-  position:relative;
-  opacity:.95;
-}
-
-/* Grid técnico */
-.hero-visual::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.05) 0px,
-      rgba(255,255,255,0.05) 1px,
-      transparent 1px,
-      transparent 50px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,0.04) 0px,
-      rgba(255,255,255,0.04) 1px,
-      transparent 1px,
-      transparent 50px
-    );
-}
-
-/* Velas */
-.candle rect{
-  rx:2;
-}
-
-.candle-line{
-  stroke:#fff;
-  stroke-width:2;
-}
-
-.bull{
-  fill:#22c55e;
-}
-
-.bear{
-  fill:#ef4444;
-}
-
-/* Footer */
-.footer{
-  text-align:center; 
-  color:var(--muted); 
-  font-size:.88rem;
-  padding:40px 20px;
-  border-top:1px solid rgba(255,255,255,.06);
-  margin-top:auto;
-}
-
-@media(max-width:900px){
-  .hero-wrapper{
-    flex-direction:column;
-    padding:60px 30px;
-  }
-  .hero-visual{
-    width:100%;
-    height:200px;
-  }
-}
-</style>
-</head>
-
-<body>
-<div class="wrap">
-
-<div class="card">
-<header>
-<a href="../index.html" class="btn ghost">← Volver</a>
-<img src="../logo.png" width="59" height="59" style="border-radius:12px;border:1px solid #1d2947;">
-<div>
-<h1>Codifica tu estrategia</h1>
-<div class="muted">De la idea al algoritmo (MQL5 / MT5)</div>
-</div>
-</header>
-</div>
-
-<section class="hero-section">
-<div class="hero-wrapper">
-
-<div class="hero-content">
-<p>
-Se desarrollan Asesores Expertos e Indicadores a medida en MQL5 y Python para MetaTrader 5, 
-partiendo de las reglas de trading del cliente y llevándolas a código con lógica clara, gestión de riesgo y pruebas históricas antes de la operativa en vivo.
-</p>
-
-<p class="muted">
-Entregables habituales: ejecutable (.ex5), parámetros configurables, backtest de referencia y breve manual de uso.
-</p>
-
-<div style="margin-top:28px;">
-<a class="btn" href="https://t.me/diegotrader6" target="_blank">Soporte por Telegram</a>
-</div>
-</div>
-
-<!-- Velas japonesas -->
-<div class="hero-visual">
-<svg viewBox="0 0 500 260" preserveAspectRatio="none">
-
-<!-- Candle 1 -->
-<line x1="60" y1="80" x2="60" y2="180" class="candle-line"/>
-<rect x="45" y="110" width="30" height="50" class="candle bull"/>
-
-<!-- Candle 2 -->
-<line x1="130" y1="60" x2="130" y2="170" class="candle-line"/>
-<rect x="115" y="90" width="30" height="60" class="candle bull"/>
-
-<!-- Candle 3 -->
-<line x1="200" y1="70" x2="200" y2="200" class="candle-line"/>
-<rect x="185" y="120" width="30" height="70" class="candle bear"/>
-
-<!-- Candle 4 -->
-<line x1="270" y1="40" x2="270" y2="150" class="candle-line"/>
-<rect x="255" y="70" width="30" height="60" class="candle bull"/>
-
-<!-- Candle 5 -->
-<line x1="340" y1="30" x2="340" y2="140" class="candle-line"/>
-<rect x="325" y="60" width="30" height="50" class="candle bull"/>
-
-<!-- Candle 6 -->
-<line x1="410" y1="50" x2="410" y2="160" class="candle-line"/>
-<rect x="395" y="80" width="30" height="60" class="candle bull"/>
-
-</svg>
-</div>
-
-</div>
-</section>
-
-<div class="footer">
-© <span id="yr"></span> DGO Capital. Todos los derechos reservados.
-</div>
-
-</div>
-
-<script>
-document.getElementById('yr').textContent = new Date().getFullYear();
-</script>
-
-</body>
-</html>
