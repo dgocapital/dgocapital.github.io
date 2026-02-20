@@ -63,7 +63,7 @@ h1{
   display:inline-flex; 
   align-items:center; 
   justify-content:center;
-  gap:8px;
+  gap:10px;
   padding:10px 16px; 
   border-radius:12px; 
   font-weight:700;
@@ -85,23 +85,15 @@ h1{
   color:var(--text)
 }
 
-/* ANIMACIÓN ICONO TELEGRAM */
+/* Telegram icon animation */
 .telegram-icon{
   width:18px;
   height:18px;
-  fill:white;
   transition:transform .3s ease;
-  animation:telegramFloat 2.5s ease-in-out infinite;
 }
 
 .btn:hover .telegram-icon{
-  transform:translateY(-2px) scale(1.1);
-}
-
-@keyframes telegramFloat{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-3px)}
-  100%{transform:translateY(0)}
+  transform:translateX(4px) rotate(8deg);
 }
 
 /* HERO */
@@ -116,7 +108,6 @@ h1{
     0 60px 140px rgba(0,0,0,.45);
 }
 
-/* Watermark código */
 .hero-section::before{
   content:
 "// Expert Advisor MQL5\ninput double Risk = 1.0;\nif(PositionSelect(_Symbol)){\n  trade.Buy(lot);\n}";
@@ -152,10 +143,10 @@ h1{
   text-shadow:0 2px 8px rgba(0,0,0,.3);
 }
 
-/* TEXTO MÁS OSCURO */
+/* Texto entregables más oscuro */
 .hero-content .muted{
-  color:#064e3b;
-  font-weight:600;
+  color:rgba(0,0,0,.65);
+  text-shadow:none;
 }
 
 /* AREA VISUAL */
@@ -187,18 +178,10 @@ h1{
     );
 }
 
-.candle-line{
-  stroke:#fff;
-  stroke-width:2;
-}
-
-.bull{
-  fill:#22c55e;
-}
-
-.bear{
-  fill:#ef4444;
-}
+.candle rect{ rx:2; }
+.candle-line{ stroke:#fff; stroke-width:2; }
+.bull{ fill:#22c55e; }
+.bear{ fill:#ef4444; }
 
 .footer{
   text-align:center; 
@@ -251,13 +234,12 @@ Entregables habituales: ejecutable (.ex5), parámetros configurables, backtest d
 
 <div style="margin-top:28px;">
 <a class="btn" href="https://t.me/diegotrader6" target="_blank">
-<svg class="telegram-icon" viewBox="0 0 24 24">
-<path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
+<svg class="telegram-icon" viewBox="0 0 24 24" fill="white">
+<path d="M22 2L2 10l6 2 2 6 3-4 5 4z"/>
 </svg>
 Soporte por Telegram
 </a>
 </div>
-
 </div>
 
 <div class="hero-visual">
