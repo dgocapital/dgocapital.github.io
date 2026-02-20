@@ -127,7 +127,7 @@ h1{
   overflow:hidden;
 }
 
-/* CUADRÍCULA (FONDO MÁS PROFUNDO) */
+/* CUADRÍCULA */
 .hero-visual::before{
   content:"";
   position:absolute;
@@ -150,35 +150,51 @@ h1{
     );
 }
 
-/* LLUVIA DE CÓDIGO */
+/* LLUVIA DE CÓDIGO REAL QUE CUBRE TODO */
 .hero-visual::after{
-  content:"";
+  content:
+"// EA MQL5 Risk=1.0 StopLoss=300 TakeProfit=600\n"
+"if(maFast>maSlow){trade.Buy(lot);} else {trade.Sell(lot);} // strategy\n"
+"NormalizeDouble(AccountBalance()*Risk,2);\n"
+"iMA(_Symbol,_Period,20,0,MODE_EMA,PRICE_CLOSE);\n"
+"PositionSelect(_Symbol); trade.PositionClose(_Symbol);\n"
+"for(int i=0;i<100;i++){ Optimize(); }\n"
+"double rr = TakeProfit/StopLoss;\n"
+"import numpy as np signal=np.where(data>0,1,-1);\n"
+"while(IsTesting()){ OnTick(); }\n"
+"\n"
+"// EA MQL5 Risk=1.0 StopLoss=300 TakeProfit=600\n"
+"if(maFast>maSlow){trade.Buy(lot);} else {trade.Sell(lot);} // strategy\n"
+"NormalizeDouble(AccountBalance()*Risk,2);\n"
+"iMA(_Symbol,_Period,20,0,MODE_EMA,PRICE_CLOSE);\n"
+"PositionSelect(_Symbol); trade.PositionClose(_Symbol);\n"
+"for(int i=0;i<100;i++){ Optimize(); }\n"
+"double rr = TakeProfit/StopLoss;\n"
+"import numpy as np signal=np.where(data>0,1,-1);\n"
+"while(IsTesting()){ OnTick(); }\n"
+"\n"
+"// EA MQL5 Risk=1.0 StopLoss=300 TakeProfit=600\n"
+"if(maFast>maSlow){trade.Buy(lot);} else {trade.Sell(lot);} // strategy\n"
+"NormalizeDouble(AccountBalance()*Risk,2);\n"
+"iMA(_Symbol,_Period,20,0,MODE_EMA,PRICE_CLOSE);\n"
+"PositionSelect(_Symbol); trade.PositionClose(_Symbol);\n"
+"for(int i=0;i<100;i++){ Optimize(); }\n"
+"double rr = TakeProfit/StopLoss;\n"
+"import numpy as np signal=np.where(data>0,1,-1);\n"
+"while(IsTesting()){ OnTick(); }\n";
+
   position:absolute;
   inset:0;
   z-index:1;
+  white-space:pre-wrap;
+  font-family:monospace;
+  font-size:13px;
+  line-height:1.4;
+  color:rgba(255,255,255,.07);
   pointer-events:none;
-
-  background-image:url("data:image/svg+xml;utf8,\
-  <svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'>\
-  <style>\
-  text{font-family:monospace;font-size:14px;fill:rgba(255,255,255,0.07);}\
-  </style>\
-  <text x='0' y='20'>// EA MQL5  Risk=1.0  StopLoss=300  TakeProfit=600</text>\
-  <text x='0' y='40'>if(maFast&gt;maSlow){trade.Buy(lot);} else {trade.Sell(lot);}</text>\
-  <text x='0' y='60'>NormalizeDouble(AccountBalance()*Risk,2);</text>\
-  <text x='0' y='80'>iMA(_Symbol,_Period,20,0,MODE_EMA,PRICE_CLOSE);</text>\
-  <text x='0' y='100'>PositionSelect(_Symbol); trade.PositionClose(_Symbol);</text>\
-  <text x='0' y='120'>for(int i=0;i&lt;100;i++){ Optimize(); }</text>\
-  <text x='0' y='140'>double rr = TakeProfit/StopLoss;</text>\
-  <text x='0' y='160'>import numpy as np  signal=np.where(data&gt;0,1,-1)</text>\
-  <text x='0' y='180'>while(IsTesting()){ OnTick(); }</text>\
-  </svg>");
-
-  background-repeat:repeat;
-  background-size:600px 200px;
 }
 
-/* VELAS ENCIMA DE TODO */
+/* VELAS ENCIMA */
 .hero-visual svg{
   position:relative;
   z-index:2;
