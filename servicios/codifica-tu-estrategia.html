@@ -22,8 +22,8 @@
       --text:#e8eefc; 
       --muted:#9fb0d9; 
       --accent:#38bdf8;
-      --panel-green:#123524;
-      --panel-green-light:#174d34;
+      --green:#0f2f24;
+      --green2:#123a2b;
     }
 
     *{box-sizing:border-box}
@@ -32,7 +32,7 @@
     body{
       margin:0;
       font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--text);
+      color:var(--text); 
       line-height:1.6;
       background:
         radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
@@ -40,15 +40,19 @@
     }
 
     .wrap{
-      width:100%;
       min-height:100vh;
-      padding:28px clamp(16px, 4vw, 40px);
       display:flex;
       flex-direction:column;
-      gap:28px;
     }
 
-    /* HEADER ORIGINAL — full width */
+    .card{
+      flex:1;
+      padding:28px clamp(16px, 4vw, 40px);
+      display:flex; 
+      flex-direction:column; 
+      gap:40px;
+    }
+
     header{
       display:flex; 
       align-items:center; 
@@ -60,12 +64,12 @@
 
     h1{
       margin:0; 
-      font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem);
+      font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)
     }
 
     .muted{
       color:var(--muted); 
-      font-size:.95rem;
+      font-size:.95rem
     }
 
     .btn{
@@ -78,7 +82,7 @@
       text-decoration:none; 
       color:#fff; 
       background:linear-gradient(180deg,#1f9be6,#0ea5e9);
-      box-shadow:0 8px 20px rgba(14,165,233,.35); 
+      box-shadow:0 8px 20px rgba(14,165,233,.35);
       transition:all .2s ease;
       border:0; 
       cursor:pointer;
@@ -87,95 +91,87 @@
     .btn.ghost{
       background:transparent; 
       border:1px solid #28406e; 
-      color:var(--text);
-      box-shadow:none;
+      color:var(--text)
     }
 
     .btn svg{
       width:18px; 
       height:18px; 
       margin-right:8px; 
-      fill:currentColor;
+      fill:currentColor
     }
 
-    /* CONTENIDO REORGANIZADO */
-    .content{
+    /* SECCIÓN INTEGRADA (no caja flotante) */
+    .panel-section{
       width:100%;
-      display:flex;
-      justify-content:center;
+      background:linear-gradient(180deg, var(--green2), var(--green));
+      padding:60px 0;
+      border-top:1px solid #1c4c3a;
+      border-bottom:1px solid #1c4c3a;
     }
 
-    .panel{
-      width:100%;
+    .panel-content{
       max-width:1000px;
-      background:linear-gradient(180deg, var(--panel-green-light), var(--panel-green));
-      border:1px solid #1f5c3d;
-      border-radius:18px;
-      padding:32px;
-      box-shadow:0 20px 40px rgba(0,0,0,.35);
+      margin:0 auto;
+      padding:0 clamp(16px, 4vw, 40px);
     }
 
-    .panel p{
-      margin:0 0 16px 0;
-      text-align:left;
-      font-size:1.02rem;
+    .panel-content p{
+      margin:0 0 18px 0;
+      font-size:1.05rem;
     }
 
     .footer{
-      margin-top:auto; 
       text-align:center; 
       color:var(--muted); 
       font-size:.88rem;
-      padding-top:20px; 
+      padding:30px 20px;
       border-top:1px solid rgba(255,255,255,.06);
-    }
-
-    @media (max-width:768px){
-      .panel{
-        padding:22px;
-      }
     }
 
   </style>
 </head>
 <body>
   <div class="wrap">
+    <div class="card">
 
       <header>
         <a href="../index.html" class="btn ghost" aria-label="Volver al inicio">← Volver</a>
         <img src="../logo.png" alt="Logo DGO Capital"
           width="59" height="59" style="height:auto; border-radius:12px; border:1px solid #1d2947;">
-
         <div>
           <h1>Codifica tu estrategia</h1>
           <div class="muted">De la idea al algoritmo (MQL5 / MT5)</div>
         </div>
       </header>
 
-      <div class="content">
-        <section class="panel">
-          <p>
-            Se desarrollan Asesores Expertos e Indicadores a medida en MQL5 y Python para MetaTrader 5, 
-            partiendo de las reglas de trading del cliente y llevándolas a código con lógica clara, gestión de riesgo y pruebas históricas antes de la operativa en vivo.
-          </p>
-          <p class="muted" style="margin-top:-6px">
-            Entregables habituales: ejecutable (.ex5), parámetros configurables, backtest de referencia y breve manual de uso.
-          </p>
+    </div>
 
-          <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap">
-            <a class="btn" href="https://t.me/diegotrader6" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
-              </svg>
-              Soporte por Telegram
-            </a>
-          </div>
-        </section>
-      </div>
+    <!-- SECCIÓN VERDE INTEGRADA -->
+    <section class="panel-section">
+      <div class="panel-content">
+        <p>
+          Se desarrollan Asesores Expertos e Indicadores a medida en MQL5 y Python para MetaTrader 5, 
+          partiendo de las reglas de trading del cliente y llevándolas a código con lógica clara, gestión de riesgo y pruebas históricas antes de la operativa en vivo.
+        </p>
+        <p class="muted" style="margin-top:-6px">
+          Entregables habituales: ejecutable (.ex5), parámetros configurables, backtest de referencia y breve manual de uso.
+        </p>
 
-      <div class="footer">
-        © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
+        <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap">
+          <a class="btn" href="https://t.me/diegotrader6" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
+            </svg>
+            Soporte por Telegram
+          </a>
+        </div>
       </div>
+    </section>
+
+    <div class="footer">
+      © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
+    </div>
 
   </div>
 
