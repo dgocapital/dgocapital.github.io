@@ -59,48 +59,49 @@ h1{
   font-size:.95rem
 }
 
-/* BOTÓN TELEGRAM RESTAURADO */
 .btn{
   display:inline-flex; 
   align-items:center; 
   justify-content:center;
-  padding:12px 22px; 
-  border-radius:14px; 
+  gap:8px;
+  padding:10px 16px; 
+  border-radius:12px; 
   font-weight:700;
   text-decoration:none; 
   color:#fff; 
-  background:linear-gradient(135deg,#0ea5e9,#38bdf8);
-  box-shadow:0 10px 25px rgba(14,165,233,.35);
-  transition:all .25s ease;
-  position:relative;
-  overflow:hidden;
+  background:linear-gradient(180deg,#1f9be6,#0ea5e9);
+  box-shadow:0 8px 20px rgba(14,165,233,.35);
+  transition:.2s;
 }
 
 .btn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 18px 35px rgba(14,165,233,.5);
-}
-
-.btn::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-75%;
-  width:50%;
-  height:100%;
-  background:linear-gradient(120deg, transparent, rgba(255,255,255,.4), transparent);
-  transform:skewX(-25deg);
-  transition:all .75s ease;
-}
-
-.btn:hover::after{
-  left:125%;
+  transform:translateY(-2px);
+  box-shadow:0 14px 28px rgba(14,165,233,.45);
 }
 
 .btn.ghost{
   background:transparent; 
   border:1px solid #28406e; 
   color:var(--text)
+}
+
+/* ANIMACIÓN ICONO TELEGRAM */
+.telegram-icon{
+  width:18px;
+  height:18px;
+  fill:white;
+  transition:transform .3s ease;
+  animation:telegramFloat 2.5s ease-in-out infinite;
+}
+
+.btn:hover .telegram-icon{
+  transform:translateY(-2px) scale(1.1);
+}
+
+@keyframes telegramFloat{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-3px)}
+  100%{transform:translateY(0)}
 }
 
 /* HERO */
@@ -151,10 +152,10 @@ h1{
   text-shadow:0 2px 8px rgba(0,0,0,.3);
 }
 
-/* COLOR RESTAURADO TEXTO ENTREGABLES */
+/* TEXTO MÁS OSCURO */
 .hero-content .muted{
-  color:#ecfdf5;
-  font-weight:500;
+  color:#064e3b;
+  font-weight:600;
 }
 
 /* AREA VISUAL */
@@ -165,7 +166,6 @@ h1{
   opacity:.95;
 }
 
-/* Grid técnico */
 .hero-visual::before{
   content:"";
   position:absolute;
@@ -187,11 +187,6 @@ h1{
     );
 }
 
-/* Velas */
-.candle rect{
-  rx:2;
-}
-
 .candle-line{
   stroke:#fff;
   stroke-width:2;
@@ -205,7 +200,6 @@ h1{
   fill:#ef4444;
 }
 
-/* Footer */
 .footer{
   text-align:center; 
   color:var(--muted); 
@@ -256,11 +250,16 @@ Entregables habituales: ejecutable (.ex5), parámetros configurables, backtest d
 </p>
 
 <div style="margin-top:28px;">
-<a class="btn" href="https://t.me/diegotrader6" target="_blank">Soporte por Telegram</a>
-</div>
+<a class="btn" href="https://t.me/diegotrader6" target="_blank">
+<svg class="telegram-icon" viewBox="0 0 24 24">
+<path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
+</svg>
+Soporte por Telegram
+</a>
 </div>
 
-<!-- Velas japonesas -->
+</div>
+
 <div class="hero-visual">
 <svg viewBox="0 0 500 260" preserveAspectRatio="none">
 
