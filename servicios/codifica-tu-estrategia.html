@@ -91,53 +91,55 @@ h1{
     0 60px 140px rgba(0,0,0,.45);
 }
 
-.hero-section::before{
+.hero-visual::after{
   content:
-"// Expert Advisor MQL5\n"
-"#property strict\n"
-"input double Risk = 1.0;\n"
-"input int    StopLoss = 300;\n"
-"input int    TakeProfit = 600;\n"
+"// EA MQL5  // Strategy  // RiskControl  // Backtest\n"
+"if(maFast>maSlow){trade.Buy(lot);} else {trade.Sell(lot);}\n"
+"input double Risk=1.0;  NormalizeDouble(AccountBalance()*Risk,2);\n"
+"iMA(_Symbol,_Period,20,0,MODE_EMA,PRICE_CLOSE);\n"
+"PositionSelect(_Symbol);  trade.PositionClose(_Symbol);\n"
+"for(int i=0;i<100;i++){ Optimize(); }\n"
+"double rr = TakeProfit/StopLoss;\n"
+"// Python Bridge  import numpy as np\n"
+"signal = np.where(data>0,1,-1)\n"
+"while(IsTesting()){ OnTick(); }\n"
 "\n"
-"double lot;\n"
-"int OnInit(){ return(INIT_SUCCEEDED); }\n"
+"// EA MQL5  // Strategy  // RiskControl  // Backtest\n"
+"if(maFast>maSlow){trade.Buy(lot);} else {trade.Sell(lot);}\n"
+"input double Risk=1.0;  NormalizeDouble(AccountBalance()*Risk,2);\n"
+"iMA(_Symbol,_Period,20,0,MODE_EMA,PRICE_CLOSE);\n"
+"PositionSelect(_Symbol);  trade.PositionClose(_Symbol);\n"
+"for(int i=0;i<100;i++){ Optimize(); }\n"
+"double rr = TakeProfit/StopLoss;\n"
+"// Python Bridge  import numpy as np\n"
+"signal = np.where(data>0,1,-1)\n"
+"while(IsTesting()){ OnTick(); }\n"
 "\n"
-"void OnTick(){\n"
-"  if(PositionSelect(_Symbol)) return;\n"
-"\n"
-"  double maFast = iMA(_Symbol,_Period,20,0,MODE_EMA,PRICE_CLOSE,0);\n"
-"  double maSlow = iMA(_Symbol,_Period,50,0,MODE_EMA,PRICE_CLOSE,0);\n"
-"\n"
-"  if(maFast > maSlow){\n"
-"    trade.Buy(lot,_Symbol);\n"
-"  }\n"
-"  else if(maFast < maSlow){\n"
-"    trade.Sell(lot,_Symbol);\n"
-"  }\n"
-"}\n"
-"\n"
-"// Risk Management\n"
-"lot = NormalizeDouble(AccountBalance()*Risk/1000,2);\n"
-"\n"
-"// --- Python Bridge ---\n"
-"import numpy as np\n"
-"def strategy(data):\n"
-"    signal = np.where(data>0,1,-1)\n"
-"    return signal\n"
-"\n"
-"// Backtest complete...\n"
-"// Optimizing parameters...\n"
-"// Strategy loaded successfully...\n";
+"// EA MQL5  // Strategy  // RiskControl  // Backtest\n"
+"if(maFast>maSlow){trade.Buy(lot);} else {trade.Sell(lot);}\n"
+"input double Risk=1.0;  NormalizeDouble(AccountBalance()*Risk,2);\n"
+"iMA(_Symbol,_Period,20,0,MODE_EMA,PRICE_CLOSE);\n"
+"PositionSelect(_Symbol);  trade.PositionClose(_Symbol);\n"
+"for(int i=0;i<100;i++){ Optimize(); }\n"
+"double rr = TakeProfit/StopLoss;\n"
+"// Python Bridge  import numpy as np\n"
+"signal = np.where(data>0,1,-1)\n"
+"while(IsTesting()){ OnTick(); }\n";
 
   position:absolute;
-  right:40px;
-  bottom:30px;
+  inset:0;
   white-space:pre;
   font-family:monospace;
-  font-size:14px;
+  font-size:13px;
   line-height:1.4;
-  color:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.07);
   pointer-events:none;
+  z-index:0;
+}
+
+.hero-visual svg{
+  position:relative;
+  z-index:1;
 }
 
 .hero-wrapper{
