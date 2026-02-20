@@ -93,13 +93,49 @@ h1{
 
 .hero-section::before{
   content:
-"// Expert Advisor MQL5\ninput double Risk = 1.0;\nif(PositionSelect(_Symbol)){\n  trade.Buy(lot);\n}";
+"// Expert Advisor MQL5\n"
+"#property strict\n"
+"input double Risk = 1.0;\n"
+"input int    StopLoss = 300;\n"
+"input int    TakeProfit = 600;\n"
+"\n"
+"double lot;\n"
+"int OnInit(){ return(INIT_SUCCEEDED); }\n"
+"\n"
+"void OnTick(){\n"
+"  if(PositionSelect(_Symbol)) return;\n"
+"\n"
+"  double maFast = iMA(_Symbol,_Period,20,0,MODE_EMA,PRICE_CLOSE,0);\n"
+"  double maSlow = iMA(_Symbol,_Period,50,0,MODE_EMA,PRICE_CLOSE,0);\n"
+"\n"
+"  if(maFast > maSlow){\n"
+"    trade.Buy(lot,_Symbol);\n"
+"  }\n"
+"  else if(maFast < maSlow){\n"
+"    trade.Sell(lot,_Symbol);\n"
+"  }\n"
+"}\n"
+"\n"
+"// Risk Management\n"
+"lot = NormalizeDouble(AccountBalance()*Risk/1000,2);\n"
+"\n"
+"// --- Python Bridge ---\n"
+"import numpy as np\n"
+"def strategy(data):\n"
+"    signal = np.where(data>0,1,-1)\n"
+"    return signal\n"
+"\n"
+"// Backtest complete...\n"
+"// Optimizing parameters...\n"
+"// Strategy loaded successfully...\n";
+
   position:absolute;
   right:40px;
   bottom:30px;
   white-space:pre;
   font-family:monospace;
   font-size:14px;
+  line-height:1.4;
   color:rgba(255,255,255,.08);
   pointer-events:none;
 }
