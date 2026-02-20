@@ -42,32 +42,20 @@
     .wrap{
       width:100%;
       min-height:100vh;
-      padding:40px clamp(16px, 4vw, 40px);
+      padding:28px clamp(16px, 4vw, 40px);
       display:flex;
-      align-items:flex-start; /* evita centrado vertical */
-      justify-content:center;
-    }
-
-    .card{
-      width:100%;
-      max-width:1200px;
-      min-height:calc(100vh - 80px);
-      padding:40px;
-      border:1px solid var(--stroke);
-      border-radius:20px;
-      box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
-      display:flex; 
-      flex-direction:column; 
+      flex-direction:column;
       gap:28px;
     }
 
+    /* HEADER ORIGINAL — full width */
     header{
       display:flex; 
       align-items:center; 
-      gap:16px; 
+      gap:12px; 
       flex-wrap:wrap;
-      padding-bottom:16px; 
-      border-bottom:1px solid rgba(255,255,255,.08);
+      padding-bottom:8px; 
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
 
     h1{
@@ -96,11 +84,6 @@
       cursor:pointer;
     }
 
-    .btn:hover{
-      transform:translateY(-2px);
-      box-shadow:0 12px 25px rgba(14,165,233,.45);
-    }
-
     .btn.ghost{
       background:transparent; 
       border:1px solid #28406e; 
@@ -115,35 +98,41 @@
       fill:currentColor;
     }
 
-    /* PANEL CENTRAL VERDE */
+    /* CONTENIDO REORGANIZADO */
+    .content{
+      width:100%;
+      display:flex;
+      justify-content:center;
+    }
+
     .panel{
+      width:100%;
+      max-width:1000px;
       background:linear-gradient(180deg, var(--panel-green-light), var(--panel-green));
       border:1px solid #1f5c3d;
       border-radius:18px;
-      padding:28px;
-      max-width:900px;
+      padding:32px;
+      box-shadow:0 20px 40px rgba(0,0,0,.35);
     }
 
     .panel p{
-      margin:0 0 14px 0;
+      margin:0 0 16px 0;
       text-align:left;
+      font-size:1.02rem;
     }
 
     .footer{
       margin-top:auto; 
-      text-align:left; 
+      text-align:center; 
       color:var(--muted); 
       font-size:.88rem;
-      padding-top:16px; 
-      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:20px; 
+      border-top:1px solid rgba(255,255,255,.06);
     }
 
     @media (max-width:768px){
-      .card{
-        padding:28px 20px;
-      }
       .panel{
-        padding:20px;
+        padding:22px;
       }
     }
 
@@ -151,7 +140,6 @@
 </head>
 <body>
   <div class="wrap">
-    <div class="card">
 
       <header>
         <a href="../index.html" class="btn ghost" aria-label="Volver al inicio">← Volver</a>
@@ -164,30 +152,31 @@
         </div>
       </header>
 
-      <section class="panel">
-        <p>
-          Se desarrollan Asesores Expertos e Indicadores a medida en MQL5 y Python para MetaTrader 5, 
-          partiendo de las reglas de trading del cliente y llevándolas a código con lógica clara, gestión de riesgo y pruebas históricas antes de la operativa en vivo.
-        </p>
-        <p class="muted" style="margin-top:-6px">
-          Entregables habituales: ejecutable (.ex5), parámetros configurables, backtest de referencia y breve manual de uso.
-        </p>
+      <div class="content">
+        <section class="panel">
+          <p>
+            Se desarrollan Asesores Expertos e Indicadores a medida en MQL5 y Python para MetaTrader 5, 
+            partiendo de las reglas de trading del cliente y llevándolas a código con lógica clara, gestión de riesgo y pruebas históricas antes de la operativa en vivo.
+          </p>
+          <p class="muted" style="margin-top:-6px">
+            Entregables habituales: ejecutable (.ex5), parámetros configurables, backtest de referencia y breve manual de uso.
+          </p>
 
-        <div style="display:flex; gap:12px; margin-top:16px; flex-wrap:wrap">
-          <a class="btn" href="https://t.me/diegotrader6" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
-            </svg>
-            Soporte por Telegram
-          </a>
-        </div>
-      </section>
+          <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap">
+            <a class="btn" href="https://t.me/diegotrader6" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
+              </svg>
+              Soporte por Telegram
+            </a>
+          </div>
+        </section>
+      </div>
 
       <div class="footer">
         © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
       </div>
 
-    </div>
   </div>
 
   <script>
