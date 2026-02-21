@@ -85,23 +85,15 @@ h1{
   border-radius:28px;
   overflow:hidden;
   position:relative;
-  background:linear-gradient(180deg, #34d399 0%, #1f9e74 100%);
+
+  /* VERDE ILUMINADO COMO TU IMAGEN */
+  background:
+    radial-gradient(600px 300px at 20% 10%, rgba(255,255,255,.15), transparent 70%),
+    linear-gradient(180deg, #34d399 0%, #1f9e74 100%);
+
   box-shadow:
     0 40px 100px rgba(52,211,153,.35),
     0 60px 140px rgba(0,0,0,.45);
-}
-
-.hero-section::before{
-  content:
-"// Expert Advisor MQL5\ninput double Risk = 1.0;\nif(PositionSelect(_Symbol)){\n  trade.Buy(lot);\n}";
-  position:absolute;
-  right:40px;
-  bottom:30px;
-  white-space:pre;
-  font-family:monospace;
-  font-size:14px;
-  color:rgba(255,255,255,.08);
-  pointer-events:none;
 }
 
 .hero-wrapper{
@@ -113,7 +105,8 @@ h1{
 }
 
 .hero-content{
-  color:#0d1426;
+  max-width:600px;
+  color:#ffffff;
 }
 
 .hero-content p{
@@ -122,10 +115,12 @@ h1{
   line-height:1.8;
   margin-bottom:22px;
   text-align:justify;
+  text-shadow:0 2px 8px rgba(0,0,0,.3);
 }
 
 .hero-content .muted{
   color:rgba(0,0,0,.65);
+  text-shadow:none;
 }
 
 /* AREA VISUAL */
@@ -136,7 +131,7 @@ h1{
   overflow:hidden;
 }
 
-/* CUADRÍCULA */
+/* GRID */
 .hero-visual::before{
   content:"";
   position:absolute;
@@ -145,21 +140,21 @@ h1{
   background:
     repeating-linear-gradient(
       90deg,
-      rgba(0,0,0,0.04) 0px,
-      rgba(0,0,0,0.04) 1px,
+      rgba(255,255,255,0.05) 0px,
+      rgba(255,255,255,0.05) 1px,
       transparent 1px,
       transparent 50px
     ),
     repeating-linear-gradient(
       0deg,
-      rgba(0,0,0,0.035) 0px,
-      rgba(0,0,0,0.035) 1px,
+      rgba(255,255,255,0.04) 0px,
+      rgba(255,255,255,0.04) 1px,
       transparent 1px,
       transparent 50px
     );
 }
 
-/* LLUVIA DE CÓDIGO */
+/* LLUVIA DE CÓDIGO DETRÁS DE LAS VELAS */
 .hero-visual::after{
   content:
 "// EA MQL5 Risk=1.0 StopLoss=300 TakeProfit=600\n"
@@ -189,18 +184,18 @@ h1{
   font-family:monospace;
   font-size:13px;
   line-height:1.4;
-  color:rgba(0,0,0,.06);
+  color:rgba(255,255,255,.08);
   pointer-events:none;
 }
 
-/* VELAS ENCIMA */
+/* SVG ENCIMA DE TODO */
 .hero-visual svg{
   position:relative;
   z-index:2;
 }
 
 .candle rect{ rx:2; }
-.candle-line{ stroke:#1a1a1a; stroke-width:2; }
+.candle-line{ stroke:#ffffff; stroke-width:2; }
 .bull{ fill:#22c55e; }
 .bear{ fill:#ef4444; }
 
