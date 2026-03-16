@@ -4,16 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DGO Capital — Academia</title>
-  <meta name="description" content="Próximamente disponible.">
+  <meta name="description" content="Arquitectura de Estrategias de Trading Algorítmico mediante Inteligencia Artificial.">
   <meta property="og:title" content="DGO Capital — Academia">
-  <meta property="og:description" content="Próximamente disponible.">
+  <meta property="og:description" content="Arquitectura de Estrategias de Trading Algorítmico mediante Inteligencia Artificial.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#121828">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root{
       --card:#0d1426; --card2:#0a101f; --stroke:#1e2a49;
@@ -42,13 +40,6 @@
       display:flex; align-items:center; gap:12px; flex-wrap:wrap;
       padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.06);
     }
-    .brand img{
-      height:64px; width:auto; border-radius:12px; border:1px solid #1d2947;
-      box-shadow:0 4px 18px rgba(0,0,0,.35)
-    }
-    h1{margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)}
-    .muted{color:var(--muted); font-size:.95rem}
-
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
       padding:10px 16px; border-radius:12px; font-weight:700;
@@ -58,7 +49,6 @@
     }
     .btn.ghost{background:transparent; border:1px solid #28406e; color:var(--text)}
     .btn:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
-
     .panel{
       background:linear-gradient(180deg, #111a31, #0c1427);
       border:1px solid var(--stroke);
@@ -66,14 +56,178 @@
       padding:24px;
       box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
     }
-    .soon{
-      margin:0; text-align:center; font-weight:800;
-      font-size:clamp(1.1rem, 0.9rem + 1.5vw, 1.6rem);
-      letter-spacing:.3px;
+
+    /* ── COURSE HERO ── */
+    .course-hero{
+      position:relative; overflow:hidden;
+      border-radius:16px;
+      background:linear-gradient(135deg, #0c1829 0%, #0f2040 50%, #091520 100%);
+      border:1px solid #1e3060;
+      padding:0;
     }
+    .course-hero-inner{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:0;
+      min-height:320px;
+    }
+    .course-hero-text{
+      padding: clamp(24px, 4vw, 48px);
+      display:flex; flex-direction:column; justify-content:center; gap:16px;
+      position:relative; z-index:2;
+    }
+    .course-tag{
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(56,189,248,.12); border:1px solid rgba(56,189,248,.25);
+      color:var(--accent); font-size:.78rem; font-weight:700;
+      letter-spacing:.08em; text-transform:uppercase;
+      padding:4px 12px; border-radius:99px; width:fit-content;
+    }
+    .course-tag::before{ content:"◈"; font-size:.7rem; }
+    .course-title{
+      margin:0;
+      font-family:'Space Mono', monospace;
+      font-size:clamp(1.1rem, 0.8rem + 1.8vw, 1.75rem);
+      font-weight:700;
+      line-height:1.25;
+      color:#fff;
+      text-shadow: 0 0 40px rgba(56,189,248,.2);
+    }
+    .course-title span{ color:var(--accent); }
+    .course-meta{
+      display:flex; flex-wrap:wrap; gap:16px;
+    }
+    .course-meta-item{
+      display:flex; align-items:center; gap:6px;
+      color:var(--muted); font-size:.85rem;
+    }
+    .course-meta-item .icon{ color:var(--accent); font-size:1rem; }
+
+    /* portada image side */
+    .course-hero-img{
+      position:relative; overflow:hidden;
+    }
+    .course-hero-img img{
+      width:100%; height:100%; object-fit:cover;
+      display:block;
+      opacity:.85;
+    }
+    .course-hero-img .img-placeholder{
+      width:100%; height:100%; min-height:280px;
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+      background:linear-gradient(135deg, #0d1f3d, #112244);
+      color:var(--muted); font-size:.85rem; text-align:center;
+      border-left:1px solid #1e3060;
+    }
+    .course-hero-img .img-placeholder .ph-icon{ font-size:2.5rem; opacity:.35; }
+    .course-hero-img .img-placeholder .ph-label{ opacity:.5; font-family:'Space Mono',monospace; font-size:.75rem; }
+    .course-hero-img::after{
+      content:'';
+      position:absolute; inset:0;
+      background:linear-gradient(90deg, #0c1829 0%, transparent 30%);
+      pointer-events:none;
+    }
+
+    /* ── MODULES GRID ── */
+    .modules-header{
+      display:flex; align-items:center; gap:12px;
+      margin-bottom:20px;
+    }
+    .modules-header h2{
+      margin:0; font-family:'Space Mono', monospace;
+      font-size:clamp(1rem, 0.8rem + 1vw, 1.3rem);
+      color:#fff;
+    }
+    .modules-header .line{
+      flex:1; height:1px; background:linear-gradient(90deg, #1e3060, transparent);
+    }
+
+    .modules-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap:16px;
+    }
+    .module-card{
+      background:linear-gradient(160deg, #0f1e38, #0a1428);
+      border:1px solid #1a2d50;
+      border-radius:14px;
+      overflow:hidden;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .module-card:hover{
+      border-color:#2a4a80;
+      box-shadow:0 8px 32px rgba(56,189,248,.1);
+      transform:translateY(-2px);
+    }
+    .module-img-wrap{
+      position:relative; overflow:hidden;
+      aspect-ratio:16/9;
+      background:#091520;
+    }
+    .module-img-wrap img{
+      width:100%; height:100%; object-fit:cover;
+      display:block; transition:transform .3s ease;
+    }
+    .module-card:hover .module-img-wrap img{ transform:scale(1.04); }
+    .module-img-wrap .img-ph{
+      width:100%; height:100%;
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+      background:linear-gradient(135deg, #0a1830, #0d2040);
+      color:var(--muted);
+    }
+    .module-img-wrap .img-ph .ph-icon{ font-size:2rem; opacity:.3; }
+    .module-img-wrap .img-ph .ph-name{
+      font-family:'Space Mono', monospace;
+      font-size:.7rem; opacity:.45; letter-spacing:.05em;
+    }
+    .module-img-wrap .module-num{
+      position:absolute; top:10px; left:10px;
+      background:rgba(10,20,40,.85);
+      border:1px solid #1e3a6e;
+      color:var(--accent);
+      font-family:'Space Mono',monospace;
+      font-size:.7rem; font-weight:700;
+      padding:3px 9px; border-radius:6px;
+      backdrop-filter:blur(4px);
+    }
+    .module-body{
+      padding:16px;
+    }
+    .module-label{
+      font-size:.72rem; font-weight:700; letter-spacing:.1em;
+      text-transform:uppercase; color:var(--accent);
+      margin:0 0 6px;
+      font-family:'Space Mono',monospace;
+    }
+    .module-topic{
+      margin:0; font-size:.95rem; font-weight:600; color:var(--text);
+      line-height:1.35;
+    }
+
+    /* module section with label */
+    .module-section{
+      margin-bottom:6px;
+    }
+    .module-section-tag{
+      display:inline-block;
+      font-size:.68rem; font-weight:700; letter-spacing:.08em;
+      text-transform:uppercase; color:#6fa8d4;
+      margin-bottom:10px;
+      font-family:'Space Mono',monospace;
+    }
+    .topics-list{
+      display:flex; flex-direction:column; gap:10px;
+    }
+
+    /* ── FOOTER ── */
     .footer{
       margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
       padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
+    }
+
+    @media(max-width:640px){
+      .course-hero-inner{ grid-template-columns:1fr; }
+      .course-hero-img{ display:none; }
     }
   </style>
 </head>
@@ -81,27 +235,219 @@
   <div class="wrap">
     <div class="card">
 
+      <!-- HEADER -->
       <header>
         <a href="../index.html" class="btn ghost" aria-label="Volver al inicio">← Volver</a>
         <img src="../logo.png" alt="Logo DGO Capital"
           style="height:59px; width:auto; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)">
-
         <div>
-          <h1>Academia</h1>
+          <h1 style="margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)">Academia</h1>
         </div>
       </header>
 
-      <section class="panel">
-        <p class="soon">Próximamente disponible.</p>
-      </section>
+      <!-- COURSE HERO -->
+      <div class="course-hero">
+        <div class="course-hero-inner">
+          <div class="course-hero-text">
+            <span class="course-tag">Curso</span>
+            <h2 class="course-title">
+              Arquitectura de Estrategias de<br>
+              <span>Trading Algorítmico</span><br>
+              mediante Inteligencia Artificial
+            </h2>
+            <div class="course-meta">
+              <div class="course-meta-item"><span class="icon">◼</span> 4 Módulos</div>
+              <div class="course-meta-item"><span class="icon">◼</span> 10 Temas</div>
+              <div class="course-meta-item"><span class="icon">◼</span> MQL5 + IA</div>
+            </div>
+          </div>
+          <div class="course-hero-img">
+            <!-- Reemplaza con: <img src="portada.png" alt="Portada del curso"> -->
+            <div class="img-placeholder">
+              <div class="ph-icon">🖼</div>
+              <div class="ph-label">portada.png</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULES -->
+      <div class="panel">
+        <div class="modules-header">
+          <h2>Contenido del Curso</h2>
+          <div class="line"></div>
+        </div>
+
+        <div class="modules-grid">
+
+          <!-- MÓDULO I — Tema 1 -->
+          <div class="module-card">
+            <div class="module-img-wrap">
+              <!-- <img src="diapo1.png" alt="Trading algorítmico vs trading cuantitativo"> -->
+              <div class="img-ph">
+                <div class="ph-icon">📊</div>
+                <div class="ph-name">diapo1.png</div>
+              </div>
+              <div class="module-num">Módulo I · 1</div>
+            </div>
+            <div class="module-body">
+              <p class="module-label">Módulo I</p>
+              <p class="module-topic">Trading algorítmico vs Trading cuantitativo</p>
+            </div>
+          </div>
+
+          <!-- MÓDULO I — Tema 2 -->
+          <div class="module-card">
+            <div class="module-img-wrap">
+              <!-- <img src="diapo2.png" alt="Tipos de estrategias de trading con bots"> -->
+              <div class="img-ph">
+                <div class="ph-icon">🤖</div>
+                <div class="ph-name">diapo2.png</div>
+              </div>
+              <div class="module-num">Módulo I · 2</div>
+            </div>
+            <div class="module-body">
+              <p class="module-label">Módulo I</p>
+              <p class="module-topic">Tipos de estrategias de trading con bots</p>
+            </div>
+          </div>
+
+          <!-- MÓDULO II — Tema 3 -->
+          <div class="module-card">
+            <div class="module-img-wrap">
+              <!-- <img src="diapo3.png" alt="Software de MQL5"> -->
+              <div class="img-ph">
+                <div class="ph-icon">💻</div>
+                <div class="ph-name">diapo3.png</div>
+              </div>
+              <div class="module-num">Módulo II · 1</div>
+            </div>
+            <div class="module-body">
+              <p class="module-label">Módulo II</p>
+              <p class="module-topic">Software de MQL5 — ventajas y limitantes</p>
+            </div>
+          </div>
+
+          <!-- MÓDULO II — Tema 4 -->
+          <div class="module-card">
+            <div class="module-img-wrap">
+              <!-- <img src="diapo4.png" alt="Papel de la inteligencia artificial"> -->
+              <div class="img-ph">
+                <div class="ph-icon">🧠</div>
+                <div class="ph-name">diapo4.png</div>
+              </div>
+              <div class="module-num">Módulo II · 2</div>
+            </div>
+            <div class="module-body">
+              <p class="module-label">Módulo II</p>
+              <p class="module-topic">Papel de la IA — conexión humano y máquina</p>
+            </div>
+          </div>
+
+          <!-- MÓDULO III — Tema 5 -->
+          <div class="module-card">
+            <div class="module-img-wrap">
+              <!-- <img src="diapo5.png" alt="Pseudocódigo"> -->
+              <div class="img-ph">
+                <div class="ph-icon">📝</div>
+                <div class="ph-name">diapo5.png</div>
+              </div>
+              <div class="module-num">Módulo III · 1</div>
+            </div>
+            <div class="module-body">
+              <p class="module-label">Módulo III</p>
+              <p class="module-topic">Punto de partida — pseudocódigo</p>
+            </div>
+          </div>
+
+          <!-- MÓDULO III — Tema 6 -->
+          <div class="module-card">
+            <div class="module-img-wrap">
+              <!-- <img src="diapo6.png" alt="Esquema estructural"> -->
+              <div class="img-ph">
+                <div class="ph-icon">🗂</div>
+                <div class="ph-name">diapo6.png</div>
+              </div>
+              <div class="module-num">Módulo III · 2</div>
+            </div>
+            <div class="module-body">
+              <p class="module-label">Módulo III</p>
+              <p class="module-topic">Esquema estructural de diseño de algoritmos en MQL5</p>
+            </div>
+          </div>
+
+          <!-- MÓDULO III — Tema 7 -->
+          <div class="module-card">
+            <div class="module-img-wrap">
+              <!-- <img src="diapo7.png" alt="Robot básico con IA"> -->
+              <div class="img-ph">
+                <div class="ph-icon">⚙️</div>
+                <div class="ph-name">diapo7.png</div>
+              </div>
+              <div class="module-num">Módulo III · 3</div>
+            </div>
+            <div class="module-body">
+              <p class="module-label">Módulo III</p>
+              <p class="module-topic">Diseño de un robot básico paso a paso con IA</p>
+            </div>
+          </div>
+
+          <!-- MÓDULO IV — Tema 8 -->
+          <div class="module-card">
+            <div class="module-img-wrap">
+              <!-- <img src="diapo8.png" alt="Backtesting y optimización"> -->
+              <div class="img-ph">
+                <div class="ph-icon">📈</div>
+                <div class="ph-name">diapo8.png</div>
+              </div>
+              <div class="module-num">Módulo IV · 1</div>
+            </div>
+            <div class="module-body">
+              <p class="module-label">Módulo IV</p>
+              <p class="module-topic">Backtesting y optimización de estrategias</p>
+            </div>
+          </div>
+
+          <!-- MÓDULO IV — Tema 9 -->
+          <div class="module-card">
+            <div class="module-img-wrap">
+              <!-- <img src="diapo9.png" alt="Walk-forward"> -->
+              <div class="img-ph">
+                <div class="ph-icon">🔁</div>
+                <div class="ph-name">diapo9.png</div>
+              </div>
+              <div class="module-num">Módulo IV · 2</div>
+            </div>
+            <div class="module-body">
+              <p class="module-label">Módulo IV</p>
+              <p class="module-topic">Análisis de walk-forward</p>
+            </div>
+          </div>
+
+          <!-- MÓDULO IV — Tema 10 -->
+          <div class="module-card">
+            <div class="module-img-wrap">
+              <!-- <img src="diapo10.png" alt="Lanzamiento a producción"> -->
+              <div class="img-ph">
+                <div class="ph-icon">🚀</div>
+                <div class="ph-name">diapo10.png</div>
+              </div>
+              <div class="module-num">Módulo IV · 3</div>
+            </div>
+            <div class="module-body">
+              <p class="module-label">Módulo IV</p>
+              <p class="module-topic">Lanzamiento a producción</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
 
       <div class="footer">
         © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
       </div>
-
     </div>
   </div>
-
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
   </script>
