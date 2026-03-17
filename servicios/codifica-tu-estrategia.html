@@ -1,299 +1,394 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DGO Capital — Codifica tu estrategia</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DGO Capital — Codifica tu estrategia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --card:#0d1426; --card2:#0a101f; --stroke:#1e2a49;
+      --text:#e8eefc; --muted:#9fb0d9; --accent:#38bdf8;
+      --green:#34d399;
+    }
+    *{box-sizing:border-box; margin:0; padding:0}
+    html,body{height:100%}
+    body{
+      font-family:Inter, ui-sans-serif, system-ui, sans-serif;
+      color:var(--text); line-height:1.6;
+      background:
+        radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
+        linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
+    }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    .card{
+      min-height:100vh; width:100%;
+      padding:28px clamp(16px, 4vw, 40px);
+      border:1px solid var(--stroke);
+      box-shadow:0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
+      display:flex; flex-direction:column; gap:20px;
+    }
 
-<style>
-:root{
-  --card:#0d1426; 
-  --card2:#0a101f; 
-  --stroke:#1e2a49;
-  --text:#e8eefc; 
-  --muted:#9fb0d9; 
-}
+    /* HEADER */
+    header{
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+      padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .btn-back{
+      display:inline-flex; align-items:center;
+      padding:10px 16px; border-radius:12px; font-weight:700;
+      text-decoration:none; color:var(--text);
+      background:transparent; border:1px solid #28406e;
+      transition:border-color .2s, background .2s;
+    }
+    .btn-back:hover{ background:rgba(255,255,255,.04); border-color:#3a5a9a; }
+    .header-text h1{
+      font-size:clamp(1.4rem, 1rem + 2vw, 2.2rem);
+      font-weight:700; color:#fff;
+    }
+    .header-text .sub{
+      color:var(--muted); font-size:.9rem; margin-top:2px;
+    }
 
-*{box-sizing:border-box}
-html,body{height:100%}
+    /* HERO */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap:0;
+      background:linear-gradient(135deg, #0c1829 0%, #0f2040 50%, #091520 100%);
+      border:1px solid #1e3060;
+      border-radius:16px;
+      overflow:hidden;
+      min-height:280px;
+      position:relative;
+    }
+    .hero::before{
+      content:'';
+      position:absolute; top:-80px; left:-80px;
+      width:300px; height:300px;
+      background:radial-gradient(circle, rgba(56,189,248,.06) 0%, transparent 70%);
+      pointer-events:none;
+    }
 
-body{
-  margin:0;
-  font-family:Inter, sans-serif;
-  color:var(--text);
-  background:
-    radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
-    linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
-}
+    .hero-text{
+      padding: clamp(28px, 4vw, 52px);
+      display:flex; flex-direction:column; justify-content:center; gap:18px;
+      position:relative; z-index:2;
+    }
+    .hero-tag{
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(56,189,248,.12); border:1px solid rgba(56,189,248,.25);
+      color:var(--accent); font-size:.78rem; font-weight:700;
+      letter-spacing:.08em; text-transform:uppercase;
+      padding:4px 12px; border-radius:99px; width:fit-content;
+    }
+    .hero-tag::before{ content:"◈"; font-size:.7rem; }
+    .hero-text p{
+      font-size:clamp(.95rem, 0.82rem + 0.5vw, 1.08rem);
+      color:var(--muted); line-height:1.8;
+      text-align:justify;
+    }
+    .hero-text p strong{ color:var(--text); font-weight:600; }
+    .hero-text .entregables{
+      font-size:.875rem; color:var(--muted);
+      background:rgba(255,255,255,.03);
+      border:1px solid #1e3060;
+      border-radius:10px;
+      padding:12px 16px;
+      line-height:1.6;
+    }
+    .hero-text .entregables strong{ color:var(--accent); }
 
-.wrap{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-}
+    .btn-telegram{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:12px 24px; border-radius:12px; font-weight:700; font-size:.95rem;
+      text-decoration:none; color:#fff; width:fit-content;
+      background:linear-gradient(180deg, #1f9be6, #0ea5e9);
+      box-shadow:0 8px 20px rgba(14,165,233,.35);
+      transition:transform .06s ease, box-shadow .2s ease;
+    }
+    .btn-telegram:hover{ box-shadow:0 12px 28px rgba(14,165,233,.5); transform:translateY(-1px); }
+    .btn-telegram:active{ transform:translateY(1px); }
 
-.card{
-  padding:28px clamp(16px, 4vw, 40px);
-}
+    /* HERO VISUAL — código + velas */
+    .hero-visual{
+      position:relative; overflow:hidden;
+      border-left:1px solid #1e3060;
+    }
+    .hero-visual::after{
+      content:'';
+      position:absolute; inset:0; z-index:1;
+      background:linear-gradient(270deg, transparent 40%, #0c1829 100%);
+      pointer-events:none;
+    }
+    .code-rain{
+      position:absolute; inset:0; z-index:0;
+      font-family:monospace; font-size:11.5px; line-height:1.55;
+      color:rgba(56,189,248,.13);
+      white-space:pre;
+      padding:16px;
+      overflow:hidden;
+    }
+    .hero-visual svg{
+      position:absolute; bottom:0; left:0; right:0;
+      z-index:2; width:100%; height:100%;
+    }
 
-header{
-  display:flex; 
-  align-items:center; 
-  gap:12px; 
-  flex-wrap:wrap;
-  padding-bottom:8px; 
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
+    /* COMO FUNCIONA */
+    .section-panel{
+      background:linear-gradient(180deg, #111a31, #0c1427);
+      border:1px solid var(--stroke);
+      border-radius:16px; padding:28px;
+      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
+    }
+    .section-panel h2{
+      font-size:1.15rem; font-weight:700; color:#fff;
+      margin-bottom:20px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .section-panel h2::after{
+      content:''; flex:1; height:1px;
+      background:linear-gradient(90deg, #1e3060, transparent);
+    }
 
-h1{
-  margin:0; 
-  font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)
-}
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+      gap:14px;
+    }
+    .step{
+      background:linear-gradient(160deg, #0f1e38, #0a1428);
+      border:1px solid #1a2d50;
+      border-radius:14px; padding:20px;
+      display:flex; flex-direction:column; gap:8px;
+      transition:border-color .2s, transform .2s;
+    }
+    .step:hover{ border-color:#2a4a80; transform:translateY(-2px); }
+    .step-num{
+      font-size:.72rem; font-weight:700; letter-spacing:.1em;
+      text-transform:uppercase; color:var(--accent);
+    }
+    .step strong{ font-size:.95rem; font-weight:700; color:#fff; }
+    .step span{ font-size:.875rem; color:var(--muted); line-height:1.5; }
 
-.muted{
-  color:var(--muted); 
-  font-size:.95rem
-}
+    /* ENTREGABLES */
+    .deliverables-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+      gap:14px;
+    }
+    .deliverable{
+      background:linear-gradient(160deg, #0f1e38, #0a1428);
+      border:1px solid #1a2d50;
+      border-radius:14px; padding:18px 20px;
+      display:flex; align-items:center; gap:14px;
+      transition:border-color .2s, transform .2s;
+    }
+    .deliverable:hover{ border-color:#2a4a80; transform:translateY(-2px); }
+    .deliverable-icon{
+      font-size:1.5rem; flex-shrink:0;
+    }
+    .deliverable-text strong{
+      display:block; font-size:.9rem; font-weight:700; color:#fff;
+    }
+    .deliverable-text span{
+      font-size:.8rem; color:var(--muted);
+    }
 
-.btn{
-  display:inline-flex; 
-  align-items:center; 
-  justify-content:center;
-  gap:10px;
-  padding:10px 16px; 
-  border-radius:12px; 
-  font-weight:700;
-  text-decoration:none; 
-  color:#fff; 
-  background:linear-gradient(180deg,#1f9be6,#0ea5e9);
-  box-shadow:0 8px 20px rgba(14,165,233,.35);
-}
+    /* CTA CONTACTO */
+    .cta-block{
+      background:linear-gradient(135deg, #0c1e3a 0%, #0f2545 60%, #091a30 100%);
+      border:1px solid #1e3a6e;
+      border-radius:16px;
+      padding: clamp(20px, 3vw, 36px) clamp(20px, 4vw, 48px);
+      display:flex; align-items:center; justify-content:space-between;
+      gap:24px; flex-wrap:wrap;
+      box-shadow:0 0 0 1px rgba(56,189,248,.05) inset, 0 12px 40px rgba(0,0,0,.3);
+      position:relative; overflow:hidden;
+    }
+    .cta-block::before{
+      content:'';
+      position:absolute; top:-60px; right:-60px;
+      width:220px; height:220px;
+      background:radial-gradient(circle, rgba(56,189,248,.08) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .cta-text{ flex:1; min-width:200px; }
+    .cta-text h3{
+      font-size:clamp(.95rem, 0.7rem + 1vw, 1.2rem);
+      font-weight:700; color:#fff; margin-bottom:6px;
+    }
+    .cta-text p{
+      margin:0; color:var(--muted); font-size:.9rem; line-height:1.5;
+    }
 
-.btn.ghost{
-  background:transparent; 
-  border:1px solid #28406e; 
-  color:var(--text)
-}
+    /* FOOTER */
+    .footer{
+      margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
+      padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
+    }
 
-/* HERO */
-.hero-section{
-  margin:60px clamp(16px, 4vw, 40px);
-  border-radius:28px;
-  overflow:hidden;
-  position:relative;
-
-  /* AZUL ILUMINADO */
-  background:
-    radial-gradient(600px 300px at 20% 10%, rgba(255,255,255,.18), transparent 70%),
-    linear-gradient(180deg, #3b82f6 0%, #1e3a8a 100%);
-
-  box-shadow:
-    0 40px 100px rgba(59,130,246,.35),
-    0 60px 140px rgba(0,0,0,.45);
-}
-
-.hero-wrapper{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:40px;
-  padding:80px 70px;
-}
-
-.hero-content{
-  max-width:600px;
-  color:#ffffff;
-}
-
-.hero-content p{
-  font-size:1.08rem;
-  font-weight:500;
-  line-height:1.8;
-  margin-bottom:22px;
-  text-align:justify;
-  text-shadow:0 2px 8px rgba(0,0,0,.3);
-}
-
-.hero-content .muted{
-  color:rgba(0,0,0,.65);
-  text-shadow:none;
-}
-
-/* AREA VISUAL */
-.hero-visual{
-  flex:1;
-  height:260px;
-  position:relative;
-  overflow:hidden;
-}
-
-/* GRID */
-.hero-visual::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:0;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.05) 0px,
-      rgba(255,255,255,0.05) 1px,
-      transparent 1px,
-      transparent 50px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,0.04) 0px,
-      rgba(255,255,255,0.04) 1px,
-      transparent 1px,
-      transparent 50px
-    );
-}
-
-/* LLUVIA DE CÓDIGO DETRÁS DE LAS VELAS */
-.hero-visual::after{
-  content:
-"// EA MQL5 Risk=1.0 StopLoss=300 TakeProfit=600\n"
-"if(maFast>maSlow){trade.Buy(lot);} else {trade.Sell(lot);} \n"
-"NormalizeDouble(AccountBalance()*Risk,2);\n"
-"iMA(_Symbol,_Period,20,0,MODE_EMA,PRICE_CLOSE);\n"
-"PositionSelect(_Symbol); trade.PositionClose(_Symbol);\n"
-"for(int i=0;i<100;i++){ Optimize(); }\n"
-"double rr = TakeProfit/StopLoss;\n"
-"import numpy as np signal=np.where(data>0,1,-1);\n"
-"while(IsTesting()){ OnTick(); }\n"
-"\n"
-"// EA MQL5 Risk=1.0 StopLoss=300 TakeProfit=600\n"
-"if(maFast>maSlow){trade.Buy(lot);} else {trade.Sell(lot);} \n"
-"NormalizeDouble(AccountBalance()*Risk,2);\n"
-"iMA(_Symbol,_Period,20,0,MODE_EMA,PRICE_CLOSE);\n"
-"PositionSelect(_Symbol); trade.PositionClose(_Symbol);\n"
-"for(int i=0;i<100;i++){ Optimize(); }\n"
-"double rr = TakeProfit/StopLoss;\n"
-"import numpy as np signal=np.where(data>0,1,-1);\n"
-"while(IsTesting()){ OnTick(); }\n";
-
-  position:absolute;
-  inset:0;
-  z-index:1;
-  white-space:pre-wrap;
-  font-family:monospace;
-  font-size:13px;
-  line-height:1.4;
-  color:rgba(255,255,255,.08);
-  pointer-events:none;
-}
-
-/* SVG ENCIMA DE TODO */
-.hero-visual svg{
-  position:relative;
-  z-index:2;
-}
-
-.candle rect{ rx:2; }
-.candle-line{ stroke:#ffffff; stroke-width:2; }
-.bull{ fill:#22c55e; }
-.bear{ fill:#ef4444; }
-
-.footer{
-  text-align:center; 
-  color:var(--muted); 
-  font-size:.88rem;
-  padding:40px 20px;
-  border-top:1px solid rgba(255,255,255,.06);
-  margin-top:auto;
-}
-
-@media(max-width:900px){
-  .hero-wrapper{
-    flex-direction:column;
-    padding:60px 30px;
-  }
-  .hero-visual{
-    width:100%;
-    height:200px;
-  }
-}
-</style>
+    @media(max-width:700px){
+      .hero{ grid-template-columns:1fr; }
+      .hero-visual{ display:none; }
+    }
+  </style>
 </head>
-
 <body>
-<div class="wrap">
-
 <div class="card">
-<header>
-<a href="../index.html" class="btn ghost">← Volver</a>
-<img src="../logo.png" width="59" height="59" style="border-radius:12px;border:1px solid #1d2947;">
-<div>
-<h1>Codifica tu estrategia</h1>
-<div class="muted">De la idea al algoritmo (MQL5 / MT5)</div>
+
+  <!-- HEADER -->
+  <header>
+    <a href="../index.html" class="btn-back">← Volver</a>
+    <img src="../logo.png" alt="DGO Capital"
+      style="height:59px; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)">
+    <div class="header-text">
+      <h1>Codifica tu estrategia</h1>
+      <div class="sub">De la idea al algoritmo · MQL5 / MT5</div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <span class="hero-tag">Servicio</span>
+      <p>
+        Se desarrollan <strong>Asesores Expertos e Indicadores a medida</strong> en MQL5 y Python
+        para MetaTrader 5, partiendo de las reglas de trading del cliente y llevándolas a código
+        con <strong>lógica clara, gestión de riesgo</strong> y pruebas históricas antes de la operativa en vivo.
+      </p>
+      <div class="entregables">
+        <strong>Entregables habituales:</strong> ejecutable (.ex5), parámetros configurables,
+        backtest de referencia y breve manual de uso.
+      </div>
+      <a class="btn-telegram" href="https://t.me/diegotrader6" target="_blank">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M22 2L2 10l6 2 2 6 3-4 5 4z"/></svg>
+        Consultar por Telegram
+      </a>
+    </div>
+
+    <div class="hero-visual">
+      <div class="code-rain">// EA MQL5 Risk=1.0 StopLoss=300 TakeProfit=600
+if(maFast>maSlow){trade.Buy(lot);} else {trade.Sell(lot);}
+NormalizeDouble(AccountBalance()*Risk,2);
+iMA(_Symbol,_Period,20,0,MODE_EMA,PRICE_CLOSE);
+PositionSelect(_Symbol); trade.PositionClose(_Symbol);
+for(int i=0;i&lt;100;i++){ Optimize(); }
+double rr = TakeProfit/StopLoss;
+signal=np.where(data>0,1,-1);
+while(IsTesting()){ OnTick(); }
+
+// EA MQL5 Risk=1.0 StopLoss=300 TakeProfit=600
+if(maFast>maSlow){trade.Buy(lot);} else {trade.Sell(lot);}
+NormalizeDouble(AccountBalance()*Risk,2);
+iMA(_Symbol,_Period,20,0,MODE_EMA,PRICE_CLOSE);
+PositionSelect(_Symbol); trade.PositionClose(_Symbol);
+for(int i=0;i&lt;100;i++){ Optimize(); }
+double rr = TakeProfit/StopLoss;
+signal=np.where(data>0,1,-1);
+while(IsTesting()){ OnTick(); }</div>
+
+      <svg viewBox="0 0 500 260" preserveAspectRatio="none">
+        <!-- velas alcistas y bajistas -->
+        <line x1="60"  y1="20"  x2="60"  y2="120" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
+        <rect x="45"  y="50"  width="30" height="50" fill="#22c55e" rx="2"/>
+        <line x1="130" y1="0"  x2="130" y2="110" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
+        <rect x="115" y="30"  width="30" height="60" fill="#22c55e" rx="2"/>
+        <line x1="200" y1="10" x2="200" y2="140" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
+        <rect x="185" y="60"  width="30" height="70" fill="#ef4444" rx="2"/>
+        <line x1="270" y1="-20" x2="270" y2="90" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
+        <rect x="255" y="10"  width="30" height="60" fill="#22c55e" rx="2"/>
+        <line x1="340" y1="-30" x2="340" y2="80" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
+        <rect x="325" y="0"   width="30" height="50" fill="#22c55e" rx="2"/>
+        <line x1="410" y1="-10" x2="410" y2="100" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
+        <rect x="395" y="20"  width="30" height="60" fill="#22c55e" rx="2"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- PROCESO -->
+  <div class="section-panel">
+    <h2>Proceso de trabajo</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">Paso 01</span>
+        <strong>Briefing</strong>
+        <span>Revisión de las reglas de entrada, salida y gestión de riesgo del cliente.</span>
+      </div>
+      <div class="step">
+        <span class="step-num">Paso 02</span>
+        <strong>Desarrollo</strong>
+        <span>Codificación en MQL5 o Python con lógica clara y parámetros configurables.</span>
+      </div>
+      <div class="step">
+        <span class="step-num">Paso 03</span>
+        <strong>Backtesting</strong>
+        <span>Pruebas históricas para validar el comportamiento del algoritmo.</span>
+      </div>
+      <div class="step">
+        <span class="step-num">Paso 04</span>
+        <strong>Entrega</strong>
+        <span>Ejecutable listo, manual de uso y soporte post-entrega.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTREGABLES -->
+  <div class="section-panel">
+    <h2>Entregables</h2>
+    <div class="deliverables-grid">
+      <div class="deliverable">
+        <div class="deliverable-icon">📦</div>
+        <div class="deliverable-text">
+          <strong>Ejecutable .ex5</strong>
+          <span>Listo para instalar en MetaTrader 5</span>
+        </div>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon">⚙️</div>
+        <div class="deliverable-text">
+          <strong>Parámetros configurables</strong>
+          <span>Ajustables desde el panel del EA</span>
+        </div>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon">📈</div>
+        <div class="deliverable-text">
+          <strong>Backtest de referencia</strong>
+          <span>Resultados históricos documentados</span>
+        </div>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon">📄</div>
+        <div class="deliverable-text">
+          <strong>Manual de uso</strong>
+          <span>Guía breve de instalación y operación</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div class="cta-text">
+      <h3>¿Tienes una estrategia lista para automatizar?</h3>
+      <p>Escríbenos y evaluamos tu caso sin compromiso.</p>
+    </div>
+    <a class="btn-telegram" href="https://t.me/diegotrader6" target="_blank" style="position:relative;z-index:1;">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M22 2L2 10l6 2 2 6 3-4 5 4z"/></svg>
+      Consultar por Telegram
+    </a>
+  </div>
+
+  <div class="footer">
+    © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
+  </div>
+
 </div>
-</header>
-</div>
-
-<section class="hero-section">
-<div class="hero-wrapper">
-
-<div class="hero-content">
-<p>
-Se desarrollan Asesores Expertos e Indicadores a medida en MQL5 y Python para MetaTrader 5, 
-partiendo de las reglas de trading del cliente y llevándolas a código con lógica clara, gestión de riesgo y pruebas históricas antes de la operativa en vivo.
-</p>
-
-<p class="muted">
-Entregables habituales: ejecutable (.ex5), parámetros configurables, backtest de referencia y breve manual de uso.
-</p>
-
-<div style="margin-top:28px;">
-<a class="btn" href="https://t.me/diegotrader6" target="_blank">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-<path d="M22 2L2 10l6 2 2 6 3-4 5 4z"/>
-</svg>
-Soporte por Telegram
-</a>
-</div>
-</div>
-
-<div class="hero-visual">
-<svg viewBox="0 0 500 260" preserveAspectRatio="none">
-
-<line x1="60" y1="20" x2="60" y2="120" class="candle-line"/>
-<rect x="45" y="50" width="30" height="50" class="candle bull"/>
-
-<line x1="130" y1="0" x2="130" y2="110" class="candle-line"/>
-<rect x="115" y="30" width="30" height="60" class="candle bull"/>
-
-<line x1="200" y1="10" x2="200" y2="140" class="candle-line"/>
-<rect x="185" y="60" width="30" height="70" class="candle bear"/>
-
-<line x1="270" y1="-20" x2="270" y2="90" class="candle-line"/>
-<rect x="255" y="10" width="30" height="60" class="candle bull"/>
-
-<line x1="340" y1="-30" x2="340" y2="80" class="candle-line"/>
-<rect x="325" y="0" width="30" height="50" class="candle bull"/>
-
-<line x1="410" y1="-10" x2="410" y2="100" class="candle-line"/>
-<rect x="395" y="20" width="30" height="60" class="candle bull"/>
-
-</svg>
-</div>
-
-</div>
-</section>
-
-<div class="footer">
-© <span id="yr"></span> DGO Capital. Todos los derechos reservados.
-</div>
-
-</div>
-
 <script>
-document.getElementById('yr').textContent = new Date().getFullYear();
+  document.getElementById('yr').textContent = new Date().getFullYear();
 </script>
-
 </body>
 </html>
