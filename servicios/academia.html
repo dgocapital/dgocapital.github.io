@@ -86,7 +86,6 @@
     .course-tag::before{ content:"◈"; font-size:.7rem; }
     .course-title{
       margin:0;
-      
       font-size:clamp(1.5rem, 1.2rem + 2.8vw, 2.6rem);
       font-weight:700;
       line-height:1.25;
@@ -112,15 +111,6 @@
       display:block;
       opacity:.85;
     }
-    .course-hero-img .img-placeholder{
-      width:100%; height:100%; min-height:280px;
-      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
-      background:linear-gradient(135deg, #0d1f3d, #112244);
-      color:var(--muted); font-size:.85rem; text-align:center;
-      border-left:1px solid #1e3060;
-    }
-    .course-hero-img .img-placeholder .ph-icon{ font-size:2.5rem; opacity:.35; }
-    .course-hero-img .img-placeholder .ph-label{ opacity:.5;  font-size:.75rem; }
     .course-hero-img::after{
       content:'';
       position:absolute; inset:0;
@@ -134,14 +124,13 @@
       margin-bottom:20px;
     }
     .modules-header h2{
-      margin:0; 
+      margin:0;
       font-size:clamp(1rem, 0.8rem + 1vw, 1.3rem);
       color:#fff;
     }
     .modules-header .line{
       flex:1; height:1px; background:linear-gradient(90deg, #1e3060, transparent);
     }
-
     .modules-grid{
       display:grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -169,54 +158,45 @@
       display:block; transition:transform .3s ease;
     }
     .module-card:hover .module-img-wrap img{ transform:scale(1.04); }
-    .module-img-wrap .img-ph{
-      width:100%; height:100%;
-      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
-      background:linear-gradient(135deg, #0a1830, #0d2040);
-      color:var(--muted);
-    }
-    .module-img-wrap .img-ph .ph-icon{ font-size:2rem; opacity:.3; }
-    .module-img-wrap .img-ph .ph-name{
-      
-      font-size:.7rem; opacity:.45; letter-spacing:.05em;
-    }
     .module-img-wrap .module-num{
       position:absolute; top:10px; left:10px;
       background:rgba(10,20,40,.85);
       border:1px solid #1e3a6e;
       color:var(--accent);
-      
       font-size:.7rem; font-weight:700;
       padding:3px 9px; border-radius:6px;
       backdrop-filter:blur(4px);
     }
-    .module-body{
-      padding:16px;
-    }
+    .module-body{ padding:16px; }
     .module-label{
       font-size:.72rem; font-weight:700; letter-spacing:.1em;
       text-transform:uppercase; color:var(--accent);
       margin:0 0 6px;
-      
     }
     .module-topic{
       margin:0; font-size:.95rem; font-weight:600; color:var(--text);
       line-height:1.35;
     }
 
-    /* module section with label */
-    .module-section{
-      margin-bottom:6px;
+    /* ── DESCRIPCION ── */
+    .desc-block{
+      background:linear-gradient(180deg, #111a31, #0c1427);
+      border:1px solid var(--stroke);
+      border-radius:16px;
+      padding: clamp(20px, 3vw, 36px) clamp(20px, 4vw, 48px);
+      box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
     }
-    .module-section-tag{
-      display:inline-block;
-      font-size:.68rem; font-weight:700; letter-spacing:.08em;
-      text-transform:uppercase; color:#6fa8d4;
-      margin-bottom:10px;
-      
+    .desc-block p{
+      margin:0;
+      font-size:clamp(1rem, 0.85rem + 0.6vw, 1.15rem);
+      color:var(--muted);
+      line-height:1.75;
+      max-width:860px;
+      text-align:justify;
     }
-    .topics-list{
-      display:flex; flex-direction:column; gap:10px;
+    .desc-block p strong{
+      color:var(--text);
+      font-weight:600;
     }
 
     /* ── CTA HOTMART ── */
@@ -240,7 +220,6 @@
     .cta-text{ flex:1; min-width:200px; }
     .cta-text h3{
       margin:0 0 6px;
-      
       font-size:clamp(.95rem, 0.7rem + 1vw, 1.2rem);
       color:#fff;
     }
@@ -314,7 +293,6 @@
           <h2>Contenido del Curso</h2>
           <div class="line"></div>
         </div>
-
         <div class="modules-grid">
 
           <!-- MÓDULO I — Tema 1 -->
@@ -438,6 +416,11 @@
           </div>
 
         </div>
+      </div>
+
+      <!-- DESCRIPCIÓN -->
+      <div class="desc-block">
+        <p>Sin importar tu nivel de experiencia, este curso te lleva de la mano desde los <strong>conceptos fundamentales del trading algorítmico</strong> hasta la creación de tu propio robot, paso a paso y con total claridad. Aprenderás a diseñarlo, probarlo con <strong>backtesting</strong>, optimizarlo y dejarlo operando en un <strong>entorno real</strong>.</p>
       </div>
 
       <!-- CTA HOTMART -->
