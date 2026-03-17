@@ -9,147 +9,256 @@
   <meta property="og:description" content="Accesos directos a herramientas clave.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#121828">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --card:#0d1426; --card2:#0a101f; --stroke:#1e2a49;
       --text:#e8eefc; --muted:#9fb0d9; --accent:#38bdf8;
+      --green:#34d399;
     }
-    *{box-sizing:border-box}
+    *{box-sizing:border-box; margin:0; padding:0}
     html,body{height:100%}
     body{
-      margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-family:Inter, ui-sans-serif, system-ui, sans-serif;
       color:var(--text); line-height:1.6;
       background:
         radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
         linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
     }
-    .wrap{width:100%}
+
     .card{
-      min-height:100vh; width:100%; margin:0;
+      min-height:100vh; width:100%;
       padding:28px clamp(16px, 4vw, 40px);
-      border:1px solid var(--stroke); border-radius:0;
-      box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
-      display:flex; flex-direction:column; gap:18px;
-    }
-
-    /* Header */
-    header{display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.06)}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 16px; border-radius:12px; font-weight:700; text-decoration:none;
-      color:#fff; background:linear-gradient(180deg,#1f9be6,#0ea5e9);
-      box-shadow:0 8px 20px rgba(14,165,233,.35); border:0; cursor:pointer; transition:transform .06s ease, box-shadow .2s ease;
-    }
-    .btn.ghost{background:transparent; border:1px solid #28406e; color:var(--text)}
-    .btn:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
-    .btn.small{padding:8px 12px; font-size:.9rem}
-
-    /* Logo header 59px */
-    .brand img, img.brand{
-      height:59px; width:auto; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)
-    }
-
-    h1{margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)}
-    .muted{color:var(--muted); font-size:.95rem}
-
-    /* Panels */
-    .panel{
-      background:linear-gradient(180deg, #111a31, #0c1427);
       border:1px solid var(--stroke);
-      border-radius:16px;
-      padding:16px;
-      box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
+      box-shadow:0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
+      display:flex; flex-direction:column; gap:20px;
     }
 
-    /* Links grid */
-    .links{
-      display:grid; gap:12px;
-      grid-template-columns: repeat(12, 1fr);
+    /* HEADER */
+    header{
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+      padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,.06);
     }
-    .link-card{
-      grid-column: span 4;
-      display:flex; align-items:center; gap:12px;
-      padding:14px; border-radius:14px;
-      background:linear-gradient(180deg,#0f1933,#0a1329);
-      border:1px solid #22407a;
-      box-shadow:0 6px 18px rgba(0,0,0,.28);
+    .btn-back{
+      display:inline-flex; align-items:center;
+      padding:10px 16px; border-radius:12px; font-weight:700;
       text-decoration:none; color:var(--text);
-      transition:transform .06s ease, box-shadow .2s ease, filter .2s ease, border-color .2s ease;
+      background:transparent; border:1px solid #28406e;
+      transition:border-color .2s, background .2s;
     }
-    .link-card:hover{filter:brightness(1.05); box-shadow:0 10px 28px rgba(56,189,248,.18); border-color:#31528a}
-    .link-card .logo{
-      width:44px; height:44px; border-radius:10px; display:grid; place-items:center;
-      background:#0e162c; border:1px solid #1d2947; overflow:hidden;
+    .btn-back:hover{ background:rgba(255,255,255,.04); border-color:#3a5a9a; }
+    .header-text h1{
+      font-size:clamp(1.4rem, 1rem + 2vw, 2.2rem);
+      font-weight:700; color:#fff;
     }
-    .link-card .logo img{width:100%; height:100%; object-fit:contain; display:block}
-    .link-card .meta{display:flex; flex-direction:column}
-    .link-card .meta strong{font-size:1.02rem; letter-spacing:.2px}
-    .link-card .meta span{font-size:.9rem; color:var(--muted)}
+    .header-text .sub{ color:var(--muted); font-size:.9rem; margin-top:2px; }
 
-    @media (max-width: 1024px){ .link-card{grid-column: span 6} }
-    @media (max-width: 680px){ .link-card{grid-column: span 12} }
+    /* INTRO PANEL */
+    .intro-panel{
+      background:linear-gradient(135deg, #0c1829 0%, #0f2040 50%, #091520 100%);
+      border:1px solid #1e3060; border-radius:16px;
+      padding: clamp(20px, 3vw, 36px) clamp(20px, 4vw, 44px);
+      position:relative; overflow:hidden;
+    }
+    .intro-panel::before{
+      content:'';
+      position:absolute; top:-80px; right:-80px;
+      width:300px; height:300px;
+      background:radial-gradient(circle, rgba(56,189,248,.06) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .intro-tag{
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(56,189,248,.12); border:1px solid rgba(56,189,248,.25);
+      color:var(--accent); font-size:.78rem; font-weight:700;
+      letter-spacing:.08em; text-transform:uppercase;
+      padding:4px 12px; border-radius:99px; margin-bottom:14px;
+    }
+    .intro-tag::before{ content:"◈"; font-size:.7rem; }
+    .intro-panel p{
+      font-size:clamp(.95rem, .85rem + .4vw, 1.08rem);
+      color:var(--muted); line-height:1.8;
+      text-align:justify; max-width:820px;
+    }
+    .intro-panel p strong{ color:var(--text); font-weight:600; }
 
+    /* SECTION PANEL */
+    .section-panel{
+      background:linear-gradient(180deg, #111a31, #0c1427);
+      border:1px solid var(--stroke); border-radius:16px; padding:24px;
+      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
+    }
+    .section-header{
+      display:flex; align-items:center; gap:10px; margin-bottom:20px;
+    }
+    .section-header h2{
+      font-size:1.1rem; font-weight:700; color:#fff; white-space:nowrap;
+    }
+    .section-header .line{
+      flex:1; height:1px;
+      background:linear-gradient(90deg, #1e3060, transparent);
+    }
+    .section-header .badge{
+      font-size:.72rem; font-weight:700; letter-spacing:.08em;
+      text-transform:uppercase; color:var(--accent);
+      background:rgba(56,189,248,.1); border:1px solid rgba(56,189,248,.2);
+      padding:3px 10px; border-radius:99px; white-space:nowrap;
+    }
+
+    /* TOOLS GRID */
+    .tools-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+      gap:14px;
+    }
+    .tool-card{
+      display:flex; align-items:center; gap:14px;
+      padding:16px; border-radius:14px;
+      background:linear-gradient(160deg, #0f1e38, #0a1428);
+      border:1px solid #1a2d50;
+      text-decoration:none; color:var(--text);
+      transition:transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+      position:relative; overflow:hidden;
+    }
+    .tool-card::before{
+      content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+      background:var(--accent); border-radius:3px 0 0 3px;
+      transform:scaleY(0); transition:transform .2s ease;
+    }
+    .tool-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 28px rgba(0,0,0,.35);
+      border-color:#2a4a80;
+    }
+    .tool-card:hover::before{ transform:scaleY(1); }
+
+    .tool-logo{
+      width:48px; height:48px; border-radius:11px; flex-shrink:0;
+      display:grid; place-items:center;
+      background:#0b1424; border:1px solid #1d2947; overflow:hidden;
+    }
+    .tool-logo img{
+      width:100%; height:100%; object-fit:contain; display:block;
+    }
+    .tool-meta{ display:flex; flex-direction:column; gap:2px; flex:1; min-width:0; }
+    .tool-meta strong{
+      font-size:.98rem; font-weight:700; color:#fff; letter-spacing:.1px;
+    }
+    .tool-meta span{ font-size:.85rem; color:var(--muted); }
+    .tool-arrow{
+      color:var(--accent); opacity:.4; font-size:1.1rem; font-weight:700;
+      flex-shrink:0; transition:opacity .2s, transform .2s;
+    }
+    .tool-card:hover .tool-arrow{ opacity:1; transform:translateX(3px); }
+
+    /* COMING SOON */
+    .coming-panel{
+      background:linear-gradient(160deg, #0d1830, #0a1225);
+      border:1px solid #1a2d50; border-radius:16px;
+      padding:28px 24px;
+      display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+    }
+    .coming-icon{
+      font-size:2rem; opacity:.4; flex-shrink:0;
+    }
+    .coming-text h3{
+      font-size:1rem; font-weight:700; color:#fff; margin-bottom:4px;
+    }
+    .coming-text p{
+      font-size:.875rem; color:var(--muted); margin:0;
+    }
+
+    /* FOOTER */
     .footer{
       margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
       padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
     }
+
+    @media(max-width:560px){
+      .tools-grid{ grid-template-columns:1fr; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
+<div class="card">
 
-      <!-- Header -->
-      <header>
-        <a href="../index.html" class="btn ghost" aria-label="Volver al inicio">← Volver</a>
-        <img src="../logo.png" alt="Logo DGO Capital" class="brand">
-        <div>
-          <h1>Sistemas de Apoyo</h1>
-          <div class="muted">Accesos directos y recursos para ejecutar con claridad</div>
+  <!-- HEADER -->
+  <header>
+    <a href="../index.html" class="btn-back">← Volver</a>
+    <img src="../logo.png" alt="Logo DGO Capital"
+      style="height:59px; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)">
+    <div class="header-text">
+      <h1>Sistemas de Apoyo</h1>
+      <div class="sub">Accesos directos y recursos para ejecutar con claridad</div>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <div class="intro-panel">
+    <div class="intro-tag">Recursos</div>
+    <p>
+      Un proceso operativo sólido requiere las <strong>herramientas correctas</strong>. Aquí centralizamos accesos directos a <strong>plataformas clave</strong>.
+    </p>
+  </div>
+
+  <!-- HERRAMIENTAS -->
+  <div class="section-panel">
+    <div class="section-header">
+      <h2>Herramientas</h2>
+      <div class="line"></div>
+      <span class="badge">4 disponibles</span>
+    </div>
+
+    <div class="tools-grid">
+
+      <a class="tool-card" href="https://www.forexfactory.com/calendar" target="_blank" rel="noopener">
+        <div class="tool-logo"><img src="./forexfactory.png" alt="ForexFactory"></div>
+        <div class="tool-meta">
+          <strong>ForexFactory</strong>
+          <span>Calendario económico</span>
         </div>
-      </header>
+        <span class="tool-arrow">›</span>
+      </a>
 
-      <!-- Herramientas -->
-      <section class="panel" aria-labelledby="tools-title">
-        <h2 id="tools-title" style="margin:0 0 10px">Herramientas</h2>
-
-        <div class="links">
-          <a class="link-card" href="https://www.forexfactory.com/calendar" target="_blank" rel="noopener" aria-label="Abrir ForexFactory Calendar">
-            <div class="logo"><img src="./forexfactory.png" alt="ForexFactory Logo"></div>
-            <div class="meta"><strong>ForexFactory</strong><span>Calendario económico</span></div>
-          </a>
-
-          <a class="link-card" href="https://es.tradingview.com/" target="_blank" rel="noopener" aria-label="Abrir TradingView">
-            <div class="logo"><img src="./tradingview.png" alt="TradingView Logo"></div>
-            <div class="meta"><strong>TradingView</strong><span>Gráficos y análisis</span></div>
-          </a>
-          
-          <a class="link-card" href="https://www.fxvps.pro/" target="_blank" rel="noopener" aria-label="Abrir Fxvps">
-            <div class="logo"><img src="./fxvps.png" alt="Fxvps Logo"></div>
-            <div class="meta"><strong>Fxvps</strong><span>Servicio de servidores virtuales</span></div>
-          </a>
-
-          <a class="link-card" href="https://www.metatrader5.com/es" target="_blank" rel="noopener" aria-label="Abrir MetaTrader 5">
-            <div class="logo"><img src="./metatrader5.png" alt="MetaTrader 5 Logo"></div>
-            <div class="meta"><strong>MetaTrader 5</strong><span>Plataforma de ejecución</span></div>
-          </a>
+      <a class="tool-card" href="https://es.tradingview.com/" target="_blank" rel="noopener">
+        <div class="tool-logo"><img src="./tradingview.png" alt="TradingView"></div>
+        <div class="tool-meta">
+          <strong>TradingView</strong>
+          <span>Gráficos y análisis</span>
         </div>
-      </section>
+        <span class="tool-arrow">›</span>
+      </a>
 
-      <div class="footer">
-        © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
-      </div>
+      <a class="tool-card" href="https://www.fxvps.pro/" target="_blank" rel="noopener">
+        <div class="tool-logo"><img src="./fxvps.png" alt="Fxvps"></div>
+        <div class="tool-meta">
+          <strong>Fxvps</strong>
+          <span>Servidores virtuales</span>
+        </div>
+        <span class="tool-arrow">›</span>
+      </a>
+
+      <a class="tool-card" href="https://www.metatrader5.com/es" target="_blank" rel="noopener">
+        <div class="tool-logo"><img src="./metatrader5.png" alt="MetaTrader 5"></div>
+        <div class="tool-meta">
+          <strong>MetaTrader 5</strong>
+          <span>Plataforma de ejecución</span>
+        </div>
+        <span class="tool-arrow">›</span>
+      </a>
 
     </div>
   </div>
 
-  <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-  </script>
+  <div class="footer">
+    © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
+  </div>
+
+</div>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
