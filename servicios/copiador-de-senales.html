@@ -9,231 +9,300 @@
   <meta property="og:description" content="Replica operaciones con un software robusto y sencillo de usar.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#121828">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --card:#0d1426; --card2:#0a101f; --stroke:#1e2a49;
       --text:#e8eefc; --muted:#9fb0d9; --accent:#38bdf8;
+      --green:#34d399;
     }
-    *{box-sizing:border-box}
+    *{box-sizing:border-box; margin:0; padding:0}
     html,body{height:100%}
     body{
-      margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-family:Inter, ui-sans-serif, system-ui, sans-serif;
       color:var(--text); line-height:1.6;
       background:
         radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
         linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
     }
-    .wrap{width:100%}
+
     .card{
-      min-height:100vh; width:100%; margin:0;
+      min-height:100vh; width:100%;
       padding:28px clamp(16px, 4vw, 40px);
-      border:1px solid var(--stroke); border-radius:0;
-      box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
+      border:1px solid var(--stroke);
+      box-shadow:0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
       display:flex; flex-direction:column; gap:20px;
     }
 
-    /* Header */
+    /* HEADER */
     header{
-      display:flex; align-items:center; gap:14px; flex-wrap:wrap;
-      padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,.06)
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+      padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,.06);
     }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
+    .btn-back{
+      display:inline-flex; align-items:center;
       padding:10px 16px; border-radius:12px; font-weight:700;
-      text-decoration:none; color:#fff; border:0; cursor:pointer;
-      background:linear-gradient(180deg,#1f9be6,#0ea5e9);
+      text-decoration:none; color:var(--text);
+      background:transparent; border:1px solid #28406e;
+      transition:border-color .2s, background .2s;
+    }
+    .btn-back:hover{ background:rgba(255,255,255,.04); border-color:#3a5a9a; }
+    .header-text h1{
+      font-size:clamp(1.4rem, 1rem + 2vw, 2.2rem);
+      font-weight:700; color:#fff;
+    }
+    .header-text .sub{ color:var(--muted); font-size:.9rem; margin-top:2px; }
+
+    /* HERO GRID */
+    .hero{
+      display:grid;
+      grid-template-columns: minmax(260px, 420px) 1fr;
+      gap:20px; align-items:start;
+    }
+    @media(max-width:860px){ .hero{ grid-template-columns:1fr; } }
+
+    /* IMAGEN */
+    .media-panel{
+      background:linear-gradient(160deg, #0f1e38, #0a1428);
+      border:1px solid #1a2d50;
+      border-radius:16px; padding:16px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .media-panel img{
+      width:100%; height:auto; border-radius:10px;
+      box-shadow:0 8px 32px rgba(0,0,0,.4);
+    }
+
+    /* INFO PANEL */
+    .info-panel{
+      background:linear-gradient(180deg, #111a31, #0c1427);
+      border:1px solid var(--stroke);
+      border-radius:16px; padding:28px;
+      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
+      display:flex; flex-direction:column; gap:20px;
+    }
+    .hero-tag{
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(56,189,248,.12); border:1px solid rgba(56,189,248,.25);
+      color:var(--accent); font-size:.78rem; font-weight:700;
+      letter-spacing:.08em; text-transform:uppercase;
+      padding:4px 12px; border-radius:99px; width:fit-content;
+    }
+    .hero-tag::before{ content:"◈"; font-size:.7rem; }
+    .headline{
+      font-size:clamp(1.05rem, .85rem + .9vw, 1.35rem);
+      font-weight:700; color:#fff; line-height:1.4;
+    }
+
+    /* CHECKLIST */
+    .checklist-title{
+      font-size:.72rem; font-weight:700; letter-spacing:.1em;
+      text-transform:uppercase; color:var(--accent);
+    }
+    .checklist{
+      list-style:none; display:flex; flex-direction:column; gap:10px;
+    }
+    .checklist li{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:12px 14px;
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:12px;
+      font-size:.9rem; color:var(--muted);
+      transition:border-color .2s, background .2s;
+    }
+    .checklist li:hover{
+      background:rgba(56,189,248,.04);
+      border-color:rgba(56,189,248,.2);
+    }
+    .check-icon{
+      flex-shrink:0; width:18px; height:18px;
+      color:var(--green); margin-top:1px;
+    }
+
+    .btn-telegram{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:12px 24px; border-radius:12px; font-weight:700; font-size:.95rem;
+      text-decoration:none; color:#fff; width:fit-content;
+      background:linear-gradient(180deg, #1f9be6, #0ea5e9);
       box-shadow:0 8px 20px rgba(14,165,233,.35);
       transition:transform .06s ease, box-shadow .2s ease;
     }
-    .btn:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
-    .btn.ghost{background:transparent; border:1px solid #28406e; color:var(--text)}
-    .brand{display:flex; align-items:center; gap:12px}
-    .brand img{height:60px; width:auto; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)}
-    h1{margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)}
-    .muted{color:var(--muted); font-size:.95rem}
+    .btn-telegram:hover{ box-shadow:0 12px 28px rgba(14,165,233,.5); transform:translateY(-1px); }
+    .btn-telegram:active{ transform:translateY(1px); }
 
-    /* Panel genérico */
-    .panel{
-      background:linear-gradient(180deg, #111a31, #0c1427);
-      border:1px solid var(--stroke);
+    /* PAGO */
+    .pay-panel{
+      background:linear-gradient(135deg, #0e1f42 0%, #1a3a7a 55%, #1d4ed8 100%);
+      border:1px solid rgba(56,189,248,.3);
       border-radius:16px;
-      padding:18px;
-      box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
+      padding: clamp(20px, 3vw, 36px) clamp(20px, 4vw, 48px);
+      box-shadow:0 0 0 1px rgba(255,255,255,.03) inset, 0 20px 45px rgba(37,99,235,.2);
+      display:flex; flex-direction:column; gap:16px;
+      position:relative; overflow:hidden;
     }
-    .panel h2{margin:0 0 8px}
-    .panel .subtle{margin:0; color:var(--muted)}
-
-    /* Hero layout */
-    .hero{
-      display:grid; gap:18px;
-      grid-template-columns: minmax(260px, 460px) 1fr;
-      align-items:center;
+    .pay-panel::before{
+      content:'';
+      position:absolute; top:-80px; right:-80px;
+      width:260px; height:260px;
+      background:radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 70%);
+      pointer-events:none;
     }
-    @media (max-width: 980px){ .hero{grid-template-columns: 1fr} }
-
-    .media{
-      background:#0e162c; border:1px solid #1d2947; border-radius:14px;
-      padding:14px; display:flex; align-items:center; justify-content:center;
+    .pay-panel h2{
+      font-size:1.15rem; font-weight:700; color:#fff;
+      display:flex; align-items:center; gap:10px;
     }
-    .media img{
-      width:100%; height:auto; max-width:360px; aspect-ratio: 1 / 1; object-fit:contain;
-      border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,.32);
+    .pay-panel h2::after{
+      content:''; flex:1; height:1px;
+      background:linear-gradient(90deg, rgba(56,189,248,.4), transparent);
     }
-
-    .eyebrow{color:var(--muted); font-weight:600; letter-spacing:.4px; text-transform:uppercase; font-size:.8rem}
-    .headline{font-size:clamp(1.2rem, .9rem + 1.2vw, 1.6rem); margin:6px 0 10px; line-height:1.35}
-
-    /* Checklist */
-    .checklist{margin:10px 0 0; padding:0; list-style:none; display:grid; gap:8px}
-    .checklist li{
-      display:flex; gap:10px; align-items:flex-start; padding:8px 10px;
-      background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06); border-radius:10px;
+    .pay-panel .sub-text{
+      color:rgba(255,255,255,.7); font-size:.9rem;
     }
-    .checklist svg{flex:0 0 18px; width:18px; height:18px; opacity:.9}
-    .cta-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:12px}
-
-    /* Pago (bloque derecho removido) */
-    .pay-grid{
-      display:grid; gap:14px; grid-template-columns: 1fr;  /* ← una sola columna */
+    .pay-panel h3{
+      font-size:.85rem; font-weight:700; color:rgba(255,255,255,.85);
+      letter-spacing:.04em; text-transform:uppercase;
     }
     .wallet{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      background:#0e162c; border:1px solid #1d2947; border-radius:12px; padding:10px 12px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      word-break: break-all;
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+      background:rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px; padding:12px 16px;
     }
-    .wallet code{opacity:.95}
-    .note{color:var(--muted); font-size:.92rem}
+    .wallet code{
+      font-family:ui-monospace, 'Cascadia Code', monospace;
+      font-size:.88rem; color:#fff; flex:1;
+      word-break:break-all;
+    }
+    .btn-copy{
+      display:inline-flex; align-items:center; gap:6px;
+      padding:8px 16px; border-radius:9px; font-weight:700; font-size:.85rem;
+      color:#fff; border:0; cursor:pointer;
+      background:linear-gradient(180deg, #1f9be6, #0ea5e9);
+      box-shadow:0 4px 14px rgba(14,165,233,.3);
+      transition:transform .06s, box-shadow .2s;
+      white-space:nowrap;
+    }
+    .btn-copy:hover{ box-shadow:0 6px 18px rgba(14,165,233,.45); transform:translateY(-1px); }
+    .btn-copy:active{ transform:translateY(1px); }
+    .copy-confirm{
+      font-size:.8rem; color:var(--green);
+      opacity:0; transition:opacity .3s;
+    }
+    .copy-confirm.show{ opacity:1; }
 
-    /* Footer */
+    /* FOOTER */
     .footer{
       margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
       padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
     }
-
-      /* ===== SOLO MEJORA VISUAL DE LA CAJA AZUL (PAGO) ===== */
-  section[aria-labelledby="pay-title"]{
-    background: linear-gradient(
-      135deg,
-      #162347 0%,
-      #1e3a8a 55%,
-      #2563eb 100%
-    );
-    border: 1px solid rgba(56,189,248,.35);
-    box-shadow:
-      0 0 0 1px rgba(255,255,255,.03) inset,
-      0 20px 45px rgba(37,99,235,.25);
-  }
-  
-  /* Ajuste interno para que armonice */
-  section[aria-labelledby="pay-title"] .wallet{
-    background: rgba(0,0,0,.35);
-    border: 1px solid rgba(255,255,255,.12);
-  }
-  
-  section[aria-labelledby="pay-title"] .subtle{
-    color: rgba(255,255,255,.85);
-  }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
+<div class="card">
 
-      <!-- Header -->
-      <header>
-        <a href="../index.html" class="btn ghost" aria-label="Volver al inicio">← Volver</a>
-        <div class="brand">
-          <img src="../logo.png" alt="Logo DGO Capital">
-          <div>
-            <h1>Software de Copiado</h1>
-            <div class="muted">Replica operaciones de forma consistente y controlada</div>
-          </div>
-        </div>
-      </header>
+  <!-- HEADER -->
+  <header>
+    <a href="../index.html" class="btn-back">← Volver</a>
+    <img src="../logo.png" alt="Logo DGO Capital"
+      style="height:59px; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)">
+    <div class="header-text">
+      <h1>Software de Copiado</h1>
+      <div class="sub">Replica operaciones de forma consistente y controlada</div>
+    </div>
+  </header>
 
-      <!-- HERO -->
-      <section class="panel" aria-labelledby="hero-title">
-        <div class="hero">
-          <div class="media">
-            <img src="./copiador.jpg" alt="Vista del Copiador de Señales">
-          </div>
+  <!-- HERO -->
+  <div class="hero">
 
-          <div>
-            <div class="eyebrow" id="hero-title">DGO Capital — Software de Copiado</div>
-            <p class="headline">
-              Opera todo tu portafolio desde un solo origen, con consistencia y control, para escalar resultados sin multiplicar trabajo.
-            </p>
+    <!-- IMAGEN -->
+    <div class="media-panel">
+      <img src="./copiador.jpg" alt="Vista del Copiador de Señales">
+    </div>
 
-            <h3 style="margin:10px 0 8px">Características</h3>
-            <ul class="checklist">
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1010 10A10.011 10.011 0 0012 2Zm4.3 7.3-5.01 5.01a1 1 0 01-1.42 0l-2.17-2.17a1 1 0 011.42-1.42l1.46 1.46 4.3-4.3A1 1 0 1116.3 9.3Z"/></svg>
-                <span>Stop Loss y Take Profit configurables, trailing stop y cierres parciales disponibles.</span>
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1010 10A10.011 10.011 0 0012 2Zm4.3 7.3-5.01 5.01a1 1 0 01-1.42 0l-2.17-2.17a1 1 0 011.42-1.42l1.46 1.46 4.3-4.3A1 1 0 1116.3 9.3Z"/></svg>
-                <span>Riesgo ajustable por cuenta.</span>
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1010 10A10.011 10.011 0 0012 2Zm4.3 7.3-5.01 5.01a1 1 0 01-1.42 0l-2.17-2.17a1 1 0 011.42-1.42l1.46 1.46 4.3-4.3A1 1 0 1116.3 9.3Z"/></svg>
-                <span>Soporte y acompañamiento en la puesta en marcha.</span>
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1010 10A10.011 10.011 0 0012 2Zm4.3 7.3-5.01 5.01a1 1 0 01-1.42 0l-2.17-2.17a1 1 0 011.42-1.42l1.46 1.46 4.3-4.3A1 1 0 1116.3 9.3Z"/></svg>
-                <span>Garantía de funcionamiento.</span>
-              </li>
-            </ul>
+    <!-- INFO -->
+    <div class="info-panel">
+      <span class="hero-tag">Software</span>
 
-            <div class="cta-row">
-              <a class="btn" href="https://t.me/diegotrader6" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px;margin-right:8px;">
-                  <path fill="currentColor" d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
-                </svg>
-                Soporte por Telegram
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <p class="headline">
+        Opera todo tu portafolio desde un solo origen, con consistencia y control, para escalar resultados sin multiplicar trabajo.
+      </p>
 
-      <!-- Pago -->
-      <section class="panel" aria-labelledby="pay-title">
-        <div class="pay-grid">
-          <div>
-            <h2 id="pay-title" style="margin:0 0 4px">Pago</h2>
-            <p class="subtle">Aceptamos USDT.</p>
-
-            <h3 style="margin:14px 0 6px">USDT (TRC20)</h3>
-            <div class="wallet">
-              <code id="wallet">TSMsg3noEr7uVbSX18vihq37Brc2jPLE1z</code>
-              <button class="btn" onclick="copyWallet()">Copiar</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <div class="footer">
-        © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
+      <div>
+        <p class="checklist-title" style="margin-bottom:10px;">Características</p>
+        <ul class="checklist">
+          <li>
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            <span>Stop Loss y Take Profit configurables, trailing stop y cierres parciales disponibles.</span>
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            <span>Riesgo ajustable por cuenta.</span>
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            <span>Soporte y acompañamiento en la puesta en marcha.</span>
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            <span>Garantía de funcionamiento.</span>
+          </li>
+        </ul>
       </div>
 
+      <a class="btn-telegram" href="https://t.me/diegotrader6" target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="white">
+          <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
+        </svg>
+        Soporte por Telegram
+      </a>
     </div>
   </div>
 
-  <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-    function copyWallet(){
-      const t = document.getElementById('wallet').innerText.trim();
-      navigator.clipboard.writeText(t)
-        .then(()=>alert('Wallet copiada'))
-        .catch(()=>alert('No se pudo copiar'));
-    }
-  </script>
+  <!-- PAGO -->
+  <div class="pay-panel">
+    <h2>Pago</h2>
+    <p class="sub-text">Aceptamos USDT para el pago del servicio.</p>
+    <h3>USDT · Red TRC20</h3>
+    <div class="wallet">
+      <code id="wallet">TSMsg3noEr7uVbSX18vihq37Brc2jPLE1z</code>
+      <button class="btn-copy" onclick="copyWallet()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+        </svg>
+        Copiar
+      </button>
+    </div>
+    <span class="copy-confirm" id="copy-confirm">✓ Wallet copiada</span>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
+  </div>
+
+</div>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  function copyWallet(){
+    const t = document.getElementById('wallet').innerText.trim();
+    const confirm = document.getElementById('copy-confirm');
+    navigator.clipboard.writeText(t).then(()=>{
+      confirm.classList.add('show');
+      setTimeout(()=> confirm.classList.remove('show'), 2500);
+    }).catch(()=> alert('No se pudo copiar'));
+  }
+</script>
 </body>
 </html>
