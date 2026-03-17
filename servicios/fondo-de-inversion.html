@@ -4,240 +4,293 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DGO Capital — Modelo de Inversión por Replicación</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-
   <style>
     :root{
-      --bg:#0b1c2d;
-      --panel-blue:#3b82f6;
-      --panel-blue-soft:#143a5f;
-      --panel-green:#34d399;
-      --panel-green-soft:#145a43;
-      --panel-yellow:#FFD966;
-      --panel-yellow-soft:#5a4b1a;
-
-      --text:#eaf2ff;
-      --text-dark:#0b1c2d;
-      --muted:#b6c8e6;
-
-      --blue:#4da3ff;
-      --green:#3ddc97;
-      --yellow:#d8b45a;
+      --card:#0d1426; --card2:#0a101f; --stroke:#1e2a49;
+      --text:#e8eefc; --muted:#9fb0d9; --accent:#38bdf8;
+      --green:#34d399; --yellow:#fbbf24;
     }
-
-    *{box-sizing:border-box}
-
+    *{box-sizing:border-box; margin:0; padding:0}
+    html,body{height:100%}
     body{
-      margin:0;
-      font-family:Inter, system-ui, sans-serif;
-      background:linear-gradient(180deg,#0b1c2d,#071524);
-      color:var(--text);
+      font-family:Inter, ui-sans-serif, system-ui, sans-serif;
+      color:var(--text); line-height:1.6;
+      background:
+        radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
+        linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
     }
 
     .card{
-      min-height:100vh;
-      padding:28px clamp(16px,4vw,40px);
-      display:flex;
-      flex-direction:column;
-      gap:20px;
+      min-height:100vh; width:100%;
+      padding:28px clamp(16px, 4vw, 40px);
+      border:1px solid var(--stroke);
+      box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
+      display:flex; flex-direction:column; gap:20px;
     }
 
+    /* HEADER */
     header{
-      display:flex;
-      align-items:center;
-      gap:16px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      padding-bottom:16px;
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+      padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,.06);
     }
-
+    .btn-back{
+      display:inline-flex; align-items:center;
+      padding:10px 16px; border-radius:12px; font-weight:700;
+      text-decoration:none; color:var(--text);
+      background:transparent; border:1px solid #28406e;
+      transition:border-color .2s, background .2s;
+    }
+    .btn-back:hover{ background:rgba(255,255,255,.04); border-color:#3a5a9a; }
     h1{
       margin:0;
-      font-size:clamp(2rem,1.5rem+2vw,2.6rem);
+      font-size:clamp(1.4rem, 1rem + 2vw, 2.2rem);
+      font-weight:700; color:#fff;
     }
 
-    h2{
-      margin:0;
-      font-size:1.35rem;
-    }
-
-    .muted{color:var(--muted)}
-
-    .btn{
-      padding:10px 16px;
-      border-radius:12px;
-      text-decoration:none;
-      font-weight:700;
-      background:transparent;
-      border:1px solid #2a4f7a;
-      color:var(--text);
-    }
-
+    /* HERO */
     .hero{
-      width:100%;
-      font-size:1.05rem;
-      line-height:1.7;
+      background:linear-gradient(135deg, #0c1829 0%, #0f2040 50%, #091520 100%);
+      border:1px solid #1e3060;
+      border-radius:16px;
+      padding: clamp(24px, 4vw, 44px);
+      position:relative; overflow:hidden;
     }
+    .hero::before{
+      content:'';
+      position:absolute; top:-80px; right:-80px;
+      width:300px; height:300px;
+      background:radial-gradient(circle, rgba(56,189,248,.07) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .hero-tag{
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(56,189,248,.12); border:1px solid rgba(56,189,248,.25);
+      color:var(--accent); font-size:.78rem; font-weight:700;
+      letter-spacing:.08em; text-transform:uppercase;
+      padding:4px 12px; border-radius:99px; margin-bottom:14px;
+    }
+    .hero-tag::before{ content:"◈"; font-size:.7rem; }
+    .hero p{
+      font-size:clamp(1rem, 0.85rem + 0.6vw, 1.15rem);
+      color:var(--muted); line-height:1.75; max-width:780px;
+      text-align:justify;
+    }
+    .hero p strong{ color:var(--text); font-weight:600; }
 
     /* PANELS SUPERIORES */
-    .grid{
+    .grid-3{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:22px;
+      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+      gap:16px;
     }
-
-    .panel{
-      border-radius:18px;
-      padding:24px;
-      box-shadow:0 14px 40px rgba(0,0,0,.35);
-      display:grid;
-      gap:12px;
+    .feat-card{
+      border-radius:16px; padding:24px;
+      border:1px solid var(--stroke);
+      background:linear-gradient(160deg, #0f1e38, #0a1428);
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+      display:flex; flex-direction:column; gap:10px;
+      transition:transform .2s, box-shadow .2s, border-color .2s;
+      position:relative; overflow:hidden;
     }
-
-    .panel.blue{
-      background:linear-gradient(180deg,var(--panel-blue-soft),var(--panel-blue));
-      border:1px solid #295b8f;
+    .feat-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 16px 40px rgba(0,0,0,.35);
     }
-
-    .panel.green{
-      background:linear-gradient(180deg,var(--panel-green-soft),var(--panel-green));
-      border:1px solid #2e7d5c;
+    .feat-card::before{
+      content:'';
+      position:absolute; top:0; left:0; right:0; height:3px;
+      border-radius:16px 16px 0 0;
     }
+    .feat-card.blue::before{ background:linear-gradient(90deg, var(--accent), #0ea5e9); }
+    .feat-card.blue{ border-top-color:rgba(56,189,248,.3); }
+    .feat-card.blue:hover{ border-color:rgba(56,189,248,.4); }
+    .feat-card.yellow::before{ background:linear-gradient(90deg, var(--yellow), #f59e0b); }
+    .feat-card.yellow{ border-top-color:rgba(251,191,36,.3); }
+    .feat-card.yellow:hover{ border-color:rgba(251,191,36,.4); }
+    .feat-card.green::before{ background:linear-gradient(90deg, var(--green), #10b981); }
+    .feat-card.green{ border-top-color:rgba(52,211,153,.3); }
+    .feat-card.green:hover{ border-color:rgba(52,211,153,.4); }
 
-    .panel.yellow{
-      background:linear-gradient(180deg,var(--panel-yellow-soft),var(--panel-yellow));
-      border:1px solid #9c8442;
+    .feat-icon{
+      font-size:1.6rem; margin-bottom:2px;
+    }
+    .feat-card h2{
+      font-size:1.05rem; font-weight:700; color:#fff;
+    }
+    .feat-card p{
+      font-size:.9rem; color:var(--muted); line-height:1.6;
     }
 
     /* COMO FUNCIONA */
-    .section-how{
-      margin-top:10px; /* 👈 AJUSTE CLAVE */
+    .section-panel{
+      background:linear-gradient(180deg, #111a31, #0c1427);
+      border:1px solid var(--stroke);
+      border-radius:16px; padding:28px;
+      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
     }
-
-    .section-how h2{
-      margin-bottom:24px;
+    .section-panel h2{
+      font-size:1.2rem; font-weight:700; color:#fff;
+      margin-bottom:20px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .section-panel h2::after{
+      content:''; flex:1; height:1px;
+      background:linear-gradient(90deg, #1e3060, transparent);
     }
 
     .steps{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:20px;
+      grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+      gap:14px;
     }
-
     .step{
-      background:linear-gradient(180deg,#ffffff,#eef4fb);
-      color:var(--text-dark);
+      background:linear-gradient(160deg, #0f1e38, #0a1428);
+      border:1px solid #1a2d50;
+      border-radius:14px; padding:20px;
+      display:flex; flex-direction:column; gap:8px;
+      position:relative; overflow:hidden;
+      transition:border-color .2s, transform .2s;
+    }
+    .step:hover{ border-color:#2a4a80; transform:translateY(-2px); }
+    .step-num{
+      font-size:.72rem; font-weight:700; letter-spacing:.1em;
+      text-transform:uppercase; color:var(--accent);
+    }
+    .step strong{
+      font-size:.95rem; font-weight:700; color:#fff;
+    }
+    .step span{
+      font-size:.875rem; color:var(--muted); line-height:1.5;
+    }
+
+    /* MODELO DE SERVICIO */
+    .service-panel{
+      background:linear-gradient(135deg, #0c1e3a 0%, #0f2545 60%, #091a30 100%);
+      border:1px solid #1e3a6e;
       border-radius:16px;
-      padding:20px;
-      box-shadow:0 10px 30px rgba(0,0,0,.18);
-      display:grid;
-      gap:8px;
-      border-top:4px solid var(--blue);
+      padding: clamp(20px, 3vw, 36px) clamp(20px, 4vw, 48px);
+      box-shadow:0 0 0 1px rgba(56,189,248,.05) inset, 0 12px 40px rgba(0,0,0,.3);
+      position:relative; overflow:hidden;
     }
-
-    .panel.white{
-      background:#f5f8fc;
-      color:var(--text-dark);
-      border-radius:18px;
-      padding:28px;
-      box-shadow:0 12px 32px rgba(0,0,0,.25);
+    .service-panel::before{
+      content:'';
+      position:absolute; top:-60px; right:-60px;
+      width:220px; height:220px;
+      background:radial-gradient(circle, rgba(56,189,248,.07) 0%, transparent 70%);
+      pointer-events:none;
     }
+    .service-panel h2{
+      font-size:1.2rem; font-weight:700; color:#fff;
+      margin-bottom:12px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .service-panel h2::after{
+      content:''; flex:1; height:1px;
+      background:linear-gradient(90deg, #1e3a6e, transparent);
+    }
+    .service-panel p{
+      font-size:clamp(.95rem, 0.85rem + 0.4vw, 1.05rem);
+      color:var(--muted); line-height:1.75;
+      text-align:justify;
+    }
+    .service-panel p strong{ color:var(--text); font-weight:600; }
 
+    /* FOOTER */
     .footer{
-      margin-top:auto;
-      text-align:center;
-      font-size:.85rem;
-      color:var(--muted);
-      border-top:1px solid rgba(255,255,255,.08);
-      padding-top:14px;
+      margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
+      padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
+    }
+
+    @media(max-width:500px){
+      .steps{ grid-template-columns:1fr; }
     }
   </style>
 </head>
-
 <body>
 <div class="card">
 
+  <!-- HEADER -->
   <header>
-    <a href="../index.html" class="btn">← Volver</a>
-    <img src="../logo.png" alt="DGO Capital" style="height:56px;border-radius:12px">
+    <a href="../index.html" class="btn-back">← Volver</a>
+    <img src="../logo.png" alt="DGO Capital"
+      style="height:59px; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)">
     <h1>Modelo de Inversión por Replicación</h1>
   </header>
 
-  <section class="hero muted">
-    Acceso estructurado a estrategias algorítmicas automatizadas,
-    replicadas directamente en cuentas individuales,
-    sin custodia del capital y con control total del inversor.
-  </section>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">Servicio</div>
+    <p>
+      Acceso estructurado a <strong>estrategias algorítmicas automatizadas</strong>,
+      replicadas directamente en cuentas individuales,
+      sin custodia del capital y con <strong>control total del inversor</strong>.
+    </p>
+  </div>
 
-  <section class="grid">
-    <div class="panel blue">
+  <!-- 3 FEATURES -->
+  <div class="grid-3">
+    <div class="feat-card blue">
+      <div class="feat-icon">🔒</div>
       <h2>Control del capital</h2>
-      <p>
-        El capital permanece siempre en la cuenta del cliente,
-        sin transferencias ni custodia externa.
-      </p>
+      <p>El capital permanece siempre en la cuenta del cliente, sin transferencias ni custodia externa.</p>
     </div>
-
-    <div class="panel yellow">
+    <div class="feat-card yellow">
+      <div class="feat-icon">⚙️</div>
       <h2>Ejecución algorítmica</h2>
-      <p>
-        Estrategias automatizadas basadas en reglas objetivas
-        y ejecución sistemática.
-      </p>
+      <p>Estrategias automatizadas basadas en reglas objetivas y ejecución sistemática.</p>
     </div>
-
-    <div class="panel green">
+    <div class="feat-card green">
+      <div class="feat-icon">📡</div>
       <h2>Replicación transparente</h2>
-      <p>
-        Operaciones replicadas automáticamente
-        y visibles en tiempo real.
-      </p>
+      <p>Operaciones replicadas automáticamente y visibles en tiempo real.</p>
     </div>
-  </section>
+  </div>
 
-  <section class="section-how">
+  <!-- COMO FUNCIONA -->
+  <div class="section-panel">
     <h2>Cómo funciona</h2>
-
     <div class="steps">
       <div class="step">
+        <span class="step-num">Paso 01</span>
         <strong>Cuenta individual</strong>
         <span>Cuenta propia del cliente en broker compatible.</span>
       </div>
-
       <div class="step">
+        <span class="step-num">Paso 02</span>
         <strong>Activación</strong>
         <span>Conexión autorizada a la estrategia seleccionada.</span>
       </div>
-
       <div class="step">
+        <span class="step-num">Paso 03</span>
         <strong>Replicación</strong>
         <span>Ejecución automática bajo parámetros definidos.</span>
       </div>
-
       <div class="step">
+        <span class="step-num">Paso 04</span>
         <strong>Control</strong>
         <span>El servicio puede cancelarse en cualquier momento.</span>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="panel white">
+  <!-- MODELO DE SERVICIO -->
+  <div class="service-panel">
     <h2>Modelo de servicio</h2>
     <p>
-      El acceso se ofrece bajo un esquema de cobro por servicio,
-      que incluye el uso de la estrategia, infraestructura tecnológica
+      El acceso se ofrece bajo un esquema de <strong>cobro por servicio</strong>,
+      que incluye el uso de la estrategia, <strong>infraestructura tecnológica</strong>
       y soporte operativo.
     </p>
-  </section>
+  </div>
 
   <div class="footer">
     © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
   </div>
 
 </div>
-
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
 </script>
