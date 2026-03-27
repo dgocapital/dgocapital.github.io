@@ -50,28 +50,28 @@
       position:relative;
       display:flex; align-items:center; justify-content:space-between;
       gap:16px; flex-wrap:wrap;
-      padding-bottom:12px;
-      border-bottom:1px solid rgba(255,255,255,.06);
+      padding:16px;
+      background:#000;
+      border:1px solid var(--stroke);
+      border-radius:16px;
+      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.35);
     }
-    .brand{ display:flex; align-items:center; gap:14px; }
+    .brand{ display:flex; align-items:flex-start; }
+    .brand-logo-wrap{
+      display:flex; flex-direction:column; align-items:flex-start; gap:6px;
+    }
     .brand img{
       height:160px; width:auto; border-radius:14px;
       box-shadow:0 4px 24px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.05);
       transition:box-shadow .3s;
     }
     .brand img:hover{ box-shadow:0 8px 32px rgba(56,189,248,.2), 0 0 0 1px rgba(56,189,248,.15); }
-    .brand-text h1{
-      margin:0;
-      font-size:clamp(1.8rem, 1.2rem + 2.4vw, 3rem);
-      letter-spacing:.2px;
-      background:linear-gradient(135deg, #ffffff 40%, #a8d4f5 100%);
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-    }
-    .brand-text .muted{ color:var(--muted); font-size:.95rem; margin-top:2px; }
+    .brand .muted{ color:var(--muted); font-size:.95rem; margin:0; }
 
     /* Reloj */
     .utc-clock{
-      position:absolute; right:0; top:-12px; z-index:1000;
+      position:absolute; right:16px; top:50%; transform:translateY(-50%);
+      z-index:1000;
       display:inline-flex; align-items:center; gap:6px;
       padding:5px 12px; border-radius:999px; font-weight:700; font-size:.76rem;
       letter-spacing:.2px; background:#0b1326; color:#8fb3ff;
@@ -287,7 +287,7 @@
       .side-menu{ order:11; }
       .card > footer{ order:99; margin-top:12px; }
       #pepper-copy{ order:3; }
-      .utc-clock{ right:0; top:-24px; }
+      .utc-clock{ position:static; transform:none; margin-left:auto; }
     }
     @media(max-width:820px){
       .brand img{ height:86px; }
@@ -301,10 +301,9 @@
   <!-- HEADER -->
   <header>
     <div class="brand">
-      <img src="logo.png" alt="Logo DGO Capital">
-      <div class="brand-text">
-        <h1>DGO Capital</h1>
-        <div class="muted">Certeza en el proceso</div>
+      <div class="brand-logo-wrap">
+        <img src="logo.png" alt="Logo DGO Capital">
+        <span class="muted">Certeza en el proceso</span>
       </div>
     </div>
     <div class="utc-clock" aria-label="Hora local">
@@ -444,7 +443,6 @@
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
 
-  /* Escala el banner */
   (function(){
     function scaleAd(){
       var s = document.querySelector('#desarrollos .ad-sizer');
@@ -459,7 +457,6 @@
     window.addEventListener('resize', scaleAd);
   })();
 
-  /* Reloj local */
   (function(){
     var elLoc = document.getElementById('loc-time');
     var elTz  = document.getElementById('loc-tz');
