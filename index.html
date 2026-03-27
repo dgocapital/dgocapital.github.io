@@ -58,7 +58,7 @@
     }
     .brand{ display:flex; align-items:flex-start; }
     .brand-logo-wrap{
-      display:flex; flex-direction:column; align-items:flex-start; gap:6px;
+      display:flex; flex-direction:column; align-items:center; gap:6px;
     }
     .brand img{
       height:160px; width:auto; border-radius:14px;
@@ -70,7 +70,7 @@
 
     /* Reloj */
     .utc-clock{
-      position:absolute; right:16px; top:50%; transform:translateY(-50%);
+      position:fixed; right:calc(clamp(16px, 4vw, 40px) + 2px); top:6px;
       z-index:1000;
       display:inline-flex; align-items:center; gap:6px;
       padding:5px 12px; border-radius:999px; font-weight:700; font-size:.76rem;
@@ -298,6 +298,11 @@
 <div class="wrap">
 <div class="card">
 
+  <!-- RELOJ -->
+  <div class="utc-clock" aria-label="Hora local">
+    <span id="loc-time">--:--:--</span> <span id="loc-tz">UTC±00</span>
+  </div>
+
   <!-- HEADER -->
   <header>
     <div class="brand">
@@ -305,9 +310,6 @@
         <img src="logo.png" alt="Logo DGO Capital">
         <span class="muted">Certeza en el proceso</span>
       </div>
-    </div>
-    <div class="utc-clock" aria-label="Hora local">
-      <span id="loc-time">--:--:--</span> <span id="loc-tz">UTC±00</span>
     </div>
   </header>
 
