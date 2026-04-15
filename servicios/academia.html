@@ -8,437 +8,537 @@
   <meta property="og:title" content="DGO Capital — Academia">
   <meta property="og:description" content="Arquitectura de Estrategias de Trading Algorítmico mediante Inteligencia Artificial.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#121828">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/x-icon" href="../icon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --card:#0d1426; --card2:#0a101f; --stroke:#1e2a49;
-      --text:#e8eefc; --muted:#9fb0d9; --accent:#38bdf8;
+    :root {
+      --navy:   #0d2550;
+      --blue:   #1a56db;
+      --bg:     linear-gradient(160deg, #daeaf7 0%, #eef4fb 40%, #ffffff 100%);
+      --white:  #ffffff;
+      --border: #d0daea;
+      --text:   #0d1b2e;
+      --muted:  #5a6b87;
+      --muted2: #8a9ab8;
+      --green:  #0ea66e;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--text); line-height:1.6;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(16px,4vw,48px);
+      height: 62px;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .nav-brand img { height: 32px; width: auto; }
+    .nav-brand-name { font-size: 15px; font-weight: 800; color: var(--navy); }
+    .nav-links { display: flex; align-items: center; gap: 2px; }
+    .nav-link {
+      padding: 7px 14px; font-size: 13px; font-weight: 600;
+      color: var(--muted); transition: color .15s, background .15s;
+    }
+    .nav-link:hover { color: var(--navy); background: rgba(13,37,80,.05); }
+    .nav-link.active { color: var(--navy); font-weight: 800; }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .nav-clock {
+      font-size: 11px; font-weight: 700; color: var(--muted);
+      padding: 5px 11px; background: #f0f4f9; border: 1px solid var(--border);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .nav-clock-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink 1.8s ease-in-out infinite; flex-shrink: 0; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+    .btn-ghost {
+      padding: 8px 18px; font-size: 13px; font-weight: 700;
+      border: 1.5px solid var(--border); color: var(--navy); background: var(--white); cursor: pointer; transition: all .15s;
+    }
+    .btn-ghost:hover { border-color: var(--navy); }
+    .btn-solid {
+      padding: 8px 18px; font-size: 13px; font-weight: 700;
+      border: 1.5px solid var(--blue); background: var(--blue); color: #fff; cursor: pointer; transition: all .15s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-solid svg { width: 13px; height: 13px; fill: currentColor; }
+    .btn-solid:hover { background: var(--navy); border-color: var(--navy); }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      padding: 14px clamp(12px,3vw,32px);
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600; color: var(--muted2);
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.6);
+    }
+    .breadcrumb a { color: var(--blue); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb-sep { color: var(--muted2); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: 420px;
+      margin: 0 clamp(12px,3vw,32px);
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
       background:
-        radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
-        linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
+        linear-gradient(to bottom, rgba(8,22,52,.22) 0%, rgba(8,22,52,.50) 40%, rgba(8,22,52,.88) 100%),
+        url('portada.jpg') center/cover no-repeat;
     }
-    .wrap{width:100%}
-    .card{
-      min-height:100vh; width:100%; margin:0;
-      padding:28px clamp(16px, 4vw, 40px);
-      border:1px solid var(--stroke);
-      border-radius:0;
-      box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
-      display:flex; flex-direction:column; gap:18px;
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: clamp(24px,4vw,48px) clamp(24px,5vw,56px) clamp(36px,5vw,52px);
+      max-width: 700px;
+      display: flex; flex-direction: column; gap: 0;
     }
-    header{
-      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
-      padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.06);
+    .hero-logo {
+      width: 110px; height: auto;
+      margin-bottom: 14px;
+      mix-blend-mode: screen;
+      filter: brightness(1.8) contrast(.9);
+      opacity: .92;
     }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 16px; border-radius:12px; font-weight:700;
-      text-decoration:none; color:#fff; background:linear-gradient(180deg,#1f9be6,#0ea5e9);
-      box-shadow:0 8px 20px rgba(14,165,233,.35); transition:transform .06s ease, box-shadow .2s ease;
-      border:0; cursor:pointer;
+    .hero-tagline {
+      font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 14px;
     }
-    .btn.ghost{background:transparent; border:1px solid #28406e; color:var(--text)}
-    .btn:active{transform:translateY(1px); box-shadow:0 4px 12px rgba(14,165,233,.25)}
-    .panel{
-      background:linear-gradient(180deg, #111a31, #0c1427);
-      border:1px solid var(--stroke);
-      border-radius:16px;
-      padding:24px;
-      box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
+    .hero-title {
+      font-size: clamp(1.9rem, 1rem + 3.5vw, 3.4rem);
+      font-weight: 900; line-height: 1.06; letter-spacing: -.02em;
+      color: #fff; margin-bottom: 14px;
     }
+    .hero-title span { color: #7dbfff; }
+    .hero-sub {
+      font-size: clamp(13px,.7vw+11px,16px); font-weight: 400;
+      color: rgba(255,255,255,.65); line-height: 1.7; max-width: 500px; margin-bottom: 28px;
+    }
+    .hero-meta {
+      display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 28px;
+    }
+    .hero-meta-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 700; color: rgba(255,255,255,.7);
+    }
+    .hero-meta-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-hero-p {
+      padding: 13px 26px; font-size: 14px; font-weight: 800;
+      background: var(--blue); color: #fff; border: 2px solid var(--blue); cursor: pointer; transition: all .15s;
+    }
+    .btn-hero-p:hover { background: #1343b8; border-color: #1343b8; transform: translateY(-1px); }
+    .btn-hero-g {
+      padding: 13px 26px; font-size: 14px; font-weight: 800;
+      background: rgba(255,255,255,.1); color: #fff; border: 2px solid rgba(255,255,255,.3); cursor: pointer; transition: all .15s;
+    }
+    .btn-hero-g:hover { background: rgba(255,255,255,.18); transform: translateY(-1px); }
 
-    /* ── COURSE HERO ── */
-    .course-hero{
-      position:relative; overflow:hidden;
-      border-radius:16px;
-      background:linear-gradient(135deg, #0c1829 0%, #0f2040 50%, #091520 100%);
-      border:1px solid #1e3060;
-      padding:0;
+    /* ── STATS ── */
+    .stats {
+      display: flex; gap: 0;
+      margin: 0 clamp(12px,3vw,32px);
+      border: 1px solid var(--border); border-top: none; background: var(--white);
     }
-    .course-hero-inner{
-      display:grid;
-      grid-template-columns: 1.6fr 1fr;
-      gap:0;
-      min-height:260px;
-    }
-    .course-hero-text{
-      padding: clamp(24px, 4vw, 48px);
-      display:flex; flex-direction:column; justify-content:center; gap:16px;
-      position:relative; z-index:2;
-    }
-    .course-tag{
-      display:inline-flex; align-items:center; gap:6px;
-      background:rgba(56,189,248,.12); border:1px solid rgba(56,189,248,.25);
-      color:var(--accent); font-size:.78rem; font-weight:700;
-      letter-spacing:.08em; text-transform:uppercase;
-      padding:4px 12px; border-radius:99px; width:fit-content;
-    }
-    .course-tag::before{ content:"◈"; font-size:.7rem; }
-    .course-title{
-      margin:0;
-      font-size:clamp(1.5rem, 1.2rem + 2.8vw, 2.6rem);
-      font-weight:700;
-      line-height:1.25;
-      color:#fff;
-      text-shadow: 0 0 40px rgba(56,189,248,.2);
-    }
-    .course-title span{ color:var(--accent); }
-    .course-meta{
-      display:flex; flex-wrap:wrap; gap:16px;
-    }
-    .course-meta-item{
-      display:flex; align-items:center; gap:6px;
-      color:var(--muted); font-size:.85rem;
-    }
-    .course-meta-item .icon{ color:var(--accent); font-size:1rem; }
+    .stat-card { flex: 1; padding: 20px 24px; border-right: 1px solid var(--border); }
+    .stat-card:last-child { border-right: none; }
+    .stat-num { font-size: 24px; font-weight: 900; color: var(--navy); }
+    .stat-lbl { font-size: 12px; color: var(--muted); font-weight: 600; margin-top: 2px; }
 
-    /* portada image side */
-    .course-hero-img{
-      position:relative; overflow:hidden;
+    /* ── SECTION ── */
+    .section { padding: 40px clamp(12px,3vw,32px) 8px; }
+    .sec-eyebrow {
+      font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 5px;
     }
-    .course-hero-img img{
-      width:100%; height:100%; object-fit:cover;
-      display:block;
-      opacity:.85;
-    }
-    .course-hero-img::after{
-      content:'';
-      position:absolute; inset:0;
-      background:linear-gradient(90deg, #0c1829 0%, transparent 30%);
-      pointer-events:none;
-    }
+    .sec-title { font-size: clamp(20px,1.4vw+14px,28px); font-weight: 900; color: var(--navy); margin-bottom: 4px; letter-spacing: -.3px; }
+    .sec-sub   { font-size: 14px; color: var(--muted); margin-bottom: 20px; max-width: 520px; font-weight: 600; }
+    .sec-row   { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
 
-    /* ── MODULES GRID ── */
-    .modules-header{
-      display:flex; align-items:center; gap:12px;
-      margin-bottom:20px;
+    /* ── MODULE CARDS ── */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      padding-bottom: 32px;
     }
-    .modules-header h2{
-      margin:0;
-      font-size:clamp(1rem, 0.8rem + 1vw, 1.3rem);
-      color:#fff;
+    .module-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
     }
-    .modules-header .line{
-      flex:1; height:1px; background:linear-gradient(90deg, #1e3060, transparent);
+    .module-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(13,37,80,.13); }
+    .module-img {
+      position: relative; overflow: hidden;
+      aspect-ratio: 16/9;
+      background: #0d2550;
     }
-    .modules-grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap:16px;
+    .module-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; transition: transform .3s ease;
     }
-    .module-card{
-      background:linear-gradient(160deg, #0f1e38, #0a1428);
-      border:1px solid #1a2d50;
-      border-radius:14px;
-      overflow:hidden;
-      transition: border-color .2s, box-shadow .2s, transform .2s;
+    .module-card:hover .module-img img { transform: scale(1.04); }
+    .module-num {
+      position: absolute; top: 10px; left: 10px;
+      background: var(--navy);
+      color: rgba(255,255,255,.85);
+      font-size: 10px; font-weight: 800; letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 3px 9px;
     }
-    .module-card:hover{
-      border-color:#2a4a80;
-      box-shadow:0 8px 32px rgba(56,189,248,.1);
-      transform:translateY(-2px);
+    .module-body { padding: 16px 18px 18px; }
+    .module-label {
+      font-size: 11px; font-weight: 800; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: 5px;
     }
-    .module-img-wrap{
-      position:relative; overflow:hidden;
-      aspect-ratio:16/9;
-      background:#091520;
-    }
-    .module-img-wrap img{
-      width:100%; height:100%; object-fit:cover;
-      display:block; transition:transform .3s ease;
-    }
-    .module-card:hover .module-img-wrap img{ transform:scale(1.04); }
-    .module-img-wrap .module-num{
-      position:absolute; top:10px; left:10px;
-      background:rgba(10,20,40,.85);
-      border:1px solid #1e3a6e;
-      color:var(--accent);
-      font-size:.7rem; font-weight:700;
-      padding:3px 9px; border-radius:6px;
-      backdrop-filter:blur(4px);
-    }
-    .module-body{ padding:16px; }
-    .module-label{
-      font-size:.72rem; font-weight:700; letter-spacing:.1em;
-      text-transform:uppercase; color:var(--accent);
-      margin:0 0 6px;
-    }
-    .module-topic{
-      margin:0; font-size:.95rem; font-weight:600; color:var(--text);
-      line-height:1.35;
+    .module-topic {
+      font-size: 14px; font-weight: 700; color: var(--navy);
+      line-height: 1.4;
     }
 
     /* ── DESCRIPCION ── */
-    .desc-block{
-      background:linear-gradient(180deg, #111a31, #0c1427);
-      border:1px solid var(--stroke);
-      border-radius:16px;
-      padding: clamp(20px, 3vw, 36px) clamp(20px, 4vw, 48px);
-      box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
+    .desc-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: clamp(20px,3vw,32px) clamp(20px,4vw,40px);
+      margin-bottom: 24px;
     }
-    .desc-block p{
-      margin:0;
-      font-size:clamp(1rem, 0.85rem + 0.6vw, 1.15rem);
-      color:var(--muted);
-      line-height:1.75;
-      text-align:justify;
+    .desc-block p {
+      font-size: clamp(14px,.5vw+12px,16px);
+      color: var(--muted);
+      line-height: 1.8;
     }
-    .desc-block p strong{
-      color:var(--text);
-      font-weight:600;
+    .desc-block p strong {
+      color: var(--navy); font-weight: 800;
     }
 
     /* ── CTA HOTMART ── */
-    .cta-block{
-      background:linear-gradient(135deg, #0c1e3a 0%, #0f2545 60%, #091a30 100%);
-      border:1px solid #1e3a6e;
-      border-radius:16px;
-      padding: clamp(20px, 3vw, 36px) clamp(20px, 4vw, 48px);
-      display:flex; align-items:center; justify-content:space-between;
-      gap:24px; flex-wrap:wrap;
-      box-shadow: 0 0 0 1px rgba(56,189,248,.05) inset, 0 12px 40px rgba(0,0,0,.3);
-      position:relative; overflow:hidden;
+    .cta-block {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d3270 100%);
+      display: flex; align-items: center; margin-bottom: 32px;
     }
-    .cta-block::before{
-      content:'';
-      position:absolute; top:-60px; right:-60px;
-      width:220px; height:220px;
-      background:radial-gradient(circle, rgba(56,189,248,.08) 0%, transparent 70%);
-      pointer-events:none;
+    .cta-bar { width: 4px; align-self: stretch; flex-shrink: 0; background: var(--blue); }
+    .cta-inner {
+      display: flex; align-items: center; gap: 20px;
+      padding: 24px 28px; flex: 1; flex-wrap: wrap;
     }
-    .cta-text{ flex:1; min-width:200px; }
-    .cta-text h3{
-      margin:0 0 6px;
-      font-size:clamp(.95rem, 0.7rem + 1vw, 1.2rem);
-      color:#fff;
+    .cta-text { flex: 1; min-width: 200px; }
+    .cta-text h3 { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 5px; }
+    .cta-text p  { font-size: 13px; color: rgba(255,255,255,.58); font-weight: 600; }
+    .btn-hotmart {
+      padding: 13px 26px; font-size: 14px; font-weight: 800;
+      background: #e8520a; color: #fff; border: 2px solid #e8520a;
+      cursor: pointer; white-space: nowrap; transition: all .15s;
+      display: inline-flex; align-items: center; gap: 8px;
     }
-    .cta-text p{
-      margin:0; color:var(--muted); font-size:.9rem; line-height:1.5;
-    }
-    .btn-hotmart{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:13px 28px; border-radius:12px; font-weight:700; font-size:.95rem;
-      text-decoration:none; color:#fff;
-      background:linear-gradient(180deg, #e8520a, #c94208);
-      box-shadow:0 8px 24px rgba(232,82,10,.35);
-      transition:transform .06s ease, box-shadow .2s ease;
-      border:0; cursor:pointer; white-space:nowrap;
-    }
-    .btn-hotmart:hover{ box-shadow:0 12px 32px rgba(232,82,10,.5); transform:translateY(-1px); }
-    .btn-hotmart:active{ transform:translateY(1px); }
-    .btn-hotmart::before{ content:"▶"; font-size:.75rem; }
+    .btn-hotmart::before { content: "▶"; font-size: .75rem; }
+    .btn-hotmart:hover { background: #c94208; border-color: #c94208; transform: translateY(-1px); }
 
     /* ── FOOTER ── */
-    .footer{
-      margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
-      padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
+    .footer {
+      margin: 0; padding: 24px clamp(16px,4vw,48px);
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .footer-brand { font-size: 14px; font-weight: 800; color: rgba(255,255,255,.7); }
+    .footer-copy  { font-size: 12px; color: rgba(255,255,255,.38); margin-top: 3px; font-weight: 600; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { font-size: 12px; color: rgba(255,255,255,.48); font-weight: 600; transition: color .15s; }
+    .footer-links a:hover { color: rgba(255,255,255,.9); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .modules-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .nav-clock { display: none; }
+      .stats { flex-direction: column; }
+      .stat-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-card:last-child { border-bottom: none; }
+    }
+    @media (max-width: 600px) {
+      .modules-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 1.9rem; }
+      .hero-logo { width: 80px; }
     }
 
-    @media(max-width:640px){
-      .course-hero-inner{ grid-template-columns:1fr; }
-      .course-hero-img{ display:none; }
-    }
+    /* ── REVEAL ── */
+    .rv { opacity: 0; transform: translateY(18px); transition: opacity .45s ease, transform .45s ease; }
+    .rv.in { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
 
-      <!-- HEADER -->
-      <header>
-        <a href="../index.html" class="btn ghost" aria-label="Volver al inicio">← Volver</a>
-        <img src="../logo.png" alt="Logo DGO Capital"
-          style="height:59px; width:auto; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)">
-        <div>
-          <h1 style="margin:0; font-size:clamp(1.6rem, 1.1rem + 2vw, 2.25rem)">Academia</h1>
-        </div>
-      </header>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">
+    <img src="../logo.png" alt="DGO Capital" onerror="this.style.display='none'">
+    <span class="nav-brand-name">DGO Capital</span>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="../logros/index.html">Logros</a>
+    <a class="nav-link active" href="#">Servicios</a>
+    <a class="nav-link" href="../sistemas-de-apoyo/index.html">Sistemas de Apoyo</a>
+    <a class="nav-link" href="../desarrollos/index.html">Desarrollos</a>
+    <a class="nav-link" href="../index.html#contacto">Contacto</a>
+  </div>
+  <div class="nav-actions">
+    <div class="nav-clock">
+      <div class="nav-clock-dot"></div>
+      <span id="loc-time">--:--:--</span>
+      <span id="loc-tz" style="opacity:.6">UTC</span>
+    </div>
+    <a class="btn-ghost" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">Telegram</a>
+    <a class="btn-solid" href="https://www.instagram.com/dgo_capital_" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 4.5A4.5 4.5 0 1 1 7.5 13 4.51 4.51 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zM17.75 7a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.75 7z"/></svg>
+      Instagram
+    </a>
+  </div>
+</nav>
 
-      <!-- COURSE HERO -->
-      <div class="course-hero">
-        <div class="course-hero-inner">
-          <div class="course-hero-text">
-            <span class="course-tag">Curso</span>
-            <h2 class="course-title">
-              Arquitectura de Estrategias de<br>
-              <span>Trading Algorítmico</span><br>
-              mediante Inteligencia Artificial
-            </h2>
-            <div class="course-meta">
-              <div class="course-meta-item"><span class="icon">◼</span> 4 Módulos</div>
-              <div class="course-meta-item"><span class="icon">◼</span> 10 Temas</div>
-              <div class="course-meta-item"><span class="icon">◼</span> MQL5 + IA</div>
-            </div>
-          </div>
-          <div class="course-hero-img">
-            <img src="portada.jpg" alt="Portada del curso">
-          </div>
-        </div>
-      </div>
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../index.html">DGO Capital</a>
+  <span class="breadcrumb-sep">›</span>
+  <span>Servicios</span>
+  <span class="breadcrumb-sep">›</span>
+  <span style="color: var(--navy); font-weight:700">Academia</span>
+</div>
 
-      <!-- MODULES -->
-      <div class="panel">
-        <div class="modules-header">
-          <h2>Contenido del Curso</h2>
-          <div class="line"></div>
-        </div>
-        <div class="modules-grid">
-
-          <!-- MÓDULO I — Tema 1 -->
-          <div class="module-card">
-            <div class="module-img-wrap">
-              <img src="diapo1.jpg" alt="Trading algorítmico vs trading cuantitativo">
-              <div class="module-num">Módulo I · 1</div>
-            </div>
-            <div class="module-body">
-              <p class="module-label">Módulo I</p>
-              <p class="module-topic">Trading algorítmico vs Trading cuantitativo</p>
-            </div>
-          </div>
-
-          <!-- MÓDULO I — Tema 2 -->
-          <div class="module-card">
-            <div class="module-img-wrap">
-              <img src="diapo2.jpg" alt="Tipos de estrategias de trading con bots">
-              <div class="module-num">Módulo I · 2</div>
-            </div>
-            <div class="module-body">
-              <p class="module-label">Módulo I</p>
-              <p class="module-topic">Tipos de estrategias de trading con bots</p>
-            </div>
-          </div>
-
-          <!-- MÓDULO II — Tema 3 -->
-          <div class="module-card">
-            <div class="module-img-wrap">
-              <img src="diapo3.jpg" alt="Software de MQL5">
-              <div class="module-num">Módulo II · 1</div>
-            </div>
-            <div class="module-body">
-              <p class="module-label">Módulo II</p>
-              <p class="module-topic">Software de MQL5 — ventajas y limitantes</p>
-            </div>
-          </div>
-
-          <!-- MÓDULO II — Tema 4 -->
-          <div class="module-card">
-            <div class="module-img-wrap">
-              <img src="diapo4.jpg" alt="Papel de la inteligencia artificial">
-              <div class="module-num">Módulo II · 2</div>
-            </div>
-            <div class="module-body">
-              <p class="module-label">Módulo II</p>
-              <p class="module-topic">Papel de la IA — conexión humano y máquina</p>
-            </div>
-          </div>
-
-          <!-- MÓDULO III — Tema 5 -->
-          <div class="module-card">
-            <div class="module-img-wrap">
-              <img src="diapo5.jpg" alt="Pseudocódigo">
-              <div class="module-num">Módulo III · 1</div>
-            </div>
-            <div class="module-body">
-              <p class="module-label">Módulo III</p>
-              <p class="module-topic">Punto de partida — pseudocódigo</p>
-            </div>
-          </div>
-
-          <!-- MÓDULO III — Tema 6 -->
-          <div class="module-card">
-            <div class="module-img-wrap">
-              <img src="diapo6.jpg" alt="Esquema estructural">
-              <div class="module-num">Módulo III · 2</div>
-            </div>
-            <div class="module-body">
-              <p class="module-label">Módulo III</p>
-              <p class="module-topic">Esquema estructural de diseño de algoritmos en MQL5</p>
-            </div>
-          </div>
-
-          <!-- MÓDULO III — Tema 7 -->
-          <div class="module-card">
-            <div class="module-img-wrap">
-              <img src="diapo7.jpg" alt="Robot básico con IA">
-              <div class="module-num">Módulo III · 3</div>
-            </div>
-            <div class="module-body">
-              <p class="module-label">Módulo III</p>
-              <p class="module-topic">Diseño de un robot básico paso a paso con IA</p>
-            </div>
-          </div>
-
-          <!-- MÓDULO IV — Tema 8 -->
-          <div class="module-card">
-            <div class="module-img-wrap">
-              <img src="diapo8.jpg" alt="Backtesting y optimización">
-              <div class="module-num">Módulo IV · 1</div>
-            </div>
-            <div class="module-body">
-              <p class="module-label">Módulo IV</p>
-              <p class="module-topic">Backtesting y optimización de estrategias</p>
-            </div>
-          </div>
-
-          <!-- MÓDULO IV — Tema 9 -->
-          <div class="module-card">
-            <div class="module-img-wrap">
-              <img src="diapo9.jpg" alt="Análisis walk-forward">
-              <div class="module-num">Módulo IV · 2</div>
-            </div>
-            <div class="module-body">
-              <p class="module-label">Módulo IV</p>
-              <p class="module-topic">Análisis de walk-forward</p>
-            </div>
-          </div>
-
-          <!-- MÓDULO IV — Tema 10 -->
-          <div class="module-card">
-            <div class="module-img-wrap">
-              <img src="diapo10.jpg" alt="Lanzamiento a producción">
-              <div class="module-num">Módulo IV · 3</div>
-            </div>
-            <div class="module-body">
-              <p class="module-label">Módulo IV</p>
-              <p class="module-topic">Lanzamiento a producción</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- DESCRIPCIÓN -->
-      <div class="desc-block">
-        <p>Sin importar tu nivel de experiencia, este curso te lleva de la mano desde los <strong>conceptos fundamentales del trading algorítmico</strong> hasta la creación de tu propio robot, paso a paso y con total claridad. Aprenderás a diseñarlo, probarlo con <strong>backtesting</strong>, optimizarlo y dejarlo operando en un <strong>entorno real</strong>.</p>
-      </div>
-
-      <!-- CTA HOTMART -->
-      <div class="cta-block">
-        <div class="cta-text">
-          <h3>¿Listo para automatizar tu trading?</h3>
-          <p>Accede al curso completo con todos los módulos, materiales y soporte en Hotmart.</p>
-        </div>
-        <!-- Reemplaza # con tu link de Hotmart -->
-        <a href="https://go.hotmart.com/T104959784N" class="btn-hotmart">Acceder al curso</a>
-      </div>
-
-      <div class="footer">
-        © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
-      </div>
+<!-- HERO -->
+<section class="hero rv">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <img class="hero-logo" src="../logo.png" alt="DGO Capital">
+    <div class="hero-tagline">Academia · DGO Capital</div>
+    <h1 class="hero-title">Arquitectura de<br>Estrategias de<br><span>Trading Algorítmico</span></h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><div class="hero-meta-dot"></div>4 Módulos</div>
+      <div class="hero-meta-item"><div class="hero-meta-dot"></div>10 Temas</div>
+      <div class="hero-meta-item"><div class="hero-meta-dot"></div>MQL5 + IA</div>
+    </div>
+    <p class="hero-sub">Aprende a diseñar, probar y lanzar tu propio robot de trading. Desde cero, con total claridad, usando inteligencia artificial como herramienta de codificación.</p>
+    <div class="hero-ctas">
+      <a class="btn-hero-p" href="https://go.hotmart.com/T104959784N" target="_blank" rel="noopener">Acceder al curso</a>
+      <a class="btn-hero-g" href="#contenido">Ver contenido</a>
     </div>
   </div>
-  <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-  </script>
+</section>
+
+<!-- STATS -->
+<div class="stats rv">
+  <div class="stat-card"><div class="stat-num">4</div><div class="stat-lbl">Módulos estructurados</div></div>
+  <div class="stat-card"><div class="stat-num">10</div><div class="stat-lbl">Temas prácticos</div></div>
+  <div class="stat-card"><div class="stat-num">MQL5</div><div class="stat-lbl">Plataforma de desarrollo</div></div>
+  <div class="stat-card"><div class="stat-num">IA</div><div class="stat-lbl">Asistida por inteligencia artificial</div></div>
+</div>
+
+<!-- MÓDULOS -->
+<div class="section rv" id="contenido">
+  <div class="sec-row">
+    <div>
+      <div class="sec-eyebrow">Contenido del curso</div>
+      <h2 class="sec-title">Módulos y temas</h2>
+      <p class="sec-sub">De los fundamentos al lanzamiento en producción, paso a paso.</p>
+    </div>
+  </div>
+  <div class="modules-grid">
+
+    <div class="module-card">
+      <div class="module-img">
+        <img src="diapo1.jpg" alt="Trading algorítmico vs cuantitativo">
+        <div class="module-num">Módulo I · 1</div>
+      </div>
+      <div class="module-body">
+        <div class="module-label">Módulo I</div>
+        <div class="module-topic">Trading algorítmico vs Trading cuantitativo</div>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <div class="module-img">
+        <img src="diapo2.jpg" alt="Tipos de estrategias con bots">
+        <div class="module-num">Módulo I · 2</div>
+      </div>
+      <div class="module-body">
+        <div class="module-label">Módulo I</div>
+        <div class="module-topic">Tipos de estrategias de trading con bots</div>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <div class="module-img">
+        <img src="diapo3.jpg" alt="Software de MQL5">
+        <div class="module-num">Módulo II · 1</div>
+      </div>
+      <div class="module-body">
+        <div class="module-label">Módulo II</div>
+        <div class="module-topic">Software de MQL5 — ventajas y limitantes</div>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <div class="module-img">
+        <img src="diapo4.jpg" alt="Papel de la inteligencia artificial">
+        <div class="module-num">Módulo II · 2</div>
+      </div>
+      <div class="module-body">
+        <div class="module-label">Módulo II</div>
+        <div class="module-topic">Papel de la IA — conexión humano y máquina</div>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <div class="module-img">
+        <img src="diapo5.jpg" alt="Pseudocódigo">
+        <div class="module-num">Módulo III · 1</div>
+      </div>
+      <div class="module-body">
+        <div class="module-label">Módulo III</div>
+        <div class="module-topic">Punto de partida — pseudocódigo</div>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <div class="module-img">
+        <img src="diapo6.jpg" alt="Esquema estructural">
+        <div class="module-num">Módulo III · 2</div>
+      </div>
+      <div class="module-body">
+        <div class="module-label">Módulo III</div>
+        <div class="module-topic">Esquema estructural de diseño de algoritmos en MQL5</div>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <div class="module-img">
+        <img src="diapo7.jpg" alt="Robot básico con IA">
+        <div class="module-num">Módulo III · 3</div>
+      </div>
+      <div class="module-body">
+        <div class="module-label">Módulo III</div>
+        <div class="module-topic">Diseño de un robot básico paso a paso con IA</div>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <div class="module-img">
+        <img src="diapo8.jpg" alt="Backtesting y optimización">
+        <div class="module-num">Módulo IV · 1</div>
+      </div>
+      <div class="module-body">
+        <div class="module-label">Módulo IV</div>
+        <div class="module-topic">Backtesting y optimización de estrategias</div>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <div class="module-img">
+        <img src="diapo9.jpg" alt="Análisis walk-forward">
+        <div class="module-num">Módulo IV · 2</div>
+      </div>
+      <div class="module-body">
+        <div class="module-label">Módulo IV</div>
+        <div class="module-topic">Análisis de walk-forward</div>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <div class="module-img">
+        <img src="diapo10.jpg" alt="Lanzamiento a producción">
+        <div class="module-num">Módulo IV · 3</div>
+      </div>
+      <div class="module-body">
+        <div class="module-label">Módulo IV</div>
+        <div class="module-topic">Lanzamiento a producción</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DESCRIPCIÓN -->
+<div class="section rv">
+  <div class="desc-block">
+    <p>Sin importar tu nivel de experiencia, este curso te lleva de la mano desde los <strong>conceptos fundamentales del trading algorítmico</strong> hasta la creación de tu propio robot, paso a paso y con total claridad. Aprenderás a diseñarlo, probarlo con <strong>backtesting</strong>, optimizarlo y dejarlo operando en un <strong>entorno real</strong>.</p>
+  </div>
+</div>
+
+<!-- CTA HOTMART -->
+<div class="section rv">
+  <div class="cta-block">
+    <div class="cta-bar"></div>
+    <div class="cta-inner">
+      <div class="cta-text">
+        <h3>¿Listo para automatizar tu trading?</h3>
+        <p>Accede al curso completo con todos los módulos, materiales y soporte en Hotmart.</p>
+      </div>
+      <a class="btn-hotmart" href="https://go.hotmart.com/T104959784N" target="_blank" rel="noopener">Acceder al curso</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <div class="footer-brand">DGO Capital</div>
+    <div class="footer-copy">© <span id="yr"></span> DGO Capital. Todos los derechos reservados.</div>
+  </div>
+  <div class="footer-links">
+    <a href="../logros/index.html">Logros</a>
+    <a href="../sistemas-de-apoyo/index.html">Sistemas de Apoyo</a>
+    <a href="../desarrollos/index.html">Desarrollos</a>
+    <a href="../index.html#servicios">Servicios</a>
+    <a href="https://pepperstone.com/es-la/go/copytrading-by-pepperstone/" target="_blank" rel="noopener">Pepperstone</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  (function(){
+    var elT=document.getElementById('loc-time'), elZ=document.getElementById('loc-tz');
+    function fmt(n){return String(n).padStart(2,'0');}
+    function tick(){
+      var d=new Date();
+      if(elT) elT.textContent=fmt(d.getHours())+':'+fmt(d.getMinutes())+':'+fmt(d.getSeconds());
+      var off=-d.getTimezoneOffset(),sign=off>=0?'+':'−',abs=Math.abs(off);
+      if(elZ) elZ.textContent='UTC'+sign+String(Math.floor(abs/60)).padStart(2,'0')+(abs%60?':'+String(abs%60).padStart(2,'0'):'');
+    }
+    tick(); setInterval(tick,1000);
+  })();
+
+  (function(){
+    var els=document.querySelectorAll('.rv');
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+      });
+    },{threshold:0.08});
+    els.forEach(function(el,i){
+      el.style.transitionDelay=(i*0.04)+'s';
+      io.observe(el);
+    });
+  })();
+</script>
 </body>
 </html>
