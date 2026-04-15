@@ -8,479 +8,660 @@
   <meta property="og:title" content="DGO Capital">
   <meta property="og:description" content="De la idea al algoritmo para un trading real y consistente">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#121828">
+  <meta name="theme-color" content="#ffffff">
   <link rel="icon" type="image/x-icon" href="/icon.ico">
   <link rel="shortcut icon" href="/icon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --card:#0d1426; --card2:#0a101f; --stroke:#1e2a49;
-      --text:#e8eefc; --muted:#9fb0d9; --accent:#38bdf8;
-      --glow:rgba(56,189,248,.25);
-      --green-1:#34d399; --green-2:#10b981; --green-b:#0b8c6d;
-      --blue-1:#3b82f6;  --blue-2:#2563eb;  --blue-b:#1d4ed8;
-      --white-1:#ffffff; --white-2:#f3f4f6; --white-txt:#0e162c;
-      --menuW: clamp(280px, 24vw, 360px);
+    :root {
+      --navy:   #0d2550;
+      --blue:   #1a56db;
+      --bg:     linear-gradient(160deg, #daeaf7 0%, #eef4fb 40%, #ffffff 100%);
+      --white:  #ffffff;
+      --border: #d0daea;
+      --text:   #0d1b2e;
+      --muted:  #5a6b87;
+      --muted2: #8a9ab8;
+      --green:  #0ea66e;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(16px,4vw,48px);
+      height: 62px;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .nav-brand img { height: 32px; width: auto; }
+    .nav-brand-name { font-size: 15px; font-weight: 800; color: var(--navy); }
+    .nav-links { display: flex; align-items: center; gap: 2px; }
+    .nav-link {
+      padding: 7px 14px; font-size: 13px; font-weight: 600;
+      color: var(--muted); transition: color .15s, background .15s;
+    }
+    .nav-link:hover { color: var(--navy); background: rgba(13,37,80,.05); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .nav-clock {
+      font-size: 11px; font-weight: 700; color: var(--muted);
+      padding: 5px 11px; background: #f0f4f9; border: 1px solid var(--border);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .nav-clock-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink 1.8s ease-in-out infinite; flex-shrink: 0; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+    .btn-ghost {
+      padding: 8px 18px; font-size: 13px; font-weight: 700;
+      border: 1.5px solid var(--border); color: var(--navy); background: var(--white); cursor: pointer; transition: all .15s;
+    }
+    .btn-ghost:hover { border-color: var(--navy); }
+    .btn-solid {
+      padding: 8px 18px; font-size: 13px; font-weight: 700;
+      border: 1.5px solid var(--blue); background: var(--blue); color: #fff; cursor: pointer; transition: all .15s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-solid svg { width: 13px; height: 13px; fill: currentColor; }
+    .btn-solid:hover { background: var(--navy); border-color: var(--navy); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: 520px;
+      margin: 0 clamp(12px,3vw,32px);
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
       background:
-        radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
-        linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
-      color:var(--text); line-height:1.6;
+        linear-gradient(to bottom, rgba(8,22,52,.25) 0%, rgba(8,22,52,.52) 45%, rgba(8,22,52,.90) 100%),
+        url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+    }
+    .hero-dots {
+      position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 8px; z-index: 2;
+    }
+    .hero-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.3); cursor: pointer; }
+    .hero-dot.active { background: #fff; }
+
+    /* content block — logo + tagline + title + sub + ctas */
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: clamp(24px,4vw,48px) clamp(24px,5vw,56px) clamp(36px,5vw,52px);
+      max-width: 720px;
+      display: flex; flex-direction: column; gap: 0;
     }
 
-    .wrap{width:100%}
-    .card{
-      min-height:100vh; width:100%; margin:0;
-      padding:28px clamp(16px, 4vw, 40px);
-      border:1px solid var(--stroke); border-radius:0;
-      box-shadow:0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
-      display:flex; flex-direction:column; gap:18px;
+    /* LOGO FUNDIDO */
+    .hero-logo {
+      width: 130px; height: auto;
+      margin-bottom: 14px;
+      /* mix-blend-mode screen + filtro para fundir sobre foto oscura */
+      mix-blend-mode: screen;
+      filter: brightness(1.8) contrast(.9);
+      opacity: .92;
+    }
+    .hero-tagline {
+      font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 14px;
     }
 
-    /* ── HEADER ── */
-    header{
-      position:relative;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px; flex-wrap:wrap;
-      padding-bottom:12px;
-      border-bottom:1px solid rgba(255,255,255,.06);
+    .hero-title {
+      font-size: clamp(2.2rem, 1rem + 4vw, 4rem);
+      font-weight: 900; line-height: 1.06; letter-spacing: -.02em;
+      color: #fff; margin-bottom: 14px;
     }
-    .brand{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:8px;
+    .hero-sub {
+      font-size: clamp(14px,.8vw+11px,17px); font-weight: 400;
+      color: rgba(255,255,255,.65); line-height: 1.7; max-width: 460px; margin-bottom: 28px;
     }
-    .brand img{
-      height:160px; width:auto; border-radius:14px;
-      box-shadow:0 4px 24px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.05);
-      transition:box-shadow .3s;
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-hero-p {
+      padding: 13px 26px; font-size: 14px; font-weight: 800;
+      background: var(--blue); color: #fff; border: 2px solid var(--blue); cursor: pointer; transition: all .15s;
     }
-    .brand img:hover{ box-shadow:0 8px 32px rgba(56,189,248,.2), 0 0 0 1px rgba(56,189,248,.15); }
-    .brand-text h1{
-      margin:0;
-      font-size:clamp(1.8rem, 1.2rem + 2.4vw, 3rem);
-      letter-spacing:.2px;
-      background:linear-gradient(135deg, #ffffff 40%, #a8d4f5 100%);
-      -webkit-background-clip:text; background-clip:text; color:transparent;
+    .btn-hero-p:hover { background: #1343b8; border-color: #1343b8; transform: translateY(-1px); }
+    .btn-hero-g {
+      padding: 13px 26px; font-size: 14px; font-weight: 800;
+      background: rgba(255,255,255,.1); color: #fff; border: 2px solid rgba(255,255,255,.3); cursor: pointer; transition: all .15s;
     }
-    .brand-text .muted{ color:var(--muted); font-size:.95rem; margin-top:2px; }
+    .btn-hero-g:hover { background: rgba(255,255,255,.18); transform: translateY(-1px); }
 
-    /* Reloj */
-    .utc-clock{
-      position:absolute; right:0; top:-12px; z-index:1000;
-      display:inline-flex; align-items:center; gap:6px;
-      padding:5px 12px; border-radius:999px; font-weight:700; font-size:.76rem;
-      letter-spacing:.2px; background:#0b1326; color:#8fb3ff;
-      border:1px solid #22407a;
-      box-shadow:0 6px 18px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.03) inset;
-      user-select:none;
+    /* ── STATS ── */
+    .stats {
+      display: flex; gap: 0;
+      margin: 0 clamp(12px,3vw,32px);
+      border: 1px solid var(--border); border-top: none; background: var(--white);
     }
-    .utc-clock::before{ content:"◉"; font-size:.55rem; color:#34d399; animation:blink 1.8s ease infinite; }
-    @keyframes blink{ 0%,100%{opacity:1} 50%{opacity:.3} }
+    .stat-card { flex: 1; padding: 20px 24px; border-right: 1px solid var(--border); }
+    .stat-card:last-child { border-right: none; }
+    .stat-num { font-size: 24px; font-weight: 900; color: var(--navy); }
+    .stat-lbl { font-size: 12px; color: var(--muted); font-weight: 600; margin-top: 2px; }
 
-    /* ── PANELS ── */
-    .panel{
-      background:linear-gradient(180deg, #111a31, #0c1427);
-      border:1px solid var(--stroke); border-radius:16px; padding:16px;
-      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
+    /* ── SECTIONS ── */
+    .section { padding: 40px clamp(12px,3vw,32px) 8px; }
+    .sec-eyebrow {
+      font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 5px;
     }
+    .sec-title { font-size: clamp(20px,1.4vw+14px,28px); font-weight: 900; color: var(--navy); margin-bottom: 4px; letter-spacing: -.3px; }
+    .sec-sub   { font-size: 14px; color: var(--muted); margin-bottom: 20px; max-width: 480px; font-weight: 600; }
+    .sec-row   { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .sec-link  { font-size: 13px; font-weight: 700; color: var(--blue); }
+    .sec-link:hover { text-decoration: underline; }
 
-    /* ── MENÚ IZQUIERDO ── */
-    .left-menu{
-      position:fixed; left:18px; top:16px; bottom:16px; width:var(--menuW);
-      background:linear-gradient(180deg, #111a31, #0c1427);
-      border:1px solid var(--stroke); border-radius:14px; padding:16px;
-      box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.03) inset;
-      z-index:40; display:flex; flex-direction:column; overflow:auto; gap:10px;
+    /* ── 3-IMAGE CARDS ── */
+    .cards3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; padding-bottom: 32px; }
+    .img-card {
+      overflow: hidden; position: relative;
+      min-height: 260px; display: flex; flex-direction: column; justify-content: flex-end;
+      border: 1px solid var(--border); cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
     }
-    .left-tiles{ display:grid; gap:12px; }
-    .tile{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:18px 16px; border-radius:13px; font-weight:700;
-      min-height:110px; text-decoration:none; border:1px solid transparent; color:#fff;
-      box-shadow:0 6px 18px rgba(0,0,0,.2), 0 0 0 1px rgba(255,255,255,.04) inset;
-      transition:transform .1s ease, box-shadow .2s ease, filter .2s ease;
-      position:relative; overflow:hidden;
+    .img-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(13,37,80,.13); }
+    .img-card-bg { position: absolute; inset: 0; background: center/cover no-repeat; }
+    .img-card-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,22,52,.88) 0%, rgba(8,22,52,.15) 60%, transparent 100%);
     }
-    .tile::before{
-      content:''; position:absolute; inset:0;
-      background:linear-gradient(135deg, rgba(255,255,255,.08) 0%, transparent 60%);
-      pointer-events:none;
-    }
-    .tile strong{ font-size:1.05rem; letter-spacing:.2px; position:relative; z-index:1; }
-    .tile::after{
-      content:"›"; opacity:.85; font-weight:800; font-size:1.3rem;
-      transform:translateX(0); transition:transform .15s ease, opacity .2s ease;
-      position:relative; z-index:1;
-    }
-    .tile:hover{ filter:brightness(1.06); box-shadow:0 10px 28px rgba(0,0,0,.3); transform:translateY(-1px); }
-    .tile:hover::after{ transform:translateX(3px); opacity:1; }
-    .tile--green{ background:linear-gradient(150deg, var(--green-1), var(--green-2)); border-color:var(--green-b); }
-    .tile--blue{  background:linear-gradient(150deg, var(--blue-1),  var(--blue-2));  border-color:var(--blue-b); }
-    .tile--white{ background:linear-gradient(150deg, var(--white-1), var(--white-2)); border-color:#e5e7eb; color:var(--white-txt); }
-    .tile--white::after{ color:var(--white-txt); }
+    .img-card-body { position: relative; z-index: 1; padding: 20px; }
+    .img-card-title { font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 6px; }
+    .img-card-desc  { font-size: 13px; color: rgba(255,255,255,.72); line-height: 1.5; font-weight: 600; }
 
-    .left-legal{
-      margin-top:auto; padding-top:12px;
-      border-top:1px solid rgba(255,255,255,.06);
-      font-size:.78rem; line-height:1.5; color:var(--muted);
-      text-align:justify;
+    /* ── SERVICES ── */
+    .svc-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 32px; }
+    .svc-card {
+      background: var(--white); padding: 22px 24px;
+      display: flex; align-items: flex-start; gap: 14px;
+      transition: background .15s; cursor: pointer;
     }
-    .left-legal strong{
-      display:block; font-size:.8rem; color:#d9e6ff;
-      margin-bottom:6px; letter-spacing:.2px;
+    .svc-card:hover { background: #f4f8ff; }
+    .svc-ico {
+      width: 40px; height: 40px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
     }
+    .svc-ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .svc-ico.blue   { background: #e8f0fe; color: var(--blue); }
+    .svc-ico.green  { background: #e6f9f2; color: #0a8a5a; }
+    .svc-ico.amber  { background: #fef3e2; color: #b07300; }
+    .svc-ico.purple { background: #f0eeff; color: #5b3fd4; }
+    .svc-name { font-size: 14px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+    .svc-desc { font-size: 12px; color: var(--muted); line-height: 1.55; font-weight: 600; }
+    .svc-arr  { margin-left: auto; font-size: 20px; color: var(--muted2); flex-shrink: 0; align-self: center; transition: transform .15s, color .15s; }
+    .svc-card:hover .svc-arr { transform: translateX(3px); color: var(--blue); }
 
-    /* ── MENÚ DERECHO ── */
-    .side-menu{
-      position:fixed; right:18px; top:16px; bottom:16px; width:var(--menuW);
-      background:linear-gradient(180deg, #111a31, #0c1427);
-      border:1px solid var(--stroke); border-radius:14px; padding:16px;
-      box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.03) inset;
-      z-index:40; display:flex; flex-direction:column; overflow:auto; gap:10px;
+    /* ── ALGO CARDS ── */
+    .algo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 32px; }
+    .algo-card {
+      background: var(--white); border: 1px solid var(--border); overflow: hidden;
+      transition: box-shadow .2s, transform .2s;
     }
-    .side-menu-title{
-      display:flex; align-items:center; gap:8px;
-      font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
-      color:var(--accent); margin-bottom:2px;
+    .algo-card:hover { box-shadow: 0 8px 32px rgba(13,37,80,.1); transform: translateY(-2px); }
+    .algo-head {
+      padding: 16px 18px 12px; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border);
     }
-    .side-menu-title::before{ content:"◈"; font-size:.65rem; }
-    .side-menu-title::after{
-      content:''; flex:1; height:1px;
-      background:linear-gradient(90deg, rgba(56,189,248,.3), transparent);
+    .algo-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: #e6f9f2; color: #0a8a5a;
+      font-size: 10px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
+      padding: 3px 9px;
     }
-    .svc-list{ list-style:none; margin:0; padding:0; display:grid; gap:8px; }
-    .svc-list a{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:13px 14px; border-radius:12px;
-      background:#0e162c; border:1px solid #1d2947;
-      color:var(--text); text-decoration:none; font-weight:600; font-size:.95rem;
-      transition:transform .06s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
-      position:relative; overflow:hidden;
-    }
-    .svc-list a::before{
-      content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
-      background:var(--accent); border-radius:3px 0 0 3px;
-      transform:scaleY(0); transition:transform .2s ease;
-    }
-    .svc-list a::after{
-      content:"›"; opacity:.6; font-weight:700; font-size:1.1rem;
-      transform:translateX(0); transition:transform .15s ease, opacity .2s ease;
-    }
-    .svc-list a:hover{
-      background:#0f1b36; border-color:#28406e;
-      box-shadow:0 6px 20px rgba(56,189,248,.12);
-      transform:translateX(2px);
-    }
-    .svc-list a:hover::before{ transform:scaleY(1); }
-    .svc-list a:hover::after{ transform:translateX(2px); opacity:1; }
-
-    /* Botones sociales */
-    .side-cta{ margin-top:auto; display:grid; gap:10px; }
-    .side-note{ margin:0 0 4px; color:var(--muted); font-size:.88rem; }
-    .cta{
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      padding:10px 16px; border-radius:12px; font-weight:700;
-      text-decoration:none; color:#fff;
-      background:linear-gradient(180deg,#1f9be6,#0ea5e9);
-      box-shadow:0 8px 20px rgba(14,165,233,.35);
-      transition:transform .06s ease, box-shadow .2s ease;
-    }
-    .cta:active{ transform:translateY(1px); }
-    .cta svg{ width:18px; height:18px; flex:0 0 18px; }
-    .cta.tele{ background:linear-gradient(180deg,#34d399,#10b981); box-shadow:0 8px 20px rgba(16,185,129,.35); }
-    .cta.insta{ background:linear-gradient(180deg,#ef4444,#dc2626); box-shadow:0 8px 20px rgba(239,68,68,.35); }
-    .cta:hover{ filter:brightness(1.08); transform:translateY(-1px); }
-
-    /* ── MARQUEE ── */
-    .hero-marquee{
-      --marquee-duration:18s;
-      position:relative; overflow:hidden; white-space:nowrap;
-      -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
-              mask-image:linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
-      margin:0 0 12px;
-    }
-    .marquee-track{
-      display:inline-flex; gap:4rem;
-      will-change:transform;
-      animation:marquee var(--marquee-duration) linear infinite;
-    }
-    @keyframes marquee{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-    .hero-title{
-      font-weight:800; font-size:clamp(1.3rem, 0.9rem + 1.4vw, 1.8rem);
-      letter-spacing:.2px; line-height:1.25;
-      background:linear-gradient(90deg, #69c2ff, #38bdf8, #7dd3fc);
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-    }
-    @media(prefers-reduced-motion:reduce){ .marquee-track{ animation:none; transform:translateX(0); } }
-
-    /* ── WIDGET ── */
-    .widget{
-      width:100%; min-height:170px;
-      display:grid; place-items:center;
-      background:repeating-linear-gradient(45deg,#0e152b,#0e152b 12px,#0f1733 12px,#0f1733 24px);
-      border-radius:14px; border:1px dashed #2a3a62;
-      position:relative; overflow:hidden; padding:16px;
-    }
-    iframe{ width:100%; border:0; }
-    a{ color:var(--accent); text-decoration:none; }
-    a:hover{ filter:brightness(1.1); text-decoration:underline; }
+    .algo-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: blink 2s ease-in-out infinite; }
+    .algo-name { font-size: 16px; font-weight: 900; color: var(--navy); }
+    .algo-meta { font-size: 11px; color: var(--muted); margin-top: 1px; font-weight: 600; }
+    .algo-wgt  { background: #f7f9fc; min-height: 150px; display: flex; align-items: center; justify-content: center; }
+    .algo-wgt iframe { border: 0; display: block; width: 100%; }
+    .algo-foot { padding: 10px 18px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; }
+    .algo-mql5 { font-size: 11px; color: var(--muted2); font-weight: 600; }
+    .algo-mql5:hover { color: var(--blue); }
 
     /* ── PEPPERSTONE ── */
-    .promo{
-      margin-top:14px;
-      display:flex; align-items:center; gap:0;
-      background:linear-gradient(135deg, #0c1e3a 0%, #0f2545 60%, #091a30 100%);
-      border:1px solid #1e3a6e; border-radius:14px;
-      overflow:hidden;
-      box-shadow:0 0 0 1px rgba(56,189,248,.05) inset, 0 8px 28px rgba(0,0,0,.3);
+    .promo {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d3270 100%);
+      display: flex; align-items: center; margin-bottom: 32px;
     }
-    .promo-accent{
-      width:4px; align-self:stretch;
-      background:linear-gradient(180deg, var(--accent), #0ea5e9);
-      flex-shrink:0;
+    .promo-bar { width: 4px; align-self: stretch; flex-shrink: 0; background: var(--blue); }
+    .promo-inner { display: flex; align-items: center; gap: 20px; padding: 20px 24px; flex: 1; flex-wrap: wrap; }
+    .promo-logo {
+      flex-shrink: 0; width: 96px; height: 60px;
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+      overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 8px;
     }
-    .promo-inner{
-      display:flex; align-items:center; gap:16px; padding:16px; flex:1; flex-wrap:wrap;
+    .promo-logo img { max-width: 80px; height: auto; }
+    .promo-txt { flex: 1; min-width: 180px; }
+    .promo-txt h3 { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .promo-txt p  { font-size: 13px; color: rgba(255,255,255,.58); font-weight: 600; }
+    .btn-promo {
+      padding: 10px 20px; font-size: 13px; font-weight: 800;
+      background: var(--blue); color: #fff; border: none; cursor: pointer; white-space: nowrap; transition: all .15s;
     }
-    .promo-media{
-      flex:0 0 100px;
-      display:flex; align-items:center; justify-content:center;
-      background:#0e162c; border:1px solid #1d2947; border-radius:10px; padding:8px;
-    }
-    .promo-media img{ max-width:80%; height:auto; border-radius:6px; }
-    .promo-content{ flex:1; display:grid; gap:8px; min-width:180px; }
-    .promo-content h3{ margin:0; font-size:1rem; font-weight:700; color:#fff; }
-    .promo-content p{ margin:0; color:var(--muted); font-size:.875rem; }
-    .cta--sm{ padding:8px 14px; font-size:.875rem; border-radius:10px; width:fit-content; }
+    .btn-promo:hover { background: #1343b8; transform: translateY(-1px); }
 
-    /* ── BANNER AD ── */
-    .ad-sizer{ width:100%; max-width:728px; margin:0 auto; overflow:hidden; }
-    .ad-fixed{ width:728px; height:90px; transform-origin:top left; }
+    /* ── STEPS ── */
+    .steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 32px; }
+    .step-card {
+      background: var(--white); border: 1px solid var(--border); overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .step-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(13,37,80,.1); }
+    .step-img {
+      height: 110px; display: flex; align-items: center; justify-content: center;
+      font-size: 52px; font-weight: 900; color: rgba(255,255,255,.35);
+    }
+    .step-img.s1 { background: linear-gradient(135deg, var(--navy), #1a3d80); }
+    .step-img.s2 { background: linear-gradient(135deg, #0a6e4c, #0d9464); }
+    .step-img.s3 { background: linear-gradient(135deg, #1343b8, #2563eb); }
+    .step-body { padding: 18px 18px 14px; }
+    .step-title { font-size: 15px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .step-desc  { font-size: 12px; color: var(--muted); line-height: 1.6; font-weight: 600; }
+    .step-foot  { padding: 0 18px 18px; }
+    .btn-step {
+      display: block; width: 100%; padding: 10px; text-align: center;
+      font-size: 13px; font-weight: 800; color: var(--blue);
+      background: #eef3fe; border: none; cursor: pointer; transition: background .15s;
+    }
+    .btn-step:hover { background: #d8e5fc; }
+
+    /* ── SOCIAL ── */
+    .social-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .soc-btn {
+      flex: 1; min-width: 160px; padding: 14px 20px;
+      font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: all .15s; color: #fff; border: none; cursor: pointer;
+    }
+    .soc-btn svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+    .soc-btn.insta { background: linear-gradient(135deg,#e1306c,#833ab4); }
+    .soc-btn.tele  { background: linear-gradient(135deg,#2aabee,#0088cc); }
+    .soc-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+    /* ── LEGAL ── */
+    .legal-box {
+      background: #fffbec; border: 1px solid #fde9b3;
+      padding: 16px 20px; display: flex; gap: 12px; align-items: flex-start; margin-bottom: 32px;
+    }
+    .legal-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .legal-ttl  { font-size: 12px; font-weight: 800; color: #92580a; margin-bottom: 4px; }
+    .legal-txt  { font-size: 11px; color: #a0650d; line-height: 1.6; font-weight: 600; }
+
+    /* ── BANNER ── */
+    .banner-wrap  { width: 100%; max-width: 728px; margin: 0 auto; overflow: hidden; }
+    .banner-fixed { width: 728px; height: 90px; transform-origin: top left; }
 
     /* ── FOOTER ── */
-    footer{
-      margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
-      padding-top:10px; border-top:1px solid rgba(255,255,255,.06);
+    .footer {
+      margin: 0; padding: 24px clamp(16px,4vw,48px);
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
     }
+    .footer-brand { font-size: 14px; font-weight: 800; color: rgba(255,255,255,.7); }
+    .footer-copy  { font-size: 12px; color: rgba(255,255,255,.38); margin-top: 3px; font-weight: 600; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { font-size: 12px; color: rgba(255,255,255,.48); font-weight: 600; transition: color .15s; }
+    .footer-links a:hover { color: rgba(255,255,255,.9); }
 
     /* ── RESPONSIVE ── */
-    @media(min-width:1024px){
-      .card{
-        padding-left: calc(clamp(16px, 4vw, 40px) + var(--menuW) + 22px);
-        padding-right:calc(clamp(16px, 4vw, 40px) + var(--menuW) + 22px);
-      }
+    @media (max-width: 900px) {
+      .cards3, .algo-grid, .steps-grid { grid-template-columns: 1fr; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-clock { display: none; }
+      .stats { flex-direction: column; }
+      .stat-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-card:last-child { border-bottom: none; }
     }
-    @media(max-width:1023px){
-      .side-menu, .left-menu{
-        position:static; width:100%; height:auto; bottom:auto; right:auto; left:auto; margin:0;
-      }
-      .card > header{ order:0; }
-      #logros{ order:1; }
-      #sistemas{ order:2; }
-      #desarrollos{ order:3; }
-      .left-menu{ order:10; }
-      .side-menu{ order:11; }
-      .card > footer{ order:99; margin-top:12px; }
-      #pepper-copy{ order:3; }
-      .utc-clock{ right:0; top:-24px; }
+    @media (max-width: 600px) {
+      .hero-title { font-size: 2rem; }
+      .hero-logo { width: 90px; }
     }
-    @media(max-width:820px){
-      .brand img{ height:86px; }
-    }
+
+    /* ── REVEAL ── */
+    .rv { opacity: 0; transform: translateY(18px); transition: opacity .45s ease, transform .45s ease; }
+    .rv.in { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
-<div class="wrap">
-<div class="card">
 
-  <!-- HEADER -->
-  <header>
-    <div class="brand">
-      <img src="logo.png" alt="Logo DGO Capital">
-      <div class="brand-text">
-        <div class="muted">Certeza en el proceso</div>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">
+    <img src="logo.png" alt="DGO Capital" onerror="this.style.display='none'">
+    <span class="nav-brand-name">DGO Capital</span>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="logros/index.html">Logros</a>
+    <a class="nav-link" href="#servicios">Servicios</a>
+    <a class="nav-link" href="sistemas-de-apoyo/index.html">Sistemas de Apoyo</a>
+    <a class="nav-link" href="desarrollos/index.html">Desarrollos</a>
+    <a class="nav-link" href="#contacto">Contacto</a>
+  </div>
+  <div class="nav-actions">
+    <div class="nav-clock">
+      <div class="nav-clock-dot"></div>
+      <span id="loc-time">--:--:--</span>
+      <span id="loc-tz" style="opacity:.6">UTC</span>
+    </div>
+    <a class="btn-ghost" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">Telegram</a>
+    <a class="btn-solid" href="https://www.instagram.com/dgo_capital_" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 4.5A4.5 4.5 0 1 1 7.5 13 4.51 4.51 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zM17.75 7a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.75 7z"/></svg>
+      Instagram
+    </a>
+  </div>
+</nav>
+
+<!-- HERO — logo fundido arriba izquierda, luego tagline + título + sub + ctas -->
+<section class="hero rv">
+  <div class="hero-bg"></div>
+  <div class="hero-dots">
+    <div class="hero-dot active"></div><div class="hero-dot"></div>
+    <div class="hero-dot"></div><div class="hero-dot"></div>
+  </div>
+  <div class="hero-content">
+    <img class="hero-logo" src="logo.png" alt="DGO Capital">
+    <div class="hero-tagline">Certeza en el proceso</div>
+    <h1 class="hero-title">De la idea<br>al algoritmo</h1>
+    <p class="hero-sub">DGO Capital transforma conocimiento de mercado en algoritmos. Cada idea se contrasta con datos, se ajusta con precisión y se valida para sostener la consistencia en el tiempo.</p>
+    <div class="hero-ctas">
+      <a class="btn-hero-p" href="#algoritmos">Ver algoritmos activos</a>
+      <a class="btn-hero-g" href="https://pepperstone.com/es-la/go/copytrading-by-pepperstone/" target="_blank" rel="noopener">Copy Trading Pepperstone</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats rv">
+  <div class="stat-card"><div class="stat-num">3</div><div class="stat-lbl">Algoritmos activos en MQL5</div></div>
+  <div class="stat-card"><div class="stat-num">24/7</div><div class="stat-lbl">Operación automática</div></div>
+  <div class="stat-card"><div class="stat-num">100%</div><div class="stat-lbl">Sin intervención manual</div></div>
+  <div class="stat-card"><div class="stat-num">MQL5</div><div class="stat-lbl">Plataforma de trading algorítmico</div></div>
+</div>
+
+<!-- PROPUESTA -->
+<div class="section rv">
+  <div class="sec-row">
+    <div>
+      <div class="sec-eyebrow">Quiénes somos</div>
+      <h2 class="sec-title">Conoce DGO Capital</h2>
+      <p class="sec-sub">Tres pilares que definen nuestro enfoque en los mercados globales.</p>
+    </div>
+  </div>
+  <div class="cards3">
+    <div class="img-card">
+      <div class="img-card-bg" style="background-image:url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80&auto=format&fit=crop')"></div>
+      <div class="img-card-body">
+        <div class="img-card-title">Transparencia</div>
+        <div class="img-card-desc">Resultados verificables, historial abierto. Sin ediciones, sin filtros.</div>
       </div>
     </div>
-    <div class="utc-clock" aria-label="Hora local">
-      <span id="loc-time">--:--:--</span> <span id="loc-tz">UTC±00</span>
-    </div>
-  </header>
-
-  <!-- MENÚ IZQUIERDO -->
-  <nav class="left-menu" aria-label="Atajos de contenido">
-    <div class="left-tiles">
-      <a class="tile tile--green" href="logros/index.html"><strong>Logros</strong></a>
-      <a class="tile tile--blue"  href="sistemas-de-apoyo/index.html"><strong>Sistemas de Apoyo</strong></a>
-      <a class="tile tile--white" href="desarrollos/index.html"><strong>Desarrollos</strong></a>
-    </div>
-    <div class="left-legal" aria-label="Descargo de responsabilidad">
-      <strong>Descargo de responsabilidad</strong>
-      El rendimiento pasado no garantiza resultados futuros. Operar con instrumentos financieros
-      implica riesgos y puede ocasionar pérdidas del capital invertido. La información aquí compartida
-      tiene fines educativos y no constituye asesoría financiera.
-    </div>
-  </nav>
-
-  <!-- MENÚ DERECHO -->
-  <nav class="side-menu" aria-labelledby="svc-title">
-    <div class="side-menu-title" id="svc-title">Servicios</div>
-    <ul class="svc-list">
-      <li><a href="servicios/copiador-de-senales.html">Software de Copiado</a></li>
-      <li><a href="servicios/codifica-tu-estrategia.html">Codifica tu estrategia</a></li>
-      <li><a href="servicios/academia.html">Academia</a></li>
-      <li><a href="servicios/fondo-de-inversion.html">Modelo de Inversión</a></li>
-    </ul>
-    <div class="side-cta">
-      <p class="side-note">Contenido y actualizaciones periódicas en redes sociales.</p>
-      <a class="cta insta" href="https://www.instagram.com/dgo_capital_?igsh=MTVxY28yc3JremxkMA%3D%3D&utm_source=qr" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 4.5A4.5 4.5 0 1 1 7.5 13 4.51 4.51 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zM17.75 7a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.75 7z"/>
-        </svg>
-        Seguir en Instagram
-      </a>
-      <a class="cta tele" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path fill="currentColor" d="M9.03 15.39 8.9 18.7a1 1 0 0 0 1.58.84l2.36-1.69 3.84 2.82c.72.53 1.75.13 1.94-.76l3.08-14.4c.2-.95-.72-1.74-1.62-1.37L2.7 9.38c-.99.4-.95 1.83.06 2.17l4.78 1.64 10.98-6.77-9.49 8.97z"/>
-        </svg>
-        Unirse a Telegram
-      </a>
-    </div>
-  </nav>
-
-  <!-- DESCRIPCIÓN -->
-  <section class="panel" id="logros">
-    <div class="hero-marquee" aria-label="De la idea al algoritmo para un trading real y consistente">
-      <div class="marquee-track">
-        <span class="hero-title">De la idea al algoritmo para un trading real y consistente</span>
-        <span class="hero-title" aria-hidden="true">De la idea al algoritmo para un trading real y consistente</span>
+    <div class="img-card">
+      <div class="img-card-bg" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80&auto=format&fit=crop')"></div>
+      <div class="img-card-body">
+        <div class="img-card-title">Sistemas robustos</div>
+        <div class="img-card-desc">Cada sistema se construye sobre evidencia estadística y se valida antes de operar capital real.</div>
       </div>
     </div>
-    <p style="margin:0; font-size:1.1rem; line-height:1.8; font-weight:500; text-align:justify;">
-      DGO Capital transforma conocimiento de mercado en algoritmos. Bajo un marco cuantitativo,
-      cada idea se contrasta con datos, se ajusta con precisión y se valida para sostener la consistencia en el tiempo.
-    </p>
-  </section>
-
-  <!-- WIDGET MQL5 + PEPPERSTONE -->
-  <div class="panel" id="sistemas">
-    <div class="widget">
-      <div style="width:100%;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;line-height:26px;text-align:center;">
-
-        <div style="flex:1;min-width:280px;">
-          <iframe frameborder="0" width="100%" height="140" loading="lazy"
-            src="https://www.mql5.com/es/signals/widget/signal/7a7p?t=dark&fw=html"></iframe>
-          <div><a href="https://www.mql5.com/?utm_source=signals.widget&utm_medium=link&utm_term=signals&utm_content=visit.mql5.signals&utm_campaign=202.signals.widget" rel="noopener nofollow" target="_blank">MQL5 Algo Trading Community</a></div>
-          <p style="color:var(--muted);font-size:.75rem;margin-top:4px;">Gestión por: <strong>Bosón</strong></p>
-        </div>
-
-        <div style="flex:1;min-width:280px;">
-          <iframe frameborder="0" width="100%" height="140"
-            src="https://www.mql5.com/es/signals/widget/signal/7ab7?t=dark&fw=html"></iframe>
-          <div><a href="https://www.mql5.com/?utm_source=signals.widget&utm_medium=link&utm_term=signals&utm_content=visit.mql5.signals&utm_campaign=202.signals.widget" rel="noopener nofollow" target="_blank">MQL5 Algo Trading Community</a></div>
-          <p style="color:var(--muted);font-size:.75rem;margin-top:4px;">Gestión por: <strong>Alchemist</strong></p>
-        </div>
-
-        <div style="flex:1;min-width:280px;">
-          <iframe frameborder="0" width="100%" height="140"
-            src="https://www.mql5.com/es/signals/widget/signal/7ab8?t=dark&fw=html"></iframe>
-          <div><a href="https://www.mql5.com/?utm_source=signals.widget&utm_medium=link&utm_term=signals&utm_content=visit.mql5.signals&utm_campaign=202.signals.widget" rel="noopener nofollow" target="_blank">MQL5 Algo Trading Community</a></div>
-          <p style="color:var(--muted);font-size:.75rem;margin-top:4px;">Gestión por: <strong>Orión</strong></p>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- PEPPERSTONE -->
-    <div class="promo" id="pepper-copy">
-      <div class="promo-accent"></div>
-      <div class="promo-inner">
-        <div class="promo-media">
-          <img src="pepperstone.jpg" alt="Pepperstone Copy Trading">
-        </div>
-        <div class="promo-content">
-          <h3>Replica nuestras operaciones en Pepperstone</h3>
-          <p>Conecta tu cuenta y replica nuestras señales de forma sencilla y segura.</p>
-          <a class="cta cta--sm" href="https://pepperstone.com/es-la/go/copytrading-by-pepperstone/" target="_blank" rel="noopener">
-            Ir a CopyTrading en Pepperstone
-          </a>
-        </div>
+    <div class="img-card">
+      <div class="img-card-bg" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80&auto=format&fit=crop')"></div>
+      <div class="img-card-body">
+        <div class="img-card-title">Conocimiento aplicado</div>
+        <div class="img-card-desc">Formamos criterio financiero sólido: gestión, riesgo y toma de decisiones bajo incertidumbre.</div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- BANNER -->
-  <div id="desarrollos">
-    <div class="ad-sizer">
-      <div class="ad-fixed">
-        <ins class="dcmads" style="display:inline-block;width:728px;height:90px"
-          data-dcm-placement="N800570.2009906CELLXPERT/B24282330.340389488"
-          data-dcm-rendering-mode="iframe" data-dcm-https-only
-          data-dcm-click-tracker="https://trk.pepperstonepartners.com/aff_c?offer_id=382&aff_id=40752&file_id=5423"
-          data-dcm-gdpr-applies="gdpr=${GDPR}"
-          data-dcm-gdpr-consent="gdpr_consent=${GDPR_CONSENT_755}"
-          data-dcm-addtl-consent="addtl_consent=${ADDTL_CONSENT}"
-          data-dcm-ltd="false" data-dcm-resettable-device-id="" data-dcm-app-id="">
-          <script src="https://www.googletagservices.com/dcm/dcmads.js"></script>
-        </ins>
-        <img src="https://trk.pepperstonepartners.com/aff_i?offer_id=382&aff_id=40752&file_id=5423" width="0" height="0" style="position:absolute;visibility:hidden;" border="0" alt="">
+<!-- SERVICIOS -->
+<div class="section rv" id="servicios">
+  <div class="sec-row">
+    <div>
+      <div class="sec-eyebrow">Lo que ofrecemos</div>
+      <h2 class="sec-title">Servicios</h2>
+      <p class="sec-sub">Herramientas para operar con estructura, sin depender de la intuición.</p>
+    </div>
+  </div>
+  <div class="svc-grid">
+    <a class="svc-card" href="servicios/copiador-de-senales.html">
+      <div class="svc-ico blue"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+      <div><div class="svc-name">Software de Copiado</div><div class="svc-desc">Replica nuestras operaciones en tiempo real desde tu cuenta de Pepperstone.</div></div>
+      <span class="svc-arr">›</span>
+    </a>
+    <a class="svc-card" href="servicios/codifica-tu-estrategia.html">
+      <div class="svc-ico green"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+      <div><div class="svc-name">Codifica tu estrategia</div><div class="svc-desc">Convertimos tu lógica de trading en un Expert Advisor listo para producción.</div></div>
+      <span class="svc-arr">›</span>
+    </a>
+    <a class="svc-card" href="servicios/academia.html">
+      <div class="svc-ico amber"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+      <div><div class="svc-name">Academia</div><div class="svc-desc">Formación en trading cuantitativo, desde la idea hasta el backtest validado.</div></div>
+      <span class="svc-arr">›</span>
+    </a>
+    <a class="svc-card" href="servicios/fondo-de-inversion.html">
+      <div class="svc-ico purple"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div><div class="svc-name">Modelo de Inversión</div><div class="svc-desc">Participa en el copy gestionado algorítmicamente bajo nuestros sistemas.</div></div>
+      <span class="svc-arr">›</span>
+    </a>
+  </div>
+</div>
+
+<!-- ALGORITMOS -->
+<div class="section rv" id="algoritmos">
+  <div class="sec-row">
+    <div>
+      <div class="sec-eyebrow">Sistemas activos</div>
+      <h2 class="sec-title">Algoritmos en vivo</h2>
+      <p class="sec-sub">Tres sistemas con lógica independiente, monitoreados en tiempo real en MQL5.</p>
+    </div>
+    <a class="sec-link" href="logros/index.html">Ver logros completos →</a>
+  </div>
+  <div class="algo-grid">
+    <div class="algo-card">
+      <div class="algo-head">
+        <div><div class="algo-name">Bosón</div><div class="algo-meta">Sistema A · MQL5</div></div>
+        <div class="algo-badge">Activo</div>
+      </div>
+      <div class="algo-wgt">
+        <iframe frameborder="0" width="100%" height="150" loading="lazy"
+          src="https://www.mql5.com/es/signals/widget/signal/7a7p?t=light&fw=html"></iframe>
+      </div>
+      <div class="algo-foot">
+        <a class="algo-mql5" href="https://www.mql5.com/" rel="noopener nofollow" target="_blank">Ver en MQL5 Community →</a>
+      </div>
+    </div>
+    <div class="algo-card">
+      <div class="algo-head">
+        <div><div class="algo-name">Alchemist</div><div class="algo-meta">Sistema B · MQL5</div></div>
+        <div class="algo-badge">Activo</div>
+      </div>
+      <div class="algo-wgt">
+        <iframe frameborder="0" width="100%" height="150" loading="lazy"
+          src="https://www.mql5.com/es/signals/widget/signal/7ab7?t=light&fw=html"></iframe>
+      </div>
+      <div class="algo-foot">
+        <a class="algo-mql5" href="https://www.mql5.com/" rel="noopener nofollow" target="_blank">Ver en MQL5 Community →</a>
+      </div>
+    </div>
+    <div class="algo-card">
+      <div class="algo-head">
+        <div><div class="algo-name">Orión</div><div class="algo-meta">Sistema C · MQL5</div></div>
+        <div class="algo-badge">Activo</div>
+      </div>
+      <div class="algo-wgt">
+        <iframe frameborder="0" width="100%" height="150" loading="lazy"
+          src="https://www.mql5.com/es/signals/widget/signal/7ab8?t=light&fw=html"></iframe>
+      </div>
+      <div class="algo-foot">
+        <a class="algo-mql5" href="https://www.mql5.com/" rel="noopener nofollow" target="_blank">Ver en MQL5 Community →</a>
       </div>
     </div>
   </div>
-
-  <!-- FOOTER -->
-  <footer>
-    © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
-  </footer>
-
 </div>
+
+<!-- PEPPERSTONE -->
+<div class="section rv">
+  <div class="promo">
+    <div class="promo-bar"></div>
+    <div class="promo-inner">
+      <div class="promo-logo"><img src="pepperstone.jpg" alt="Pepperstone"></div>
+      <div class="promo-txt">
+        <h3>Replica nuestras operaciones en Pepperstone</h3>
+        <p>Conecta tu cuenta y replica nuestras señales de forma sencilla y segura desde hoy.</p>
+      </div>
+      <a class="btn-promo" href="https://pepperstone.com/es-la/go/copytrading-by-pepperstone/" target="_blank" rel="noopener">Ir a CopyTrading →</a>
+    </div>
+  </div>
 </div>
+
+<!-- CÓMO EMPEZAR -->
+<div class="section rv">
+  <div class="sec-row">
+    <div>
+      <div class="sec-eyebrow">Cómo empezar</div>
+      <h2 class="sec-title">Tres pasos para operar con DGO</h2>
+    </div>
+    <a class="btn-solid" style="font-size:13px;padding:10px 20px;" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">Unirse a Telegram</a>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-img s1">01</div>
+      <div class="step-body">
+        <div class="step-title">Síguenos en redes</div>
+        <div class="step-desc">Recibe actualizaciones de los algoritmos, análisis y contenido educativo en Instagram y Telegram.</div>
+      </div>
+      <div class="step-foot"><a class="btn-step" href="https://www.instagram.com/dgo_capital_" target="_blank" rel="noopener">Ir a Instagram →</a></div>
+    </div>
+    <div class="step-card">
+      <div class="step-img s2">02</div>
+      <div class="step-body">
+        <div class="step-title">Conecta tu cuenta</div>
+        <div class="step-desc">Abre una cuenta en Pepperstone y activa el copy trading para replicar nuestras operaciones automáticamente.</div>
+      </div>
+      <div class="step-foot"><a class="btn-step" href="https://pepperstone.com/es-la/go/copytrading-by-pepperstone/" target="_blank" rel="noopener">Ir a Pepperstone →</a></div>
+    </div>
+    <div class="step-card">
+      <div class="step-img s3">03</div>
+      <div class="step-body">
+        <div class="step-title">Opera con estructura</div>
+        <div class="step-desc">Accede a la academia o trabaja con nuestro equipo para codificar y validar tu propia estrategia.</div>
+      </div>
+      <div class="step-foot"><a class="btn-step" href="servicios/academia.html">Ver academia →</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- BANNER AD -->
+<div class="section rv" id="desarrollos">
+  <div class="banner-wrap">
+    <div class="banner-fixed">
+      <ins class="dcmads" style="display:inline-block;width:728px;height:90px"
+        data-dcm-placement="N800570.2009906CELLXPERT/B24282330.340389488"
+        data-dcm-rendering-mode="iframe" data-dcm-https-only
+        data-dcm-click-tracker="https://trk.pepperstonepartners.com/aff_c?offer_id=382&aff_id=40752&file_id=5423"
+        data-dcm-gdpr-applies="gdpr=${GDPR}"
+        data-dcm-gdpr-consent="gdpr_consent=${GDPR_CONSENT_755}"
+        data-dcm-addtl-consent="addtl_consent=${ADDTL_CONSENT}"
+        data-dcm-ltd="false" data-dcm-resettable-device-id="" data-dcm-app-id="">
+        <script src="https://www.googletagservices.com/dcm/dcmads.js"></script>
+      </ins>
+      <img src="https://trk.pepperstonepartners.com/aff_i?offer_id=382&aff_id=40752&file_id=5423" width="0" height="0" style="position:absolute;visibility:hidden;" border="0" alt="">
+    </div>
+  </div>
+</div>
+
+<!-- REDES -->
+<div class="section rv" id="contacto">
+  <div class="sec-eyebrow">Comunidad</div>
+  <h2 class="sec-title" style="margin-bottom:16px">Síguenos en redes sociales</h2>
+  <div class="social-row">
+    <a class="soc-btn insta" href="https://www.instagram.com/dgo_capital_?igsh=MTVxY28yc3JremxkMA%3D%3D&utm_source=qr" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 4.5A4.5 4.5 0 1 1 7.5 13 4.51 4.51 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zM17.75 7a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.75 7z"/></svg>
+      Seguir en Instagram
+    </a>
+    <a class="soc-btn tele" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M9.03 15.39 8.9 18.7a1 1 0 0 0 1.58.84l2.36-1.69 3.84 2.82c.72.53 1.75.13 1.94-.76l3.08-14.4c.2-.95-.72-1.74-1.62-1.37L2.7 9.38c-.99.4-.95 1.83.06 2.17l4.78 1.64 10.98-6.77-9.49 8.97z"/></svg>
+      Unirse a Telegram
+    </a>
+  </div>
+</div>
+
+<!-- LEGAL -->
+<div class="section rv">
+  <div class="legal-box">
+    <div class="legal-icon">⚠️</div>
+    <div>
+      <div class="legal-ttl">Descargo de responsabilidad</div>
+      <div class="legal-txt">El rendimiento pasado no garantiza resultados futuros. Operar con instrumentos financieros implica riesgos y puede ocasionar pérdidas del capital invertido. La información aquí compartida tiene fines educativos y no constituye asesoría financiera.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <div class="footer-brand">DGO Capital</div>
+    <div class="footer-copy">© <span id="yr"></span> DGO Capital. Todos los derechos reservados.</div>
+  </div>
+  <div class="footer-links">
+    <a href="logros/index.html">Logros</a>
+    <a href="sistemas-de-apoyo/index.html">Sistemas de Apoyo</a>
+    <a href="desarrollos/index.html">Desarrollos</a>
+    <a href="servicios/copiador-de-senales.html">Servicios</a>
+    <a href="https://pepperstone.com/es-la/go/copytrading-by-pepperstone/" target="_blank" rel="noopener">Pepperstone</a>
+  </div>
+</footer>
 
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
 
-  /* Escala el banner */
   (function(){
-    function scaleAd(){
-      var s = document.querySelector('#desarrollos .ad-sizer');
-      var f = document.querySelector('#desarrollos .ad-fixed');
-      if(!s||!f) return;
-      var w = s.clientWidth;
-      var scale = Math.min(1, w/728);
-      f.style.transform = 'scale('+scale+')';
-      s.style.height = (90*scale)+'px';
+    var elT=document.getElementById('loc-time'), elZ=document.getElementById('loc-tz');
+    function fmt(n){return String(n).padStart(2,'0');}
+    function tick(){
+      var d=new Date();
+      if(elT) elT.textContent=fmt(d.getHours())+':'+fmt(d.getMinutes())+':'+fmt(d.getSeconds());
+      var off=-d.getTimezoneOffset(),sign=off>=0?'+':'−',abs=Math.abs(off);
+      if(elZ) elZ.textContent='UTC'+sign+String(Math.floor(abs/60)).padStart(2,'0')+(abs%60?':'+String(abs%60).padStart(2,'0'):'');
     }
-    window.addEventListener('load', scaleAd);
-    window.addEventListener('resize', scaleAd);
+    tick(); setInterval(tick,1000);
   })();
 
-  /* Reloj local */
   (function(){
-    var elLoc = document.getElementById('loc-time');
-    var elTz  = document.getElementById('loc-tz');
-    function fmt(n){ return String(n).padStart(2,'0'); }
-    function update(){
-      var loc = new Date();
-      if(elLoc) elLoc.textContent = fmt(loc.getHours())+':'+fmt(loc.getMinutes())+':'+fmt(loc.getSeconds());
-      var offMin = -loc.getTimezoneOffset();
-      var sign = offMin >= 0 ? '+' : '−';
-      var absM = Math.abs(offMin);
-      var offH = Math.floor(absM/60);
-      var offR = absM%60;
-      var tzStr = 'UTC'+sign+String(offH).padStart(2,'0')+(offR ? ':'+String(offR).padStart(2,'0') : '');
-      if(elTz) elTz.textContent = tzStr;
+    function scale(){
+      var s=document.querySelector('.banner-wrap'), f=document.querySelector('.banner-fixed');
+      if(!s||!f)return;
+      var r=Math.min(1,s.clientWidth/728);
+      f.style.transform='scale('+r+')';
+      s.style.height=(90*r)+'px';
     }
-    update();
-    setInterval(update, 1000);
+    window.addEventListener('load',scale);
+    window.addEventListener('resize',scale);
+  })();
+
+  (function(){
+    var els=document.querySelectorAll('.rv');
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+      });
+    },{threshold:0.08});
+    els.forEach(function(el,i){
+      el.style.transitionDelay=(i*0.04)+'s';
+      io.observe(el);
+    });
   })();
 </script>
 </body>
