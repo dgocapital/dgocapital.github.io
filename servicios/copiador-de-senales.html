@@ -8,301 +8,437 @@
   <meta property="og:title" content="DGO Capital — Software de Copiado">
   <meta property="og:description" content="Replica operaciones con un software robusto y sencillo de usar.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#121828">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/x-icon" href="../icon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --card:#0d1426; --card2:#0a101f; --stroke:#1e2a49;
-      --text:#e8eefc; --muted:#9fb0d9; --accent:#38bdf8;
-      --green:#34d399;
+    :root {
+      --navy:   #0d2550;
+      --blue:   #1a56db;
+      --bg:     linear-gradient(160deg, #daeaf7 0%, #eef4fb 40%, #ffffff 100%);
+      --white:  #ffffff;
+      --border: #d0daea;
+      --text:   #0d1b2e;
+      --muted:  #5a6b87;
+      --muted2: #8a9ab8;
+      --green:  #0ea66e;
     }
-    *{box-sizing:border-box; margin:0; padding:0}
-    html,body{height:100%}
-    body{
-      font-family:Inter, ui-sans-serif, system-ui, sans-serif;
-      color:var(--text); line-height:1.6;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
       background:
-        radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
-        linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
+        linear-gradient(
+          to right,
+          rgba(13,37,80,0.75) 0px,
+          rgba(13,37,80,0.6) 140px,
+          rgba(13,37,80,0.25) 260px,
+          rgba(255,255,255,0.92) 500px
+        );
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(16px,4vw,48px);
+      height: 62px;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .nav-brand img { height: 40px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 2px; }
+    .nav-link {
+      padding: 7px 14px; font-size: 13px; font-weight: 600;
+      color: var(--muted); transition: color .15s, background .15s;
+    }
+    .nav-link:hover { color: var(--navy); background: rgba(13,37,80,.05); }
+    .nav-link.active { color: var(--navy); font-weight: 800; }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .nav-clock {
+      font-size: 11px; font-weight: 700; color: var(--muted);
+      padding: 5px 11px; background: #f0f4f9; border: 1px solid var(--border);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .nav-clock-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink 1.8s ease-in-out infinite; flex-shrink: 0; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+    .btn-ghost {
+      padding: 8px 18px; font-size: 13px; font-weight: 700;
+      border: 1.5px solid var(--border); color: var(--navy); background: var(--white); cursor: pointer; transition: all .15s;
+    }
+    .btn-ghost:hover { border-color: var(--navy); }
+    .btn-solid {
+      padding: 8px 18px; font-size: 13px; font-weight: 700;
+      border: 1.5px solid var(--blue); background: var(--blue); color: #fff; cursor: pointer; transition: all .15s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-solid svg { width: 13px; height: 13px; fill: currentColor; }
+    .btn-solid:hover { background: var(--navy); border-color: var(--navy); }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      padding: 14px clamp(12px,3vw,32px);
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600; color: var(--muted2);
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.6);
+    }
+    .breadcrumb a { color: var(--blue); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb-sep { color: var(--muted2); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: 380px;
+      margin: 0 clamp(12px,3vw,32px);
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(8,22,52,.22) 0%, rgba(8,22,52,.50) 40%, rgba(8,22,52,.88) 100%),
+        url('https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: clamp(24px,4vw,48px) clamp(24px,5vw,56px) clamp(36px,5vw,52px);
+      max-width: 700px;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .hero-logo {
+      width: 110px; height: auto;
+      margin-bottom: 14px;
+      mix-blend-mode: screen;
+      filter: brightness(1.8) contrast(.9);
+      opacity: .92;
+    }
+    .hero-tagline {
+      font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,.55); margin-bottom: 14px;
+    }
+    .hero-title {
+      font-size: clamp(1.9rem, 1rem + 3.5vw, 3.4rem);
+      font-weight: 900; line-height: 1.06; letter-spacing: -.02em;
+      color: #fff; margin-bottom: 14px;
+    }
+    .hero-sub {
+      font-size: clamp(13px,.7vw+11px,16px); font-weight: 400;
+      color: rgba(255,255,255,.65); line-height: 1.7; max-width: 500px;
     }
 
-    .card{
-      min-height:100vh; width:100%;
-      padding:28px clamp(16px, 4vw, 40px);
-      border:1px solid var(--stroke);
-      box-shadow:0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
-      display:flex; flex-direction:column; gap:20px;
+    /* ── SECTION ── */
+    .section { padding: 40px clamp(12px,3vw,32px) 8px; }
+    .sec-eyebrow {
+      font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 5px;
     }
+    .sec-title { font-size: clamp(20px,1.4vw+14px,28px); font-weight: 900; color: var(--navy); margin-bottom: 4px; letter-spacing: -.3px; }
+    .sec-sub   { font-size: 14px; color: var(--muted); margin-bottom: 20px; max-width: 520px; font-weight: 600; }
 
-    /* HEADER */
-    header{
-      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
-      padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,.06);
-    }
-    .btn-back{
-      display:inline-flex; align-items:center;
-      padding:10px 16px; border-radius:12px; font-weight:700;
-      text-decoration:none; color:var(--text);
-      background:transparent; border:1px solid #28406e;
-      transition:border-color .2s, background .2s;
-    }
-    .btn-back:hover{ background:rgba(255,255,255,.04); border-color:#3a5a9a; }
-    .header-text h1{
-      font-size:clamp(1.4rem, 1rem + 2vw, 2.2rem);
-      font-weight:700; color:#fff;
-    }
-    .header-text .sub{ color:var(--muted); font-size:.9rem; margin-top:2px; }
-
-    /* HERO GRID */
-    .hero{
-      display:grid;
+    /* ── HERO GRID (imagen + info) ── */
+    .content-grid {
+      display: grid;
       grid-template-columns: minmax(260px, 420px) 1fr;
-      gap:20px; align-items:start;
-    }
-    @media(max-width:860px){ .hero{ grid-template-columns:1fr; } }
-
-    /* IMAGEN */
-    .media-panel{
-      background:linear-gradient(160deg, #0f1e38, #0a1428);
-      border:1px solid #1a2d50;
-      border-radius:16px; padding:16px;
-      display:flex; align-items:center; justify-content:center;
-    }
-    .media-panel img{
-      width:100%; height:auto; border-radius:10px;
-      box-shadow:0 8px 32px rgba(0,0,0,.4);
+      gap: 16px;
+      padding-bottom: 32px;
     }
 
-    /* INFO PANEL */
-    .info-panel{
-      background:linear-gradient(180deg, #111a31, #0c1427);
-      border:1px solid var(--stroke);
-      border-radius:16px; padding:28px;
-      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
-      display:flex; flex-direction:column; gap:20px;
+    /* imagen */
+    .media-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      overflow: hidden;
     }
-    .hero-tag{
-      display:inline-flex; align-items:center; gap:6px;
-      background:rgba(56,189,248,.12); border:1px solid rgba(56,189,248,.25);
-      color:var(--accent); font-size:.78rem; font-weight:700;
-      letter-spacing:.08em; text-transform:uppercase;
-      padding:4px 12px; border-radius:99px; width:fit-content;
-    }
-    .hero-tag::before{ content:"◈"; font-size:.7rem; }
-    .headline{
-      font-size:clamp(1.05rem, .85rem + .9vw, 1.35rem);
-      font-weight:700; color:#fff; line-height:1.4;
+    .media-card img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
 
-    /* CHECKLIST */
-    .checklist-title{
-      font-size:.72rem; font-weight:700; letter-spacing:.1em;
-      text-transform:uppercase; color:var(--accent);
+    /* checklist card */
+    .info-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 28px;
+      display: flex; flex-direction: column; gap: 20px;
     }
-    .checklist{
-      list-style:none; display:flex; flex-direction:column; gap:10px;
+    .info-headline {
+      font-size: clamp(14px,.6vw+12px,17px);
+      font-weight: 700; color: var(--navy); line-height: 1.45;
     }
-    .checklist li{
-      display:flex; gap:12px; align-items:flex-start;
-      padding:12px 14px;
-      background:rgba(255,255,255,.02);
-      border:1px solid rgba(255,255,255,.06);
-      border-radius:12px;
-      font-size:.9rem; color:var(--muted);
-      transition:border-color .2s, background .2s;
+    .checklist-label {
+      font-size: 11px; font-weight: 800; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 10px;
     }
-    .checklist li:hover{
-      background:rgba(56,189,248,.04);
-      border-color:rgba(56,189,248,.2);
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .checklist li {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      font-size: 13px; color: var(--muted); font-weight: 600;
+      transition: background .15s, border-color .15s;
     }
-    .check-icon{
-      flex-shrink:0; width:18px; height:18px;
-      color:var(--green); margin-top:1px;
+    .checklist li:hover { background: #f4f8ff; border-color: #b8ccf0; }
+    .check-ico {
+      flex-shrink: 0; width: 16px; height: 16px;
+      color: var(--green); margin-top: 1px;
+    }
+    .btn-telegram {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px; font-size: 14px; font-weight: 800;
+      background: var(--blue); color: #fff; border: 2px solid var(--blue);
+      cursor: pointer; transition: all .15s; width: fit-content;
+    }
+    .btn-telegram:hover { background: #1343b8; border-color: #1343b8; transform: translateY(-1px); }
+    .btn-telegram svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
+    /* ── PAGO ── */
+    .pay-block {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d3270 100%);
+      display: flex; align-items: center; margin-bottom: 32px;
+    }
+    .pay-bar { width: 4px; align-self: stretch; flex-shrink: 0; background: var(--blue); }
+    .pay-inner {
+      padding: 28px 32px; flex: 1;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .pay-inner h3 { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+    .pay-inner p  { font-size: 13px; color: rgba(255,255,255,.58); font-weight: 600; }
+    .pay-label {
+      font-size: 11px; font-weight: 800; letter-spacing: .1em;
+      text-transform: uppercase; color: rgba(255,255,255,.5);
+      margin-bottom: 8px;
+    }
+    .wallet {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      background: rgba(0,0,0,.3);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 12px 16px;
+    }
+    .wallet code {
+      font-family: ui-monospace, 'Cascadia Code', monospace;
+      font-size: 13px; color: #fff; flex: 1;
+      word-break: break-all;
+    }
+    .btn-copy {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; font-size: 13px; font-weight: 800;
+      color: #fff; background: var(--blue); border: none; cursor: pointer;
+      transition: all .15s; white-space: nowrap;
+    }
+    .btn-copy:hover { background: #1343b8; }
+    .btn-copy svg { width: 13px; height: 13px; stroke: currentColor; fill: none; }
+    .copy-confirm {
+      font-size: 12px; font-weight: 700; color: #6ee7b7;
+      opacity: 0; transition: opacity .3s;
+    }
+    .copy-confirm.show { opacity: 1; }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 24px clamp(16px,4vw,48px);
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .footer-brand { font-size: 14px; font-weight: 800; color: rgba(255,255,255,.7); }
+    .footer-copy  { font-size: 12px; color: rgba(255,255,255,.38); margin-top: 3px; font-weight: 600; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { font-size: 12px; color: rgba(255,255,255,.48); font-weight: 600; transition: color .15s; }
+    .footer-links a:hover { color: rgba(255,255,255,.9); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .content-grid { grid-template-columns: 1fr; }
+      .media-card { max-height: 280px; }
+    }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-clock { display: none; }
+    }
+    @media (max-width: 600px) {
+      .hero-title { font-size: 1.9rem; }
+      .hero-logo { width: 80px; }
     }
 
-    .btn-telegram{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:12px 24px; border-radius:12px; font-weight:700; font-size:.95rem;
-      text-decoration:none; color:#fff; width:fit-content;
-      background:linear-gradient(180deg, #1f9be6, #0ea5e9);
-      box-shadow:0 8px 20px rgba(14,165,233,.35);
-      transition:transform .06s ease, box-shadow .2s ease;
-    }
-    .btn-telegram:hover{ box-shadow:0 12px 28px rgba(14,165,233,.5); transform:translateY(-1px); }
-    .btn-telegram:active{ transform:translateY(1px); }
-
-    /* PAGO */
-    .pay-panel{
-      background:linear-gradient(135deg, #0e1f42 0%, #1a3a7a 55%, #1d4ed8 100%);
-      border:1px solid rgba(56,189,248,.3);
-      border-radius:16px;
-      padding: clamp(20px, 3vw, 36px) clamp(20px, 4vw, 48px);
-      box-shadow:0 0 0 1px rgba(255,255,255,.03) inset, 0 20px 45px rgba(37,99,235,.2);
-      display:flex; flex-direction:column; gap:16px;
-      position:relative; overflow:hidden;
-    }
-    .pay-panel::before{
-      content:'';
-      position:absolute; top:-80px; right:-80px;
-      width:260px; height:260px;
-      background:radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 70%);
-      pointer-events:none;
-    }
-    .pay-panel h2{
-      font-size:1.15rem; font-weight:700; color:#fff;
-      display:flex; align-items:center; gap:10px;
-    }
-    .pay-panel h2::after{
-      content:''; flex:1; height:1px;
-      background:linear-gradient(90deg, rgba(56,189,248,.4), transparent);
-    }
-    .pay-panel .sub-text{
-      color:rgba(255,255,255,.7); font-size:.9rem;
-    }
-    .pay-panel h3{
-      font-size:.85rem; font-weight:700; color:rgba(255,255,255,.85);
-      letter-spacing:.04em; text-transform:uppercase;
-    }
-    .wallet{
-      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
-      background:rgba(0,0,0,.35);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:12px; padding:12px 16px;
-    }
-    .wallet code{
-      font-family:ui-monospace, 'Cascadia Code', monospace;
-      font-size:.88rem; color:#fff; flex:1;
-      word-break:break-all;
-    }
-    .btn-copy{
-      display:inline-flex; align-items:center; gap:6px;
-      padding:8px 16px; border-radius:9px; font-weight:700; font-size:.85rem;
-      color:#fff; border:0; cursor:pointer;
-      background:linear-gradient(180deg, #1f9be6, #0ea5e9);
-      box-shadow:0 4px 14px rgba(14,165,233,.3);
-      transition:transform .06s, box-shadow .2s;
-      white-space:nowrap;
-    }
-    .btn-copy:hover{ box-shadow:0 6px 18px rgba(14,165,233,.45); transform:translateY(-1px); }
-    .btn-copy:active{ transform:translateY(1px); }
-    .copy-confirm{
-      font-size:.8rem; color:var(--green);
-      opacity:0; transition:opacity .3s;
-    }
-    .copy-confirm.show{ opacity:1; }
-
-    /* FOOTER */
-    .footer{
-      margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
-      padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
-    }
+    /* ── REVEAL ── */
+    .rv { opacity: 0; transform: translateY(18px); transition: opacity .45s ease, transform .45s ease; }
+    .rv.in { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
-<div class="card">
 
-  <!-- HEADER -->
-  <header>
-    <a href="../index.html" class="btn-back">← Volver</a>
-    <img src="../logo.png" alt="Logo DGO Capital"
-      style="height:59px; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)">
-    <div class="header-text">
-      <h1>Software de Copiado</h1>
-      <div class="sub">Replica operaciones de forma consistente y controlada</div>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">
+    <img src="../logo.png" alt="DGO Capital" onerror="this.style.display='none'">
+  </div>
+  <div class="nav-links">
+    <a class="nav-link active" href="#">Servicios</a>
+    <a class="nav-link" href="../desarrollos/index.html">Desarrollos</a>
+    <a class="nav-link" href="../index.html#contacto">Contacto</a>
+  </div>
+  <div class="nav-actions">
+    <div class="nav-clock">
+      <div class="nav-clock-dot"></div>
+      <span id="loc-time">--:--:--</span>
+      <span id="loc-tz" style="opacity:.6">UTC</span>
     </div>
-  </header>
+    <a class="btn-ghost" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">Telegram</a>
+    <a class="btn-solid" href="https://www.instagram.com/dgo_capital_" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 4.5A4.5 4.5 0 1 1 7.5 13 4.51 4.51 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zM17.75 7a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.75 7z"/></svg>
+      Instagram
+    </a>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <div class="hero">
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../index.html">DGO Capital</a>
+  <span class="breadcrumb-sep">›</span>
+  <span>Servicios</span>
+  <span class="breadcrumb-sep">›</span>
+  <span style="color: var(--navy); font-weight:700">Software de Copiado</span>
+</div>
+
+<!-- HERO -->
+<section class="hero rv">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <img class="hero-logo" src="../logo.png" alt="DGO Capital">
+    <div class="hero-tagline">Software · DGO Capital</div>
+    <h1 class="hero-title">Software de<br>Copiado</h1>
+    <p class="hero-sub">Opera todo tu portafolio desde un solo origen, con consistencia y control, para escalar resultados sin multiplicar trabajo.</p>
+  </div>
+</section>
+
+<!-- CONTENIDO -->
+<div class="section rv">
+  <div class="sec-eyebrow">Servicio</div>
+  <h2 class="sec-title">Replica operaciones con control</h2>
+  <p class="sec-sub">Características y forma de acceso al software de copiado.</p>
+  <div class="content-grid">
 
     <!-- IMAGEN -->
-    <div class="media-panel">
-      <img src="./copiador.jpg" alt="Vista del Copiador de Señales">
+    <div class="media-card">
+      <img src="./copiador.jpg" alt="Vista del Software de Copiado">
     </div>
 
     <!-- INFO -->
-    <div class="info-panel">
-      <span class="hero-tag">Software</span>
-
-      <p class="headline">
-        Opera todo tu portafolio desde un solo origen, con consistencia y control, para escalar resultados sin multiplicar trabajo.
-      </p>
+    <div class="info-card">
+      <div class="info-headline">Replica nuestras operaciones en tiempo real desde tu cuenta de Pepperstone, con parámetros ajustables y soporte incluido.</div>
 
       <div>
-        <p class="checklist-title" style="margin-bottom:10px;">Características</p>
+        <div class="checklist-label">Características</div>
         <ul class="checklist">
           <li>
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 6L9 17l-5-5"/>
-            </svg>
-            <span>Stop Loss y Take Profit configurables, trailing stop y cierres parciales disponibles.</span>
+            <svg class="check-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Stop Loss y Take Profit configurables, trailing stop y cierres parciales disponibles.
           </li>
           <li>
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 6L9 17l-5-5"/>
-            </svg>
-            <span>Riesgo ajustable por cuenta.</span>
+            <svg class="check-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Riesgo ajustable por cuenta.
           </li>
           <li>
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 6L9 17l-5-5"/>
-            </svg>
-            <span>Soporte y acompañamiento en la puesta en marcha.</span>
+            <svg class="check-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Soporte y acompañamiento en la puesta en marcha.
           </li>
           <li>
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 6L9 17l-5-5"/>
-            </svg>
-            <span>Garantía de funcionamiento.</span>
+            <svg class="check-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Garantía de funcionamiento.
           </li>
         </ul>
       </div>
 
       <a class="btn-telegram" href="https://t.me/diegotrader6" target="_blank" rel="noopener">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="white">
-          <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.802 7.651l-2.1 9.905c-.158.696-.572.866-1.158.54l-3.197-2.357-1.542 1.485c-.171.171-.314.314-.643.314l.229-3.241 5.897-5.321c.256-.229-.058-.358-.397-.129l-7.287 4.586-3.135-.98c-.681-.214-.696-.681.142-1.006l12.257-4.727c.572-.214 1.072.129.887 1.006z"/>
-        </svg>
+        <svg viewBox="0 0 24 24"><path d="M9.03 15.39 8.9 18.7a1 1 0 0 0 1.58.84l2.36-1.69 3.84 2.82c.72.53 1.75.13 1.94-.76l3.08-14.4c.2-.95-.72-1.74-1.62-1.37L2.7 9.38c-.99.4-.95 1.83.06 2.17l4.78 1.64 10.98-6.77-9.49 8.97z"/></svg>
         Soporte por Telegram
       </a>
     </div>
-  </div>
 
-  <!-- PAGO -->
-  <div class="pay-panel">
-    <h2>Pago</h2>
-    <p class="sub-text">Aceptamos USDT para el pago del servicio.</p>
-    <h3>USDT · Red TRC20</h3>
-    <div class="wallet">
-      <code id="wallet">TSMsg3noEr7uVbSX18vihq37Brc2jPLE1z</code>
-      <button class="btn-copy" onclick="copyWallet()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
-        </svg>
-        Copiar
-      </button>
-    </div>
-    <span class="copy-confirm" id="copy-confirm">✓ Wallet copiada</span>
   </div>
-
-  <!-- FOOTER -->
-  <div class="footer">
-    © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
-  </div>
-
 </div>
+
+<!-- PAGO -->
+<div class="section rv">
+  <div class="pay-block">
+    <div class="pay-bar"></div>
+    <div class="pay-inner">
+      <div>
+        <h3>Pago</h3>
+        <p>Aceptamos USDT para el pago del servicio.</p>
+      </div>
+      <div>
+        <div class="pay-label">USDT · Red TRC20</div>
+        <div class="wallet">
+          <code id="wallet">TSMsg3noEr7uVbSX18vihq37Brc2jPLE1z</code>
+          <button class="btn-copy" onclick="copyWallet()">
+            <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copiar
+          </button>
+        </div>
+        <span class="copy-confirm" id="copy-confirm">✓ Wallet copiada</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <div class="footer-brand">DGO Capital</div>
+    <div class="footer-copy">© <span id="yr"></span> DGO Capital. Todos los derechos reservados.</div>
+  </div>
+  <div class="footer-links">
+    <a href="../desarrollos/index.html">Desarrollos</a>
+    <a href="../index.html#servicios">Servicios</a>
+    <a href="https://pepperstone.com/es-la/go/copytrading-by-pepperstone/" target="_blank" rel="noopener">Pepperstone</a>
+  </div>
+</footer>
+
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
 
+  (function(){
+    var elT=document.getElementById('loc-time'), elZ=document.getElementById('loc-tz');
+    function fmt(n){return String(n).padStart(2,'0');}
+    function tick(){
+      var d=new Date();
+      if(elT) elT.textContent=fmt(d.getHours())+':'+fmt(d.getMinutes())+':'+fmt(d.getSeconds());
+      var off=-d.getTimezoneOffset(),sign=off>=0?'+':'−',abs=Math.abs(off);
+      if(elZ) elZ.textContent='UTC'+sign+String(Math.floor(abs/60)).padStart(2,'0')+(abs%60?':'+String(abs%60).padStart(2,'0'):'');
+    }
+    tick(); setInterval(tick,1000);
+  })();
+
   function copyWallet(){
-    const t = document.getElementById('wallet').innerText.trim();
-    const confirm = document.getElementById('copy-confirm');
-    navigator.clipboard.writeText(t).then(()=>{
-      confirm.classList.add('show');
-      setTimeout(()=> confirm.classList.remove('show'), 2500);
-    }).catch(()=> alert('No se pudo copiar'));
+    var t=document.getElementById('wallet').innerText.trim();
+    var c=document.getElementById('copy-confirm');
+    navigator.clipboard.writeText(t).then(function(){
+      c.classList.add('show');
+      setTimeout(function(){ c.classList.remove('show'); }, 2500);
+    }).catch(function(){ alert('No se pudo copiar'); });
   }
+
+  (function(){
+    var els=document.querySelectorAll('.rv');
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+      });
+    },{threshold:0.08});
+    els.forEach(function(el,i){
+      el.style.transitionDelay=(i*0.04)+'s';
+      io.observe(el);
+    });
+  })();
 </script>
 </body>
 </html>
