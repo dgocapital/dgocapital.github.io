@@ -4,277 +4,415 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DGO Capital — Desarrollos</title>
-  <meta name="description" content="Portafolio de robots/algoritmos desarrollados por DGO Capital.">
+  <meta name="description" content="Portafolio de robots y algoritmos desarrollados por DGO Capital.">
   <meta property="og:title" content="DGO Capital — Desarrollos">
   <meta property="og:description" content="Galería de EAs e indicadores desarrollados.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#121828">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/x-icon" href="../icon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --card:#0d1426; --card2:#0a101f; --stroke:#1e2a49;
-      --text:#e8eefc; --muted:#9fb0d9; --accent:#38bdf8;
+    :root {
+      --navy:   #0d2550;
+      --blue:   #1a56db;
+      --bg:     linear-gradient(160deg, #daeaf7 0%, #eef4fb 40%, #ffffff 100%);
+      --white:  #ffffff;
+      --border: #d0daea;
+      --text:   #0d1b2e;
+      --muted:  #5a6b87;
+      --muted2: #8a9ab8;
+      --green:  #0ea66e;
     }
-    *{box-sizing:border-box; margin:0; padding:0}
-    html,body{height:100%}
-    body{
-      font-family:Inter, ui-sans-serif, system-ui, sans-serif;
-      color:var(--text); line-height:1.6;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
       background:
-        radial-gradient(1000px 600px at 10% -10%, #162347 0%, transparent 60%),
-        linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
-      -webkit-font-smoothing:antialiased;
+        linear-gradient(
+          to right,
+          rgba(13,37,80,0.75) 0px,
+          rgba(13,37,80,0.6) 140px,
+          rgba(13,37,80,0.25) 260px,
+          rgba(255,255,255,0.92) 500px
+        );
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(16px,4vw,48px);
+      height: 62px;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .nav-brand img { height: 40px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 2px; }
+    .nav-link {
+      padding: 7px 14px; font-size: 13px; font-weight: 600;
+      color: var(--muted); transition: color .15s, background .15s;
+    }
+    .nav-link:hover { color: var(--navy); background: rgba(13,37,80,.05); }
+    .nav-link.active { color: var(--navy); font-weight: 800; }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .nav-clock {
+      font-size: 11px; font-weight: 700; color: var(--muted);
+      padding: 5px 11px; background: #f0f4f9; border: 1px solid var(--border);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .nav-clock-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink 1.8s ease-in-out infinite; flex-shrink: 0; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+    .btn-ghost {
+      padding: 8px 18px; font-size: 13px; font-weight: 700;
+      border: 1.5px solid var(--border); color: var(--navy); background: var(--white); cursor: pointer; transition: all .15s;
+    }
+    .btn-ghost:hover { border-color: var(--navy); }
+    .btn-solid {
+      padding: 8px 18px; font-size: 13px; font-weight: 700;
+      border: 1.5px solid var(--blue); background: var(--blue); color: #fff; cursor: pointer; transition: all .15s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-solid svg { width: 13px; height: 13px; fill: currentColor; }
+    .btn-solid:hover { background: var(--navy); border-color: var(--navy); }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      padding: 14px clamp(12px,3vw,32px);
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600; color: var(--muted2);
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.6);
+    }
+    .breadcrumb a { color: var(--blue); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb-sep { color: var(--muted2); }
+
+    /* ── PAGE HEADER (sin foto) ── */
+    .page-header {
+      background: var(--navy);
+      margin: 0 clamp(12px,3vw,32px);
+      padding: clamp(36px,5vw,60px) clamp(28px,5vw,56px);
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+      border-left: 4px solid var(--blue);
+      position: relative; overflow: hidden;
+    }
+    /* Patrón de cuadrícula técnica decorativo */
+    .page-header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+    /* Punto de luz sutil */
+    .page-header::after {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(26,86,219,.18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .page-header-text { position: relative; z-index: 1; }
+    .page-header-eyebrow {
+      font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.4); margin-bottom: 10px;
+    }
+    .page-header-title {
+      font-size: clamp(2rem, 1rem + 4vw, 3.6rem);
+      font-weight: 900; line-height: 1.04; letter-spacing: -.03em;
+      color: #fff;
+    }
+    .page-header-sub {
+      font-size: 14px; font-weight: 600;
+      color: rgba(255,255,255,.45); margin-top: 10px;
+    }
+    .page-header-badge {
+      position: relative; z-index: 1;
+      align-self: flex-start;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 14px 20px;
+      text-align: right;
+    }
+    .page-header-badge-num {
+      font-size: 28px; font-weight: 900; color: #fff; line-height: 1;
+    }
+    .page-header-badge-lbl {
+      font-size: 11px; font-weight: 700; color: rgba(255,255,255,.4);
+      letter-spacing: .08em; text-transform: uppercase; margin-top: 3px;
     }
 
-    .card{
-      min-height:100vh; width:100%;
-      padding:28px clamp(16px, 4vw, 40px);
-      border:1px solid var(--stroke);
-      box-shadow:0 20px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
-      display:flex; flex-direction:column; gap:20px;
+    /* ── SECTION ── */
+    .section { padding: 40px clamp(12px,3vw,32px) 8px; }
+    .sec-eyebrow {
+      font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 5px;
+    }
+    .sec-title { font-size: clamp(20px,1.4vw+14px,28px); font-weight: 900; color: var(--navy); margin-bottom: 4px; letter-spacing: -.3px; }
+    .sec-sub   { font-size: 14px; color: var(--muted); margin-bottom: 24px; max-width: 520px; font-weight: 600; }
+
+    /* ── DEV GRID ── */
+    .dev-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding-bottom: 32px;
     }
 
-    /* HEADER */
-    header{
-      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
-      padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,.06);
+    .dev-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
     }
-    .btn-back{
-      display:inline-flex; align-items:center;
-      padding:10px 16px; border-radius:12px; font-weight:700;
-      text-decoration:none; color:var(--text);
-      background:transparent; border:1px solid #28406e;
-      transition:border-color .2s, background .2s;
-    }
-    .btn-back:hover{ background:rgba(255,255,255,.04); border-color:#3a5a9a; }
-    .header-text h1{
-      font-size:clamp(1.4rem, 1rem + 2vw, 2.2rem);
-      font-weight:700; color:#fff;
-    }
-    .header-text .sub{ color:var(--muted); font-size:.9rem; margin-top:2px; }
+    .dev-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(13,37,80,.13); }
 
-    /* PANEL */
-    .panel{
-      background:linear-gradient(180deg, #111a31, #0c1427);
-      border:1px solid var(--stroke);
-      border-radius:16px; padding:24px;
-      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset, 0 10px 30px rgba(0,0,0,.25);
+    /* Miniatura */
+    .dev-thumb {
+      width: 100%; aspect-ratio: 16/9;
+      background: #eef4fb;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px; position: relative; overflow: hidden;
     }
-    .panel-header{
-      display:flex; align-items:center; gap:10px;
-      margin-bottom:20px;
+    .dev-thumb a {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; height: 100%;
     }
-    .panel-header h2{
-      font-size:1.15rem; font-weight:700; color:#fff;
+    .dev-thumb img {
+      max-width: 85%; max-height: 85%;
+      width: auto; height: auto; object-fit: contain;
+      transition: transform .25s ease;
     }
-    .panel-header .line{
-      flex:1; height:1px;
-      background:linear-gradient(90deg, #1e3060, transparent);
-    }
-    .panel-header .count{
-      font-size:.75rem; font-weight:700; letter-spacing:.08em;
-      text-transform:uppercase; color:var(--accent);
-      background:rgba(56,189,248,.1); border:1px solid rgba(56,189,248,.2);
-      padding:3px 10px; border-radius:99px;
-    }
+    .dev-card:hover .dev-thumb img { transform: scale(1.04); }
 
-    /* GRID DE CARDS */
-    .dev-grid{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:16px;
+    /* Badge PDF */
+    .pdf-badge {
+      position: absolute; top: 10px; right: 10px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+      padding: 3px 9px;
+      display: flex; align-items: center; gap: 4px;
     }
-    @media(max-width:700px){
-      .dev-grid{ grid-template-columns:1fr; }
-    }
+    .pdf-badge svg { width: 10px; height: 10px; fill: currentColor; flex-shrink: 0; }
 
-    .dev-card{
-      background:linear-gradient(160deg, #0f1e38, #0a1428);
-      border:1px solid #1a2d50;
-      border-radius:14px; overflow:hidden;
-      display:flex; flex-direction:column;
-      transition:transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+    /* Cuerpo */
+    .dev-body {
+      padding: 16px 18px 18px;
+      display: flex; flex-direction: column; gap: 6px;
+      flex: 1;
     }
-    .dev-card:hover{
-      transform:translateY(-3px);
-      box-shadow:0 14px 36px rgba(0,0,0,.4);
-      border-color:#2a4a80;
+    .dev-title {
+      font-size: 16px; font-weight: 900; color: var(--navy);
     }
+    .dev-link {
+      margin-top: auto; padding-top: 12px;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 800; color: var(--blue);
+      transition: gap .15s;
+    }
+    .dev-link:hover { gap: 10px; }
+    .dev-link svg { width: 13px; height: 13px; stroke: currentColor; fill: none; flex-shrink: 0; }
 
-    /* MINIATURA */
-    .thumb{
-      width:100%; aspect-ratio:16/9;
-      background:#0b1424;
-      border-bottom:1px solid #1a2d50;
-      display:flex; align-items:center; justify-content:center;
-      padding:14px; position:relative; overflow:hidden;
+    /* ── FOOTER ── */
+    .footer {
+      padding: 24px clamp(16px,4vw,48px);
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
     }
-    .thumb::before{
-      content:'';
-      position:absolute; inset:0;
-      background:radial-gradient(ellipse at center, rgba(56,189,248,.04) 0%, transparent 70%);
-      pointer-events:none;
-    }
-    .thumb a{
-      display:flex; align-items:center; justify-content:center;
-      width:100%; height:100%;
-    }
-    .thumb img{
-      max-width:85%; max-height:85%;
-      width:auto; height:auto; object-fit:contain;
-      filter:drop-shadow(0 4px 12px rgba(0,0,0,.45));
-      transition:transform .25s ease;
-    }
-    .dev-card:hover .thumb img{ transform:scale(1.05); }
+    .footer-brand { font-size: 14px; font-weight: 800; color: rgba(255,255,255,.7); }
+    .footer-copy  { font-size: 12px; color: rgba(255,255,255,.38); margin-top: 3px; font-weight: 600; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { font-size: 12px; color: rgba(255,255,255,.48); font-weight: 600; transition: color .15s; }
+    .footer-links a:hover { color: rgba(255,255,255,.9); }
 
-    /* PDF badge */
-    .pdf-badge{
-      position:absolute; top:10px; right:10px;
-      background:rgba(10,20,40,.85); border:1px solid #1e3a6e;
-      color:var(--accent); font-size:.65rem; font-weight:700;
-      letter-spacing:.08em; text-transform:uppercase;
-      padding:3px 8px; border-radius:6px;
-      backdrop-filter:blur(4px);
-      display:flex; align-items:center; gap:4px;
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .dev-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .nav-clock { display: none; }
     }
-    .pdf-badge svg{ width:10px; height:10px; }
-
-    /* CUERPO */
-    .dev-body{
-      padding:14px 16px 16px;
-      display:flex; flex-direction:column; gap:6px;
-      flex:1;
-    }
-    .dev-title{
-      font-size:1rem; font-weight:700; color:#fff; letter-spacing:.2px;
-    }
-    .dev-by{
-      font-size:.82rem; color:var(--muted);
-      display:flex; align-items:center; gap:5px;
-    }
-    .dev-by::before{
-      content:''; display:inline-block;
-      width:6px; height:6px; border-radius:50%;
-      background:var(--accent); opacity:.6; flex-shrink:0;
-    }
-    .dev-link{
-      margin-top:auto; padding-top:10px;
-      display:inline-flex; align-items:center; gap:6px;
-      font-size:.82rem; font-weight:600; color:var(--accent);
-      text-decoration:none; opacity:.8;
-      transition:opacity .2s;
-    }
-    .dev-link:hover{ opacity:1; }
-    .dev-link svg{ width:13px; height:13px; }
-
-    /* FOOTER */
-    .footer{
-      margin-top:auto; text-align:center; color:var(--muted); font-size:.88rem;
-      padding-top:8px; border-top:1px solid rgba(255,255,255,.06);
+    @media (max-width: 600px) {
+      .dev-grid { grid-template-columns: 1fr; }
+      .page-header { flex-direction: column; align-items: flex-start; }
     }
 
-    a:focus-visible, button:focus-visible{
-      outline:2px solid var(--accent); outline-offset:2px; border-radius:10px;
-    }
+    /* ── REVEAL ── */
+    .rv { opacity: 0; transform: translateY(18px); transition: opacity .45s ease, transform .45s ease; }
+    .rv.in { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
-<div class="card">
 
-  <!-- HEADER -->
-  <header>
-    <a href="../index.html" class="btn-back">← Volver</a>
-    <img src="../logo.png" alt="Logo DGO Capital"
-      style="height:59px; border-radius:12px; border:1px solid #1d2947; box-shadow:0 4px 18px rgba(0,0,0,.35)">
-    <div class="header-text">
-      <h1>Desarrollos</h1>
-      <div class="sub">Galería de EAs e indicadores</div>
-    </div>
-  </header>
-
-  <!-- GRID -->
-  <section class="panel">
-    <div class="panel-header">
-      <h2>Algoritmos</h2>
-      <div class="line"></div>
-      <span class="count">3 desarrollos</span>
-    </div>
-
-    <div class="dev-grid">
-
-      <!-- Bosón Diurno -->
-      <article class="dev-card">
-        <div class="thumb">
-          <a href="./BOSON-DIURNO-US30-PUBLICO.pdf" target="_blank" rel="noopener" title="Ver reporte: Bosón Diurno">
-            <img src="./boson-diurno.png" alt="Bosón" loading="lazy" decoding="async">
-          </a>
-          <span class="pdf-badge">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/></svg>
-            PDF
-          </span>
-        </div>
-        <div class="dev-body">
-          <p class="dev-title">Bosón</p>
-          <a class="dev-link" href="./BOSON-DIURNO-US30-PUBLICO.pdf" target="_blank" rel="noopener">
-            Ver reporte completo
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <!-- Orion -->
-      <article class="dev-card">
-        <div class="thumb">
-          <a href="./ORION-SP500-PUBLICO.pdf" target="_blank" rel="noopener" title="Ver reporte: Orion">
-            <img src="./orion.png" alt="Orion" loading="lazy" decoding="async">
-          </a>
-          <span class="pdf-badge">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/></svg>
-            PDF
-          </span>
-        </div>
-        <div class="dev-body">
-          <p class="dev-title">Orion</p>
-          <a class="dev-link" href="./ORION-SP500-PUBLICO.pdf" target="_blank" rel="noopener">
-            Ver reporte completo
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <!-- Alchemist -->
-      <article class="dev-card">
-        <div class="thumb">
-          <a href="./ALCHEMIST-NAS100-PUBLICO.pdf" target="_blank" rel="noopener" title="Ver reporte: Alchemist">
-            <img src="./alchemist.png" alt="Alchemist" loading="lazy" decoding="async">
-          </a>
-          <span class="pdf-badge">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/></svg>
-            PDF
-          </span>
-        </div>
-        <div class="dev-body">
-          <p class="dev-title">Alchemist</p>
-          <a class="dev-link" href="./ALCHEMIST-NAS100-PUBLICO.pdf" target="_blank" rel="noopener">
-            Ver reporte completo
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-          </a>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <div class="footer">
-    © <span id="yr"></span> DGO Capital. Todos los derechos reservados.
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">
+    <img src="../logo.png" alt="DGO Capital" onerror="this.style.display='none'">
   </div>
+  <div class="nav-links">
+    <a class="nav-link" href="../index.html#servicios">Servicios</a>
+    <a class="nav-link active" href="#">Desarrollos</a>
+    <a class="nav-link" href="../index.html#contacto">Contacto</a>
+  </div>
+  <div class="nav-actions">
+    <div class="nav-clock">
+      <div class="nav-clock-dot"></div>
+      <span id="loc-time">--:--:--</span>
+      <span id="loc-tz" style="opacity:.6">UTC</span>
+    </div>
+    <a class="btn-ghost" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">Telegram</a>
+    <a class="btn-solid" href="https://www.instagram.com/dgo_capital_" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 4.5A4.5 4.5 0 1 1 7.5 13 4.51 4.51 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zM17.75 7a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.75 7z"/></svg>
+      Instagram
+    </a>
+  </div>
+</nav>
 
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../index.html">DGO Capital</a>
+  <span class="breadcrumb-sep">›</span>
+  <span style="color: var(--navy); font-weight:700">Desarrollos</span>
 </div>
+
+<!-- PAGE HEADER -->
+<div class="page-header rv">
+  <div class="page-header-text">
+    <div class="page-header-eyebrow">DGO Capital · Portafolio técnico</div>
+    <div class="page-header-title">Desarrollos</div>
+    <div class="page-header-sub">Algoritmos diseñados, validados y operando en mercados reales.</div>
+  </div>
+  <div class="page-header-badge">
+    <div class="page-header-badge-num">3</div>
+    <div class="page-header-badge-lbl">Algoritmos</div>
+  </div>
+</div>
+
+<!-- GRID -->
+<div class="section rv">
+  <div class="sec-eyebrow">Portafolio</div>
+  <h2 class="sec-title">Algoritmos desarrollados</h2>
+  <p class="sec-sub">Cada sistema incluye reporte completo de backtesting con resultados históricos documentados.</p>
+
+  <div class="dev-grid">
+
+    <!-- Bosón -->
+    <article class="dev-card">
+      <div class="dev-thumb">
+        <a href="./BOSON-DIURNO-US30-PUBLICO.pdf" target="_blank" rel="noopener" title="Ver reporte: Bosón">
+          <img src="./boson-diurno.png" alt="Bosón" loading="lazy" decoding="async">
+        </a>
+        <span class="pdf-badge">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/></svg>
+          PDF
+        </span>
+      </div>
+      <div class="dev-body">
+        <p class="dev-title">Bosón</p>
+        <a class="dev-link" href="./BOSON-DIURNO-US30-PUBLICO.pdf" target="_blank" rel="noopener">
+          Ver reporte completo
+          <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- Orion -->
+    <article class="dev-card">
+      <div class="dev-thumb">
+        <a href="./ORION-SP500-PUBLICO.pdf" target="_blank" rel="noopener" title="Ver reporte: Orion">
+          <img src="./orion.png" alt="Orion" loading="lazy" decoding="async">
+        </a>
+        <span class="pdf-badge">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/></svg>
+          PDF
+        </span>
+      </div>
+      <div class="dev-body">
+        <p class="dev-title">Orion</p>
+        <a class="dev-link" href="./ORION-SP500-PUBLICO.pdf" target="_blank" rel="noopener">
+          Ver reporte completo
+          <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- Alchemist -->
+    <article class="dev-card">
+      <div class="dev-thumb">
+        <a href="./ALCHEMIST-NAS100-PUBLICO.pdf" target="_blank" rel="noopener" title="Ver reporte: Alchemist">
+          <img src="./alchemist.png" alt="Alchemist" loading="lazy" decoding="async">
+        </a>
+        <span class="pdf-badge">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/></svg>
+          PDF
+        </span>
+      </div>
+      <div class="dev-body">
+        <p class="dev-title">Alchemist</p>
+        <a class="dev-link" href="./ALCHEMIST-NAS100-PUBLICO.pdf" target="_blank" rel="noopener">
+          Ver reporte completo
+          <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </article>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <div class="footer-brand">DGO Capital</div>
+    <div class="footer-copy">© <span id="yr"></span> DGO Capital. Todos los derechos reservados.</div>
+  </div>
+  <div class="footer-links">
+    <a href="../index.html#servicios">Servicios</a>
+    <a href="../index.html#algoritmos">Algoritmos</a>
+    <a href="https://pepperstone.com/es-la/go/copytrading-by-pepperstone/" target="_blank" rel="noopener">Pepperstone</a>
+  </div>
+</footer>
+
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  (function(){
+    var elT=document.getElementById('loc-time'), elZ=document.getElementById('loc-tz');
+    function fmt(n){return String(n).padStart(2,'0');}
+    function tick(){
+      var d=new Date();
+      if(elT) elT.textContent=fmt(d.getHours())+':'+fmt(d.getMinutes())+':'+fmt(d.getSeconds());
+      var off=-d.getTimezoneOffset(),sign=off>=0?'+':'−',abs=Math.abs(off);
+      if(elZ) elZ.textContent='UTC'+sign+String(Math.floor(abs/60)).padStart(2,'0')+(abs%60?':'+String(abs%60).padStart(2,'0'):'');
+    }
+    tick(); setInterval(tick,1000);
+  })();
+
+  (function(){
+    var els=document.querySelectorAll('.rv');
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+      });
+    },{threshold:0.08});
+    els.forEach(function(el,i){
+      el.style.transitionDelay=(i*0.04)+'s';
+      io.observe(el);
+    });
+  })();
 </script>
 </body>
 </html>
