@@ -344,12 +344,11 @@
     .nav-hamburger {
       display: none; flex-direction: column; justify-content: center; gap: 5px;
       width: 36px; height: 36px; cursor: pointer;
-      background: var(--navy); border: none; padding: 7px 6px;
-      border-radius: 4px;
+      background: transparent; border: none; padding: 7px 6px;
       flex-shrink: 0;
     }
     .nav-hamburger span {
-      display: block; height: 2px; background: #fff; border-radius: 2px;
+      display: block; height: 2px; background: var(--navy); border-radius: 2px;
       transition: all .25s ease;
     }
     .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
