@@ -46,8 +46,8 @@
       background:
         linear-gradient(
           to right,
-          rgba(13,37,80,0.75) 0px,   /* antes 0.95 → más suave */
-          rgba(13,37,80,0.6) 140px,  /* transición más rápida */
+          rgba(13,37,80,0.75) 0px,
+          rgba(13,37,80,0.6) 140px,
           rgba(13,37,80,0.25) 260px,
           rgba(255,255,255,0.92) 500px
         );
@@ -111,7 +111,6 @@
     .hero-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.3); cursor: pointer; }
     .hero-dot.active { background: #fff; }
 
-    /* content block — logo + tagline + title + sub + ctas */
     .hero-content {
       position: relative; z-index: 2;
       padding: clamp(24px,4vw,48px) clamp(24px,5vw,56px) clamp(36px,5vw,52px);
@@ -119,11 +118,9 @@
       display: flex; flex-direction: column; gap: 0;
     }
 
-    /* LOGO FUNDIDO */
     .hero-logo {
       width: 130px; height: auto;
       margin-bottom: 14px;
-      /* mix-blend-mode screen + filtro para fundir sobre foto oscura */
       mix-blend-mode: screen;
       filter: brightness(1.8) contrast(.9);
       opacity: .92;
@@ -343,6 +340,37 @@
       .hero-logo { width: 90px; }
     }
 
+    /* ── NAV MÓVIL ── */
+    .nav-hamburger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      width: 36px; height: 36px; cursor: pointer; background: none; border: none; padding: 4px;
+      flex-shrink: 0;
+    }
+    .nav-hamburger span {
+      display: block; height: 2px; background: var(--navy); border-radius: 2px;
+      transition: all .25s ease;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-mobile-menu {
+      display: none; position: fixed; top: 62px; left: 0; right: 0; z-index: 190;
+      background: rgba(255,255,255,.97); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column; padding: 8px 0;
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-link {
+      padding: 13px clamp(16px,4vw,48px); font-size: 14px; font-weight: 700;
+      color: var(--navy); border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+    .nav-mobile-link:last-child { border-bottom: none; }
+    .nav-mobile-link:hover { background: rgba(13,37,80,.04); }
+    @media (max-width: 900px) {
+      .nav-hamburger { display: flex; }
+    }
+
     /* ── REVEAL ── */
     .rv { opacity: 0; transform: translateY(18px); transition: opacity .45s ease, transform .45s ease; }
     .rv.in { opacity: 1; transform: translateY(0); }
@@ -371,10 +399,20 @@
       <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 4.5A4.5 4.5 0 1 1 7.5 13 4.51 4.51 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zM17.75 7a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.75 7z"/></svg>
       Instagram
     </a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
-<!-- HERO — logo fundido arriba izquierda, luego tagline + título + sub + ctas -->
+<!-- MENÚ MÓVIL -->
+<div class="nav-mobile-menu" id="mobile-menu">
+  <a class="nav-mobile-link" href="#servicios">Servicios</a>
+  <a class="nav-mobile-link" href="desarrollos/index.html">Desarrollos</a>
+  <a class="nav-mobile-link" href="#contacto">Contacto</a>
+</div>
+
+<!-- HERO -->
 <section class="hero rv">
   <div class="hero-bg"></div>
   <div class="hero-dots">
@@ -412,7 +450,7 @@
   </div>
   <div class="cards3">
     <div class="img-card">
-      <div class="img-card-bg" style="background-image:url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80&auto=format&fit=crop')"></div>
+      <div class="img-card-bg" style="background-image:url('https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80&auto=format&fit=crop')"></div>
       <div class="img-card-body">
         <div class="img-card-title">Transparencia</div>
         <div class="img-card-desc">Resultados verificables, historial abierto. Sin ediciones, sin filtros.</div>
@@ -476,6 +514,7 @@
       <h2 class="sec-title">Algoritmos en vivo</h2>
       <p class="sec-sub">Tres sistemas con lógica independiente, monitoreados en tiempo real en MQL5.</p>
     </div>
+    <a class="sec-link" href="desarrollos/index.html">Ver todos los desarrollos →</a>
   </div>
   <div class="algo-grid">
     <div class="algo-card">
@@ -668,6 +707,24 @@
     els.forEach(function(el,i){
       el.style.transitionDelay=(i*0.04)+'s';
       io.observe(el);
+    });
+  })();
+
+  (function(){
+    var btn=document.getElementById('hamburger');
+    var menu=document.getElementById('mobile-menu');
+    if(!btn||!menu) return;
+    btn.addEventListener('click',function(){
+      var open=menu.classList.toggle('open');
+      btn.classList.toggle('open',open);
+      btn.setAttribute('aria-expanded',String(open));
+    });
+    menu.querySelectorAll('.nav-mobile-link').forEach(function(a){
+      a.addEventListener('click',function(){
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+      });
     });
   })();
 </script>
