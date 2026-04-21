@@ -289,6 +289,12 @@
     .feat-ico.amber  { background: #fef3e2; }
     .feat-ico.red    { background: #fff0f0; }
     .feat-ico.navy   { background: #e8edf7; }
+    .feat-card--highlight { background: #fafbff; border-top: 2px solid rgba(91,63,212,.25); }
+    .feat-card--highlight:hover { background: #f4f1ff; }
+    .feat-new-badge {
+      font-size: 9px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      background: #f0eeff; color: var(--purple); padding: 2px 7px; flex-shrink: 0;
+    }
     .feat-name { font-size: 14px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
     .feat-desc { font-size: 12px; color: var(--muted); line-height: 1.55; font-weight: 600; }
 
@@ -374,7 +380,47 @@
     .rv { opacity: 0; transform: translateY(18px); transition: opacity .45s ease, transform .45s ease; }
     .rv.in { opacity: 1; transform: translateY(0); }
 
-    /* ── RESPONSIVE ── */
+    /* ── IA SPOTLIGHT ── */
+    .ia-spotlight { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding-bottom: 32px; }
+    .ia-steps { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+    .ia-step { display: flex; align-items: flex-start; gap: 14px; }
+    .ia-step-num {
+      width: 32px; height: 32px; flex-shrink: 0;
+      background: var(--purple); color: #fff;
+      font-size: 11px; font-weight: 900; letter-spacing: .03em;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ia-step-title { font-size: 13px; font-weight: 800; color: var(--navy); margin-bottom: 2px; }
+    .ia-step-desc  { font-size: 12px; color: var(--muted); font-weight: 600; line-height: 1.5; }
+
+    /* IA Chat Card mockup */
+    .ia-card {
+      background: #0d0d1a; border: 1px solid rgba(91,63,212,.3);
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(13,37,80,.2);
+    }
+    .ia-card-header {
+      background: #13132a; border-bottom: 1px solid rgba(255,255,255,.07);
+      padding: 10px 16px; display: flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; color: rgba(255,255,255,.45);
+    }
+    .ia-card-dot { width: 7px; height: 7px; border-radius: 50%; background: #a78bfa; animation: blink 1.8s ease-in-out infinite; }
+    .ia-card-body { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+    .ia-msg { display: flex; flex-direction: column; gap: 4px; }
+    .ia-msg-label { font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); padding: 0 4px; }
+    .ia-msg--out .ia-msg-label { color: rgba(167,139,250,.6); }
+    .ia-msg-bubble {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 8px; padding: 10px 12px;
+      font-size: 11px; color: rgba(255,255,255,.7); line-height: 1.6; font-weight: 600;
+      font-family: 'Nunito Sans', sans-serif;
+    }
+    .ia-msg-bubble--ai {
+      background: rgba(91,63,212,.15); border-color: rgba(91,63,212,.3);
+      color: rgba(255,255,255,.8);
+    }
+
+    /* ── IA SPOTLIGHT ── */
     @media (max-width: 900px) {
       .feat-grid { grid-template-columns: 1fr 1fr; }
       .mockup-section { grid-template-columns: 1fr; }
@@ -387,6 +433,7 @@
       .cta-right { justify-content: center; }
       .nav-links { display: none; }
       .nav-clock { display: none; }
+      .ia-spotlight { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
       .feat-grid { grid-template-columns: 1fr; }
@@ -613,6 +660,98 @@
         <div class="feat-desc">Distribución de gastos, tendencia de crecimiento mensual y mapa de actividad financiera.</div>
       </div>
     </div>
+    <div class="feat-card feat-card--highlight">
+      <div class="feat-ico" style="background:#e8f4ff;font-size:18px;">🧠</div>
+      <div>
+        <div class="feat-name" style="display:flex;align-items:center;gap:8px;">
+          Análisis con IA
+          <span class="feat-new-badge">Destacado</span>
+        </div>
+        <div class="feat-desc">La app prepara automáticamente un resumen completo de tus finanzas y lo abre en Claude AI con preguntas de análisis ya formuladas. Tú solo envías y recibes tu diagnóstico financiero personalizado.</div>
+      </div>
+    </div>
+    <div class="feat-card feat-card--highlight">
+      <div class="feat-ico" style="background:#e6f9f2;font-size:18px;">🗓️</div>
+      <div>
+        <div class="feat-name" style="display:flex;align-items:center;gap:8px;">
+          Calendario heatmap
+          <span class="feat-new-badge">Destacado</span>
+        </div>
+        <div class="feat-desc">Visualiza tu actividad financiera mes a mes en un mapa de calor tipo GitHub. Identifica de un vistazo los meses de mayor gasto, ahorro o inactividad en tu historial.</div>
+      </div>
+    </div>
+    <div class="feat-card feat-card--highlight">
+      <div class="feat-ico" style="background:#fef3e2;font-size:18px;">🧾</div>
+      <div>
+        <div class="feat-name" style="display:flex;align-items:center;gap:8px;">
+          Gestión de facturas
+          <span class="feat-new-badge">Destacado</span>
+        </div>
+        <div class="feat-desc">Configura tus pagos recurrentes con fecha de vencimiento y frecuencia. La app te avisa cuántas facturas tienes pendientes cada mes y las marca como pagadas con un toque.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IA SPOTLIGHT -->
+<div class="section rv">
+  <div class="ia-spotlight">
+    <div class="ia-left">
+      <div class="sec-eyebrow purple">Inteligencia Artificial</div>
+      <h2 class="sec-title">Tu contador personal,<br>potenciado por IA</h2>
+      <p class="sec-sub">La app organiza todos tus datos financieros del mes y los convierte automáticamente en un prompt estructurado. Con un toque, se abre Claude AI con tu información lista y preguntas de análisis ya formuladas.</p>
+      <div class="ia-steps">
+        <div class="ia-step">
+          <div class="ia-step-num">01</div>
+          <div>
+            <div class="ia-step-title">Registra tu mes normalmente</div>
+            <div class="ia-step-desc">Ingresos, gastos, deudas e inversiones como siempre.</div>
+          </div>
+        </div>
+        <div class="ia-step">
+          <div class="ia-step-num">02</div>
+          <div>
+            <div class="ia-step-title">La app prepara tu resumen</div>
+            <div class="ia-step-desc">Selecciona el alcance del análisis. La app genera el resumen completo automáticamente.</div>
+          </div>
+        </div>
+        <div class="ia-step">
+          <div class="ia-step-num">03</div>
+          <div>
+            <div class="ia-step-title">Abre en Claude y envía</div>
+            <div class="ia-step-desc">Claude AI recibe tus datos con preguntas formuladas y te entrega un diagnóstico financiero personalizado.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ia-right">
+      <div class="ia-card">
+        <div class="ia-card-header">
+          <div class="ia-card-dot"></div>
+          <span>Análisis IA · Abril 2026</span>
+        </div>
+        <div class="ia-card-body">
+          <div class="ia-msg ia-msg--out">
+            <div class="ia-msg-label">DGO Finance</div>
+            <div class="ia-msg-bubble">
+              📊 Resumen financiero Abril 2026<br>
+              Ingresos: $8.200.000<br>
+              Gastos: $2.100.000 (25.6%)<br>
+              Deudas: $800.000 (9.7%)<br>
+              Ahorro/Inv: $500.000 (6.1%)<br>
+              Balance libre: $4.820.000<br><br>
+              <span style="opacity:.7;">¿Qué aspectos de mi situación financiera debo mejorar este mes?</span>
+            </div>
+          </div>
+          <div class="ia-msg ia-msg--in">
+            <div class="ia-msg-label">Claude AI</div>
+            <div class="ia-msg-bubble ia-msg-bubble--ai">
+              Tu balance es sólido. El 25.6% en gastos está por debajo del umbral ideal del 30%. Te recomiendo revisar el rubro de deudas — reducirlo al 7% liberaría ~$220.000 adicionales para inversión...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -644,6 +783,21 @@
     </div>
     <div class="compare-row">
       <div class="compare-cell">Funciona sin Play Store ni App Store (PWA)</div>
+      <div class="compare-cell"><span class="cross">✕</span></div>
+      <div class="compare-cell"><span class="hl">✓</span></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell">Análisis financiero con IA integrado</div>
+      <div class="compare-cell"><span class="cross">✕</span></div>
+      <div class="compare-cell"><span class="hl">✓</span></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell">Calendario heatmap de actividad financiera</div>
+      <div class="compare-cell"><span class="cross">✕</span></div>
+      <div class="compare-cell"><span class="hl">✓</span></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell">Gestión de facturas y pagos recurrentes</div>
       <div class="compare-cell"><span class="cross">✕</span></div>
       <div class="compare-cell"><span class="hl">✓</span></div>
     </div>
