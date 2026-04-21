@@ -52,13 +52,26 @@
       height: 62px;
     }
     .nav-brand { display: flex; align-items: center; gap: 10px; }
-    .nav-brand-name { font-size: 15px; font-weight: 800; color: var(--navy); }
-    .nav-back {
-      padding: 8px 18px; font-size: 13px; font-weight: 700;
-      border: 1.5px solid var(--border); color: var(--navy); background: var(--white);
-      cursor: pointer; transition: all .15s; display: inline-flex; align-items: center; gap: 6px;
+    .nav-brand img { height: 40px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 2px; }
+    .nav-link {
+      padding: 7px 14px; font-size: 13px; font-weight: 600;
+      color: var(--muted); transition: color .15s, background .15s;
     }
-    .nav-back:hover { border-color: var(--navy); }
+    .nav-link:hover { color: var(--navy); background: rgba(13,37,80,.05); }
+    .nav-link.active { color: var(--navy); font-weight: 800; }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .nav-clock {
+      font-size: 11px; font-weight: 700; color: var(--muted);
+      padding: 5px 11px; background: #f0f4f9; border: 1px solid var(--border);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .nav-clock-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink 1.8s ease-in-out infinite; flex-shrink: 0; }
+    .btn-ghost {
+      padding: 8px 18px; font-size: 13px; font-weight: 700;
+      border: 1.5px solid var(--border); color: var(--navy); background: var(--white); cursor: pointer; transition: all .15s;
+    }
+    .btn-ghost:hover { border-color: var(--navy); }
     .btn-solid {
       padding: 8px 18px; font-size: 13px; font-weight: 700;
       border: 1.5px solid var(--blue); background: var(--blue); color: #fff;
@@ -75,9 +88,14 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background:
-        linear-gradient(to bottom, rgba(8,22,52,.3) 0%, rgba(8,22,52,.55) 45%, rgba(8,22,52,.92) 100%),
-        url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+      background: linear-gradient(145deg, #06101f 0%, #0a1628 40%, #0d1f3c 70%, #091220 100%);
+    }
+    /* Subtle noise texture overlay */
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(91,63,212,0.12) 0%, transparent 60%),
+                        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(26,86,219,0.08) 0%, transparent 55%);
     }
 
     /* Animated grid lines on hero */
@@ -367,6 +385,8 @@
       .cta-block { flex-direction: column; text-align: center; }
       .cta-sub { max-width: 100%; }
       .cta-right { justify-content: center; }
+      .nav-links { display: none; }
+      .nav-clock { display: none; }
     }
     @media (max-width: 600px) {
       .feat-grid { grid-template-columns: 1fr; }
@@ -379,13 +399,23 @@
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-brand">
-    <span class="nav-brand-name">DGO Capital</span>
+    <img src="../logo.png" alt="DGO Capital" onerror="this.style.display='none'">
   </div>
-  <div style="display:flex;gap:8px;align-items:center;">
-    <a class="nav-back" href="/">← Inicio</a>
-    <a class="btn-solid" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">
-      Obtener app →
-    </a>
+  <div class="nav-links">
+    <a class="nav-link" href="../index.html">Inicio</a>
+    <a class="nav-link" href="../index.html#servicios">Servicios</a>
+    <a class="nav-link active" href="#">Finance App</a>
+    <a class="nav-link" href="../desarrollos/index.html">Desarrollos</a>
+    <a class="nav-link" href="../index.html#contacto">Contacto</a>
+  </div>
+  <div class="nav-actions">
+    <div class="nav-clock">
+      <div class="nav-clock-dot"></div>
+      <span id="loc-time">--:--:--</span>
+      <span id="loc-tz" style="opacity:.6">UTC</span>
+    </div>
+    <a class="btn-ghost" href="../index.html">← Inicio</a>
+    <a class="btn-solid" href="https://t.me/diegotrader_6" target="_blank" rel="noopener">Obtener app →</a>
   </div>
 </nav>
 
@@ -674,6 +704,18 @@
 
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  (function(){
+    var elT=document.getElementById('loc-time'), elZ=document.getElementById('loc-tz');
+    function fmt(n){return String(n).padStart(2,'0');}
+    function tick(){
+      var d=new Date();
+      if(elT) elT.textContent=fmt(d.getHours())+':'+fmt(d.getMinutes())+':'+fmt(d.getSeconds());
+      var off=-d.getTimezoneOffset(),sign=off>=0?'+':'−',abs=Math.abs(off);
+      if(elZ) elZ.textContent='UTC'+sign+String(Math.floor(abs/60)).padStart(2,'0')+(abs%60?':'+String(abs%60).padStart(2,'0'):'');
+    }
+    tick(); setInterval(tick,1000);
+  })();
 
   (function(){
     var els = document.querySelectorAll('.rv');
