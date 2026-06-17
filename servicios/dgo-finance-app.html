@@ -90,7 +90,6 @@
       position: absolute; inset: 0;
       background: linear-gradient(145deg, #06101f 0%, #0a1628 40%, #0d1f3c 70%, #091220 100%);
     }
-    /* Subtle noise texture overlay */
     .hero-bg::after {
       content: '';
       position: absolute; inset: 0;
@@ -98,7 +97,6 @@
                         radial-gradient(ellipse 50% 40% at 20% 80%, rgba(26,86,219,0.08) 0%, transparent 55%);
     }
 
-    /* Animated grid lines on hero */
     .hero-grid {
       position: absolute; inset: 0; z-index: 1;
       background-image:
@@ -151,7 +149,6 @@
     }
     .btn-hero-g:hover { background: rgba(255,255,255,.18); transform: translateY(-1px); }
 
-    /* Hero pill stats */
     .hero-pills { display: flex; gap: 10px; flex-wrap: wrap; }
     .hero-pill {
       display: inline-flex; align-items: center; gap: 6px;
@@ -192,7 +189,6 @@
       display: flex; justify-content: center;
     }
 
-    /* Phone mockup */
     .phone-frame {
       width: 240px; flex-shrink: 0;
       background: var(--navy);
@@ -215,7 +211,6 @@
     .phone-notch-dot { width: 8px; height: 8px; border-radius: 50%; background: #1a2d5a; }
     .phone-screen { background: #0a0a12; border-radius: 20px; overflow: hidden; }
 
-    /* Mini app UI inside phone */
     .app-header {
       background: #0d0d1a; padding: 10px 12px 8px;
       border-bottom: 1px solid rgba(255,255,255,.07);
@@ -248,7 +243,6 @@
     .app-mini-val.blue  { color: #818cf8; }
     .app-mini-val.amber { color: #fbbf24; }
 
-    /* Mini bar chart */
     .app-chart-section { margin: 0 10px 10px; }
     .app-chart-lbl { font-size: 8px; color: rgba(255,255,255,.3); font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
     .app-bars { display: flex; gap: 4px; align-items: flex-end; height: 40px; }
@@ -259,7 +253,6 @@
     .app-bar.hi { background: #7c6ef0; }
     .app-bar.accent { background: #34d399; }
 
-    /* App nav bar */
     .app-nav {
       display: flex; background: #0d0d1a; padding: 8px 4px 4px;
       border-top: 1px solid rgba(255,255,255,.07);
@@ -393,7 +386,6 @@
     .ia-step-title { font-size: 13px; font-weight: 800; color: var(--navy); margin-bottom: 2px; }
     .ia-step-desc  { font-size: 12px; color: var(--muted); font-weight: 600; line-height: 1.5; }
 
-    /* IA Chat Card mockup */
     .ia-card {
       background: #0d0d1a; border: 1px solid rgba(91,63,212,.3);
       border-radius: 12px; overflow: hidden;
@@ -420,7 +412,6 @@
       color: rgba(255,255,255,.8);
     }
 
-    /* ── IA SPOTLIGHT ── */
     @media (max-width: 900px) {
       .feat-grid { grid-template-columns: 1fr 1fr; }
       .mockup-section { grid-template-columns: 1fr; }
@@ -487,7 +478,7 @@
     <div class="hero-pills">
       <span class="hero-pill">
         <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm1 14.93V18a1 1 0 0 1-2 0v-1.07A7 7 0 0 1 5.07 11H6a1 1 0 0 1 0 2 5 5 0 0 0 4.93 5zm0-9.86V9a1 1 0 0 1-2 0V7.07A7 7 0 0 1 18.93 13H18a1 1 0 0 1 0-2 5 5 0 0 0-5-5z"/></svg>
-        PWA · Sin instalación
+        Acceso directo
       </span>
       <span class="hero-pill">
         <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
@@ -495,7 +486,7 @@
       </span>
       <span class="hero-pill">
         <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-        Android · iOS · Sin tiendas
+        Android · iOS
       </span>
     </div>
   </div>
@@ -516,8 +507,8 @@
     <div class="stat-lbl">Datos en la nube — privacidad total</div>
   </div>
   <div class="stat-card">
-    <div class="stat-num">PWA</div>
-    <div class="stat-lbl">Sin Play Store ni App Store (PWA)</div>
+    <div class="stat-num">💳</div>
+    <div class="stat-lbl">Pago único, sin suscripción</div>
   </div>
 </div>
 
@@ -781,11 +772,6 @@
     </div>
     <div class="compare-row">
       <div class="compare-cell">Categorías adaptadas al contexto LATAM</div>
-      <div class="compare-cell"><span class="cross">✕</span></div>
-      <div class="compare-cell"><span class="hl">✓</span></div>
-    </div>
-    <div class="compare-row">
-      <div class="compare-cell">Funciona sin Play Store ni App Store (PWA)</div>
       <div class="compare-cell"><span class="cross">✕</span></div>
       <div class="compare-cell"><span class="hl">✓</span></div>
     </div>
