@@ -242,6 +242,13 @@
     .algo-mql5 { font-size: 11px; color: var(--muted2); font-weight: 600; }
     .algo-mql5:hover { color: var(--blue); }
 
+    /* ── BALANCES ── */
+    .balances-card {
+      background: var(--white); border: 1px solid var(--border);
+      padding: clamp(12px,2vw,24px); margin-bottom: 32px; overflow-x: auto;
+    }
+    .balances-card img { display: block; width: 100%; height: auto; min-width: 560px; }
+
     /* ── PEPPERSTONE ── */
     .promo {
       background: linear-gradient(135deg, var(--navy) 0%, #0d3270 100%);
@@ -581,6 +588,20 @@
         <a class="algo-mql5" href="https://www.mql5.com/" rel="noopener nofollow" target="_blank">Ver en MQL5 Community →</a>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- BALANCES -->
+<div class="section rv">
+  <div class="sec-row">
+    <div>
+      <div class="sec-eyebrow">Resultados mensuales</div>
+      <h2 class="sec-title">Balances de los algoritmos</h2>
+      <p class="sec-sub">Rendimiento mes a mes de cada sistema, actualizado con los resultados en productivo.</p>
+    </div>
+  </div>
+  <div class="balances-card">
+    <img src="balances.png" alt="Tabla de balances mensuales de los algoritmos Bosón, Alchemist y Orión">
   </div>
 </div>
 
