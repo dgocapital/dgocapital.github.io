@@ -98,12 +98,13 @@
       margin: 0 clamp(12px,3vw,32px);
       display: flex; flex-direction: column; justify-content: flex-end;
     }
-    .hero-bg {
+    .hero-slides { position: absolute; inset: 0; }
+    .hero-slide {
       position: absolute; inset: 0;
-      background:
-        linear-gradient(to bottom, rgba(8,22,52,.25) 0%, rgba(8,22,52,.52) 45%, rgba(8,22,52,.90) 100%),
-        url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+      background-size: cover; background-position: center; background-repeat: no-repeat;
+      opacity: 0; transition: opacity 1.2s ease;
     }
+    .hero-slide.active { opacity: 1; }
     .hero-dots {
       position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
       display: flex; flex-direction: column; gap: 8px; z-index: 2;
@@ -242,11 +243,6 @@
     .algo-mql5:hover { color: var(--blue); }
 
     /* ── PEPPERSTONE ── */
-    .balances-card {
-      background: var(--white); border: 1px solid var(--border);
-      padding: clamp(12px,2vw,24px); margin-bottom: 32px; overflow-x: auto;
-    }
-    .balances-card img { display: block; width: 100%; height: auto; min-width: 560px; }
     .promo {
       background: linear-gradient(135deg, var(--navy) 0%, #0d3270 100%);
       display: flex; align-items: center; margin-bottom: 32px;
@@ -393,6 +389,7 @@
   <div class="nav-links">
     <a class="nav-link" href="#servicios">Servicios</a>
     <a class="nav-link" href="desarrollos/index.html">Desarrollos</a>
+    <a class="nav-link" href="servicios/dgo-finance-app.html" style="color:#5b3fd4;font-weight:800;">Finance App</a>
     <a class="nav-link" href="#contacto">Contacto</a>
   </div>
   <div class="nav-actions">
@@ -416,15 +413,23 @@
 <div class="nav-mobile-menu" id="mobile-menu">
   <a class="nav-mobile-link" href="#servicios">Servicios</a>
   <a class="nav-mobile-link" href="desarrollos/index.html">Desarrollos</a>
+  <a class="nav-mobile-link" href="servicios/dgo-finance-app.html" style="color:#5b3fd4;font-weight:800;">Finance App</a>
   <a class="nav-mobile-link" href="#contacto">Contacto</a>
 </div>
 
 <!-- HERO -->
 <section class="hero rv">
-  <div class="hero-bg"></div>
-  <div class="hero-dots">
-    <div class="hero-dot active"></div><div class="hero-dot"></div>
-    <div class="hero-dot"></div><div class="hero-dot"></div>
+  <div class="hero-slides">
+    <div class="hero-slide active" style="background-image: linear-gradient(to bottom, rgba(8,22,52,.25) 0%, rgba(8,22,52,.52) 45%, rgba(8,22,52,.90) 100%), url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1600&q=80&auto=format&fit=crop');"></div>
+    <div class="hero-slide" style="background-image: linear-gradient(to bottom, rgba(8,22,52,.25) 0%, rgba(8,22,52,.52) 45%, rgba(8,22,52,.90) 100%), url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1600&q=80&auto=format&fit=crop');"></div>
+    <div class="hero-slide" style="background-image: linear-gradient(to bottom, rgba(8,22,52,.25) 0%, rgba(8,22,52,.52) 45%, rgba(8,22,52,.90) 100%), url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1600&q=80&auto=format&fit=crop');"></div>
+    <div class="hero-slide" style="background-image: linear-gradient(to bottom, rgba(8,22,52,.25) 0%, rgba(8,22,52,.52) 45%, rgba(8,22,52,.90) 100%), url('https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=1600&q=80&auto=format&fit=crop');"></div>
+  </div>
+  <div class="hero-dots" id="hero-dots">
+    <div class="hero-dot active" data-index="0"></div>
+    <div class="hero-dot" data-index="1"></div>
+    <div class="hero-dot" data-index="2"></div>
+    <div class="hero-dot" data-index="3"></div>
   </div>
   <div class="hero-content">
     <img class="hero-logo" src="logo.png" alt="DGO Capital">
@@ -510,6 +515,19 @@
       <div><div class="svc-name">Modelo de Inversión</div><div class="svc-desc">Participa en el copy gestionado algorítmicamente bajo nuestros sistemas.</div></div>
       <span class="svc-arr">›</span>
     </a>
+    <a class="svc-card" href="servicios/dgo-finance-app.html" style="border-top:2px solid #5b3fd4;grid-column:1/-1;">
+      <div class="svc-ico" style="background:#f0eeff;color:#5b3fd4;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      </div>
+      <div style="flex:1;">
+        <div class="svc-name" style="display:flex;align-items:center;gap:8px;">
+          DGO Capital Finance
+          <span style="font-size:10px;font-weight:800;background:#f0eeff;color:#5b3fd4;padding:2px 8px;letter-spacing:.05em;text-transform:uppercase;">App exclusiva</span>
+        </div>
+        <div class="svc-desc">Controla tus ingresos, gastos, deudas e inversiones desde tu celular. </div>
+      </div>
+      <span class="svc-arr">›</span>
+    </a>
   </div>
 </div>
 
@@ -563,20 +581,6 @@
         <a class="algo-mql5" href="https://www.mql5.com/" rel="noopener nofollow" target="_blank">Ver en MQL5 Community →</a>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- BALANCES -->
-<div class="section rv">
-  <div class="sec-row">
-    <div>
-      <div class="sec-eyebrow">Resultados mensuales</div>
-      <h2 class="sec-title">Balances de los algoritmos</h2>
-      <p class="sec-sub">Rendimiento mes a mes de cada sistema, actualizado con los resultados en productivo.</p>
-    </div>
-  </div>
-  <div class="balances-card">
-    <img src="balances.png" alt="Tabla de balances mensuales de los algoritmos Bosón, Alchemist y Orión">
   </div>
 </div>
 
@@ -687,6 +691,7 @@
   <div class="footer-links">
     <a href="desarrollos/index.html">Desarrollos</a>
     <a href="servicios/copiador-de-senales.html">Servicios</a>
+    <a href="servicios/dgo-finance-app.html" style="color:#a78bfa;">Finance App</a>
     <a href="https://pepperstone.com/es-la/go/copytrading-by-pepperstone/" target="_blank" rel="noopener">Pepperstone</a>
   </div>
 </footer>
@@ -747,6 +752,35 @@
         btn.setAttribute('aria-expanded','false');
       });
     });
+  })();
+
+  // HERO SLIDER
+  (function(){
+    var slides  = document.querySelectorAll('.hero-slide');
+    var dots    = document.querySelectorAll('#hero-dots .hero-dot');
+    var current = 0;
+    var timer;
+
+    function goTo(n) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    function startAuto() { timer = setInterval(function(){ goTo(current + 1); }, 5000); }
+    function stopAuto()  { clearInterval(timer); }
+
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        stopAuto();
+        goTo(parseInt(this.getAttribute('data-index')));
+        startAuto();
+      });
+    });
+
+    startAuto();
   })();
 </script>
 </body>
