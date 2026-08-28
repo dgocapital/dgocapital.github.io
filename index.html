@@ -217,7 +217,7 @@
     .svc-card:hover .svc-arr { transform: translateX(3px); color: var(--blue); }
 
     /* ── ALGO CARDS ── */
-    .algo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 32px; }
+    .algo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 32px; }
     .algo-card {
       background: var(--white); border: 1px solid var(--border); overflow: hidden;
       transition: box-shadow .2s, transform .2s;
